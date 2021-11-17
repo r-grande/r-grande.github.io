@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+\usepackage{appendix}
+
+\title{Fredholm Properties of Elliptic Peusodifferential Operators}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\setcounter{section}{1}
+\maketitle
+Let $M$ be a compact manifold without boundary, and $P$ an elliptic pseudodifferential operator of order $s$. Then $P:H^{t+s}(M) \to H^{t}(M)$ is bounded for all $t \in \R$. We will be pedantic write $P_{t+s \to s}$ to denote $P$ with domain $H^{t+s}$. There is also another elliptic pseudodifferential operator $Q$ of order $-s$ such that $PQ \equiv QP \equiv I$ modulo smoothing operators. Let $P^\ast$ denote the formal adjoint of $P$, which is again an elliptic pseudodifferential operator of order $s$. By elliptic regularity, $\ker P_{t+s \to t} \subseteq C^\infty(M)$ does not depend on $t$, and likewise for $P^\ast$. We will call this common space $\ker P$ (resp. $\ker P^\ast$).
+
+We show the following Fredholm properties of $P$:
+\begin{thm}\label{one}Let $s \in \R$. Then we have the decompositions
+\[H^t(M) = \ker P \oplus \im (P^\ast)_{t+s\to t} = \ker P^\ast \oplus \im P_{t+s\to t}\]
+where the sums are orthogonal with respect to the $L^2$ inner product (in the case that $t < 0$, one must interpret this as a distributional paring on $C^\infty(M)$).
+
+Also, $\dim \ker P, \dim \ker P^\ast < \infty$. Then, $L^2$ projections $\Pi_V$ ($V = \ker P,\ker P^\ast$) exist and are smoothing operators. Furthermore, there exists a pseudodifferential $\tilde{Q}$ of order $-s$ such that
+\[\tilde{Q}P = I-\Pi_{\ker P}, \ \ P\tilde{Q} = I-\Pi_{\ker P^\ast}.\] $\tilde{Q}$ is formally self-adjoint if $P$ is.
+
+Lastly, we also have the analogous decompositions
+\[C^\infty(M) = \ker P \oplus P^\ast(C^\infty(M)) = \ker P^\ast \oplus P(C^\infty(M)),\]
+and
+\[\mathcal D'(M) = \ker P \oplus P^\ast(\mathcal D'(M)) = \ker P^\ast \oplus P(\mathcal D'(M)),\]
+which are also orthogonal (the second of the pair of decompositions is again interpreted via the distributional pairing). \end{thm}
+
+We will use this theorem to prove the following well-known result:
+\begin{thm}\label{two}Let $P$ be a formally self-adjoint elliptic pseudodifferential operator of order $s \neq 0$ acting on a compact manifold $M$. Then there exist a sequence of smooth functions $u_n$ and real numbers $\lambda_n$ such that $Pu_n = \lambda_n u_n$ and the $u_n$ (suitably normalized) form an orthonormal basis of $L^2(M)$. If $s > 0$, $|\lambda_n| \to \infty$. if $s < 0$, $\lambda_n \to 0$. In particular $P$ is an essentially self-adjoint (possibly unbounded) operator on $L^2(M)$. If $s = 0$, then $P$ is still self-adjoint\end{thm}
+In particular for the case $-\Delta + 1$ this is true. Since $-\Delta+1$ is a formally positive operator with no kernel, all of its eigenvalues are $> 0$. There is no conclusion about eigenvalues for the case, $s=0$ as the identity operators shows.
+
+\begin{proof}[Proof of Theorem~\ref{one}]Smoothing operators are bounded between all $H^t(M)$, and in particular are compact on all $H^t(M)$. The Fredholm theorem then applies, and so $\ker P$, $\cok P_{t \to t+s}$ are finite-dimensional, $\im P_{t \to t-s}$ is closed, and similarly for $P^\ast$. Notice now that $(P^\ast)_{s-t\to -t} = (P_{t \to t-s})^\ast$, i.e. the Banach space adjoint of $P_{t \to t+s}$ is given by $P^\ast$> Indeed, the operators both satisfy
+\[(P^\ast u|v) = (u|Pv) = (P_{t \to t-s}^\ast u|v)\] for all $u,v \in C^\infty$, and so
+\[P^\ast u = (P_{t \to t-s})^\ast u\] for all $u \in C^\infty$. Since both operators bounded on $H^{s-t}$, they are the same. Thus we will just write $P^\ast_{-t+s\to-t}$ for both operators.
+
+We therefore have the following decomposition:
+\[L^2(M) = \ker P \oplus  \ker P^\bot.\] It is clear that $\ker P = (\im P^\ast_{s \to 0})^\bot,$ and since $\im P^\ast_{s \to 0}$ is closed, that $\ker P^\bot = \im P^\ast_{s \to 0}$. 
+
+Now fix $t > 0$. If $u \in H^t(M),$, then $u \in L^2(M)$ and so $u = v + w$ for $v \in \ker P$, $w \in \im P^\ast_{s\to 0}$, and $(v|w) = 0$. Since $v \in C^\infty(M) \subseteq H^t(M)$, $w \in H^t(M)$ as well, and thus by elliptic regularity, $w = P^\ast w'$ for some $w' \in s+t$. This proves that
+\[H^t(M) = \ker P \oplus \im P^\ast_{t+s\to t},\] and the decomposition is orthogonal. The same argument proves the $C^\infty(M)$ decomposition.
+
+Now fix $t < 0$. Then by density
+\[H^t(M) = \overline{\ker P \oplus \im P^\ast_{s\to 0}}.\] Now $\ker P$ is finite-dimensional, and so $\ker P \oplus\overline{ \im P^\ast_{s\to 0}}$ is closed. So
+\[H^t(M) = \ker P \oplus\overline{\im P^\ast_{s\to 0}}.\] By continuity, this decomposition is orthogonal. Since $\im P^\ast_{t+s\to t}$ is closed and contains $\im P^\ast_{s \to 0}$,
+\[\overline{\im P^\ast_{s\to 0}} \subseteq \im P^\ast_{t+s\to t}.\] Conversely, if $u = P^\ast v$ where $v \in H^{t+s}(M)$, then $v = \lim v_n$ where $v_n \in H^{s}(M)$, and so $u = \lim Pv_n \in \overline{\im P^\ast_{s\to 0}}$. So we have the decomposition
+\[H^t(M) = \ker P \oplus \im P^\ast_{t+s\to t}.\]
+
+The decomposition for $\mathcal D'(M)$ follows immediately from the above and the fact that
+\[\mathcal D'(M) = \bigcup_{s \in \R} H^s(M).\]
+
+Since $P^{\ast\ast} = P$, we have the other of the two decompositions, too.
+
+If $V \subseteq C^\infty(M)$ is finite-dimensional, we may pick a basis $e_1,\ldots, e_n$ of $V$. Then $\Pi_V$ has kernel $\sum_{i=1}^n \overline{e_i(y)}e_i(x)$ and is thus smoothing. Define $\tilde{Q}$ first on $C^\infty(M)$ as follows: by the decomposition, $P$ is injective on $P^\ast(C^\infty(M))$. So we may define $\tilde{Q}:P(C^\infty(M)) \to P^\ast(C^\infty(M))$ to be its two-sided inverse. Extend $\tilde{Q}$ to an operator on all of $C^\infty(M)$ by setting $\tilde{Q}(\ker P^\ast) = 0$. By the decomposition, this makes $\tilde{Q}$ well-defined. Notice that the decomposition
+\[v = \Pi_{\ker P^\ast}v + (I-\Pi_{\ker P^\ast})v\] is an orthogonal decomposition, and so $(I-\Pi_{\ker P}v) \in P(C^\infty(M))$. It follows that 
+\[P\tilde{Q}v = P\tilde{Q}(I-\Pi_{\ker P^\ast})v = (I-\Pi_{\ker P^\ast})v.\] Similiar, we may write
+\[v = \Pi_{\ker P}v + (I-\Pi_{\ker P})v,\] and so
+\[\tilde{Q}Pv = \tilde{Q}P(I-\Pi_{\ker P})v = (I-\Pi_{\ker P})v.\]
+
+We next extend $\tilde{Q}$ to a bounded operator $H^{t}(M) \to H^{t+s}(M)$ for all $t \in \R$. This is done in a similar way to the above. $P$ is injective on $\im (P^\ast_{t+s\to t}$to $\im P_{t+s\to t}$ and so has an inverse $\tilde{Q}$. This $\tilde{Q}$ agrees with the one obtained above on $P^\ast(C^\infty(M))$ since we have the inclusion $P^\ast(C^\infty(M)) \subseteq \im (P^\ast_{t+s\to t}$. Since $\im P_{t+s \to t}$ is closed, by the open mapping theorem, $\tilde{Q}$ is bounded. We also define, as above, $\tilde{Q}$ to be $0$ on $\ker P$. This definition extends $\tilde{Q}$. $\tilde{Q}$ is bounded restricted to $\ker P$ and to $\im P_{t+s\to s}$. This implies that it is bounded on their sum, which is $H^{t}(M)$. See Lemma~\ref{sdsd}. Since $\Pi_{V}$ is already bounded on all $H^{t}$ spaces ($V = \ker P, \ker P^\ast$), $\tilde{Q}Pv = I-\Pi_{\ker P}$ and $P\tilde{Q} = (I-\Pi_{\ker P^\ast})$.
+
+From this, one shows easily using Sobolev embedding that $\tilde{Q}$ is continuous on $C^\infty(M)$.
+
+Next we show that $\tilde{Q}$ is pseudodifferential. Indeed, if $Q$ is any pseudodifferential parametrix to $P$ then $PQ = I-K$, where $K$ is smoothing. Thus,
+\[\tilde{Q}PQ = \tilde{Q}(I-K) = \tilde{Q}-\tilde{Q}K.\] On the other hand,
+\[\tilde{Q}PQ = (I-\Pi_{\ker P})Q = Q-Q\Pi_{\ker P}.\] Now $Q\Pi_{\ker P}$ is smoothing, since $Q$ is continuous on $C^\infty(M)$. Similarly, $\tilde{Q}K$ is smoothing. Thus $\tilde{Q}-Q$ is smoothing. Since $Q$ is pseudodifferential, so is $\tilde{Q}$.
+
+Finally we show that $\tilde{Q}$ is formally self-adjoint if $P$ is. If $u,v \in C^\infty(M)$, we write $u = u'+u''$ and $v = v'+v''$ where $u',v' \in \ker P$ and $u'', v'' \in P(C^\infty(M))$. Since $P^\ast = P$, by definition this means that $\tilde{Q}u = \tilde{Q}u''$ and $\tilde{Q}v = \tilde{Q}v''$. Write $u'' = Px$ and $v'' = Py$. Then
+\[(\tilde{Q}u|v) = (\tilde{Q}u''|v) = (\tilde{Q}Px|v' + Py) = ((I-\Pi_{\ker P})x|v') + ((I-\Pi_{\ker P})x|Py).\]
+Since $v' \in \ker P$, the first sum is $0$. Since $x$ is orthogonal to $\ker P$, $(I-\Pi_{\ker P})x = x$. So
+\[(\tilde{Q}u|v) = (x|Py) = (Px|y).\] Arguing in reverse shows formal self-adjointness.\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{two}]If $s < 0$, then $P:L^2(M) \to H^{-s}(M) \to L^2(M)$, where the last inclusion is compact since $-s > 0$, and so $P$ is compact. $P$ is also self-adjoint; $(Pu|v) = (u|Pv)$ for $u,v \in C^\infty(M)$. Since $P$ is bounded $L^2 \to L^2$, we may extend this to $u,v \in L^2(M)$. Since $P$ is then a compact self-adjoint operator on a Hilbert space, the statement about the existence of $L^2$ eigenvalues and eigenvectors follows from general theory. Next we prove that all eigenvectors are of class $C^\infty$. If $Pv = 0$, then $v \in C^\infty(M)$ by elliptic regularity. Otherwise, if $Pv = \lambda v$ for $\lambda \neq 0$, then again by elliptic regularity, $v \in H^s(M)$ since $Pv \in H^s(M)$. Iterating, we have that $v \in H^{sn}(M)$ for all $n \in \Z$, and so $v \in C^\infty(M)$.
+
+if $s > 0$, then we may apply the above results to $\tilde{Q}$. Pick an orthonormal basis for the finite-dimensional space $\ker P$. All such vectors are smooth. We show that the eigenvectors $v_n$ of $\tilde{Q}$ associated to non-zero eigenvalues $\lambda_n$ are eigenvectors for $P$ with eigenvalue $\lambda_n^{-1}$ and form an orthonormal basis of $\im P_{s\to 0}$. This will be sufficient since then we will have an orthonormal basis of 
+\[L^2(M) = \ker P\oplus \im P_{s \to 0},\]
+which consists entirely of smooth functions.
+
+Since $\tilde{Q}$ is zero on $\ker P$ and the decomposition above is orthogonal, if $\tilde{Q}v_n = \lambda v_n$ for $\lambda \neq 0$, then $v_n \in (\ker P)^\bot = \im P_{0 \to -s}$. Thus, the $v_n$ form an orthonormal basis of $\im P_{s \to 0}$. Furthermore, \[v_n = (I-\Pi_{\ker P})v_n =  P\tilde{Q}v_n = \lambda_nPv_n.\] whence we also have the the $v_n$ are eigenvectors of $P$.
+
+Lastly, if $s=0$, then $P$ is bounded $L^2(M) \to L^2(M)$, and so formal self-adjointness implies self-adjointness.\end{proof}
+
+\begin{lem}\label{sdsd}Let $V$ be a Banach space, and let $U,W$ be closed subspaces of $V$ so that $U\n W = 0$ and $U\oplus W = V$. Then there exists some constant $C$ so that $C\norm{x+y} \geq \norm{x}+\norm{y}$ whenever $x \in U$, $y \in V$. Furthermore, if $X$ is another Banach space, then $T:V \to X$ is bounded iff the restrictions $T|_U$ anad $T|_W$ are.\end{lem}
+\begin{proof}$U \oplus W$ is an abstract Banach space under the norm $\norm{x+y} = \norm{x}+\norm{y}$. Indeed, this turns $U \oplus W$ into a normed space. It is complete since if $x_n+y_n$ is Cauchy, then $x_n$ and $y_n$ are individually Cauchy, and so converge because $U,W$ are closed. The map $v=x+y \mapsto x+y$ from $V$ to $U \oplus W$ is certainly well-defined, bijective, and bounded because of the triangle inequality. Thus by the open mapping theorem its inverse is bounded. This statement is equivalent to the first conclusion.
+
+For the second conclusion, one direction is clear. For the other, notice that by boundedness, whenever $x \in U$ and $y \in V$,
+\[\norm{T(x+y)} \leq \norm{Tx} + \norm{Ty} \leq \max(\norm{T|_U},\norm{T|_V})(\norm{x}+\norm{y}) \leq C\max(\norm{T|_U},\norm{T|_V})\norm{x+y}.\]\end{proof}
+
+\end{document}

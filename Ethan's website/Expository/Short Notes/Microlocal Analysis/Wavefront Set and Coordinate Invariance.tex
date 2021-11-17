@@ -1,0 +1,153 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Wavefront Set and Coordinate Invariance}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}There are two common definitions of the Wavefront Set for a distribution $u$, $\WF(u)$ on an open set $X \subseteq \R^n$
+\begin{defn}[Definition 1]$(x,\xi) \in U\times\R^n \iso T^{\ast}U \not \in \WF(u)$ if there exists some $\phi \in C_c^\infty(U)$, $\phi(x) = 1$ and $\widehat{\phi u}(\eta)$ is rapidly decreasing in an open cone around $\xi$, i.e. there exists an open cone $\Gamma \subseteq \R^n$ containing $\xi$ such that for all $N$ there exists $C_N$ so that for all $\eta \in \Gamma$
+\[|\widehat{\phi u}(\eta)| \leq C_N(1+|\eta|)^{-N}.\]
+\end{defn}
+
+\begin{defn}[Definition 2]$(x,\xi) \in U\times \R^n \not \in \WF(u)$ if there exists a Pseudodifferential operator $A \in \Psi^0(U)$, elliptic at $(x,\xi)$ such that $Au \in C^\infty(U)$.\end{defn}
+
+The first definition has the advantage of being elementary, whereas the second has the advantange of being easy to work with. It is desirable to have proofs of the basic facts about wavefront set without recourse to pseudodifferential operators. In this note we prove the following two basic facts.
+
+\begin{prop}\label{propone}Let $\Pi:U\times\R^n$ be projection onto the first factor. Then for any distribution $u$ on $U$, $\singsupp(u) = \Pi(\WF(u))$.\end{prop}
+
+\begin{thm}[Coordinate Invariance.]\label{thmtwo}Let $\phi:U \to V$ be a diffeomorphism. Denote by $\Phi:T^{\ast}U \to T^{\ast}V$ the induced symplectomorphism, i.e. $\Phi(x,\xi) = (\phi(x), d(\phi^{-1}_{\phi(x)})^T\xi)$. Then if $u$ is a distribution on $U$, then $\WF(\phi_{\ast}u) = \Phi(\WF(u))$.\end{thm}
+In the statement of the Theorem, $\phi_{\ast}u$ is the pushforward of $u$, defined to be consistent with integration by
+\[\langle \phi_{\ast}u,\psi\rangle = \langle u,\psi\circ \phi |\det d\phi|\rangle.\]
+
+\section{A Fundamental Lemma}
+In this section we prove a fundamental lemma.
+\begin{lem}\label{flem}Let $A:\R^n \to \R^n$ be invertible and linear and let $F(\eta,\xi)$ satisfy for every $N$, the bound
+\begin{equation}\label{bnd}|F(\eta,\xi)| \leq C_N\sum_{k=0}^{K_N} (1+|\xi|)^{k}(1+|\eta-A^{-1}\xi|)^{-N-k}.\end{equation}
+Suppose $v \in C^\infty(\R^n)$ is rapidly decreasing in a cone $\Gamma \ni \eta_0$ and $v$ is of polynomial growth globally (i.e. $|v(\eta)| \leq C(1+|\eta|)^M$.) Then
+\[w(\xi) = \int v(\eta)F(\eta,\xi)\ d\eta\]
+is rapidly decaying in an open cone around $A\eta_0$.\end{lem}
+The statement of this Lemma seems unnecessarily complicated, although we will need to use it. The main ideas are aleady present in the case $K_N = 0$, and the proof can be read with this assumption in mind.
+\begin{proof}
+Let $\eta_0 \in \tilde{\Gamma}$ be a cone contained in a closed cone in $\Gamma$. We will show that $w$ is rapidly decaying in $A(\tilde{\Gamma})$. Suppose $\tilde{\xi} =A(\xi) \in \tilde{\Gamma}$. Then
+\[w(\tilde{\xi}) = \int_{\Gamma} v(\eta)F(\eta,A(\xi))\ d\eta + \int_{\Gamma^c} v(\eta)F(\eta,A(\xi))\ d\eta.\]
+For the first integral we may use the bound, with $N' = N+2n$,
+\[\left| \int_{\tilde{\Gamma}} v(\eta)F(\eta,A(\xi))\ d\eta\right| \leq C_{N'}\sum_{k=0}^{K_{N'}}\int_{\R^n}(1+|\eta|)^{-N-k}(1+|\eta-\xi|)^{-N-2n-k}(1+|\tilde{\xi}|)^{k}\ d\eta.\]
+Since $c|\tilde{\xi}| \leq |\xi| \leq C|\tilde{\xi}|$ independently of $\tilde{\xi}$, a generic term in the sum may be bounded by
+\[C_{N'}(1+|\tilde{\xi}|)^{k}(1+|\xi|)^{-N-k}\int_{\R^n}(1+|\xi-\eta|)^{-2n}\ d\eta \leq C_{N'}(1+|\tilde{\xi}|)^{-N},\]
+since the integral is bounded and does not depend on $\tilde{\xi}$. Summing all such bounds, we deduce that the first integral is bounded by
+\[C_{N'}(1+|\tilde{\xi}|)^{-N'},\]
+which shows a contribution of rapid decay from the first integral.
+
+We now turn our attention to the second integral. Suppose $\xi \in \tilde{\Gamma}$ and $\eta \in \Gamma^c$. Then $|\xi-\eta| \geq c(|\xi|+|\eta|)$. Indeed, consider
+\[T = (\overline{\tilde{\Gamma}}\times \Gamma^c) \n S^{2n}.\] Then the map $(\xi,\eta) \in T \mapsto |\xi-\eta|$ attains its minimum $c' > 0$. Since $\tilde{\Gamma}, \Gamma^c$ are conical, for $\xi \in \tilde{\Gamma}$, $\eta \in \Gamma^c$, $(\xi,\eta)/|(\xi,\eta)| \in T$, and so
+\[|\xi-\eta| \geq c'\sqrt{|\xi|^2+|\eta|^2},\]
+which completes the proof. 
+
+So for the second integral we may bound, with $N' = N+M+2n$,
+\begin{align*}
+\left|\int_{\Gamma^c} v(\eta)F(\eta,A(\xi))\ d\eta\right| &\leq C_{N'}\sum_{k=0}^{K_{N'}}\int_{\R^n}(1+|\eta|)^M(1+|\eta-\xi|)^{-N-M-2n-k}(1+|\tilde{\xi}|)^{k}\ d\eta \\
+&\leq C_{N'}\sum_{k=0}^{K_{N'}}\int_{\R^n}(1+|\eta|)^M(1+|\eta-\xi|)^{-M-2n}(1+|\eta|+|\xi|)^{-N-k}(1+|\tilde{\xi}|)^{Mk}\ d\eta\\
+&\leq C_{N'}\sum_{k=0}^{K_{N'}}\int_{\R^n}(1+|\eta|)^M(1+|\eta-\xi|)^{-M-2n}(1+|\xi|)^{-N-k}(1+|\tilde{\xi}|)^{k}\ d\eta.\end{align*} Similar to above, a generic term in the sum is bounded by
+\[C_{N'}(1+|\tilde{\xi}|)^{M}(1+|\tilde{\xi}|)^{-N-k}(1+|\tilde{\xi})|^{k}\int (1+|\xi-\eta|)^{-2n}\ d\eta \leq C_{N'}(1+|\tilde{\xi}|)^{-N},\]
+which shows that the second integral also contributes rapid decay.\end{proof}
+
+We have the immediate corollaries.
+\begin{cor}\label{cort}If $u$ is a distribution on $U$, $\psi \in C_c^\infty(U)$, and $\widehat{\psi u}$ is rapidly decaying on a cone $\Gamma$, then for any $\phi \in C_c^\infty(U)$, $\widehat{\phi\psi u}$ is rapidly decaying on any slightly smaller cone. \end{cor}
+\begin{proof}It suffices to observe that
+\[\widehat{\phi\psi u} = \widehat{\phi}\ast\widehat{\psi u}\] and that since $\psi u \in C^{-\infty}_c(U)$, $\widehat{\psi u}$ is of polynomial growth.\end{proof}
+
+\begin{cor}\label{cortt}Suppose $\phi \in C^\infty(U)$ and $u$ is a distribution. Then $\WF(\phi u) \subseteq \WF(u)$.\end{cor}
+\begin{proof}Suppose $(x_0,\xi_0) \not \in \WF(u)$. Then there exists some $\psi \in C_c^\infty(U)$ and $\psi(x_0) = 1$ so that $\widehat{\psi u}$ is rapidly decaying in an open cone around $\xi_0$. Now apply Corollary~ \ref{cort}\end{proof}
+
+We will also need another version of Lemma~\ref{flem}, but with different assumptions on $F$.
+\begin{lem}\label{flemt}Let $A$, $F$, $v$, $w$, $\Gamma$, $\eta_0$ be as in Lemma~\ref{flem}, however instead of $F$ satisfying \eqref{bnd}, we assume that $F(\eta,\xi)$ is uniformly bounded and supported in in the region
+\[|\eta-A^{-1}\xi| \leq \epsilon(1+|\xi|),\]
+where $\epsilon > 0$ is sufficiently small (how small will be clear in the proof). Then the conclusion of Lemma~\ref{flem} holds as well.\end{lem}
+\begin{proof}
+We show that the same cone $A(\tilde{\Gamma})$ works, as chosen in the proof of Lemma~\ref{flem}. Setting $\tilde{\xi} = A\xi$, we have the bound
+\[|w(\tilde{\xi}) \leq C_N\int_{|\eta-\xi| \leq \epsilon(1+|A\xi|)}(1+|\eta|)^{-N}\ d\eta + C\int_{|\eta-\xi| \leq \epsilon(1+|A\xi|)} (1+|\eta|)^M\ d\eta.\]
+Of course, $\epsilon(1+|A\xi|) \leq \epsilon'(1+|\xi|)$ for some $\epsilon' > 0$, so we may substiture this larger bound instead. For the first integral, $1+|\eta| \geq 1+ |\xi|-|\eta-\xi| \geq (1-\epsilon')(1+|\xi|)$, and so the first integral is bounded by
+\[C_N\text{vol}(B(0,\epsilon(1+|\xi|))((1-\epsilon')(1+|\xi|))^{-N} \leq C_N(1+|\tilde{\xi}|)^{-N+n},\]
+which is the rapid decay.
+
+For the second integral, we recall from the proof of Lemma~\ref{flem} that 
+$|\eta-\xi| \geq c(|\eta| + |\xi|)$ for some $c > 0$. So in the second integral, we have the condition
+\[c|\xi| \leq c|\eta| + c|\xi| \leq \epsilon' + \epsilon'|\xi|,\]
+which is not satisfied for large $|\xi|$ provided $\epsilon' < c$. Thus the second integral vanishes for large $|\xi|$, and so is in particular rapidly decreasing.
+\end{proof}
+
+\section{Proofs}
+\begin{proof}[Proof of Proposition~\ref{propone}.] If $x \not \in \singsupp u$, then by definition there exists $\phi \in C_c^\infty(U)$, $\phi(x) = 1$ so that $\phi u \in C_c^\infty(U)$, and hence $\widehat{\phi u}$ is rapidly decreasing. This shows that $\Pi(\WF(u)) \subseteq \singsupp u$. For the converse, suppose $(x,\xi) \not \in WF(u)$ for all $\xi$. We ned to show that $x \not \in \singsupp(u)$. Since $S^n$ is compact, there are finitely many cones $\Gamma_i \ni \xi_i$ which cover $\R^n$ and $\phi_i \in C_c^\infty(U)$ with $\phi_i(x) = 1$ and $\widehat{\phi_i u}$ rapidly decaying in $\Gamma_i$. Set $\phi = \prod_i \phi_i$. We claim that $\widehat{\phi u}$ is rapidly decaying everywhere, and hence $\phi u \in C_c^\infty(U)$, which is what we want. This follows immediately from Corollary~\ref{cort} and induction.\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thmtwo}.]We need only show that if $(x_0,\xi_0) \not \in WF(u)$, then $\Phi(x_0,\xi_0) \not \in \WF(\phi_{\ast}u)$, since the reverse inclusion follows by considering $\phi^{-1}$. The theorem is obvious if $\phi$ is a translation, so we might as well assume $0 \in U\n V$, that $x_0 = 0$ and $\phi(0) = 0$. We wish to find a function $\psi \in C_c^\infty(U)$, $\psi(0) = 1$ so that
+$\widehat{\phi_{\ast}(u\psi)}$ is rapidly decaying in a cone around $(d\phi^{-1}_0)^T\xi_0$. Suppose $\psi \in C_c^\infty(U)$ is arbitrary, and suppose $\chi \in C_c^\infty(U)$ is $1$ on $\supp \psi$. Then by definition
+\begin{align*}\widehat{\phi_{\ast}(u\psi)}(\eta) &= \langle \phi_{\ast}(u\psi)(y),e^{-iy\cdot \eta}\rangle\\
+&= \langle (u\psi)(x),e^{-i\phi(x)\cdot \eta}|\det d\phi(x)|\rangle\\
+&= \langle (u\psi|\det d\phi|)(x),e^{-i\phi(x)\cdot \eta}\chi(x)\rangle\\
+&= \langle \widehat{(u\psi|\det d\phi|)},\breve{e^{-i\phi(\cdot)\cdot \eta}\chi}\rangle.\end{align*}
+where here, $\breve{v}$ denotes the inverse Fourier transform.
+By Corollary~\ref{cort}, $\widehat{(u\psi|\det d\phi|)}$ is rapidly decaying in a cone around $\xi_0$, provided $\psi$ is chosen appropriately. In fact, multiplying by another cutoff, the Corollary also shows that we can ensure that $\supp \psi$ (and hence $\supp \chi$) is as small as we like. $\widehat{(u\psi|\det d\phi|)}$ is also a smooth function of polynomial growth, and so the last distributional pairing is actually an integral. We now examine
+\[\breve{e^{-i\phi(\cdot)\cdot \eta}\chi}(\xi) = \frac{1}{(2\pi)^n}\int e^{ix\cdot \xi}e^{-i\phi(x)\cdot \eta}\chi(x)\ dx =: F(\xi,\eta).\]
+
+We want to prove that we can write $F(\xi,\eta) = F_1(\xi,\eta) + F_2(\xi,\eta)$ where $F_1$ satifies the hypotheses of Lemma~\ref{flem}, and $F_2$ satisfies those of Lemma~\ref{flemt}, with $A = d(\phi^{-1}_0)^T$ (where $\eta$ and $\xi$ have their roles reversed).This will then show that
+$\widehat{\phi_{\ast}(u\psi)}(\eta)$ is rapidly decaying in a cone around $d(\phi^{-1}_0)^T\xi_0$, i.e. $\Phi(0,\xi_0) \not \in \WF(\phi_{\ast}u)$.
+
+To do this, we integrate by parts. For $\xi,\eta$, fixed, let $L$ be the differential operator
+\[L = -i\sum_{k=1}^n \frac{(\xi-d\phi_x^T\cdot \eta)_k}{|\xi-d\phi_x^T\cdot \eta|^2}\partial_k.\]
+Then, wherever $\xi \neq d\phi_x^T\cdot \eta$,
+\[L(e^{ix\cdot \xi}e^{-i\phi(x)\cdot \eta}) = e^{ix\cdot \xi}e^{-i\phi(x)\cdot \eta}.\] Let $L^t$ denote the (real) adjoint of $L$, the operator satisfying
+\[\int (Lf)g = \int f(L^tg)\] whenever $f \in C^\infty(\R^n)$, and $g \in C_c^\infty(\R^n)$. If $\supp \chi$ is chosen to be small enough, then we can ensure that for any that there whenever $x \in \supp \chi$, then $|\xi - d\phi_x^T\cdot \eta| \leq \epsilon$ only if $|\xi-A^{-1}\eta| \leq \epsilon(1+|\eta|)$.
+
+Let $a(\xi,\eta)$ be the indicator function of the region $|\xi-A^{-1}\eta| \leq \epsilon(1+|\eta|)$. Set $F_1 = (1-a)F$ and $F_2 = aF$. Then $F_2$ satisfies the appropriate assumptions by construction. For $(\xi,\eta) \in \supp (1-a)$, the operator $L$ is well-defined for all $x$ in the domain of integration, thus we have that for any $N$
+\[F_1(\xi,\eta) = \frac{1}{2\pi^n}\int_{\R^n} L^N(e^{ix\cdot\xi}e^{-i\phi(x)\cdot \eta})\chi(x)\ dx = \frac{1}{2\pi^n}\int_{\R^n} e^{ix\cdot\xi}e^{-i\phi(x)\cdot \eta}(L^t)^N\chi(x)\ dx,\]
+where of course both integrals are taken over the compact set $\supp \chi$.\footnote{To be completely rigorous, one should first choose a slightly larger cutoff $\chi'$ which is $1$ on $\supp \chi$, for which $x \in \supp \chi'$, then $|\xi - d\phi_x^T\cdot \eta| \leq 2\epsilon$ only if $|\xi-A^{-1}\eta| \leq 2\epsilon(1+|\eta|)$. This is possible by shrinking $\chi$ even further. Then one integrates over the domain $\supp \chi'$ (which may be chosen to be a ball), and observe that the boundary terms vanish since $\chi$ is $0$ on the boundary.}
+Thus, to prove Theorem~\ref{thmtwo}, we need to examine $L^t$. This will be done successively in the following lemmas. Since the proofs are routine induction once the correct hypotheses are given, we will only state the lemmas and omit the proofs.
+\begin{lem}Let $g_k \in C^\infty(\R^n)$, and set
+\[P = \sum g_k\partial_k.\]
+Then $(P^t)^N$ is a sum of terms of the form
+\[C\left(\prod_{k=1}^n\prod_{|\alpha| \leq N} (\partial^{\alpha}g_k)^{j_{k,\alpha}}\right)\partial^{\beta},\]
+for some $C,\beta, n$ depending on the term, and where $\sum_{k,\alpha} j_{k,\alpha} = N$.\end{lem}
+\begin{lem}Set \[g_k = -i\frac{(\xi-d\phi_x^T\cdot \eta)_k}{|\xi-d\phi_x^T\cdot \eta|^2}.\]
+Then $\partial^{\alpha}g_k$ is a sum of terms of the form
+\[|\xi-d\phi_x^T\cdot \eta|^{-2m}(\xi-d\phi_x^T\cdot\eta)^{\beta}\eta^{\gamma}h(x),\]
+for some $m$, where $h \in C^\infty(\R^n)$, and $|\beta|+|\gamma| = 2m-1$.\end{lem}
+Now we may complete the proof. For $g_k$ as in the statement of the lemma above, it follows from the multinomial theorem that $(\partial^{\alpha}g_k)^j$ is a sum of terms of the form
+\[|\xi-d\phi_x^T\cdot \eta|^{-2m}(\xi-d\phi_x^T\cdot\eta)^{\beta}\eta^{\gamma}h(x),\]
+where $h \in C^\infty$, and $|\beta|+|\gamma| = 2m-j$.
+From this and both lemmas, we deduce that
+\[(L^t)^N = \sum_{0 \leq \ell\leq M_N,|\delta| \leq N} a_{\ell,\delta}(x,\xi,\eta)\partial^{\delta},\]
+where $a_{\ell,\delta}(x,\xi,\eta)$ are of the form
+\[|\xi-d\phi_x^T\cdot \eta|^{-2m}(\xi-d\phi_x^T\cdot\eta)^{\beta}\eta^{\gamma}h(x),\]
+where $h \in C^\infty$, $|\beta|+|\gamma| = 2m-N$.Indeed, $a_{\ell,\delta}$ are just products of the terms above, and from the first lemma the sum of all $j_{k,\alpha}$ is just $N$.
+Since for each $\ell,\delta$, $\supp \chi$,
+\[|a_{\ell,\delta}| \leq C|\xi-d\phi_x^T\cdot \eta|^{-2m+|\beta|}(1+|\eta|)^{|\gamma|}.\]
+Set $k = 2m-|\beta|-N = -|\gamma|$. This turns the previous inequality to
+\[|a_{\ell,\delta}| \leq C|\xi-d\phi_x^T\cdot \eta|^{-N-k}(1+|\eta|)^{k}.\] Summing up over all $\ell,\delta$, we deduce that
+\[F_1(\xi,\eta) \leq C\int_{\R^n}\sum_{\ell,\delta} |a_{\ell,\delta}|\chi(x)\ dx \leq C\sum_{\ell,\delta} |a_{\ell,\delta}| \leq C\sum_{k=0}^{K_N} |\xi-d\phi_x^T\cdot \eta|^{-N-k}(1+|\eta|)^{k},\]
+where $K_N$ is some large integer.\\
+
+
+So, in order to obtain the desired bounds on $F_1$, it thus suffices to show that
+\[|\xi-d\phi_x^T\cdot \eta| \geq c(1+|\xi-A^{-1}\cdot \eta|),\]
+for some $c > 0$. By assumption, we are only considering those $\xi,\eta$ for which $|\xi-A^{-1}\eta| > \epsilon(1+|\eta|)$. 
+
+We first show that 
+\[|\xi-d\phi_x^T\cdot \eta| \geq c|\xi-A^{-1}\cdot \eta|\] for these $\xi,\eta$. The inequality is trivial for $\eta = 0$, (with $c=1$) so we may assume that $\eta \neq 0$. Since the condition on $\xi,\eta$ above implies that
+$|\xi-A^{-1}\eta| > \epsilon|\eta|$, we need only prove the inequality for $\xi,\eta$ satisyfying this last, more general, condition. This condition is invariant under the scaling $(\xi,\eta) \mapsto (\lambda\xi,\lambda\eta)$, and so is the inequality we would like to prove. We may therefore restrict ourselves to proving it for $|\xi|+|\eta| = 1$, $x \in \supp \chi$.
+Since this region is compact,
+\[\frac{|\xi-d\phi_x^T\cdot \eta|}{|\xi-A^{-1}\cdot \eta|}\] attains its minimum on this set (observe that the denominator is nonzero since $|\xi-A^{-1}\eta| \geq \epsilon|\eta| > 0$ by hypothesis). The minimum is not zero, snce if it were, $|\xi-A^{-1}\cdot \eta| \leq \epsilon|\eta|$ a condtradiction. Thus the minimum is some $c' > 0$, and setting $c' = \min(c,1)$ proves the first inequality.
+
+Now, $|\xi-d\phi_x^T\cdot \eta| \geq \epsilon$ by hypothesis, and so 
+\[|\xi-d\phi_x^T\cdot \eta| \geq \max(c|\xi-A^{-1}\cdot \eta|, \epsilon).\] Redefining $c = \min(c,\epsilon)$ then proves the full inequality.
+\end{proof}
+
+
+
+
+\end{document}

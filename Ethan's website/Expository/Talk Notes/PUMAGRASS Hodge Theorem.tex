@@ -1,0 +1,123 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+\usepackage{appendix}
+
+\title{The Hodge Theorem}
+\author{Ethan Y. Jaffe}
+\date{10/14/2016}
+
+\begin{document}\maketitle
+\abstract{In this talk we will sketch a proof of the Hodge Theorem using Pseudodifferential Operators and Microlocal Analysis.}
+\section{The Hodge Theorem}
+Let $M$ be a closed (compact, no boundary) oriented Riemmanian manifold of dimension $n$, or even a submanifold of $\R^m$. We will denote by
+\[C^\infty(M;\Lambda^kT^\ast M)\] the space of differential $k$-forms on $M$. The Riemmanian metric lets us introduce an inner product on $\Lambda^kT^\ast_pM$ and $C^\infty(M;\Lambda^k T^\ast M)$. Let $dx_1,\ldots,dx_n$ denote an orthonormal basis of $\Lambda^kT^\ast_p M$. The \textbf{hodge star} is a linear map
+\[\star:\Lambda^k T_p^\ast M \to \Lambda^{n-k} T_p^\ast M\] defined by the condition that
+\[dx_I \wedge \star dx_I = dx_1\wedge\cdots\wedge dx_n,\] for a multi-index $I$. The right-hand side is of course the Riemannian volume form. In other words,
+\[\star dx_I = \pm dx_J,\] where $J$ is the multi-index containing those indices not appearing in $I$. The sign depends on $k,n$. $\star$ is certainly an isomorphism. We defined an inner product on $\Lambda^k T^\ast_p M$ by specifying
+\[\langle \alpha,\beta\rangle d\text{vol} = \alpha\wedge \ast\beta.\] Integrating, we have an inner product on $C^\infty(M;\Lambda^kT^\ast M)$ given by
+\[\langle \alpha,\beta\rangle = \int_M \langle \alpha,\beta\rangle\ d\text{vol}.\] This is the $L^2$ inner product of forms. Of course one can speak of $L^2(M;\Lambda^k T^\ast M)$ in which case the above inner product is the $L^2$ inner product and the resulting space is complete. For reasons which will be made clear below, we will in fact be dealing with complex-valued forms. This changes nothing except that we must complexify the metric and the hodge-star becomes conjugate linear.
+
+The exterior derivative $d:C^\infty(M;\Lambda^k T^\ast M) \to C^\infty(M;\Lambda^{k+1} T^\ast M)$ is a differential operator. This means that $d$ is an operator involving only taking derivatives and applying a linear map \[\Lambda^k T^\ast M \to \Lambda^{k+1} T^\ast M.\]
+
+We can thus ask what its adjoint $\delta$ is with respect to the $L^2$ inner product, i.e. for a map $\delta$ for which
+\[\langle d \alpha,\beta\rangle = \langle \alpha,\delta\beta\rangle.\] Using Stoke's theorem we see that $\delta = \pm \star d \star$. We define the Hodge Laplacian $\Delta$ as
+\[\Delta = d\delta + \delta d.\] Notice that $\Delta$ is formally self-adjoint. Why is it called $\Delta$? Let's see how it acts on $C^\infty(M) = C^\infty(M;\Lambda^0 M)$. If $f \in C^\infty(M)$, then
+\[\Delta f = -\star d \star d f,\] which we easily see is (the negative of) the ordinary Laplacian.
+
+\begin{thm}[Hodge]We have the following $L^2$ orthogonal decomposition:
+\[\ker d = \ker \Delta \oplus \im d.\] In particular, a Riemmanian metric induces an isomorphism
+\[H^k_{\text{dR}}(M) \iso \ker \Delta \subseteq C^\infty(M;\Lambda^k M)\]\end{thm}
+
+Let's see what we can prove from this. First of all, we have Poincar\'e duality: if $\alpha \in \ker \Delta$, then $\star\alpha \in \ker \Delta$. Thus $\star$ is an isomoprhism between $\ker \Delta$ inside $C^\infty(M;\Lambda^k M)$ and $\ker \Delta \subseteq C^\infty(M;\Lambda^{n-k} M)$. In particular, $\star$ gives an isomorphism $H^k_{\text{dR}} \iso H^{n-k}_{\text{dR}}(M)$. If $\dim M = n = 2m$, then we also see using $\star$ that the intersection form given by
+\[\int_M \langle \alpha,\cdot \rangle\] is non-degenerate. 
+
+We now ``prove'' the Hodge theorem.
+\begin{proof}$\Delta$ is Fredholm on $C^\infty$. This means that $\ker \Delta$ is finite-dimensional, $\im \Delta$ is closed, and we have the orthogonal decomposition
+\[C^\infty(M;\Lambda^k M) = \ker \Delta \oplus \im \Delta^\ast = \ker \Delta \oplus \im \Delta.\] Integrating by parts using $d$ and $\delta$ (i.e. invoking the adjoint property) and using that $\langle,\cdot,\cdot \rangle$ is a positive-defininite inner product, one checks that $\ker \Delta = \ker d \n \ker \delta$, and that $\im d,\im \delta$ are orthogonal to each other and to $\ker \Delta$. Since $\im \Delta \subseteq \im d\oplus \im \delta$, we have the orthorgonal decomposition
+\[C^\infty(M;\Lambda^k M) = \ker \Delta \oplus \im d \oplus \im \delta.\]
+If $\omega \in \ker d$, we write $\omega = \alpha+\beta+\gamma$. Since $d\omega = 0$, $d\gamma = 0$, and so $\gamma = 0$. Thus
+\[\ker d = \ker \Delta + \im d,\] as desired. This proof also shows that $\ker \Delta$, and hence $H^k_{dR}(M)$ is finite-dimensional, something which is not at all obvious from the definition.\end{proof}
+
+The rest of this talk will be to justify the Fredholm property using pseudodifferential operators.
+
+\section{Differential Operators}
+Suppose $P$ is a differential operator on and open set $\Omega \subseteq \R^n$. For example we can consider a constant-coefficient operator like
+\[\partial_{x_1}\partial_{x_1} +2 \partial_{x_2},\] or a variable coefficient operator like
+\[\sin(x)\partial_x + y^2\partial_y.\] $P$ is effectively a polynomial with coefficients in $C^\infty(\Omega)$ and with the variables replaced by the differential operators $D_j= -i\partial_{x_j}$, i.e. $P = p(x,D)$ for some polynomial
+\[p \in C^\infty(\Omega)[\xi_1,\ldots,\xi_n].\] We call $p$ the \textbf{symbol} of $P$. $p$ is also the ``Fourier transform'' of $P$. Explicitly, if $u \in C_c^\infty(\Omega)$, then
+\begin{equation}\label{quant}Pu(x) = \frac{1}{(2\pi)^n}\int\int e^{i(x-y)\xi}p(x,\xi)u(y)\ dyd\xi.\end{equation}
+For example, the symbol of the identity is $1$, the symbol of $D_j$ is $\xi_j$, and the symbol of $\sin(x)D_x$ is $\sin(x)\xi$.
+
+The \textbf{principal symbol} $\sigma_P(x,\xi)$ of $P$ is just the highest-degree part of $p$. Notice that if $P$ is a differential operator of order $k$, then $\sigma_P(x,\xi)$ is homogeneous of degree $k$, too. We also notice that
+\begin{equation}\label{symb}e^{-ix\lambda \xi}P(e^{iy\lambda \xi} u(y))(x) = \lambda^k \sigma_P(x,\xi)u(x) + O(\lambda^{k-1}).\end{equation} For example, if $P = D_x^2 + D_x$ on $\R$, then the only terms with a $\lambda^2$ in from of them will come from hitting $e^{iy\lambda \xi}$ with two derivatives, which will bring down a factor of $-\xi^2$.
+
+It is clear that $\sigma_P(x,\xi)$ is multiplicative and additive. Thus it gives a homomorphism between the filterered algebra $\text{Diff}$ of differential operators of order $k$ and the graded algebra of polynomials. Moreover,
+\begin{equation}\label{factor}\sigma:\text{Diff}_k/\text{Diff}_{k-1} \to \text{Hom}_k\end{equation} is an isomorphism of algebras (where the right-hand side is the set of homogeneous polynomials of degree $k$). A differential operator $P$ is called \textbf{elliptic} if $\sigma_P(x,\xi)$ is invertible away from $\xi = 0$. Examples include the ordinary Laplace operator 
+\[\Delta = D_{x_1}^2 + \cdots + D_{x_n}^2\] on $\R^n$, whose symbol is $|\xi|^2$.
+
+On a manifold, there is no consistent (i.e. coordinate-free) way to define the complete symbol of a differential operator. Nonetheless, the principal symbol becomes a well-defined map on $T^\ast M$. Namely if $\xi_1,\ldots,\xi_n$ are the dual coordinates to $x_1,\ldots, x_n$, so that an element of $T^\ast_xM$ is written $\omega = \xi_1dx_1+\cdots \xi_n dx_n$, we may define $\sigma_P(x,\xi)$ coordinate-wise. If $(x,\xi) \in T^\ast M$ and $d\phi(x) = \xi$, then we have that
+\[e^{-i\lambda \phi}P(e^{i\lambda\phi}u(y))(x) = \lambda^k\sigma_P(x,\xi)u(x) + O(\lambda^{k-1}).\]
+
+The above discussion generalizes to differential operators between sections vector bundles, which are locally the same as matrices of differential operators. The symbol is no longer a real number, but is now a linear map between the vector bundles.
+
+\section{Pseudodifferential Operators}
+Equation~\ref{quant} is highly suggestive. What if instead of a polynomial, $p(x,\xi)$ is a more general symbol? Then the integral need not be well-defined, but we can still make sense of it. If $p(x,\xi)$ is a reasonable function, we call the operator $P(x,D)$ defined by the integral a Pseudodifferential operator. The functions we will allow for $p$ will be called symbols. For a real number $m$ we define $S^m(\Omega)$ to be the set of all smooth functions $p:\Omega\times \R^n \to \C$ satisfying the estimates
+\[|\partial^\alpha_x\partial^\beta_\xi p(x,\xi)| \leq C\sqrt{1+|\xi|^2}^{m-|\beta|}\] on compact sets in $x$. In other words, hitting with an $x$ derivative does not do anything, but hitting with a $\xi$ derivative gives better decay. All polynomials are clearly symbols. If $p \in S^k$, we write $p(x,D) \in \Psi^k$.
+
+We will set $S^{-\infty} = \bigcap S^m$. $S^{-\infty}$ consists of all symbols of rapid decay. The integrals defining the associated differential operators actually converge, and so if $P \in \Psi^{-\infty}$ is such a pseudodifferential operators, then
+\[Pu(x) = \int K(x,y)u(y)\ dy\] for some smooth $K$. We call $P$ a \textbf{smoothing operator}.
+
+Symbols are asymptotically complete, in the following sense: If $m_j \to -\infty$ is a decreasing sequence, and $p_j \in S^{m_j}$ are symbols, then there is a symbol $p \in S^m$ such that
+\[p \sim \sum p_j\] in the sense that
+\[p-(p_1+\cdots + p_k) \in S^{m_{k+1}}\] for all $j$. Moreover $p$ is unique modulo $S^{-\infty}$. This is like an asymptotics series.
+
+To every Pseudodifferential Operator $P$, we can associate to it its principal symbol $\sigma_P(x,\xi) \in S^m(\Omega)$ by the same formula as \ref{symb}. 
+
+The pseudofferential operators form an algebra filtered by $\Psi^m$ the pseudodifferential operators of order $m$. This means that we have a well-defined addition and composition which behaves exactly as one would expect. The algebra
+\[S = \bigcup S^{m}/S^{-\infty}\] is a graded algebra. The map $\sigma$ is again a map between the filetered algebra $\Psi$ of all pseudodifferential operators and the graded algebra $S$ which factors almost as in \ref{factor}. What we lose is that the symbol map can no longer distinguish between two factors differing by an element in $S^{m-1}$. Thus we have the isomorphism
+\[\sigma:\Psi^k/\Psi^{m-1} \to S^m/S^{m-1}.\]
+
+Using charts, we can define Pseudodifferential operators on a manifold. Again, the ``total symbol'' is not well-defined, but the principal symbol is.
+
+Pseudodifferential operators are unfortunately non-local; that is $Pu(x)$ depends on the behaviour of $u$ everywhere, not just around $x$. The main utilitiy of Pseudodiffential operators is that they have mapping proprties which are the same as one would expect for differential operators. Namely if $P \in \Psi^m$, then $P$ is continuous between the following spaces (with $\Omega$ a compact manifold. Similar results hold for open subsets of $\R^d$):
+\[C^\infty(\Omega) \to C^\infty(\Omega),\]
+\[H^s(\Omega) \to H^{s-m}(\Omega),\]
+\[\mathcal D'(\Omega) \to \mathcal D'(\Omega).\]
+Here $H^s(\Omega)$ denotes the $L^2$ Sobolev space of functions with ``$s$ derivatives in $L^2(\Omega)$" (if $s$ is a positive integer, this is a valid definition. If $s$ is not, then one uses the Fourier transform). $\mathcal D'(\Omega)$ denotes the distributions.
+
+Differential operators can be thought of as built up of smooth functions and vector fields, just like the natural numbers are built up of $0$ and $1$. An analogy is that the Pseudodifferential operators are like the real numbers to the natural numbers of the differential operators.
+
+\section{Elliptic Operators}
+The above analogy motivates that we can do the following. If $P$ is an elliptic differential operator of order $k$, then $\sigma_P$ is invertible away from $0$. Thus one should expect to find an ``almost-inverse'' $Q$ to $P$ in $\Psi^{-k}$. We show how to do this. If $\chi$ is a smooth cutoff around $0$, then set $q_1 = \frac{(1-\chi)}{\sigma_P} \in S^{-k}$. Let's examine
+\[R_1 = \text{Id} - q_1(x,D)p(x,D).\] The principal symbols of both summands are the same, modulo a rapidly decreasing function. It follows that $R_1 \in \Psi^{-1}$ by the properties of principal symbols. Set $r_1 = \sigma_{R_1}$. Set $q_2 =  \frac{(1-\chi)r_1}{\sigma_P} \in S^{-k-1}$. Then consider
+\[R_2 = \text{Id} - (q_1(x,D)+q_2(x,D))(p(x,D)) = R_1 -q_2(x,D)p(x,D).\] The principal symbols of both summands are the same, and so $R_2 \in \Psi^{-2}$. Continuing, for any $k$ we may find a symbol $\tilde{q}_k = q_1+\cdots+q_k$ such that
+\[\text{Id}-\tilde{q}_k(x,D)p(x,D) \in \Psi^{-k}.\] By asymptotic completeness, we may set $q \sim \sum q_j$ so that $q-(q_1+\cdots q_k) \in S^{-k-1}$ for any $k$. Thus
+\[\text{Id}-q(x,D)p(x,D) \in \Psi^{-k}\] for all $k$, and hence 
+\[\text{Id}-q(x,D)p(x,D) \in \Psi^{-\infty}\]
+is smoothing. Likewise we may find a (perhaps different $q$) which works on the right. Standard group theory shows that both $q$ are the same up to a smoothing operator, i.e.
+\[q(x,D)p(x,D) = \text{Id}-R_1, \ \ p(x,D)q(x,D) = \text{Id}-R_2,\]
+where $R_1,R_2 \in \Psi^{-\infty}$ are smoothing operators.
+
+It is easy to see that if $M$ is a closed manifold, then smoothing operators are bounded between any two $H^s(M)$ spaces, and hence are compact between any two (for instance by Reillich-Kondrashov). Thus if $p(x,D)$ is elliptic, then $p(x,D)$ is invertible modulo compact operators on any $H^s(M)$, and is thus by Atkinson's theorem Fredholm on all of them (i.e. has finite-dimensional kernel, cokernel, and has closed range). Taking intersections and using Sobolev embedding, we see that
+\[C^\infty(M) = \ker P\oplus \im P^\ast,\] and $\ker P$ is finite-dimensional, and $\im P^\ast$ is closed. Here $\im P^\ast$ denotes the adjoint to $P$, and $\sigma_{P^\ast} = (\sigma_P)^\ast$.
+
+Naturally, the above discussion also generalizes to vector bundles.
+
+\section{$\Delta$ is elliptic}
+The last thing we need to show is that the Hodge Laplacian $\Delta$ is elliptic. We show that \[\sigma_{\Delta}(x,\xi)\omega = |\xi|^2\omega.\] Since the symbol map is an algebra homomorpshim, and the symbol of $\delta$ is the adjoint to the symbol of $d$, we just need to find the symbol of $d$. We check
+\[e^{-i\lambda\phi}d(e^{i\lambda \phi}\omega) = i\lambda d\phi\wedge \omega \pm d\omega.\] Thus $\sigma_{d}(x,\xi)\omega = i\xi\wedge \omega$. Since $\delta,d$ are adjoints, $\sigma_{\delta}(x,\xi)\omega = -i\xi\lrcorner \omega$, where $\lrcorner$ denotes interior multiplication via the dual vector to $\xi$. So
+\[\sigma_{\Delta}(x,\xi)\omega = \xi\wedge(\xi \lrcorner \omega) + \xi\lrcorner(\xi \wedge \omega).\] To evaluate this, we pick a convenient basis and test against basis elements. Suppose $\tau = \xi/|\xi|$, and extend $\tau$ to an orthonormal basis $\{\tau_1 = \tau,\tau_2,\ldots,\tau_n\}$ of $T^\ast_xM$. Set
+\[\tau_I = \tau_{i_1}\wedge\cdots\wedge\tau_{i_k}\in \Lambda^kT^\ast_x M.\] Suppose first that $1 \in I$. Then $\xi \wedge \tau_I = 0$, but, denoting $\tilde{I} = (i_2,\ldots,i_k)$, $\xi \lrcorner \tau_I = \tau_1(\xi)\tau_{\tilde I} = |\xi|\tau_{\tilde{I}}$. Then 
+\[\xi \wedge |\xi|\tau_{\tilde{I}} = |\xi|^2\tau\wedge\tau_{\tilde{I}} = |\xi|^2\tau_I.\] A similar thing happens if $1 \not \in I$.
+
+\section{Elliptic Complexes}
+Suppose $M$ is a manifold (without boundary), and $E_1,E_2,\ldots,E_k$ are vector bundles over $M$. Suppose $d_i:C^\infty(M;E_i) \to C^\infty(M;E_{i+1})$ are differential operators which satisfy $d_{i+1}d_i = 0$. Such data is called a \textbf{differential complex}. We will call a differential complex \textbf{elliptic} if for all $\xi \neq 0$, the sequence
+\[0\to E_1 \to E_2 \to \ldots \to E_k \to 0,\] with the maps at each arrow being $\sigma_{d_i}(x,\xi)$ is exact away from the zero section $\xi = 0$.
+
+Examples of elliptic complexes are the de Rham complex of differential forms, any two trivial bundles linked by an elliptic operator. It is easy to see (just algebra) that a complex is elliptic iff either of the following two conditions holds: let $\delta_i$ denote the adjoint to $d_i$. Then a complex is elliptic iff the associated Laplace opertors $\Delta_i = \delta_id_{i} + d_{i-1}\delta_{i-1}$ are elliptic. Denoting $E = \bigoplus E_i$, we also have a map $d:E\to E$ and its adjoint $\delta: E\to E$. Then the complex is elliptic iff $d+\delta$ is elliptic.
+
+Define the index of a differential complex to the alternating sum of the differences of dimensions of the kernels and cokernels of the $d_i$, i.e. the index is
+\[\sum_{i=0}^{k} (-1)^{i+1}(\dim \ker d_{i+1}-\dim \cok d_{i}).\] If $M$ is compact, then we have actually proved the following: if $E$ is an elliptic complex, then the index of $E$ is well-defined. The Hodge Theorem in particular says that the index of the de Rham complex is the Euler characteristic of $M$.
+\end{document}

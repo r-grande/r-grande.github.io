@@ -1,0 +1,141 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/mySettings}
+
+\title{Analytic Fredholm Theory}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+
+\setcounter{section}{1}
+
+The purpose of this note is to prove a version of analytic Fredholm theory, and examine a special case. 
+\begin{thm}[Analytic Fredholm Theory]Let $\Omega$ be a connected open subset of $\C$ and suppose $T(\lambda)$ is an analytic family of Fredholm operators on a Hilbert space $H$. Then either
+\begin{enumerate}[label = (\roman*)]
+\item $T(\lambda)$ is not invertible for any $\lambda \in \C$, or
+\item There exists a discrete set $S \subseteq \Omega$ such that $T(\lambda)$ is invertible for all $\lambda \not \in S$ and furthermore $T^{-1}(\lambda)$ extends to a meromorphic function on all of $\Omega$. Furthermore, every operator appearing as a coefficient of a term of negative order is finite rank.
+\end{enumerate}
+\end{thm}
+By \emph{analytic}, we mean that for every $\lambda_0 \in \Omega$, $T$ is given by a power series
+\[T(\lambda) = \sum_{n=0}^\infty (\lambda-\lambda_0)^nT_n\]
+converging in the operator norm, where $T_n:H \to H$ are bounded. Similarly, we say that $T$ is \emph{meromorphic} if around every $\lambda_0 \in \Omega$ there is a Laurent series
+\[T(\lambda) = \sum_{n=-N}^\infty (\lambda-\lambda_0)^nT_n\]
+converging in a punctured neighbourhood of $\lambda_0$.
+
+We will also prove:
+\begin{prop}Suppose $T:H \to H$ is a self-adjoint, non-negative bounded operator. Suppose that $T-\lambda$ is Fredholm for all $\lambda \in \Omega$, where $\Omega \subset \C$ is a connected open set. Then $(T-\lambda)^{-1}$ has a meromorphic extension to a family with only simple poles, and the residue is $-1$ times the projection onto the kernel of $T-\lambda_0$, where $\lambda_0$ is a pole.\end{prop}
+
+\begin{proof}[Proof of Analytic Fredholm Theory]
+We divide the proof into several steps.
+\begin{enumerate}
+\item Show that if $T^{-1}(\lambda)$ exists as an operator at a point, it is analytic in a neigbhourhood of that point.
+\item Show that if $T^{-1}(\lambda)$ has a meromorphic extension near a point, it is analytic in a punctured neigbhourhood of that point (this step actually applies to any meromorphic family).
+\item Show that if $T^{-1}(\lambda)$ has a meromorphic extension to a connected open set $U$ on which $T(\lambda')$ is invertible for at least one $\lambda' \in U$, then the points where $T^{-1}(\lambda)$ are analytic are in fact points where the inverse actually exists, and the points where it fails to be analytic form a discrete set. In particular, this is true if $U$ contains $\lambda_0$.
+\item Show that $T^{-1}(\lambda)$ has a meromorphic extension to the union $\Omega'$ of all connected open sets $U$ containing $\lambda_0$ on which $T^{-1}(\lambda)$ has an extension, and that $\Omega'$ is open, connected, and non-empty.
+\item Show that $\Omega' = \Omega$. This last step is the hardest.
+\end{enumerate}
+Step 3 shows that the points at which $T^{-1}(\lambda)$ fails to exist in $\Omega'$ are discrete, and Step 5 will show that $\Omega'=\Omega$ and complete the proof of existence. We will address the finite-rank of the negative-order coefficients later.
+
+\textbf{Step 1. }Fix $\lambda_1 \in \Omega$ for which $T^{-1}(\lambda)$ exists, and write
+\[T(\lambda) = \sum_{n=0}^\infty (\lambda-\lambda_1)^nT_n.\]
+ The Cauchy-Hadamard theorem applies, and in particular there exists $A,B$ such that $\norm{T_n} \leq AB^n$. Since $T(\lambda_1) = T_0$ is invertible, we may recursively define operators $S_n$ by $S_0 = T_0^{-1}$ and
+ \[S_n = -(S_{n-1}T_1 + \cdots S_0T_n)T_0^{-1}.\] Define $b_0 = \norm{S_0}$ and
+ \[b_n = \norm{S_0}(b_{n-1}AB^{1} + \cdots b_0AB^n).\] It is clear that we have the bound $b_n \leq CD^n$ for some $C,D$, and that $\norm{S_n} \leq b_n \leq CD^n$. In particular, the series
+ \[S(\lambda) = \sum_{n=0}^\infty (\lambda-\lambda_1)S_n\] converges in a small neighbourhood and by construction $S(\lambda)T(\lambda) = 1$ wherever both are defined. Since $T^{-1}(\lambda)$ exists for $\lambda$ near $\lambda_1$ ($GL(H)$ is open), $S(\lambda) = T^{-1}(\lambda)$ near $\lambda_1$. In particular, $T^{-1}(\lambda)$ is analytic near $\lamba_1$.\\
+ 
+\textbf{Step 2. }Suppose that $T^{-1}(\lambda)$ has a meromorphic extension near a point $\lambda_1$. Then
+ \[T^{-1}(\lambda) = \sum_{n=-N}^\infty (\lambda-\lambda_1)^nT_n,\]
+ and for $\lambda_2$ near $\lambda_1$,
+ \[T^{-1}(\lambda) = \sum_{n=-N}^\infty(\lambda-\lambda_2 + (\lambda_2-\lambda_1))^nT_n.\]
+If $N \leq 0$ then we may expand  $(\lambda-\lambda_2 + (\lambda_2-\lambda_1))^n$ for $n \geq 0$ using the binomial theorem and regroup terms (since the sum converges absolutely by Cauchy-Hadamard) to see that $T^{-1}(\lambda)$ is analytic near $\lambda_2$. If $N > 0$, then we do the same if $n \geq 0$, and if $n < 0$ (and $\lambda$ close enough to $\lambda_2$, we may expand $(\lambda-\lambda_2 + (\lambda_2-\lambda_1))^n$ as a geometric series and rearrange to see that $T^{-1}(\lambda)$ is analytic near $\lambda_2$. In particular, $T^{-1}(\lambda)$ is analytic (and in particular meromorphic) near $\lambda_2$. This yields two results: the first is that the set of points for which $T^{-1}(\lambda)$ is meromorphic is open. The second is that inside the set for which $T^{-1}(\lambda)$ has a meromorphic extension, the set points for which $T^{-1}(\lambda)$ is not analytic is discrete. \\
+
+\textbf{Step 3. }From Step 2 we know that $T^{-1}(\lambda)$ has an analytic extension to a set $S \subseteq U$ with discrete complement. Since from Step 1, the identities \[T^{-1}(\lambda)T(\lambda) = 1 = T(\lambda)T^{-1}(\lambda)\] hold on at least a small open subset $\lambda' \in V \subset U$, and $T^{-1}(\lambda)$ makes sense as an analytic function on the connected open set $\Omega'\setminus\{S\} \subseteq \Omega'$  it follows that the identity persist to all of $U\setminus\{S\}$. Indeed, for instance,
+\[\langle u (T^{-1}(\lambda)T(\lambda)-1)v\rangle\] (for $u,v \in H$) is a $\C$-valued analytic function which is $0$ on an open subset, and thus $0$ everywhere. Thus not only does the meromorphic extension of $T^{-1}(\lambda)$ fail to be analytic except on an isolated number of points, but $T^{-1}(\lambda)$ is actually the inverse if $T^{-1}(\lambda)$ is analytic and fails to exist at the same points that it fails to be analytic.\\
+
+\textbf{Step 4.} Let $\{U_{\alpha}\}$ be the collection of all connected open sets containing $\lambda_0$ for which $T^{-1}(\lambda)$ has a meromorphic extension to $U_\alpha$. Certainly $\Omega' = \bigcup_\alpha U_\alpha$ is open. It is non-empty since by Step 1 is contains a neighbourhood of $\lambda_0$. It is connected since every point in $\Omega'$ can be connected via a continuous path to $\lambda_0$. It remains to show that $T^{-1}(\lambda)$ has a meromorphic extension to $\Omega'$. It suffices to show that if $U_\alpha,U_{\alpha'}$ are open sets as above with non-empty intersection, then the extensions $T^{-1}(\lambda)$ agree on $U_\alpha \n U_{\alpha'}$. Indeed, by Step 3, $T^{-1}(\lambda)$ is the actual inverse of $T(\lambda)$ at all but discretely many points in $U_\alpha \n U_{\alpha'}$, and so must agree. Thus the meromorphic extensions of $T^{-1}(\lambda)$ must agree everywhere on $U_\alpha \un U_{\alpha'}$.\\
+
+\textbf{Step 5.} Let $\lambda_1 \in \partial \Omega'$.\footnote{By this we mean the boundary with respect to the subspace topology on $\Omega$, i.e. $\partial \Omega' \n \Omega$, where here $\partial$ is intepreted as the boundary as a subset of $\C$}. We need only show that $\lambda_1 \in \Omega'$, since then $\Omega'$ is open, closed, and non-empty, and thus all of $\Omega$. Without loss of generality we may take $\lambda_1 = 0$. We have to show that $T^{-1}(\lambda)$ extends to a meromorphic function around $\lambda=0$. $T(\lambda)$ is a continuous family of Fredholm operators which is invertible at some point $\lambda_0$. In particular, the index of $T(\lambda)$ is $0$ everywhere. Write $T = T(0)$. Set $V = \ker T^\bot$ and $W = \ker T$, and set $V' = \im T$ and $W' = \im T^\bot$. Since $T$ is Fredholm of index $0$, $V,W,V',W'$ are all closed, $V+W = V'+W' = H$ and $T:V\to V'$ is an isomorphism. We denote by $\Pi_X$ the projection onto the subspace $X \subseteq H$. Notice that if $U$ is any neighbourhoodof $0$, then $U \n \Omega' \neq \emptyset$, and since $T(\lambda)$ is invertible at all but a discrete number of points in $\Omega$' (Step 3), it is invertible at at least one point in $U \n \Omega' \subseteq U$.
+
+We divide the rest of Step 5 substeps (i) and (ii).\\
+
+\emph{Substep i) }In this substep we find a locally invertible analytic family of operators $R(\lambda)$ such that $R(\lambda)T(\lambda)$ looks like the matrix:
+\begin{equation}\label{matrep}\begin{pmatrix} A(\lambda) & 0\\
+B(\lambda) & 1\end{pmatrix},\end{equation}
+where the first row and column represent $W$ and the second row and column represent $V$. The point of this is that we can actually write down a nice inverse for this matrix, at least formally.
+
+Write
+\[T(\lambda) = T(\lambda)\Pi_V + T(\lambda)\Pi_W.\] Then both summands are analytic and we have
+\[T(\lambda) = \sum_{n=0}^\infty \lambda^nT_n\Pi_V + \sum_{n=0}^\infty \lambda^nT_n\Pi_W.\]
+
+By assumption $T(0)\Pi_V = T\Pi_V$ is invertible as an operator from $V$ onto $V'$. Thus the analytic family $V \to V'$ given by
+\[T(\lambda)\Pi_V = \sum_{n=0}^\infty \lambda^nT_n\Pi_V\] is invertible for small $\lambda$. Call this inverse $Q(\lambda):V \to V'$ (which is analytic by an argument like in Step 1. We have of course generalized to the case where the domain and codomain are not the same; however they are still isomorphic). We extend $Q(\lambda)$ to an analytic family of operators $H \to H$ by multiplying on the right by $\Pi_{V'}$. The new operator, $Q_{\text{new}}(\lambda) = Q(\lambda)\Pi_{V'}$ we will henceforth call $Q(\lambda)$, too, in order to reduce unnecessary notation.
+
+
+Since $T$ has index $0$, $\dim W = \dim W' < \infty$, and we may pick an isomorphism $P$ of $W'$ onto $W$. Of course $PT\Pi_V = 0$. We show that we can extend this to small $\lambda$, i.e. find an analytic function $P(\lambda)$ with $P(0) = P$ for which $P(\lambda)T(\lambda)\Pi_V = 0$. Define recursively $P_0 = P$ and
+\[P_{k+1} = (\Pi_W-(P_{n-1}T_1+\cdots P_0T_n))Q_0.\]
+Similiar to Step 1, setting
+\[P(\lambda) = \sum_{n=0}^\infty \lambda^nP_n\] defines an analytic family. Since $Q_0T_0\Pi_V = \Pi_V$ and $\Pi_W\Pi_V = 0$, $P(\lambda)T(\lambda)\Pi_V = 0$.
+
+Now set $R(\lambda) = Q(\lambda)+P(\lambda)$. Since $R(0)$ is invertible, $R(\lambda)$ is locally invertible with analytic inverse (by Step 1, for instance).
+
+Set $A(\lambda) = \Pi_WR(\lambda)T(\lambda)\Pi_W$. Then $A(\lambda)$ can be interpreted as an analytic family of operators from $W \to W$, i.e. $A(\lambda)$ is an analytic family of square matrices. Similarly, set $B(\lambda) = \Pi_VR(\lambda)T(\lambda)\Pi_W$. Observe that 
+\[\Pi_W R(\lambda)T(\lambda)\Pi_V = \Pi_W(Q(\lambda)T(\lambda) + P(\lambda)T(\lambda))\Pi_V = \Pi_W\Pi_V + 0 = 0,\]
+and similarly
+\[\Pi_VR(\lambda)T(\lambda)\Pi_V =  \Pi_V\Pi_V = \Pi_V.\] Writing
+\[R(\lambda)T(\lambda) = (\Pi_V+\Pi_W)R(\lambda)T(\lambda)(\Pi_V+\Pi_W)\] arrives at the matrix representation \eqref{matrep}.
+
+\emph{Substep ii)} From the matrix representation, it is easy to see that formally an inverse should be given by the operator corresponding to
+\begin{equation}\begin{pmatrix} A^{-1}(\lambda) & 0\\
+-B(\lambda)A^{-1}(\lambda) & 1\end{pmatrix}.\end{equation}In the rest of this substep, we show that this is actually a well-defined meromorphic extension of $(R(\lambda)T(\lambda))^{-1}$ and show that this gives a well-defined meromorphic extension of $T(\lambda)^{-1}$.
+
+Since $W,W'$ are fixed finite dimensional spaces, $A^{-1}(\lambda)$ can be written formally in the form $A^{-1}(\lambda) = p(\lambda)^{-1}\Adj(A(\lambda))$ where $p(\lambda) = \det A(\lambda)$, and $\Adj(A(\lambda))$ is the classical adjugate matrix. Since $A(\lambda)$ is certainly analytic, $p(\lambda)$ is a $\C$-valued analytic function, and $\Adj(A(\lambda))$ is analytic. Now $p(\lambda)$ is not identically $0$. Indeed, if it were then $A(\lambda)$ would not be invertible anywhere. This means, using \eqref{matrep}, that neither is $R(\lambda)T(\lambda)$. Since $R(\lamda)$ is invertible, this would mean $T(\lambda)$ is not invertible anywhere, which contradicts the fact that $T(\lambda)$ is invertible at at least one point in any neighbourhood of $0$.
+
+So $p(\lambda)$ is holomorphic and not identically $0$, and so $p(\lambda)^{-1}$ is meromorphic, and thus $A^{-1}(\lambda)$ is meromorphic. Moreover, since $A$ is a square matrix, all coefficients of terms of negative order in the Laurent expansion of $A(\lambda)$ are finite-rank operators.
+
+In particular, the operator family
+\[S(\lambda) = A^{-1}(\lambda) -B(\lambda)A^{-1}(\lambda) + \Pi_V,\] corresponding to the inverse matrix written above, is also meromorphic near $\lambda_1$ (we remark that some care needs to be taken when interpreting this formula; one needs to extend $A^{-1}(\lambda)$ to a function on all of $H$ by setting it to be $0$ on $V'$; the extended $A^{-1}(\lambda)$ is still meromorphic). We clearly still have that all coefficients of terms of negative order in $S(\lambda)$ are finite rank. $S(\lambda)$ is actually an inverse to $R(\lambda)T(\lambda)$ wherever $p(\lambda) \neq 0$. Thus $S(\lambda)R(\lambda) = T^{-1}(\lambda)$ in the same area. But $S(\lambda)R(\lambda)$ is meromorphic near $\lambda_1$, and thus we conclude that $T^{-1}(\lambda)$ has a meromorphic extension. Thus, $T^{-1}(\lambda)$ exists as a meromorphic family on a connected neighbourhood $U$ of $\lambda_1$. Since $\lamda_1 \in \partial \Omega'$, $U\n \Omega'$ is non-empty. Thus, for the same reason as in the proof of Step 4, $T^{-1}(\lambda)$ extends to a meromorphic family on $U \un \Omega'$. Since $U$ is connected and $U \un \Omega'$ is non-empty, $U\un\Omega'$ is a connected open set containing $\lambda_0$, and thus $\lambda_1 \in U\un \Omega' \subseteq \Omega'$, as desired.
+
+We still need to show that coefficients of terms of negative order in the meromorphic extension are finite rank. Suppose without loss of generality that $T^{-1}(\lambda)$ does not exist as $\lambda=0$. Write
+\[T(\lambda) = \sum_{n=0}^\infty T_n\lambda^n\] and
+\[T^{-1}(\lambda) = \sum_{n=-N}^\infty R_n\lambda^n,\]
+for $N \geq 1$. We need to show that each $R_{-k}$, $k \geq 1$ has finite rank. Since $T(\lambda)$ is Fredholm for all $\lambda$, in particular $T(0) = T_0$ is Fredholm, and so has finite-dimensional kernel. Since $T(\lambda)T^{-1}(\lambda) = 1$, the coefficient of $\lambda^{-k}$ in the product is $0$ for $k \geq 1$. This means that the following equations are valid for $1 \leq k \leq N$:
+\[0 = \sum_{j=0}^{N-k} T_jR_{-k-j}.\]
+Using this we inductively show that $R_{-k}$ has finite rank. The equation for $k=N$ simply reads $T_0R_{-N} = 0$. Since $\dim \ker T_0 < \infty$, this means that $R_{-N}$ has finite rank. For $k < N$, we may rearrange the equation to get
+\[T_0R_{-k} = -\sum_{j=1}^{N-k} T_jR_{-k-j}.\] By induction, the right-hand side has finite-rank, and therefore so does the left. We can write
+\[\dim \im R_{-k} = \dim (\ker T_0 \n \im R_{-k}) + \dim (\ker T_0^\bot \n \im R_{-k}).\] The first term is finite, since $\dim \ker T_0 < \infty$. Since $T_0R_{-k}$ has finite rank, $T_0|_{\ker T_0^\bot\n\im R_{-k}}$ has finite rank and is injective, and so the second term is finite, too.\end{proof}
+
+We now turn to the proof of the proposition:
+\begin{proof}By the spectral theorem for self-adjoint operators, $T-\lambda$ is invertible (and hence analytic) off of $[0,\infty)$. Since $\Omega$ is open, it necessarily intersects points not in this set. Thus analytic Fredholm theory applies.
+
+Fix $\lambda_0 \in [0,\infty)\n \Omega$ for which $T$ is not invertible, and set $S = T-\lambda_0$.
+Since $S$ is self-adjoint and Fredholm, it is invertible as a map $:\im S = \ker S^\bot \to \im S$, and $S\equiv 0$ as a map $:\ker S \to \ker S = \im S^{\bot}$. We can thus picture $S-\mu$ as the matrix
+\[\begin{pmatrix}-\mu & 0\\
+0&S-\mu \end{pmatrix},\]
+where the first row and column represent $\ker S$ and the second row and column represent $\im S$. In particular, $S-\mu$ is invertible for small $\mu \neq 0$.
+Notice that $S$ is invertible on $\im S$. This means that for $v \in \im S$ and $\mu \neq 0$ small,
+\begin{equation}\label{tew}\norm{(S-\mu)^{-1}v} \leq (\norm{S|_{\im S}^{-1}}^{-1}-\mu)^{-1}\norm{v},\end{equation} which is uniformly bounded as $\mu \to 0$.
+Write $H \ni u = v+w$, where $v \in \im S$, and $w \in \ker S$. Then, for $\mu \neq 0$ small,
+\begin{equation}\label{rew}\norm{(S-|\mu|)^{-1}v}^2+ \norm{\mu^{-1}w}^2.\end{equation}
+For arbitrary $\norm{u} = 1$, we can use \eqref{tew} to bound \eqref{rew} above by
+\begin{equation}\label{one} \left(\norm{S|_{\im S}^{-1}}^{-1}-|\mu|\right)^{-2} + \mu^{-2} \lesssim \mu^{-2},\end{equation}
+We conclude that $\norm{(S-\mu)^{-1}} \lesssim \mu^{-1}$ as $\mu \to 0$, so $\norm{(T-\lambda)^{-1}} \lesssim |\lambda-\lambda_0|^{-1}$ as $\lambda \to \lambda_0$.
+
+But it is also clear that $\norm{(T-\lambda)^{-1}}$ blows up like $|\lambda-\lambda_0|^{-m}$, where $m$ is the order of the pole at $\lambda_0$. Indeed, we may write
+\[\norm{(T-\lambda)^{-1}} = |\lambda-\lambda_0|^{-m}\norm{R_{-m}+(\lambda-\lambda_0)R_{-n+1}+\cdots},\]
+and the the series in the second factor converges to a continuous function of $\lambda$ for $\lambda$ near $\lambda_0$ (by Cauchy-Hadamard, for instance). Thus the second factor converges to $\norm{R_{-n}}$, which is nonzero, and so we have the desired blow up.
+
+It follows that $m=1$, and so the pole is simple.
+
+Next, write
+\[(T-\lambda)^{-1} = \sum_{n=-1}^\infty (\lambda - \lambda_0)^nR_n\] around a pole $\lambda_0$. We have that
+\[(T-\lambda)^{-1}(T-\lambda) = (T-\lambda)(T-\lambda)^{-1} = 1\]
+and
+\[T-\lambda = (T-\lambda_0)-(\lambda-\lambda_0)\]
+are both valid around $\lambda_0$ (but of course not at it). Expand the first identity out as a series, and looking at the $n=-1,0$ terms yields $R_{-1}(T-\lambda_0) = (T-\lambda_0)R_{-1} = 0$ and $R_0(T-\lambda_0)=(T-\lambda_0)R_0 = 1+R_{-1}$.
+The first of the two implies that $R_{-1}$ takes values in $\ker(T-\lambda_0)$ and acts trivially on $\im (T-\lambda_0) = \ker (T-\lambda_0)^{\bot}$ (recall that $\im (T-\lambda_0)$ is closed since $T-\lambda_0$ is Fredholm). The second identity implies that
+\[0 = R_0(T-\lambda_0)w = w+R_{-1}w\] for $w \in \ker (T-\lambda_0)$, i.e. $R_{-1}$ acts as $-1$ times the identity on $\ker(T-\lambda_0)$. Putting both these things together we prove the proposition.
+\end{proof}
+\end{document}

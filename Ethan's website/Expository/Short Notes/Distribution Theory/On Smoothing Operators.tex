@@ -1,0 +1,79 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+\usepackage{appendix}
+
+\title{On Smoothing operators}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}\maketitle
+\setcounter{section}{0}
+
+Let $M$ be a manifold.\footnote{For mainly notational convenience we will implicitly fix a smooth positive density with respect to which to integrate. For instance, we can assume that $M$ is oriented and Riemannian. It will clear that switching choices of densities does not affect anything, except of course the exact form of the kernel. If desired, one can of course instead work with operators acting between density bundles.} Smoothing operators are usually defined as operators which take the form
+\[C_c^\infty(M) \ni u \mapsto \int_M K(x,y)u(y)\ dy \in C^\infty(M)\]
+for some $K \in C^\infty(M\times M)$. This of course raises the question ``how are they \emph{smoothing}?'' The purpose of this note is to clarify this and give equivalent characterizations.
+
+We will denote by $C^{-\infty}(M)$ the space of distributions on $M$, always with the weak topology.
+
+Recall that by the Schwartz kernel theorem every map $A:C_c^\infty(M) \to C^{-\infty}(M)$ which is continuous (into the weak topology) is given by formal integration against a kernel $K$, i.e.
+\[(Au)(x) = \int_M K(x,y)u(y)\ dy.\] More precisely, there exists a distribution $K \in C^{-\infty}(M\times M)$ for which $\langle K,v\otimes u\rangle = \langle Au,v\rangle$ for $u,v \in C_c^\infty(M)$.
+
+There are many versions of the theorem we will prove in this note. We will prove a version in a setting where the proof is cleanest. Extending to other settings involves little more than some tedious technicalities (although see Remark~\ref{rrk} below). 
+\begin{thm}Let $M$ be a compact manifold without boundary. For a continuous operator $A:C^\infty(M) \to C^{-\infty}(M)$, the following are equivalent:
+\begin{enumerate}[label = (\roman*)]
+\item $A$ extends to a map, sequentially continuous\footnote{i.e. maps convergent sequences to convergent sequences.} $A:C^{-\infty}(M) \to C^\infty(M)$;
+\item For any $s,t \in \R$, $A$ extends to a continuous map $A:H^{s}(M) \to H^{t}(M)$;
+\item The kernel of $A$, $K_A$ is smooth, i.e. $K_A \in C^\infty(M\times M)$.
+\end{enumerate}
+\end{thm}
+\begin{rk}\label{rrk}In more complicated situations, one must take care of supports. Thus, for instance, (i) needs to be replaced with $A:C_c^{-\infty}(M) \to C^\infty(M)$.\end{rk}
+\begin{proof}
+
+We show that (iii) $\Rightarrow$ (ii) $\Rightarrow$ (i) $\Rightarrow$ (iii).\\[1.5ex]
+
+We show first (iii) $\Rightarrow$ (ii). It is clear that $A$ extends to a bounded map $L^2(M) \to L^2(M)$. Indeed (for instance) by Cauchy-Schwartz\footnote{One could also use the Schur test.}
+\[\norm{Au}_{L^2(M)} \leq \norm{K_A}_{L^2(M\times M)}\norm{u}_{L^2(M)}.\]
+If $P$ is any differential operator, than $PA$ kas kernel $P_xK(x,y) \in C^\infty(M \times M)$. We conclude that $PA$ extends to a bounded map $L^2(M) \to L^2(M)$, so that $P:L^2(M) \to H^k(M)$ for any $k \in \N$. If $K_A$ is smooth, then its formal adjoint is given by $K_{A^\ast}(x,y) = \overline {K_A}(y,x)$. Thus $K_{A^\ast} \in C^\infty(M\times M)$, which implies by the above that $A:H^{-k}(M) \to L^2(M)$ is bounded for $k \in \N$. Indeed,
+\begin{align*}
+\norm{Au}_{L^2(M)} &= \sup_{v \in C^\infty(M), \norm{v}_{L^2(M)} = 1} |\langle Au,v\rangle|\\
+&= \sup_v |\langle u,A^{\ast}v\rangle| \leq \sup_{v} C\norm{u}_{H^{-k}(M)}\norm{A^{\ast}v}_{H^k(M)}\\
+&\leq \sup_v C\norm{u}_{H^{-k}(M)}\norm{v}_{L^2(M)} \leq C\norm{u}_{H^{-k}(M)}.\end{align*}
+By the same argument as above, we conclude that for $P$ an differential operator, $PA:H^{-k}(M) \to L^2(M)$. Thus
+\[A:H^{-k}(M) \to H^{\ell}(M)\] for any $k,\ell \in \N$.\\[1.5ex]
+
+(ii) $\Rightarrow$ (i) is proved using the following Proposition, which we prove later:
+\begin{prop}$C^\infty(M) = \bigcap_{s} H^s(M)$ and $C^{-\infty}(M) = \bigcup_{s} H^s(M)$. Furthermore, the topology on $C^\infty(M)$ is the one inherited from the intersection, i.e. $u_n \to u$ in $C^\infty(M)$ if and only if for all $s \in \R$, $u_n \to u$ in $H^s(M)$ , and the topology on $C^{-\infty}(M)$ (at least as far as sequences are concerned) is inherited from the union, i.e. $u_n \to u$ in $C^{-\infty}(M)$ if and only if there is some $s \in \R$ for which $u_n \to u$ in $H^s(M)$.\end{prop}
+Given the Proposition, suppose $u_n \to u in C^{-\infty}(M)$. Then $u_n \to u \in H^s(M)$, for some $s \in \R$. Thus for all $t$, $Au_n \to Au$ in $H^t(M)$. The Sobolev embedding theorem implies that $Au_n \to Au$ in $C^\infty(M)$. Thus (i) holds.\\[1.5ex]
+
+
+To prove (i) $\Rightarrow$ (iii) we need to localize. Let $\phi,\psi \in C_c^\infty(M)$ and supported in coordinate patches. To show $K_A$ is smooth we just need to show that for all such $\phi,\psi$ $\phi(x)K_A(x,y)\psi(y) = K_{\phi A\psi} \in C^\infty(\R^n \times \R^n)$ (here we have identified a coordinate patch with an open subset of $\R^n$, and have neglected any necessarily smooth factors coming from pulling back the density). It suffices to prove that the Fourier transform of $\phi(x)K_A(x,y)\psi(y)$ is rapidly decaying. Let $\xi$ be the dual variable to $x$ and $\eta$ the dual variable to $y$. Then since $\phi(x)K_A(x,y)\psi(y) \in C_c^\infty(\R^n \times \R^n)$, its Fourier transform is given by
+\[\langle \phi(x)K_A(x,y)\psi(y),e^{-ix\cdot \xi}e^{-iy\cdot \eta}\rangle = \langle A(\psi e^{-i(\cdot)\eta}),\phi e^{-i(\cdot)\xi}\rangle.\]
+
+Set $\Psi(x,\xi) = A(e^{-i(\cdot)\eta}\psi)$. Then (after interpreting $e^{-i(\cdot)\eta}$ in a suitable sense) $\Psi(\cdot,\eta) \in C^\infty(M)$. We will show that $\Psi$ in fact satisfies estimates for multi-indices $\alpha,\beta$,
+\begin{equation}\label{est}\sup_{x \in M, \eta \in \R^n}|\partial^{\alpha}_x\eta^{\beta}\Psi(x,\xi)| < \infty.\end{equation}
+
+Given this, a standard integration by parts argument shows that the Fourier transform in $x$ of $\phi(y)\Phi(x,\eta)$ is rapidly decreasing in $\eta$ and $\xi$, i.e.
+\[\langle \phi(x)K_A(x,y)\psi(y),e^{-ix\cdot \xi}e^{-iy\cdot \eta}\rangle\] is rapidly decreasing in $\xi$ and $\eta$, which means that $\phi(x)K_A(x,y)\psi(y) \in C_c^\infty(\R^n\times \R^n)$, so that $K_A \in C^\infty(M\times M)$.
+
+We prove \eqref{est}. Observe that
+\[(-i)^{|\beta|}\eta^\beta A(\psi e^{-i(\cdot)\eta}) = A(\psi \partial^{\beta}_y e^{-i(\cdot)\eta}).\]
+Let $P_\beta$ be a differential operator on $M$ which agrees with $\partial^{\beta}$ on $\supp \psi$, and $\tilde{\psi} = 1$ on $\supp \psi$ and supported in the same coordinate patch. Then we should really be interpreting the previous display as
+$A(\psi P_\beta(\tilde{\psi}e^{-i(\cdot)\eta})$. We will however supress this technicality. Suppose \eqref{est} did not hold for some $\alpha,\beta$. Then there would be a sequence $\eta_k \in \R^n$ for which
+\[\sup_{x \in M}| \partial_x^{\alpha} A(\psi  \partial^{\beta}_ye^{-i(\cdot)\eta_n})(x)| \to \infty.\]
+There are two cases: $\eta_n$ is bounded or $\eta_n \to \infty$. Both cases are handled similarly. If $\eta_n$ is bounded, then we may assume that $\eta_n \to \eta \in \R^n$. Since $\psi\partial^{\beta}_ye^{-i(\cdot)\eta_n} \to \psi\partial^{\beta}_ye^{-i(\cdot)\eta}$ in $C^{-\infty}(M)$, (i) implies that 
+\[\sup_{x \in M}| \partial_x^{\alpha} A(\psi  \partial^{\beta}_ye^{-i(\cdot)\eta_n})(x)| \to \sup_{x \in M}| \partial_x^{\alpha} A(\psi  \partial^{\beta}_ye^{-i(\cdot)\eta})(x)| < \infty,\]
+a contradiction.\footnote{To be pedantic one would need to use $P_\beta$ and $\tilde{\psi}$.} Otherwise, if $\eta_n \to \infty$, then we see that $\psi e^{-i(\cdot)\eta_n} \to 0$ in $C^{-\infty}(M)$. This is a consequence of the Riemann-Lebesgue lemma for the Fourier transform, i.e. $v \in \mathcal S(\R^n)$ implies that $\hat{v}(\eta) \to 0$ as $\eta \to \infty$. Thus
+\[\sup_{x \in M}| \partial_x^{\alpha} A(\psi  \partial^{\beta}_ye^{-i(\cdot)\eta_n})(x)| \to 0,\]
+which is again a contradiction.
+ 
+
+\end{proof}
+
+We now prove the Proposition. Versions of it hold in more general settings, but we stick to our setting because it is technically simpler. The reason is that $H^s(M)$ and $C^\infty(M)$ are both Fr\'echet Spaces, so the uniform boundedness principle holds. Also versions of Kondrashov compactness hold. In other situations, one needs to localize in order to have Fr\'echet spaces (since $C_c^\infty(M)$ is not one), and one needs to be careful about using a compactness result. These are mainly technical probelms, however.
+\begin{proof}[Proof of Proposition]It is clear that $C^\infty(M) \subseteq \bigcap_{s} H^s(M)$. The converse holds by Sobolev embedding. The estimates on Sobolev embedding also show that $u_n \to u$ in $H^s(M)$ for all $s$ shows that $u_n \to u \in C^\infty(M)$. Now taking duals, we see that
+\[\bigcup_{s \in \R} H^s(M) = C^{-\infty}(M).\]
+Proving that the topologies coincide is slightly harder. Certainly $u_n \to u$ in $H^s(M)$ implies that $u_n \to u$ in $C^{-\infty}(M)$. Indeed this just follows since $C^\infty(M) \subseteq H^{-s}(M)$. Suppose now that $u_n \to u$ weakly in $C^{-\infty}(M)$. Then in particular the family $\{\langle u_n,\phi\rangle\}$ for a fixed $\phi \in C^\infty(M)$ is uniformly bounded. The uniform boundedness principle then shows that the family $\{u_n\}$ is equicontinuous as maps from $C^\infty(M) \to \C$. By the first part of the Proposition, (and the fact that $H^s(M) \subseteq H^t(M)$ for $t < s$) show sthat there is some $s \in \R$ for which $\norm{u_n}_{H^s(M)}$ is uniformly bounded. Choose any $t < s$. Then $u_n \in H^t(M)$ for all $n$ and by Kondrashov compactness, any subsequence has a further subsequence converging in $H^t(M)$ to some limit. However, this subsequence also converges weakly to $u$. Thus the limit in $H^t(M)$ must be $u$ as well. Hence every subsequence of $u_n$ has a further subsequence converging to $u$ in $H^t(M)$. This means that $u_n \to u$ in $H^t(M)$, which is what we needed to show.\end{proof}
+
+\end{document}

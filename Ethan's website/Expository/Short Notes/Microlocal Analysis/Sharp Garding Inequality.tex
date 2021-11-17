@@ -1,0 +1,278 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Sharp G\r{a}rding Inequality}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{section}{0}
+
+The purpose of this note is to prove a version of the Sharp G\r{a}rding Inequality. We will follow \cite[Exercise~4.9]{GS} for the relevant parts.
+
+\begin{thm}[Sharp G\r{a}rding Inequality]\label{ge}Let $M$ be a manifold\footnote{For simplicity  of notation, we assume that $M$ comes equipped with a canonical strictly positive density, such as $M$ is oriented and Riemannian. This is merely an assumption for purposes of notation and allows us to conflate smooth functions with smooth densities.}, and suppose $A \in \Psi^{s}(M)$ is a properly supported pseudodifferential operator with $\sigma(A) \geq 0$. Then there exists $B \in \Psi^{s-1}(M)$ such that
+\[\langle Au,u\rangle \geq -\langle Bu,u\rangle\]
+for all $u \in C_c^\infty(M)$. Also, for every compact set $K \subseteq M$, there exists $C = C(K)$ such that if $\supp u \in K$ then
+\[\langle Au,u\rangle \geq -C\norm{u}^2_{H^{s/2-1/2}}(K).\]
+Here the norm is interpreted as any such inducing the topology on $H^{m-1/2}_{\text{loc}}(M)\n C_c^\infty(K)$. Furthermore, if $A \in \Psi^{s}_{\text{cl}}(M)$, then $B$ can be chosen to be in $\Psi^{s-1}_{\text{cl}}(M)$. \end{thm}
+\begin{rk}There is a version of the inequality of vector bundles, too. The proof remains essentially unchanged.\end{rk}
+
+\section{Overview of the Proof}
+
+We will first assume that $M=X$ is an open subset of $\R^n$. The idea will be to find a properly supported $P \in \Psi^{s}(X)$ with $\sigma(P) = \sigma(A)$, but $\langle Pu,u\rangle \geq 0$. Given this $P$, we may prove the theorem. Indeed, set $B = P-A$. Then $P-A \in \Psi^{s-1}(X)$, and
+\[\langle Au,u\rangle = \langle Pu,u\rangle + \langle (A-P)u,u\rangle \geq -\langle Bu,u\rangle.\] This proves the first assertion in the case $M=X$. We will later push this forward to a manifold using a partition of unity. Assume this has been done for now.
+
+For the second conclusion, first assume that $s=1$. Then the conclusion follows from $L^2$ boundedness of $B$, as an operator on $C_c^\infty(M)$. In general, let $\Lambda \in \Psi^{s/2-1/2}(M)$ be any properly supported formally self-adjoint, positive, elliptic operator, and let $\Upsilon$ be any parametrix (to find such an elliptic operator, we may simply take any properly supported elliptic operator of the correct order, and multiply by its adjoint). Set $A' = \Upsilon A \Upsilon$, so that $A = \Lambda A \Lambda + K$, where $K$ is smoothing. Then since $K$ is smoothing,
+\[\langle Au,u\rangle = \langle A'\Lambda u,\Lambda\rangle -C \norm{u}^2_{H^{s/2-1/2}(K)}.\]
+Since $A' \in \Psi^1(M)$, we may apply the previous result to conclude that
+\[\langle Au,u\rangle \geq -C\left(\norm{\Lambda u}^2_{H^{0}(K)} - \norm{u}^2_{H^{s/2-1/2}(K)}\right).\]
+We then use boundedness of $\Lambda$ to conclude.
+
+\section{Constructing $P$}
+
+Now, returning to the case $M=X$, we begin to find the desired $P$, as described above.
+\begin{lem}\label{app}There exists $\chi(\zeta,x) \in C^\infty(X\times X)$ such that:
+\begin{enumerate}[label = (\roman*)]
+\item $0 \leq \chi \leq 1$;
+\item for each $x$ fixed, there is a neigbhourhood $U$ of $\Delta = \{(x,x)\}$ such that for $(y,z) \in U$ $\chi(y,z) = 1$;
+\item for each $\zeta$ fixed, $\chi(\zeta,\cdot) \in C_c^\infty(X)$. Moreover $\supp \chi \subseteq \{|\zeta-x| \leq 1\}$.\end{enumerate}
+\end{lem}
+This proof is somewhat technical and the proof is not really related to the proof of Theorem~\ref{ge}. We will thus save it for the appendix.
+Define $f \in C^\infty(X\times \R^n \times X)$ by
+\[f(\zeta,\xi,x) := c^{1/2}|\xi|^{n/4}\exp(-1/2|\xi||x-\zeta|^2+i(x-\zeta)\xi),\] where $c > 0$ will be chosen later.
+
+Also define $\Pi \in C^\infty(X\times \R^n\times X \times X)$ by
+\[\Pi(\zeta,\xi,x,y) = \chi(\zeta,x)\chi(\zeta,y)f(\zeta,\xi,x)\overline{f(\zeta,\xi,y)}.\]
+
+\begin{lem}\label{one}For fixed $\zeta,\xi$, $\Pi$ is compactly supported and $\langle \Pi u,u\rangle \geq 0$ for $u \in L^2(X)$ and $\supp u$ compact. Furthermore, for fixed $\xi$ and considered as a function of $\zeta$, $\langle \Pi(\zeta)u,u\rangle$ is compactly supported, independently of $\xi$, and is bounded above by $C|\xi|^{n/4}$, where $C$ is independent of $\zeta,\xi$. \end{lem}
+\begin{proof}The first two assertions are clear. The former by definition of $\chi$, and the latter because $\chi$ is real and so commuting complex conjugation with the integral yields
+\[\langle \Pi u,u\rangle = c|\xi|^{n/2}\left|\int \chi(\zeta,x)f(\zeta,\xi,x)u(x)\ dx\right|^2.\]
+Since $\chi(\zeta,x) = 0$ if $|\zeta-x| > 1$ the quantity vanishes. Thus $\langle \Pi(\zeta)u,u\rangle$ is supported only in a neigbhourhood of $\supp u$. Furthermore, $c\norm{u}^2_{L^2(X)}|\xi|^{n/2}$ provides a uniform upper bound.
+\end{proof}
+
+Given $A \in \Psi^s(X)$ with symbol $a$, we introduce the function
+\[I(x,y,\xi) = c\phi(\xi)|\xi|^{n/2}\int \exp(-1/2|\xi|(|x-\zeta|^2+|y-\zeta|^2))a(\zeta,\xi)\chi(\zeta,x)\chi(\zeta,y)\ d\zeta,\]
+where $c$ is chosen to be the same $c$ as in the definition of $f$, and $\phi$ is some smooth cutoff of $|\xi| \geq 1/2$ with $\sqrt{\phi}$ smooth.
+\begin{prop}\label{i}$I(x,y,\xi)$ is a symbol in the class $S^s_{1,1/2}(X\times X\times \R^n)$ of symbols of order $s$, which when hit with derivatives in $X$ pick up a growth factor of $1/2$, and when hit with derivatives in $\R^n$ pick up a decay factor of $1$. Moreover, the set
+\[S := \{(x,y)\: \exists \xi, \ (x,y,\xi) \in \supp I\}\] is a proper subset of $X\times X$.\end{prop}
+\begin{proof}
+We first show that $I$ is a well-defined smooth function. Indeed, by definition of $\chi$, the integral is taken only over those $\zeta$ with $|\zeta-x|, \ |\zeta-y| \leq 1$, so the integral is only over a compact set of $\zeta$. Also, $\zeta \in X$, since for $\supp \chi \subseteq X\times X$.
+
+If there is to be any $\zeta$ satisfying the above bounds, then it must be true that $|x-y| \leq 2$. Thus, 
+\[S \subseteq \{|x-y| \leq 2\}\] is proper.
+
+Deriving the symbol estimates is trickier. Completing the square, we see that
+\[((x-\zeta)^2+(y-\zeta)^2)) = 2|\zeta-(x+y)/2|^2+1/2|x-y|^2.\] Set $t = (x+y)/2$ and $s = (x-y)/2$. Also set $\tilde{I}(t,s,\xi) = I(x,y,\xi)$. Then, changing variables we see that 
+\[\tilde{I}(t,s,\xi) = c\phi(\xi)e^{-|\xi||s|^2} |\xi|^{n/2}\int \exp(-|\xi|\zeta^2)a(\zeta+t,\xi)\chi(\zeta+t,t+s)\chi(\zeta+t,t-s)\ d\zeta.\]
+The $\phi$ factor is present only to make $I$ smooth and does not affect symbol estimates, which are for large $\xi$ anyway. Thus, $\tilde{I}$ has effectively two factors for which we will derive symbols estimates. Showing symbol estimate for $\tilde{I}$ is equivalent to showing them for $I$, since $x,y$ are in a compact set iff $t,s$ are.
+
+First, we show that $\sqrt{\phi(\xi)}e^{-|\xi||s|^2} \in S^0_{1,1/2}(X\times \R^n)$ (we will ignore $\phi$ in deriving the estimates since its presence just makes everything smooth, and we are only interesting in $\xi$ large estimates). Hitting with $k$ $\xi$-derivatives yields terms bounded above by
+\[|s|^{2k}e^{-|\xi||s|^2}.\] Considering $|s|^2|\xi|$ as one unit, the estimate
+\[|s|^{2k}e^{-|\xi||s|^2} \leq |\xi|^{-k}\] is easy to derive.
+
+If, in addition, we hit it with $j$ $s$-derivatives, we obtain bounds of the form of finite sums of
+\[|s|^{2k-i}|s|^{j-i-\ell}|\xi|^{(j-i-\ell)/2}|\xi|^{(j-i)/2}e^{-|\xi||s|^2},\]
+where $i \leq j$, an $\ell \leq j-i$. The first factor is if the derivative lands on the $s$ factors in the above. If the derivative hits $e^{-|\xi|s^2} = e^{-(\sqrt{|\xi|}|s|)^2}$, then instead we obtain $p(\sqrt{|\xi|}s)e^{-|\xi||s|^2}$, where $p$ is a polynomial of degree at most the number of derivatives. We also obtain more factors of $|\xi|$ because of chain rule. This is the second factor.
+We seek a bound of $|\xi|^{-k+j/2}$ for large $|\xi|$ if we restrict $s$ to a compact set. This is equivalent to a bound of the form
+\[|\xi|^{(j-\ell)/2-i+k}|s|^{2k-2i-\ell+j}e^{-|\xi||s|^2} \lesssim 1\] for $|\xi|$ large. However, this is just
+\[(-|\xi||s|^2)^{(j-\ell)/2-i+k}e^{-|\xi||s|^2}\] which is certainly uniformly bounded for $|\xi|$ large and $s$ is a compact set.
+
+Set
+\[J(t,s,\xi) = \sqrt{\phi}|\xi|^{n/2}\int \exp(-|\xi|\zeta^2)a(\zeta+t,\xi)\chi(\zeta+t,t+s)\chi(\zeta+t,t-s)\ d\zeta.\]
+If we can show that $J(t,s,\xi) \in S^s_{1,0}$, then we will have proved the lemma by multiplying by $e^{-|\xi|s^2}$ and using the symbol estimates we just derived (since $S^0_{1,1/2}\cdot S^s_{1,0} \subseteq S^s_{1,1/2}$).
+
+Observe that the integral in the definition of $J$ runs only over those $\zeta$ for which $|\zeta\pm s| \leq 1$. Thus if $s,t$ lie in a compact set, so do $\zeta$. It is thus clear that we have $S^s_{1,0}$ symbol estimates for 
+\[b(\zeta,t,s,\xi) := a(\zeta+t,\xi)\chi(\zeta+t,t+s)\chi(\zeta+t,t-s)\] for $s,t$ lying in a comapct set, which are uniform in $\zeta$.
+
+Taking $s,t$ derivatives in $J$ only hits $b$. All the work will therefore be in showing bounds for $\xi$ derivatives. Since we have symbol estimates for $b$, we might as well assume for simplicitly that we are taking no $s,t$- derivatives. As above, we will ignore the presence of $\phi$, since we are interesting in $\xi$ large, only.
+
+Taking a $\xi$ -erivative, it can land in three places. So if we take $k$ $\xi$-derivatives, then we obtain bounds by finite sums of the form
+\[|\xi|^{n/2-k_1}\int \zeta^{2k_2}e^{-|\xi|\zeta^2}|\xi|^{s-k_3} \ d\zeta\]
+where $k = k_1+k_2+k_3$.
+Changing variables in $\zeta$  and integrating we obtain the bound
+\[|\xi|^{-k_1}|\xi|^{-k_2}|\xi|^{s-k_3} = |\xi|^{s-k},\] which is of the form we want.\end{proof}
+
+
+Now, define $P \in \Psi^{s}_{1,1/2}(X)$ to have symbol $I(x,y,\xi)$; more specifically we set $P$ to be the operator with kernel
+\[P(x,y) = (2\pi)^{-n/2}\int\int e^{i(x-y)\xi} I(x,y,\xi)\ d\xi,\]
+interepreted, as always, as an oscillatory integral.
+
+\begin{prop}If $P$ is defined as above and $u \in C_c^\infty(X)$, then $\langle Pu,u\rangle  \geq 0$.\end{prop}
+\begin{proof}
+Let $0 \leq \psi \in \mathcal S(R^n)$ be such that $\psi(0) = 1$. Then we know that, for $u \in C_c^\infty(X)$,
+\[(Pu)(x) = \lim_{\epsilon \to 0} (2\pi)^{-n/2}\int\int e^{i(x-y)\xi}\psi(\epsilon\xi)I(x,y,\xi)\ d\xi,\]
+essentially by approximating the symbol $I(x,y,\xi)$ with ones of order $S^{-\infty}$. On the other hand, one sees that this expression is just
+\[(2\pi)^{-n/2}\int\int\int a(\zeta,\xi)\psi(\epsilon\xi)\Pi(\zeta,\xi,x,y)u(y)\ d\zeta d\xi dy.\]
+Thus,
+\[\langle Pu,u\rangle = \lim_{\epsilon \to 0} (2\pi)^{-n/2}\int\int\int \int a(\zeta,\xi)\psi(\epsilon\xi)\Pi(\zeta,\xi,x,y)u(y)\overline{u}(x)\ d\zeta d\xi dydx.\] If we could exchange the order of integration so that the $dydx$ comes before $d\zeta d\xi$ then the integral would be
+\[\int \int a(\zeta,\xi)\psi(\epsilon\xi)\langle \langle\Pi(x,\zeta,\cdot,\cdot)u,u\rangle d\zeta d\xi,\]
+which by Lemma~\ref{one} is a non-negative quantity provided it is integrable. Indeed, we may use Lemma~\ref{one} to bound this integral in absolute value by
+\[\int\int a(\zeta,\xi)\psi(\epsilon\xi)|\xi|^{n/2}\ d\zeta d\xi,\]
+where the $\zeta$ range over a compact set. To show we may exchange the order of integration, we appeal to Fubini's theorem. Showing that the hypotheses of Fubini's theorem are satisfied is essentially the argument we just used, except we take the absolute values inside the integral defining $\langle \Pi u, u\rangle$, too.\end{proof}
+
+\section{Finding $\sigma(P)$}
+We have defined $P$, and shown that it is positive, but we need to show that in fact $P \in \Psi^s(X) = \Psi^s_{1,0}(X)$ and $\sigma(P) = \sigma(A)$ (if we choose $c$ correctly). By Proposition~\ref{i} we know that $P$ is properly supported, so $\sigma(P)$ makes sense. Also,
+\[P = (2\pi)^{-n/2}\int e^{i(x-y)\xi}p(x,\xi)\ d\xi,\]
+where
+\[p(x,\xi) \sim \sum D_y^{\alpha}\partial_{\xi}^{\alpha}I(x,y,\xi)|_{y=x}.\]
+The asymptotic sum is understood by stating that the remainder after stopping at $|\alpha| < k$ should be a symbol in $S^{s-k/2}_{1,1/2}(X,\R^n)$.
+\begin{lem}\label{j}Set $p_\alpha(x,\xi) = D_y^{\alpha}\partial_{\xi}^{\alpha}I(x,y,\xi)|_{y=x}$. Then $p_{\alpha} \in S^{s-|\alpha|}_{1,0}(X,\R^n)$.\end{lem}
+\begin{proof}
+We already know that $p_{\alpha} \in S^{s-|\alpha|/2}_{1,1/2}(X,\R^n)$. The goal is to improve this. We return to examining $\tilde{I}$ in the proof of Proposition~\ref{i}. Then
+\[p_{\alpha}(x,\xi) = (1/2)^{|\alpha|}(D_s+D_t)^{\alpha}\partial^{\alpha}_{\xi}\tilde{I}(x,0,\xi).\]
+Aruging as in the proof of Proposition~\ref{i} (and using the notation therein), there is no question that the factors coming from $J(t,s,\xi)$ are not harmful; the problem is that $\sqrt{\phi(\xi)}e^{-|\xi|s^2} \in S^{0}_{1,1/2}(X,\R^n)$. However, in the present case we are setting $s=0$. In particular, arguing as in the proof of Proposition~\ref{i}, when taking derivatives in $\xi$ and $s$, we obtain terms bounded by sums of
+\[|s|^{2|\alpha|-i}|s|^{|\alpha|-i-\ell}|\xi|^{(|\alpha|-i-\ell)/2}|\xi|^{(|\alpha|-i)/2}e^{-|\xi|s^2}.\] However, in the present case $s=0$, so the only terms contributing are those with $i+\ell=|\alpha|$, which means in particular that $2|\alpha|-i > 0$  so no terms contribute, and the derivative is just $0$. Of course, this is except the zeroth derivative, which just contributes a factor of $1$.
+
+In all, we thus have that
+\[p_{\alpha}(x,\xi) =  (1/2)^{|\alpha|}(D_s+D_t)^{\alpha}\partial^{\alpha}_{\xi}c\sqrt{\phi}(\xi)J(x,0,\xi) \in S^{|\alpha|}_{1,0}(X\times \R^n).\]
+\end{proof}
+
+From this Lemma we deduce that for all $k$
+\[p(x,\xi) \in S^s_{1,0} + S^{s-k/2}_{1,1/2}.\] In particular, for all $\alpha,\beta,k$.
+\[\partial^{\alpha}_x\partial^{\beta}_\xi p(x,\xi) \in S^{s-|\beta|}_{1,0} + S^{s-k/2-|\beta|+|\alpha|/2}_{1/2,0}.\]
+So, choosing $k = |\alpha|$ we derive the correct symbol estimates to ensure that
+\begin{lem} $p \in S^m_{1,0}(X\times \R^n)$.\end{lem}
+
+To show that $\sigma(P) = \sigma(A)$, we need only show that $p_0(x,\xi)-a(x,\xi) \in S^{s-1}(X\times\R^n)$, since then $P-A \in \Psi^{s-1}(X)$.\footnote{Really this is what we are trying to prove, not the assertion about the symbols. Of course these are completely equivalent.}
+
+We will use a version of the method of steepest descent. We recall the basic statement here.
+\begin{thm}[Method of Steepest Descent]\label{msdd}Suppose $u \in C_c^\infty(\R^n)$. Then, for $\lambda \geq 1$
+\[\lambda^{n/2}\int e^{-\lambda/2 |x|^2}u(\zeta) \ d\zeta = \sum_{j=0}^{k-1} \frac{(2\pi)^{n/2}}{2^jj!}\lambda^{-j}(\Delta^j) u(0) + S_k.\]
+where
+\[|S_k| \leq c_k\lambda^{-k}\sum_{|\alpha| = 2k} \sup |\partial^{\alpha} u(\zeta)|.\]
+Here, $c_k$ are constants not depending on $u$.
+\end{thm}
+
+A version of this theorem holds true with parameter and if we let $u$ have $\lambda$ dependence, and take derivatives in $\lambda$. This is the version we will use.
+\begin{thm}[Method of Steepest Descent with Parameter]\label{msd}Suppose $v \in C^\infty(\R^n\times \R^n)$, and for $\xi$ fixed, $v(\cdot,\xi) \in C_c^\infty(\R^n)$. Then, for $|\xi| \geq 1$, if $k \geq |\alpha|$
+\[\partial^{\alpha}_\xi \left(|\xi|^{n/2}\int e^{-|\xi||\zeta|^2}v(\zeta,\xi)\ d\zeta\right) = \sum_{j=0}^{k-1} \frac{(2\pi)^{n/2}}{2^j j!}(\partial_{\xi}^{\alpha}\Delta_\zeta^j) (|\xi|^{-j} v(0,\xi)) + S_{k,\alpha}(\xi),\]
+where
+\[|S_{k,\alpha}(\xi)|  \leq c_{k,\alpha}|\xi|^{-k-|\alpha|}\sum_{|\beta| = 2k} \sup_\zeta |\partial_\zeta^{\beta} v(\zeta,\xi)|.\]
+\end{thm}
+
+We will prove Theorem~\ref{msd} in the Appendix.
+
+We will use Theorem~\ref{msd} to prove
+
+\begin{prop}$p_0-a \in S^{s-1}(X\times \R^n)$.\end{prop}
+\begin{proof}Recall that we have that
+\[p_0(x,\xi) = c\sqrt{\phi(\xi)}J(x,0,\xi) = c|\xi|^{n/2}\int \exp(-|\xi|\zeta^2)a(\zeta+t,\xi)\phi(\xi)\chi(\zeta+x,x)^2\ d\zeta.\]
+Fix $x$, $\beta$ and set \[v(\zeta,\xi) = \partial_{x}^\alpha(a(\zeta+x,\xi)\phi(\xi)\chi(\zeta+x,x)^2).\] Observe that $\chi(\zeta+x,x) = 1$ near $\zeta = 0$ and so also all higher derivatives vanish near $\zeta=0$. Thus, 
+\[\Delta_{\zeta}^j v(0,\xi) = c\Delta_{x}^j\partial_x^{\alpha}a(x,\xi)\phi(\xi).\] Ignoring $\phi$ in the estimates since we only care about large $\xi$, we have that, choosing $c = (2\pi)^{-n/2}$,
+\[\partial_{\xi}^{\beta}\partial_{x}^{\alpha} p_0(x,\xi) = \partial_\xi^{\beta}\partial_x^{\alpha} a(x,\xi) + \sum_{j=1}^{|\beta|-1} \frac{1}{2^jj!}(\partial_\xi^{\beta}\Delta_x^j\partial_x^{\alpha}) (a(x,\xi)|\xi|^{-j}) + S_{k,\beta}(\xi),\]
+where
+\[|S_{|\beta|,\beta}| \leq c_{|\beta|,\beta}|\xi|^{-2|\beta|}\sum_{|\gamma| = 2|\beta|}\sup_{\zeta}|\partial_\zeta^{\gamma}\partial_{x}^\alpha a(\zeta+x,\xi)\chi(\zeta+x,x)^2|.\]
+The error terms look complicated; however, we need only show that for $x$ is a compact set they are all $O(|\xi|^{s-|\beta|-1})$. This is certainly true for the middle error terms. It is also true of $S_{|\beta|,\beta}$, since the $x$ lying in a compact set implies the same of $\zeta$.\end{proof}
+
+\section{Loose Ends}
+
+Now we deal with the loose ends.
+\begin{prop} $A \in \Psi_{\text{cl}}^s(X)$ then the $B$ in Theorem~\ref{ge} is in $\Psi^{s-1}_{\text{cl}}(X)$.\end{prop}
+\begin{proof}It suffices to show that $P \in \Psi_{\text{cl}}^s$. Using these estimates, it is not hard (although quite complicated) to prove this We will sketch how to do this. First suppose $a(x,\xi)$ is homogeneous for large $\xi$. The above estimates show that $p_0 \in S^s_{\text{cl}}$. We observe from the proof of Lemma~\ref{j} that a formula for $p_1$ is
+\[p_1(x,\xi) \sim (D_s+D_t)\partial_{\xi}c\sqrt{\phi}J(x,0,\xi).\] One brings the derivatives in, and uses the method of steepest descent, observing that any time a derivative touches $\chi$ we can safely ignore it because such factors vanish at $\zeta=0$ (really one needs to keep track of them since they will appear in the error terms for $S_{k,\alpha}$, but they just appear as uniformly bounded quantities here). The same reasoning holds for $p_k$. So the degree $s$ homogeneous part of $p$ is $p_0$. The degree $s-1$ part is $p_1$ and the second term in the expansion of $p_0$ via the method of steepest descent. The degree $s-2$ part is $p_2$ and the second term in the expansion of $p_1$ and the third term in the expansion of $p_0$, etc.
+
+Now if $a$ is not homogeneous, we can write it as the sum of homogeneous symbols and an error term, say
+\[a = a^0+a^1+\cdots + a^k + e.\]
+Now, each term begets its own $p$ via the process we carried out above. So we may write
+\[p = p^0+p^1 + \cdots + p^k + p(e).\] Each $p^i$ is homogeneous by the above work, and the error symbol $p(e)$ is a symbol of lower order. Thus collecting terms of the same homogeneity proves that $p$ is a classical symbol.
+\end{proof}
+
+The final thing to do is transfer this result to a manifold, $M$.
+Let $A \in \Psi^s(M)$. Write $A$ for its kernel, too. Let $\phi_i$ be a partition of unity subordinate to charts $\kappa_i:U_i \to M$. Define the kernel $A_i(x,y) = \phi_i(x)A(x,y)\phi_i(y)$. Then $A_i$ (after identifying $U_i$ with its image under $\kappa_i$) is a pseudodifferential operator on  $U_i$ in $\R^n$. Set $R = A-\sum A_i$. Then $R$ is smoothing since $\supp(R)$ is disjoint from a neigbhourhood of the diagonal. Indeed, $\sum \phi_i(x)\phi_i(y)$ is a smooth cutoff of the diagonal. Let $B_i$ be pseudodifferential operators associated to $A_i$ by the theorem for the case of open subsetsof $\R^n$, i.e. $\langle A_iv,v\rangle \geq \langle B_iv,v\rangle$ if $v \in C_c^\infty(U_i)$, and $B \in \Psi^{s-1}(U_i)$. Observe that if $\psi_i$ is identically $1$ on $\supp \phi_i$ with $\supp \psi_i \subseteq U_i$. Then if $u \in C_c^\infty(M)$,
+\[\langle A_iu,u\rangle = \langle A_i\psi_i u,\psi_iu\rangle.\]
+Since $\psi_i u \in C_c^\infty(U_i)$, we continue the above:
+\[\geq \langle B_i\psi_iu,\psi_i u\rangle.\]
+Set $B'(x,y) = \sum \psi_i(x)B_i(x,y)\psi_i(y)$. Then $B' \in \Psi^{s-1}(M)$, since is is locally a pseudodifferential operator and is pseudolocal. In other words, $B'$ is conormal with respect to the diagonal. Observe that
+\[\langle B' u,u\rangle = \sum \int\int B_i(x,y)\psi_i(x)\psi_i(y)\overline{u}(x)u(y) = \sum \langle B_i\psi_i u,\psi_i u\rangle.\] Thus
+
+\[\langle Au,u\rangle = \langle Ru,u\rangle + \sum \langle A_i\psi_iu,\psi_iu\rangle \geq \langle Ru,u\rangle + \sum B_i\psi_i u,\psi_i u\rangle = \langle (R+B')u,u\rangle.\]
+Set $B = R+B' \in \Psi^{s-1}(M)$ to complete the proof.
+
+\appendix
+
+\section{Appendex: Miscellaneous Proofs}
+
+We prove Lemma~\ref{app} here.
+
+\begin{proof}[Proof of Lemma~\ref{app}]
+Define a neigbhourhood $U$ of $\Delta$ by
+\[U = \{(\zeta,x) \in X\times X\: |\zeta-x| < 1, \ \min (d(\zeta,\partial X),d(x,\partial X)) > 2|x-\zeta|\}.\]
+Here $d$ denotes the distance between a  point and a set. For each $(\zeta,x) \not \in \Delta$, let $0 < \epsilon$ be small enough so that there is a neigbhourhood $W_{\zeta,x}$ of $\Delta$ such that $B_{\epsilon}((\zeta,x))\n W_{\zeta,x} = \emptyset$. Consider the cover consisting of $U$ and these balls. Take a locally finite refinement of this partition, consists of sets $U_\alpha$ and $V_\beta$, where $V_\beta$ are contained in the balls, and $U_\alpha$ are contaiend in $U$. Now take a partition of unity $\{\phi_\alpha,\psi_\beta\}$ subordinate to this partition with the property that $\supp \phi_\alpha \subseteq U_\alpha$ and $\psi_\beta \subseteq V_\beta$. Then let $\chi = \sum \phi_\alpha$. We verify the properties. First, we can take $\phi_\alpha,\psi_\beta \geq 0$, and so 
+\[0 \leq \chi \leq \sum \phi_\alpha + \sum \psi_\beta \leq 1.\]
+ 
+Next, if $(x,x) \in \Delta$, a sufficiently small neighbourhood $V$ intersects only finitely many $V_\beta$. Since each $V_\beta$ is contained in some $B_{\epsilon}(\zeta,x)$ disjoint from some $W_{\zeta,x}$, taking intersections we can find a neigbhourhood $W$ of $\Delta$ for which each of these finitely many $V_\beta$ is disjoint from $W$. In particular, $(x,x) \in V\n W$ is disjoint from all $V_\beta$, since $V$ is disjoint from all but finitely many, and $W$ is disjoint from these finitely many. In particular, on $V\n W$, each $\psi_\beta$ vanishes, and so
+ \[1 = \sum \phi_\beta + \sum \psi_\beta = \sum \phi_\beta = \chi,\]
+ and so $\chi = 1$ on a neigbhourhood of $(x,x)$. This shows (ii).
+ 
+By assumption, $\supp \chi \subseteq \bigcup U_\alpha \subseteq U$. This immediately implies that $\supp \chi \subseteq \{|\zeta-x| \leq 1\}$, and for fixed $\zeta$,
+\[\supp \chi \subseteq \{x\: |x-\zeta| \leq 1/2d(\zeta,\partial X),\]
+i.e. $\supp \chi$ is compactly contained in a closed ball inside of $X$. This proves (iii).
+\end{proof}
+
+Before proving Thereom~\ref{msd}, we will sketch a proof of the basic version, Theorem~\ref{msdd}
+
+\begin{proof}[Proof of Theorem~\ref{msdd}]
+Taking the Fourier Transform we need to estimate
+\[(2\pi)^{n/2}\lambda^{-k/2}\int e^{-|\eta|^2/(2\lambda)}\hat{u}(\eta)\ d\eta.\]
+Now, 
+\[e^{-|\eta|^2/(2\lambda)} = \sum_{j=0}^{k-1} \frac{(-1)^j}{j!}\frac{|\eta|^{2j}}{(2\lambda)^j} + R_k(|\eta|^{2}/(2\lambda)),\]
+where $|R_k(x)| \leq \frac{1}{k!} |x|^{k}$.
+Thus, the quantity we need to estimate is
+\[(2\pi)^{n/2}\sum_{j=0}^{k-1} \frac{1}{2^j\lambda^{j+n/2}j!}|\eta|^{2j}\hat{u}(\eta)\ d\eta + (2\pi)^{n/2}\lambda^{-n/2}\int R_k(|\eta|^{2j}/(2\lambda))u(\eta)\ d\eta.\]
+Taking the Fourier transform and using that it converts $|\eta|^2$ to the Laplace operator, the first term is what we want. We estimate the error by
+\[\lambda^{-n/2-k}\int |\eta|^{2k}|\hat{u}(\eta)| \leq \sum_{|\alpha| = 2k}\lambda^{-n/2-k}\norm{\eta^{2\alpha}\hat{u}}_{L^1}.\] The estimate on the error follows by bounding this by the $L^\infty$ norm of the inverse Fourier transform.\end{proof}
+
+We now show how to modify this proof to prove Theorem~\ref{msd}
+\begin{proof}[Proof of Theorem~\ref{msd}]
+The proof is similar to the version above. The main (i.e. non-error) terms are derived in exactly the same way. For the error terms, we need to take derivatives and see what happens. Let us write the remainder naively as
+\[R_k(x) = \sum_{j=k}^\infty \frac{(-1)^jx^j}{j!}.\] We wish to estimate $\partial^{\alpha}_\xi R_k(|\eta|^{2}/(2|\xi|))$.
+The power series defining $R_k(x)$ convergers. We check that the same is true of the series defining $R_k(|\eta|^{2}/(2|\xi|))$, together with all its $\xi$-derivatives, which will allow us to take derivatives term-by-term:
+\begin{align*}
+&\sum_{j=k}^\infty \partial_{\xi_i}  \frac{(-1)^j|\eta|^{2j}}{2^j j!|\xi|^{j}}\\
+&= -\frac{|\eta|^{2}}{2}\frac{\xi_i}{|\xi|^2} \sum_{j=(k-1)}^\infty \frac{(-1)^j|\eta|^{2j}}{2^j j!|\xi|^{j}}\\
+&= -\frac{|\eta|^{2}}{2}\frac{\xi_i}{|\xi|^2}R_{k-1}(|\eta|^{2}/(2|\xi|)).\end{align*}
+One can show inductively that for all $\beta$
+\[\left|\partial_{\xi}^{\beta}\frac{\xi_i}{|\xi|^2}\right| \lesssim |\xi|^{-1-|\beta|}.\] We will denote the class of functions (defined for $|\xi| \geq 1$) which satisfy these estimates for $\ell$ instead of $1$; i.e. $T^{\ell}$ is the set of functions which decay like $|\xi|^{\ell}$ and whose derivatives decay one order quicker per derivative. Clearly $T^{\ell}T^{\ell'} \subseteq T^{\ell+\ell'}$. Using these, one shows inductively that taking $\partial_{\xi}^{\alpha}$ termwise in $R_k(|\eta|^{2}/(2|\xi|))$ leads to an expression which is a finite sum of terms of the form
+\[|\eta|^{2q}T^{p}R_{k-q}(|\eta|^{2}/(2|\xi|)),\]
+where $p+q=-|\alpha|$ and $T^{p}$ indicates a term in $T^{p}$.
+Thus we have showed that the series converges together with its $\xi$-derivatives, so we may conclude that $\partial_{\xi}^{\alpha} R_k(|\eta|^{2}/(2|\xi|))$ is the same as taking the derivative termwise, and so is a finite sum of terms of the above form.
+
+ We know that
+\[|R_{k-q}(|\eta|^{2}/(2|\xi|))| \lesssim \frac{|\eta|^{2(k-q)}}{|\xi|^{k-q}}.\]
+Thus we have a bound
+\[|\partial^{\alpha}_\xi R_k(|\eta|^{2}/(2|\xi|))| \lesssim \frac{|\eta|^{2(k-q)}}{|\xi|^{k-q}}|\eta|^{2q}|\xi|^{p} = \frac{|\eta|^{2k}}{|\xi|^{k+|\alpha|}}.\]
+Using this estimate, one completes the proof as in the proof of Theoerem~\ref{msdd}.
+\end{proof}
+
+
+
+
+\begin{bibdiv}
+\begin{biblist}
+
+\newcommand{\perafter}[1]{#1.}
+
+\BibSpec{book}{
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{. }{} {publisher}
+  +{, }{} {address}
+  +{, }{\perafter} {year}
+}
+\bib{GS}{book}{
+      author = {Grigis, Alain},
+      author = {Sj\"orstrand, Johannes},
+      title = {Microlocal Analysis for Differential Operators},
+      year = {1994},
+      publisher = {Cambridge University Press},
+      address = {Cambridge},
+			}
+
+\end{biblist}
+\end{bibdiv}
+\end{document}

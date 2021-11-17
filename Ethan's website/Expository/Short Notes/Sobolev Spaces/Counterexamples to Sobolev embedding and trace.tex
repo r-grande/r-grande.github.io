@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Counterexamples to Sobolev Embedding and Trace}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+The following two theorems are well-known:
+\begin{thm}[Sobolev Embedding]\label{embedding}Suppose $s > d/2$, then
+\[C^0(\R^d)\n L^{\infty}(\R^d) \subseteq H^{s}(\R^d),\]
+and we have an estimate
+\[||u||_{L^{\infty}(\R^d)} \lesssim ||u||_{H^s(\R^d)}.\]\end{thm}
+\begin{thm}[Sobolev Trace]\label{restriction}Suppose $s > 1/2$. Let $T:\mathcal S(\R^d) \to \mathcal S(\R^{d-1})$ denote the restriction (or ``trace'') map $(Tu)(x) = u(x,0)$. Then $T$ extends to a continuous linear map $T:H^s(\R^d) \to H^{s-1/2}(\R^{d-1})$.\end{thm}
+Notice that in the case $d=1$ (with the interpretation that $\mathcal F(\R^0) \iso \R$ whenever $\mathcal F$ is some space, like $\mathcal F = L^\infty,\mathcal S, H^s$, etc.), the theorems state exactly the same thing. Taking the trace $d$ times, we also see that Theorem~\ref{restriction} implies Theorem~\ref{embedding}, since we may of course take the Trace along any hyperplane we like, not just the hyperplane $x_d = 0$.
+
+The proof of Theorem~\ref{embedding} is easy. Set $\langle \xi \rangle = \sqrt{1+|\xi|^2}$. Then if $u \in \mathcal S(\R^d)$,
+\[2\pi |u(x)| = \left|\int e^{ix\xi}\hat{u}\right| \leq \int \hat{u}\langle \xi \rangle^{s}\langle \xi \rangle^{-s} \leq ||u||_{H^s(\R^d)}\left(\int \langle \xi \rangle^{-2s}\ d\xi\right)^{1/2},\]
+where we used the Cauchy-Schwartz inequality and the definition of $H^s(\R^d)$. This last integral is finite since $s > d/2$. The full theorem now follows by taking the $\sup$ over all $x$ and observing the density $\mathcal S(\R^d) \subseteq H^s(\R^d)$.
+
+The proof of Theorem~\ref{restriction} is only slightly harder and we refer the reader to \cite[Proposition~3.8]{hitch}.
+
+The question remains though, are the exponents in these theorems ``the best?'' It turns out they are, are the purpose of this note will be to prove them. We will start off with Theorem~\ref{embedding}. The first thing to try is a scaling argument. For $u \in \mathcal S(\R^d)$, we set $u_\lambda(x) = u(\lambda x)$. Notice that $\widehat{u_\lambda} = \lambda^{-d}\hat{u}_{\lambda^{-1}}$. First suppose $s \geq 0$. Then
+\[||u||_{H^s(\R^d)} \sim ||u||_{L^2(\R^d)} + [u]_{H^s(\R^d)}\]
+in the sense of equivalence of norms/seminorms. Here $[u]_{H^s}$ is the norm given by
+\[[u]_{H^s(\R^d)} = \int |\hat{u}(\xi)|^2|\xi|^{2s}.\]
+Changing variables, one computes that
+\[||u_\lambda||_{L^2(\R^d)} = \lambda^{-d/2}||u||_{L^2(\R^d)},\]
+and
+\[[u_\lambda]_{H^s(\R^d)} = \lambda^{-d/2+s}[u]_{H^s(\R^d)}.\]
+If Theorem~\ref{embedding} is true for an exponent $s > 0$, then we should have
+\[||u||_{L^\infty(\R^d)} = ||u_\lambda||_{L^\infty(\R^d)} \lesssim ||u_\lambda||_{H^s(\R^d)} \sim \lambda^{-d/2}||u||_{L^2(\R^d)} +  \lambda^{-d/2+s}[u]_{H^s(\R^d)}.\]
+Taking $\lambda \to \infty$ shows that the right-hand side must not go to $0$, i.e. $s \geq d/2$. So if $s > 0$, then $s \geq d/2$. Now if $s < 0$ and Theorem~\ref{embedding} were true for the exponent $s$, it would also be true for $s = 0$, i.e. $H^0(\R^d) = L^2(\R^d)$ embeds continuously into $H^s(\R^d)$ for any $s < 0$, which is impossible since $s \geq d/2 > 0$.
+
+However, this still leaves open the critical exponent $s = d/2$, which we will need to examine below.
+
+Now we examine Theorem~\ref{restriction}. There are two places in the Theorem where we could hope to improve. The first is that is it necessary for $s > 1/2$? The second is that can we find an trace $T:H^s(\R^d) \to H^{s-\epsilon}(\R^{d-1})$ if $\epsilon < 1/2$? Again we will try scaling and see what happens. Suppose $s,s' \geq 0$. Fix $u \in \mathcal S(\R^{d})$ and set $v = Tu \in \mathcal S(\R^{d-1})$. Arguing as above, if we have a trace $T:H^s(\R^d) \to H^{s'}(\R^{d-1})$, then we would have
+\[\lambda^{(d-1)/2}||v||_{L^2(\R^{d-1})} + \lambda^{(d-1)/2+s'}[v]_{H^{s'}(\R^{d-1})} \lesssim \lambda^{d/2}||u||_{L^2(\R^d)} + \lambda^{d/2+s}[u]_{H^s(\R^d)}.\]
+Multiply this expression by $\lambda^{-d/2}$ to obtain the equivalent expression
+\[\lambda^{1/2}||v||_{L^2(\R^{d-1})} + \lambda^{1/2+s'}[v]_{H^{s'}(\R^{d-1})} \lesssim ||u||_{L^2(\R^d)} + \lambda^{s}[u]_{H^s(\R^d)}.\]
+Taking $\lambda \to \infty$ and examining the growth rates of both sides shows that $s \geq 1/2$ and $s \geq 1/2+s'$. As above, from this we can deduce that there is no Trace map from $H^s(\R^d)$ to $H^{s'}(\R^d)$ if $s < 0$ and $s' > 0$. So the scaling argument proves the following: if $T:H^s(\R^d) \to H^{s'}(\R^d)$ is a continuous Trace map, then either $s \geq 1/2$ and $s' \leq s-1/2$, or else $s < 1/2$ and $s' < 0$. Again this leaves open the critical case $s = 1/2$.
+
+The scaling arguments do not get us all the way, so we will need more. We now state exactly what we are trying to prove.
+\begin{thm}\label{embest}If $s \leq d/2$ then there is no estimate of the form \[||u||_{L^{\infty}(\R^d)} \lesssim ||u||_{H^s(\R^d)}.\]\end{thm}
+and
+\begin{thm}\label{restribest}If $s \leq 1/2$ and $s' \in \R$ or else if $s > 1/2$ and $s' > s-1/2$ there is no Trace map
+\[T:H^s(\R^{d}) \to H^{s'}(\R^{d-1}).\]\end{thm}
+
+We have so far partially proved these theorems. The full proof will come from constructing an explicit counterexample. All the work is in the case $d=1$, which is where we will start. In this case the statements of the Theorems are equivalent, and in this case the Trace map $T$ is really the map into $\R$ given by evaluating at $0$, which we will call $\text{eval}_0$ (to see that the Theorems are equivalent, it suffices to move around the point at which we are evaluating the trace). We will prove the following proposition, which amounts to the case $d=1$.
+\begin{prop}\label{thebest}There is no continuous extension of the map $\text{eval}_0:\mathcal S(\R)  \to \R$ to a map $\text{eval}_0: H^{1/2}(\R) \to \R$.\end{prop}
+Notice that in the proposition, the critical exponent $s=1/2$ is ruled out.
+\begin{proof}Consider the function $f(\xi) = (\xi\log\xi)^{-1}$, defined for $\xi \geq 2$. Then $f \geq 0$, but $\int_{\R} f = \infty$, indeed,
+\[\int_2^\infty f(\xi) \ d\xi = \int_{\log(2)}^\infty \xi^{-1} d\xi = \infty.\] On the other hand, $f \in L^2(\langle \xi \rangle\ d\xi)$. Checking this amounts to showing that $f \in L^2(\R)$ and $f \in L^2(|\xi|\ d\xi)$. Indeed,
+\[\int_{\R} |f(\xi)|^2\ d\xi \leq \int_2^\infty \xi^{-2} d\xi < \infty\] and
+\[\int_{\R} |f(\xi)|^2|\xi|\ d\xi = \int_2^\infty \xi^{-1}(\log \xi)^{-2} d\xi = \int_{\log(2)}^\infty \xi^{-2} d\xi < \infty.\]
+Let $u \in L^2(\R)$ satisfy $\hat{u} = f$. Then $u \in H^{1/2}(\R)$ by definition. Let $\eta$ be a Gaussian of integral $1$, and set $\eta_\epsilon(x) = \epsilon^{-1}\eta(x/\epsilon)$. Set $u_\epsilon = u\ast\eta_\epsilon \in C^\infty(\R)\n L^2(\R)$. The idea is that $u_\epsilon \to u$ in $H^{1/2}$, but $u_\epsilon(0) \to \infty$, which means that there can be no extension of $\text{eval}_0$ to a continuous map from $H^{1/2}(\R)$.
+
+Indeed, $\widehat{u_\epsilon}(\xi) = f(\xi)\hat{\eta}(\epsilon\xi)$. Since $\hat{\eta}$ is a Gaussian and $f \in L^2(\langle \xi \rangle\ d\xi)$, $\widehat{u_\epsilon}(\xi) \to \widehat{u}$ in $L^2(\langle \xi \rangle\ d\xi)$, i.e. $u_\epsilon \to u$ in $H^{1/2}$. Notice also that 
+\[u_\epsilon(0) = (2\pi)^{-1}\int f(\xi)\hat{\eta}(\epsilon\xi)\ d\xi \to \infty,\]
+since $\int f(\xi)\ d\xi = \infty$ and $f \geq 0$.\end{proof}
+
+Using this as our building block, we can prove Theorems~\ref{embest} and ~\ref{restribest}.
+\begin{proof}[Proof of Theorem~\ref{embest}]We will not use Proposition~\ref{thebest} verbatim, but will mimic the proof. Set $g(\xi) = (|\xi|^{d}\log|\xi|)^{-1}$ for $|\xi| \geq 2$. Integrating in polar coordinates shows that
+\[\int g(\xi)\ d\xi = c_d\int_2^\infty (r^d\log(r))^{-1}r^{d-1}\ dr = c_d\int f(r)\ dr = \infty,\]
+where $f$ is as in the proof of Proposition~\ref{thebest}. Here $c_d$ is the surface area of $S^{d-1} \subseteq \R^d$.In a similar fashion,
+\[\int |g(\xi)|^2|\xi|^{d} d\xi = c_d\int |f(r)|^2|r|\ dr < \infty.\] It is also clear that
+\[\int |g(\xi)|^2\ d\xi \leq c_d\int_{r \geq 2} r^{-d-1}\ dr < \infty.\]
+
+Let $v$ satisfy $\hat{v} = g$. Arguing exactly as above, $v \in H^{d/2}(\R^{d})$. If $\eta$ is a radial Gaussian and $\eta_\epsilon(x) = \epsilon^{-d}\eta(x/\epsilon)$, set $v_\epsilon = v\ast\eta_\epsilon$. Then as above, $v_\epsilon(0) \to \infty$, but $v_\epsilon \to v \in H^{d/2}(\R^d)$. 
+
+Thus there is no estimate \[||v||_{L^\infty(\R^d)} \lesssim ||v||_{H^{d/2}(\R^d)},\] and since $||\cdot ||_{H^{s}(\R^d)} \lesssim ||\cdot ||_{H^{d/2}(\R^d)}$ for $s < d/2$, no estimate 
+\[||v||_{L^\infty(\R^d)} \lesssim ||v||_{H^{d/2}(\R^d)},\]
+either.\end{proof}
+\begin{proof}[Proof of Theorem~\ref{restribest}]The scaling arguments carried out above show that there is no Trace map $H^s(\R^d) \to H^{s'}(\R^d)$ whenever $s > 1/2$ and $s' > s-1/2$. So we need only prove that there is no Trace map $T: H^s(\R^d) \to H^{s'}(\R^{d-1})$ if $s \leq 1/2$. In fact we will prove something stronger: there is no map $T: H^s(\R^d) \to \mathcal F(\R^{d-1})$ whenever $\mathcal F(\R^{d-1})$ is a normed space in which $\mathcal S(\R^{d-1})$ embeds continuously. Since the inclusion $H^{1/2}(\R^d) \subseteq H^{s}(\R^d)$ is continuous for $s \leq 1/2$, it suffices to prove the case $s=1/2$.
+
+Proposition~\ref{thebest} already proves the case $d = 1$, since there is no norm in which $\text{eval}_0 u_\epsilon$ can converge, as they are an unbounded sequence of real numbers. For the general case, let $g \in \mathcal S(\R^{d-1})$, and set $h(x',x_d) = g(x')u(x_d)$, $h_\epsilon(x',x_d) = g(x')u_\epsilon(x_d)$. Here $u$,$u_\epsilon$ are the functions described in the proof of Proposition~\ref{thebest}. By construction, $T(h_\epsilon)(x') = u_\epsilon(0)g(x')$. Thus if $||\cdot||_{\mathcal F(\R^{d-1})}$ is a norm associated to $\mathcal F(\R^{d-1})$,
+\[||T(h_\epsilon)(x')||_{\mathcal F(\R^{d-1})} = |u_\epsilon(0)|||g||_{\mathcal F(\R^{d-1}}),\]
+where $||g||_{\mathcal F(\R^{d-1}} < \infty$ since $g \in \mathcal S(\R^{d-1})$. We know that as $\epsilon \to 0$, this quantity $\to \infty$. So to complete the proof, we need only show that $h_\epsilon \to h$ in $H^{1/2}(\R^d)$.
+
+This much is clear. Notice that \[\langle (\xi',\xi_d) \rangle \lesssim \langle \xi' \rangle \langle \xi_d\rangle.\] Indeed,
+\[\langle (\xi',\xi_d) \rangle \sim 1+|(\xi',\xi_d)| \leq 1+|\xi'|+|\xi_d| \leq (1+|\xi'|)(1+|\xi_d|) \sim \langle \xi' \rangle \langle \xi_n\rangle.\]
+Thus, since $\hat{h}(\xi',\xi_d) = \hat{g}(\xi')\hat{u}(\xi_d)$
+\begin{align*}
+||h||_{H^{1/2}(\R^d)}^2& \leq \int\int |\hat{g}(\xi')|^2\langle \xi'\rangle|\hat{u}(\xi_d)|^2\langle \xi_d\rangle\ d\xi'd\xi_d\\
+&\leq \left(\int |\hat{g}(\xi')|^2\langle \xi'\rangle\ d\xi'\right)\left(\int |\hat{u}(\xi_d)|^2\langle \xi_d\rangle\ d\xi_d\right)\\
+&= ||g||_{H^{1/2}(\R^d)}||u||_{H^{1/2}(\R)} < \infty.\end{align*}
+
+The same computation shows that $h_\epsilon \in H^{1/2}(\R^d)$ and $h_\epsilon \to h$ in $H^{1/2}(\R^d)$.\end{proof}
+
+\begin{bibdiv}
+\begin{biblist}
+
+\newcommand{\perafter}[1]{#1.}
+
+\BibSpec{arxiv}{%
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{}{. } {arxiv}
+  +{}{. } {journal}
+  +{}{. } {note}
+}
+\bib{hitch}{arxiv}{
+      author = {Di Nezza, Eleonora},
+      author = {Palatucci, Giampiero},
+      author = {Valdinoci, Enrico},
+      title = {Hitchhiker's guide to the fractional Sobolev spaces},
+      arxiv = {\tt \href{https://arxiv.org/abs/1104.4345v3}{arXiv:1104.4345v3} [math.FA]}
+			}
+
+\end{biblist}
+\end{bibdiv}
+\end{document}

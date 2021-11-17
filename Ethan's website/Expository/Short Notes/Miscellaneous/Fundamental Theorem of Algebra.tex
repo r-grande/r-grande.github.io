@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+
+
+
+\usepackage{/Users/ethanjaffe/Documents/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/mySettings}
+\usepackage{appendix}
+\usepackage{chngcntr}
+
+\title{Fundamental Theorem of Algebra}
+\author{Ethan Y. Jaffe}
+\date{}
+\begin{document}
+\maketitle
+
+\counterwithout{thm}{section}
+
+In this note we give a proof of the fundamental theorem of algebra, using only the inverse function theorem and basic point-set topology. The proof is inspired by a proof of Milnor (\cite{Mil}), which passes from $\C$ to the sphere $S^2$, but proceeds somewhat differently (in particular does not use regular values, or $S^2$).
+
+\begin{thm}Let $p(z)$ be any non-constant polynomial of one complex variable with complex coefficients. Then $p(z)$ has a complex root.\end{thm}
+\begin{proof}Let us identify $\R^2$ with $\C$ via $x+iy \mapsto z$, and identify $p(z)$ as a smooth map $\R^2 \to \R^2$ via $p(x+iy) = \Re(p(x+iy)) + i\Im(p(x+iy))$. We will need to relate the differential $dp$ to the classical (formal) derivative $p'$, computed using the power rule.\footnote{By formal, we mean for instance that the derivative of $az^k$ is $akz^{k-1}$, extended by sum rule to all polynomials. We say ``formal'' since we do not wish to use the derivative of a function of one complex variable. Of course these coincide, but the formal algebraic definition suffices.} To do this, we also identify $\C$ with a subset of $M_2(\R)$, the space of $2\times 2$ real matrices, via the map
+\[\Phi(x+iy) = \begin{pmatrix} x & -y\\
+y & x\end{pmatrix}.\] It is easy to check that $\Phi$ is indeed a ring isomorphism onto its image. We have the following easy lemma:
+\begin{lem}Considered as a map $\R^2 \to \R^2$, $dp_z = \Phi(p'(z))$, where $p'(z)$ is the (formal) derivative of $p$.\end{lem}
+From the lemma, we deduce immediately that $p$ has finitely many critical points. Indeed, $dp_z$ is singular if and only if $\Phi(p'(z))$ is not invertible, which happens if and only if $p'(z) = 0$, since $\Phi$ is a ring isomorphism onto its image. Since $p'$ is a nonzero polynomial over a field, it only has finitely many zeroes\\[2ex]
+
+To show that $p$ has a root, we prove the stronger claim that $p$ is surjective.
+
+To do so, we need:
+\begin{lem}The image $p(\C)$ is closed.\end{lem}
+\begin{proof}Suppose $x_n \in \C$ and $p(x_n) \to y \in \C$. We need to show that $y = p(x)$ for some $x$. If the $x_n$ were uniformly bounded, then we may pass to a convergent subsequence $x_{n_k} \to x$, and then $p(x_{n_k}) \to p(x)$ since $p$ is continuous, and $p(x_{n_k}) \to y$ by assumption. Thus $y = p(x)$.
+
+So suppose the sequence $x_n$ were not uniformly bounded. Then we may extract a subsequence $x_{n_k}$ with $|x_{n_k}| \to \infty$. Write
+\[p(z) =a_Nz^N + a_{N-1}z^{N-1} + \cdots + a_0,\] with $a_N \neq 0$. Then
+\[|p(z)| \geq |a_N||z|^N\left(1-\frac{|a_{N-1}|}{|a_N|}|z|^{-1}- \cdots - \frac{|a_{0}|}{|a_N|}|z|^{-k}\right) =: |a_N||z|^N(1-E(z)).\]
+If $k$ is large enough, then $|E(x_{n_k})| \leq 1/2$, and so $|p(x_{n_k})| \geq \frac{1}{2}|a_N||x_{n_k}|^N \to \infty$, a contradiction. Thus the sequence $x_n$ is uniformly bounded.\end{proof}
+\begin{rk}This lemma and the proof is a restatement of the following fact: the map $p:\C \to \C \subseteq S^2$ (with $S^2$ identified as the Riemann sphere, i.e.\ the one point compactification of $S^2$), is a proper, and thus $p$ extends to a map $S^2 \to S^2$ mappping $\infty$ to $\infty$ and $\C \to \C$. Thus $p(S^2)$ is compact, and hence closed in $S^2$. Thus 
+\[p(\C) = p(S^2 \setminus \{\infty\}) = p(S^2)\setminus \{\infty\} = p(S^2)\n \C\] is the intersection of two closed sets, and hence is closed.\end{rk}
+
+Denote $A = p(\C)$. We have shown already that $A$ is closed. Let $B = \C\setminus p(\C)$. Then $B$ is open.  Let
+\[G =  \{y \in p(\C)=A \: dp_x\text{ is singular whenever } y = p(x)\}.\] Since $p$ has finitely many singular points, $G$ is finite.  We now use the inverse function theorem to show that $A\setminus G$ is open.  Indeed, if $y \in C$, then $y = p(x)$ for some $x$ where $dp_x$ is invertible. Thus, by the inverse function theorem, there exist neigbhourhoods $U,V \subseteq \C$, with $x \in U$ and $y \in V$ such that $p:U \to V$ is a homeomorphism.  Shrinking $U$, we may assume that $dp$ is non-singular over $U$.  In particular $V = p(U) \subseteq C$ and thus $C$ contains a neighbourhood of $y$.
+
+Since $C = A\un B =  (A\setminus G) \un G \un B$ is the union of three disjoint sets,  $C\setminus G = (A\setminus G) \un B$ is the union of tow disjoint open sets.  Since $G$ is finite,  $C\setminus G$ is connected,  and so this is possible only if $A\setminus G$ or $B$ is empty.  As $A$ is infinite but $G$ is finite,  $A\setminus G$ is not empty,  and thus $B = \C\setminus p(\C)$ is empty.  Hence $p$ is surjective.
+\end{proof}
+
+\begin{bibdiv}
+\begin{biblist}
+
+\newcommand{\perafter}[1]{#1.}
+
+\BibSpec{book}{
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{. }{} {publisher}
+  +{, }{} {address}
+  +{, }{\perafter} {year}
+}
+\bib{Mil}{book}{
+      author = {Milnor, John W},
+      title = {Topology from the Differentiable Viewpoint},
+	publisher = {University Press of Virginia},
+	address = {Charlottesville}
+	}
+
+\end{biblist}
+\end{bibdiv}
+
+\end{document}

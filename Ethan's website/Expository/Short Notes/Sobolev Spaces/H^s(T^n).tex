@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Defining $H^s(\T^n)$}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+Let $\T^n$ denote the $n$-dimensional torus. There are two definitions of $H^s(\T^n)$: the first is by using Fourier series, and the second is by covering with coordinate patches. The first definition is often easier to work with in practice, but it is nice to know that they are equivalent. Here we present an elementary proof of this fact. We will denote by $||\cdot||_{H^s(\T^n)}$ the ``Fourier series'' norm. It will suffice to prove the following proposition, which effectively shows that in a given chart, the $H^s$ norms are equivalent; the full result follows by showing that both $H^s$ norms (at least up to an equivalence of norms) may be computed by using a partition of unity and working in coordinate patches.
+
+In practice, one pretends that a subset of Euclidean space is a subset of the torus, and so can work with $H^s(\T^n)$ insteadof $H^s(\R^n)$. The foregoing statement is sufficient to show that these approaches are equivalent, and the proposition in fact proves this statement.
+
+\setcounter{section}{1}
+\begin{prop}Let $K$ be a compact subset of $\R^n$, and suppose that $Q = [a,b]^n$ is a cube such that $K$ is contained in some open set contained in $Q$. Identify $Q \iso \T^n$. Suppose $u \in H^s(\R^n)$ has support in $K$. Under $Q \iso \T^n$, we may identify $u$ as a distribution in $\mathcal D'(\T^n$). Then $u \in H^s(\T^n)$ and there exists $C > 0$ (depending on $K$) such that
+\[1/C||u||_{H^s(\T^n)} \leq ||u||_{H^2(\R^n)} \leq C||u||_{H^s(\T^n)}.\]
+\end{prop}
+\begin{proof}
+We only need prove the statement for $s \geq 0$ since duality gives $s < 0$. If $s$ is an integer, then the claim is obvious, since $u \in H^s(\R^n)$ iff for $|\alpha| \leq s$,
+\[\partial^\alpha u \in L^2(\R^n),\]
+iff
+\[\partial^\alpha u \in L^2(\T^n)\]
+iff $u \in H^s(\T^n)$, and we have the obvious equivalence of suitable norms at each step. Since $H^s$ is precisely the space of those $u$ such that $\partial^\alpha u \in H^{s-\floor{s}}$ for $|\alpha| = \floor{s}$, we reduce to the case $0 < s < 1$.
+
+For this, we may assume that $Q = [-\pi,\pi]^n$, and $K$ is contained inside an open set contained in $Q$. First, suppose $L \subseteq Q$ is small enough so that $L-L, L+L \subseteq Q$ (here $+,-$ are the operations in $\R^n$). We show that if $u$ is supported in $L$, then $||u||_{H^s(\R^n)} \sim ||u||_{H^s(\T^n)}$. First, notice that whenever the second integral below makes sense,
+\[\int_{\R^n}\int_{\R^n} \frac{|u(x+y)-u(y)|^2}{|x|^{n+2s}}\ dydx = \int_{L}\int_{L}\frac{|u(x+y)-u(y)|^2}{|x|^{n+2s}}\ dydx = \int_{\T^n}\int_{\T^n}\frac{|u(x+y)-u(y)|^2}{|x|^{n+2s}}\ dydx,\]
+where the $+$ in the first integrand is $+$ in $\R^n$, the last $+$ is $+$ in $\T^n$, and the middle $+$ is either (notice that we may actually identify $u$ with a measurable function on $\R^n$ since it is at least in $L^2(\R^n)$). Now,
+\begin{align*}
+\int_{\R^n}\int_{\R^n} \frac{|u(x+y)-u(y)|^2}{|x|^{n+2s}}\ dydx &= \int_{\R^n}\frac{1}{|x|^{n+2s}}\left|\left|u(x+\cdot)-u(\cdot)\right|\right|^2_{L^2(\R^n)}\ dx\\
+&= \int_{\R^n}\frac{1}{|x|^{n+2s}}\left|\left|\hat{u(x+\cdot)}-\hat{u}(\cdot)\right|\right|^2_{L^2(\R^n)}\ dx\\
+&= \int_{\R^n}\int_{\R^n} \frac{|e^{ix\xi}-1|^2}{|x|^{n+2s}}|\hat{u}(\xi)|^2\ d\xi dx\\
+&= \left(\int_{\R^n}\frac{|e^{ix-1}|^2}{|x|^{n+2s}}\ dx\right)\left(\int_{\R^n}|\hat{u}(\xi)|^2||\xi|^s d\xi\right)\end{align*}
+The first integral is finite since the numerator is like $|x|^2$ near $0$, and $2-2s > 0$. We deduce that
+\[||u||_{L^2(\R^n)} + \int_{\R^n}\int_{\R^n} \frac{|u(x+y)-u(y)|^2}{|x|^{n+2s}}\ dydx \sim ||u||_{H^s(\R^n)}.\] The same argument shows that
+\[||u||_{L^2(\T^n)} + \int_{\T^n}\int_{\T^n}\frac{|u(x+y)-u(y)|^2}{|x|^{n+2s}}\ dydx \sim ||u||_{H^s(\T^n)}.\] In particular the middle expression makes sense if $u \in H^s(\R^n)$ or $u \in H^s(\T^n)$. Since the expressions on the left-hand side are equal, we have the desired result for $L$.
+
+Now translating, we have the result whenever $L$ is sufficiently small. Cover $K$ by (finitely many) small enough open sets $U_i$ such that each $U_i$ is contained inside $Q$, and $\overline{U_i}$ is small enough so that $H^s$ norms over it are equivalent whether taken in $\R^n$ or $\T^n$, and so that the $U_i$ cover a slightly large compact set $K'$ which is contained in an open set contained in $Q$. Let $V_1$ be the complement of $K'$ in $\R^n$, and $V_2$ be the complement of $K'$ in $\T^n$. Let $\chi_i,\phi_1$ be a partition of unity of $\R^n$ subordinate to the cover by $U_i$ and $V_1$, with $\supp \chi_i \subseteq U_i$, $\supp \phi_1 \subseteq V_1$, and let $\phi_2$ be supported in $V_2$ so that $\sum \chi_i + \phi_2 = 1$ (this is indeed possible; just set $\phi_2 = \phi_1$ everywhere in $Q$). 
+\[||u||_{H^s(\R^n)} \leq \sum_{i} ||\chi_i u||_{H^s(\R^n)} + ||\phi_1 u||_{H^s(\R^n)} =: ||u||_1.\] Notice that $H^s(\R^n)$ is complete under $||\cdot||_1$. Since the identity map $H^s(\R^n) \to H^s(\R^n)$ is continuous with the topology of $||\cdot ||_1$ on the domain and $||\cdot||_{H^s(\R^n)}$ on the codomain, the identity in the reverse direction is continuous by the open mapping theorem, and so $||\cdot||_{H^s(\R^n)} \sim ||\cdot||_1$. The same result holds for analogous norms on $\T^n$. But if $u$ is supported in $K$, the $\phi_1 u = 0$. Also, $||\chi_i u||_{H^s(\R^n)} \sim ||\chi_i u||_{H^s(\T^n)}$. Since $\psi_2 u = 0$, we conclude that
+\[||u||_{H^s(\R^n)} \sim \sum ||\chi_i u||_{H^s(\T^n)} \sim ||u||_{H^s(\T^n)},\] which completes the proof.\end{proof}
+One should note that a similar theorem holds to define $H^s(M)$, whenever $M$ is a compact manifold (without boundary). Fix a Riemannian metric $g$ on $M$, and consider the associated (positive) Laplace operator $\Delta = \Delta_g$.  Suppose $\lambda_1,\lambda_2,\ldots$ are the eigenvalues of $\Delta$ with eigenfunctions $e_1,e_2,\ldots \in C^\infty(M)$. Then one may also define $H^s(M)$ to be the completion of the space of smooth functions $u$ for which
+\[\sum \langle \lambda \rangle^{2s}|\langle u,e_i\rangle|^2 < \infty,\] or equivalently for $s \geq 0$ the space of all $L^2$ functions satisfying the same. This proof is harder, and depends on the fact that the operator $(1+\Delta)^s$, defined in the obvious way by acting on eigenfunctions, is an elliptic pseudodifferential operator of the correct order. One recover the Theorem from this by noticing that the eigenfunctions of the flat Laplacian on $\T^n$ consist precisely of functions $e^{ikx}$ with eigenvalues $|k|^2$.
+\end{document}

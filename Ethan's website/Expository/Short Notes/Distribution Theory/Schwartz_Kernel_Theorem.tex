@@ -1,0 +1,146 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+\usepackage{appendix}
+
+\title{A proof of the Schwartz kernel theorem}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}\maketitle
+\setcounter{section}{1}
+We show the following:
+\bottomnote{The major idea in this note of passing to a $\delta$ function, was taken from notes written by Richard Melrose}
+\begin{thm}Let $X,Y$ be smooth manifolds. For every $A:C_0^\infty(Y) \to \mathcal D'(X)$ continuous and linear, there exists a unique $K \in \mathcal D'(X\times Y)$ such that
+\[\langle Au,v\rangle = \langle K,u\otimes v\rangle.\]
+By continuity, we mean sequential continuity, i.e. that if $\phi_j \to \phi$ in $C_0^\infty(Y)$, then $A\phi_j \to A\phi$ weakly in $\mathcal D'(X)$\end{thm}
+\begin{proof}
+Uniqueness is obvious since tensor products $C_c^\infty(Y)\otimes C_c^\infty(X)$ are dense in $C_c^\infty(Y\times X)$ (which can be seen for the case that $Y$ and $X$ are cubes by using Fourier series, and then employing a partition of unity which lives in the tensor product).
+
+Now for existence. 
+
+\textbf{Step 1: }We first prove an analogous theorem for $\mathcal S(\R^d)$, where all the work will be done. Explicitly we prove the same theorem, except with $\mathcal S(\R^m)$ $\mathcal S'(\R^n)$ as the domain and codomain of $A$, respectively, first. Set $\langle x \rangle = (1+|x|^2)^{1/2}$. We define $\langle x \rangle^{s}H^{t}(\R^d)$ to be the space of all distributions $u$ of the form \[u = \langle x \rangle^{s}v\] for $v \in H^t(\R^d)$,
+with a norm $||u||_{\langle x \rangle^{s}H^t(\R^d)} = ||v||_{H^t(\R^d)}$.
+We have that
+\[\mathcal S(\R^d) =  \bigcap_{k \in \Z} \langle x \rangle^{-k}H^k(\R^d)\]
+and
+\[\mathcal S'(\R^d) = \bigcup_{k \in \Z} \langle x \rangle^{k}H^{-k}(\R^d),\]
+moreover the intersection (resp. union) is decreasing (resp. increasing), and the inclusions maps are continuous. 
+Furthermore, $\phi_j \to \phi$ in $\mathcal S(\R^d)$ iff $\phi_j \to \phi$ in all spaces $\langle x \rangle^{-k}H^k(\R^d)$ and $u_j \to u$ in $\mathcal S'(\R^d)$ iff $u_j \to u$ in some space $\langle x \rangle^{k}H^{-k}(\R^d)$. See the Appendix for details.
+
+Using this, we show that there is some $k,\ell$ so that $A$ extends to a bounded linear map
+\[A:\langle x \rangle^{-k}H^k(\R^m) \to \langle x \rangle^{\ell}H^{-\ell}(\R^n).\]
+\begin{proof} Notice that there is some constant $C_{k,\ell,d}$ such that whenever $k < \ell$,
+\[||\cdot||_{\langle x \rangle^{k}H^k(\R^d)} \leq C_{k,\ell,d}||\cdot||_{\langle x \rangle^{-\ell}H^\ell(\R^d)}.\]
+Dividing by a constant, we may thus inductively renormalize the norms $||\cdot||_{\langle x \rangle^{k}H^{-k}(\R^d)}$ for $\Z \ni k \geq 0$ so that $C_{-k-1,-k,d} = 1$.
+
+Suppose $A$ did not extend to a continuous map. Then taking $k=\ell$, for each $\ell$ fixed there would be $\epsilon_\ell > 0$ and a sequence $\phi_{j,\ell} \to 0$ in $\langle x \rangle^{-\ell}H^{\ell}(\R^m)$ as $j \to \infty$ such that
+\[||A\phi_{j,\ell}||_{\langle x \rangle^{\ell}H^{-\ell}(\R^n)} \geq \epsilon_\ell.\] Rescaling $\phi_{j,\ell}$, we may assume that $\epsilon_\ell = 1$ for all $\ell$. Passing to a subsequence, we may also assume that $||\phi_{j,\ell}||_{\langle x \rangle^{-\ell}H^{\ell}} \leq 2^{-j}$. Set $\psi_j = \phi_{j,j}$. Then for all $\ell$ and $j \geq \ell$,
+\[||\phi_{j,j}||_{\langle x \rangle^{-\ell}H^\ell(\R^m)} \leq ||\phi_{j,j}||_{\langle x \rangle^{-j}H^j(\R^m)} \leq 2^{-j},\]
+and so $\psi_j \to 0$ in $\mathcal S(\R^m)$. 
+
+Thus $A\psi_j \to 0$ in $\langle x \rangle^{k}H^{-k}(\R^n)$ for some $k$. Making $k$ smaller, we may assume that $k \leq 0$.
+But 
+\[||A\psi_j||_{\langle x \rangle^{k}H^{-k}(\R^d)} \geq ||A\psi_j||_{\langle x \rangle^{j}H^{-j}(\R^d)} \geq 1,\]
+at least for large enough $j$, since we are assuming that $C_{-j,-k,m} = 1$. This is of course a contradiction.\end{proof}
+
+Multiplication by $\langle x \rangle^s$ is an isomorphism of $\mathcal S$ for any $s$, and hence $\langle D \rangle^s$ is, too, and hence both are also of $\mathcal S'$ ($\langle D \rangle$ is defined by multiply the Fourier transform by $\langle \xi\rangle$ and then taking the inverse transform). Using the above statement, we see that in particular there is an operator $B$ which is a composition of $A$ with the above maps such that $B:H^{-m}(\R^m) \to H^n(\R^n)$. Now $\delta_y \in H^{-m}(\R^m)$, and hence, $B(\delta_y) \in H^n(\R^n)$. Moreover, $\delta_\cdot$ is a bounded continuous function into $H^{-m}(\R^m)$. In particular, the function $L(x,y) = B(\delta_y)(x)$ is well-defined and a bounded continuous function by Sobolev embedding, and so defines a distribution on $\mathcal S(\R^{n+m})$ by integrating. We next verify that $\int L(x,y)\phi(y)\ dy = B(\phi)(x)$, i.e. $L$ is the kernel of $B$. $L$ makes sense to evaluate pointwise in $x$ by Sobolev embedding, and the integral makes sense since $L(x,\cdot)$ is bounded and continuous. We write the integral as a limit of Riemann sums which converge at least pointwise in $x$:
+\begin{align*}
+\int L(x,y)\phi(y)\ dy &= \lim_{\epsilon \to 0} \epsilon^m\sum_{\nu \in (\epsilon\Z)^m,\ |\nu| \leq \epsilon^{-1}}B(\delta_\nu)(x)\phi(\nu)\\
+&= \lim_{\epsilon \to 0}\epsilon^m\sum B(\phi(\nu)\delta_\nu)(x)\\
+&= \lim_{\epsilon \to 0}B\left(\epsilon^m \sum \phi(\nu)\delta_\nu\right)(x).\end{align*}
+
+Now, the argument of $B$ converges in $H^{-m}(\R^m)$ to $\phi$. Indeed, the Fourier transform of the arugment is
+\[\epsilon^m \sum_{\nu} e^{-i\nu \xi}\phi(\nu),\] which is a Riemann sum for the defining integral of $\hat{\phi}(\xi)$, which certainly converges to $\hat{\phi}$ in the appropriate weighted $L^2$ space by dominated convergence. Indeed,
+\[\left|\epsilon^m\sum_{\nu} e^{-i\nu \xi}\phi(\nu)\right| \lesssim \epsilon^m \sum_{\epsilon} \langle \nu \rangle^{-N} \sim \int_{\R^m} \langle x \rangle^{-N} \lesssim 1,\]
+and so
+\[\left|\epsilon^m \sum_{\nu} e^{-i\nu \xi}\phi(\nu)-\phi(\xi)\right|^2\langle \xi \rangle^{-m} \lesssim \langle \xi \rangle^{-m}\] is integrable. Thus,
+\[\epsilon^m \sum \phi(\nu)\delta_\nu \to \phi\] in $H^{-m}(\R^d)$. Since $B$ is continuous from $H^{-m}(\R^m)$ to $L^\infty(\R^n)$, we deduce from the above that
+\[\int L(x,y)\phi(y)\ dy = \lim_{\epsilon \to 0}B\left(\epsilon^m \sum \phi(\nu)\delta_\nu\right)(x) = B(\phi)(x),\] which is what we wanted to show. 
+
+Finally, we deduce that for approrpriate $i_k$, $k=1,2,3,4$,
+
+\begin{align*}\langle Au,v\rangle &= \langle \langle D_x\rangle^{i_1}\langle x \rangle^{i_2} B \langle y \rangle^{i_3}\langle D_y\rangle^{i_4},v\rangle\\
+&= \langle L, \langle y \rangle^{i_3}\langle D_y\rangle^{i_4} u \otimes \langle D_x\rangle^{i_1}\langle x \rangle^{i_2} v\rangle,\end{align*}
+and so  we may define the kernel $K$ to $A$ by
+\[\langle K,\phi\rangle = \langle L,\langle y \rangle^{i_3}\langle D_y\rangle^{i_4}\langle D_x\rangle^{i_1}\langle x \rangle^{i_2}\phi\rangle,\]
+which certainly defined a Schwartz-distribution.
+
+\textbf{Step 2: }Now, returning to the original question. Suppose $Y$ is an open subset of $\R^m$ and $X$ is an open subset of $\R^n$, and let $Y_j, X_j$ denote compact exhaustions of $Y$ and $X$, respectively Then we may define maps $A_j: \mathcal S(\R^m) \to \mathcal S'(\R^n)$ by
+\[\langle A_ju,v\rangle = \langle A\eta_j u,\chi_j v\rangle,\] $\eta_j,\chi_j$ are cutoffs of $Y_j$ and $X_j$, respectively. Notice that the associated kernels $K_j$ of $A_j$ by uniqueness must extend one another. The result follows. Explicitly, if $\phi \in C_c^\infty(Y\times X)$, we may define
+\[\langle K,\phi\rangle = \langle K_j, (\eta_j\otimes\chi_j)\phi\rangle \] if $\supp \phi \in Y_j\times X_j$. This is well-defined since if $k > j$, then 
+\[\langle K_k, (\eta_k\otimes \chi_k)\phi\rangle = \langle K_k, (\eta_j\otimes \chi_j)\phi\rangle,\] but $K_k$ and $K_j$ must be the same when acting on functions in $C_c^\infty(Y_j\times X_j)$, by uniqueness (if $\phi = \phi_1\otimes \phi_2$, then both must be $\langle A\phi_1,\phi_2\rangle$). $K$ is the kernel for $A$ since if $u \in C_c^\infty(Y)$, $v \in C_c^\infty(X)$, then for large enough $j$,
+\[\langle K,u\otimes v\rangle = \langle K_j,(\eta_j u)\otimes(\chi_j v)\rangle = \langle A_j \eta_j u,\chi_j v\rangle = \langle A \eta_j^2 u,\chi_j^2 v\rangle = \langle A u,v\rangle.\]
+Lastly, we need to verify that $K$ is continuous. But this is obvious since $\phi_j \to \phi$ means in particular that for large enough $j$, the supports of the $\phi_j$ and $\phi$ are uniformly compactly supported.
+
+\textbf{Step 3: }On a manifold, we simply need to use partitions of unity. Suppose $\phi_j$ is a partition of unity subordinate to a collection of charts $Y_j$ on $Y$, and $\psi_j$ is subordinate to a collection of charts $X_j$ of $X$. Set $A_{i,j}u = \psi_iA(\phi_j u)$. This then has kernel $K_{i,j} \in \mathcal D'(Y_j\times X_i)$. Let $\phi_j'$ be supported in $Y_j$ and $1$ on the support of $\phi_j$, and similarly for $\psi_j'$. Then $K=\sum (\psi_i'\otimes\phi_j')K_{i,j}$ is a well-defined distribution (even if the sum is infinite, since it acts on compactly supported densities), and is the distribution kernel for $A$. Indeed,
+\begin{align*}
+\langle K,u\otimes v\rangle &= \sum \langle K_{i,j}, (\phi_j'u)\otimes(\psi_i'v)\rangle\\
+&= \sum \langle A_{i,j}(\phi_j' u),\psi_i' v\rangle\\
+&= \sum \langle A(\phi_j'\phi_j u),\psi_i'\psi_i v\rangle = \sum \langle A(\phi_j u),\psi_i v\rangle\\
+&= \langle Au,v\rangle.\end{align*}\end{proof}
+
+Here we have supressed the importance that $\mathcal D'(M)$ is the dual to the compactly supported densities of a manifold on $M$. The implicit use of this was in the following: if $U$ is a subset of $M$ in the image of a coordinate patch with domain $V$, we identified $\mathcal D'(U)$ and $\mathcal D'(V)$ without further comment; to be rigorous, one must note the obvious correspondence between a smooth function $f$ on $V$, and the ``natural'' density $fdx$.
+
+\appendix
+\section{Appendix}
+The purpose of this appendix is to (at least sketch) the proof of the following.
+\begin{thm}If $k \geq j$ are integers, then we have a continuous inclusion
+\[\langle x \rangle^{-j} H^{j}(\R^d) \subseteq \langle x \rangle^{-k} H^{k}(\R^d).\] Moreoever, the following are true:\begin{enumerate}[label = (\roman*)]
+\item $\mathcal S(\R^d) = \bigcap_{k \in \Z} \langle x \rangle^{-k}H^k(\R^d)$
+\item $\mathcal S'(\R^d) = \bigcup_{k \in \Z} \langle x \rangle^{k}H^{-k}(\R^d)$
+\end{enumerate}
+Furthermore, if $\phi_n \to \phi$ in $\mathcal S(\R^d)$, then for all $k$ $\phi_n \to \phi$ in the topology of $\langle x \rangle^{-k}H^k(\R^d)$. Similarly, if $u_n \to u$ weakly in $\mathcal S'(\R^d)$, then there is some $k$ for which $u_n \to u$ in the topology of $\langle x \rangle^{k}H^{-k}(\R^d)$.\end{thm}
+\begin{rk}Although the Theorem is true if we use real $k$ instead of integer $k$, the technical estimates, which are implicit throughout the proof, are easier to prove for integer-indexed Sobolev spaces, since these have a characterization not using the Fourier transform, i.e. in terms of derivatives being in $L^2$ for $k \geq 0$, and their duals for $k \leq 0$. The required technical theorem to extend to arbitrary Sobolev spaces is the Sobolev multiplication lemma. In the present case, one can instead simply use the product rule.\end{rk}
+
+\begin{rk}The version of this Theorem for compact manifolds is much simpler to prove, since there are no weights on the Sobolev spaces. It is possible to argue the Schwartz kernel theorem for compact manifolds directly, using the techniques in this note, without having to go through as many technical details.\end{rk}
+\begin{proof}
+
+Suppose $u \in \langle x \rangle^{-j}H^{j}(\R^n)$, i.e. $u = \langle x \rangle^{-j}v$, where $v \in H^{j}(\R^d)$. Then if $k \geq j$ are integers, then
+\[u = \langle x \rangle^{-k}\left(\langle x \rangle^{-(j-k)}v\right),\] and $v \in H^{k}(\R^d)$. Now $\langle x \rangle^{-(j+k)}$ is smooth and bounded together with all its derivatives. It follows that multiplication by $\langle x \rangle^{-(j+k)}$ is a bounded operator on $H^{\ell}(\R^d)$ for $\ell \geq 0$, and hence for all $\ell \in \Z$ by duality. In particular, $u \in \langle x \rangle^{-k}H^{k}(\R^d)$ with the estimate
+\[||u||_{\langle x \rangle^{-k}H^{k}(\R^d)} = ||\langle x \rangle^{-(j-k)}v||_{H^k(\R^d)} \leq C||v||_{H^k(\R^d)} \leq C||v||_{H^j(\R^d)} = C||u||_{\langle x \rangle^{-j}H^j(\R^d)}.\] This proves the first statement. Observe that the proof actually shos that if $k \geq j$ and $k' \geq j'$ then we have the continuous inclusion \[\langle x \rangle^{-j'} H^{j}(\R^d) \subseteq \langle x \rangle^{-k'} H^{k}(\R^d).\] 
+
+For the second, we define the Schwartz seminorms
+\[||u||_{j,j'} = \sup_{x \in \R^d}\ |\langle x \rangle^{j'}\partial^ju|.\]
+Here, $\partial^j u$ is interepted as a vector of all partials of order $j$, and $|\cdot|$ as the sup norm.
+Now by Sobolev embedding,
+\[\sup_{j' \leq j-d-1} |\partial^{j'}\langle x \rangle^ju| \leq C||u||_{\langle x\rangle^{-j}H^j(\R^d)}.\] It is not hard to see (using induction, for instance), that
+\[\sup_{j \leq N, \ j' \leq j-d-a} ||u||_{j,j'} \leq C\left(\sup_{j \leq N, j' \leq j-d-1}|\partial^{j'}\langle x \rangle^ju|\right).\]
+The former is a family of norms on the Schwartz space. The latter is bounded by
+\[C\left(\sup_{j \leq N} ||u||_{\langle x\rangle^{-j}H^j(\R^d)}\right) \leq C ||u||_{\langle x \rangle^{-N}H^N(\R^d)},\] since the norm for $j=N$ controls the others. Since we obviously have a reverse inequality  controlling the norms on $\langle x \rangle^{-N}H^N(\R^d)$ in terms of the Schwartz norms, we deduce that the families are equivalent, and so (i) of the Theorem follows.
+
+For the converse, we take duals to see that
+\[\mathcal S'(\R^d) = \bigcup_{k \in \Z} \langle x \rangle^{k}H^{-k}(\R^d).\]
+
+Now for the convergence. $\mathcal S(\R^d)$ is a Fr\'echet space, and so by the Banach-Steinhaus theorem, if $u_n \to u$ weakly, the family $u_n$ is equicontinuous. By (i) and the fact that the norms are increasing) we know that this means that there is some $j$ for which 
+\[|\langle u_n,\phi\rangle| \lesssim \norm{\phi}_{\langle x \rangle^{-j}H^j(\R^d)}.\]
+Since $\mathcal S(\R^d)$ is certainly dense in $\langle x\rangle^{k}H^{\ell}(\R^d)$ for any $k,\ell$, this means that
+\[\norm{u_n}_{\langle x \rangle^{j}H^{-j}(\R^d)} \lesssim 1.\]
+
+
+Next we show that there is some $j$ such that every subsequence has a further subsequence which converges to $u$ in $\langle x \rangle^{j'}H^{-j'}(\R^n)$, which is sufficient. We use the following lemma.
+\begin{lem} Suppose $v_i \in \langle x \rangle^{k'}H^{k}(\R^d)$ are bounded. Suppose $\ell < k$. Then there is a subsequence $v_{n_\ell}$ such that $v_{i_m}$ is convergent in $\langle x \rangle^{\ell'}H^{\ell}(\R^d)$, for some $\ell' \geq k'$.\end{lem}
+Given the lemma, we see that every subsequence has a further subsequence converging to something in some space $\langle x \rangle^{j'}H^{-j'}(\R^d)$. Since $u$ is the weak limit of the subsequence, it must be the limit in $\langle x \rangle^{j'}H^{-j'}(\R^d)$, too (just test against $\mathcal S(\R^n)$). Since every subsequence has a further subsequence converging to the same limit in the same space, the entire sequence converges as well.
+\begin{proof}[Proof of Lemma]The idea is to cutoff and use Reillich-Kondrashov to obtain convergence on each cutoff. Then the difference between $\ell'$ and $k'$ will allow us to control the left-over tails.
+
+Let $\phi_n$ be smooth cutoffs of $B(0,n)$ in $\R^d$ with support in $B(0,n+1/2)$. Then for each $n$ fixed, the sequence $\phi_nv_i$ is uniformly bounded in $H^k(\R^d)$, and so, by Reillich-Kondrashov compactness, has a subsequence converging to some limit $w_n$ in $H^\ell(\R^d)$. Taking a diagonal subsequence, $v_{i_m}$ we may assume that for each $n$ fixed $\phi_nv_{i_m} \to w_n$. Now $\phi_nw_p = w_n$ whenever $p > n$, since $\phi_n\phi_p = \phi_n$. Let $w \in H^\ell_{loc}(\R^d)$ be the distribution defined by $\phi_nw = w_n$. Then by construction $v_{i_m} \to w$ in $H^\ell_{loc}(\R^d)$. We will show that in fact $w \in \langle x \rangle^{\ell'}H^{\ell}(\R^d)$ for large enough $\ell'$, and furthermore than $v_{i_m}$ converges to it.
+
+We first observe that 
+\[\langle x \rangle^{-\ell'}v_{k_m} = \langle x \rangle^{k'-\ell'}\langle x \rangle^{-k'}v_{i_m}.\] Set $e = \ell'-k'$. Observe that of $e$ is sufficiently large depending on $d,s$ then
+\begin{equation}||(1-\phi_n)\langle x \rangle^{-e}\langle x \rangle^{-k'}v_{i_m}||_{H^{\ell}(\R^d)} \lesssim ||\langle x \rangle^{-k'}v_{m_n}||_{H^{\ell}(\R^d)}||||(1-\phi_n)\langle x \rangle^{-e}||_{H^{q}(\R^d)},\end{equation}
+%for some integer $\q \geq 0$. Indeed, for $\phi,\psi$ reasonable functions, 
+%\begin{align*}
+%||\phi\psi||_{H^s(\R^d)} &= ||\langle \xi \rangle^s\widehat{\phi}\ast \widehat{\psi}||_{L^2(\R^d)}\\
+%&\leq \int_{\R^d}|\widehat{\psi}(\eta)|\left(\int_{\R^d}|\widehat{\phi}(\xi-\eta)|^2\langle \xi \rangle^{2s}\ d\xi\right)^{1/2}\ d\eta\\
+%&\lesssim \int_{\R^d}|\widehat{\psi}(\eta)|\langle \eta \rangle^{|s|}\left(\int_{\R^d}|\widehat{\phi}(\xi-\eta)|^2\langle \xi-\eta \rangle^{2s}\ d\xi\right)^{1/2}\ d\eta\\
+%&\leq ||\phi||_{H^s(\R^d)} \int_{\R^d}|\widehat{\psi}(\eta)|\langle \eta \rangle^{|s|}\ d\eta \leq ||\phi||_{H^s(\R^d)}||\psi||_{H^{\ell}(\R^d)}\left(\int_{\R^d}\langle \eta \rangle^{-N}\ d\eta\right)^{1/2}.\end{align*}
+
+The first factor is uniformly bounded by assumption. The second factor goes to $0$ as $n \to \infty$. We thus have that for $\ell' > k'$ large enough
+\begin{align*}
+||v_{i_m}-v_{i_{m'}}||_{\langle x \rangle^{\ell'}H^\ell(\R^d)} &\leq ||(1-\phi_n)\langle x \rangle^{-e}\langle x \rangle^{-k'}(v_{i_m}-v_{i_{m'}})||_{H^{\ell}(\R^d)} + ||\langle x \rangle^{-\ell'}\phi_n(v_{i_m}-v_{i_{m'}})||_{H^\ell(\R^d)}.\end{align*}
+We have determined that the first term can be made arbitrarily small for $n$ large. After this, we notice that $\langle x \rangle^{-\ell'}\phi_m \in C_c^\infty(\R^d)$ and $\langle x \rangle^{-\ell'}\phi_p\phi_n = \langle x \rangle^{-\ell'}\phi_n$ for $p > n$. Since multiplication by a function in $C_c^\infty(\R^d)$ is continuous on $H^\ell(\R^d)$, and $\phi_n v_{i_m}$ is Cauchy in $H^\ell(\R^d)$ by assumption, the second term can be made arbtrarily small if $m,m'$ is sufficiently large. Hence $v_{i_m}$ is Cauchy and thus convergent, and must converge to $w$.
+\end{proof}
+With the Lemma proved, so is the Theorem.\end{proof}
+
+\end{document}

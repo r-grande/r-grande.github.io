@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Approximating Oscillatory Integrals and Application}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+If $\phi$ is a phase function, and $a \in S^m_{\rho,\delta}$ is a symbol, then we may define the oscillatory integral operator $I(a,\phi)$ as a distribution by
+\[\langle I(a,\phi),u\rangle = \int e^{i\phi(x,\theta)}a(x,\theta)u(x)\ dxd\theta,\]
+where the (usually non-convergent) integral is defined by integration by parts may times using a suitable differential operator $L$ such that $L^t(e^{i\phi}) = e^{i\phi}$ (see \cite[Theorem~1.1]{GS} for details). The purpose of this note is to prove the following:
+\setcounter{section}{1}
+\begin{prop} Let $\chi \in C_c^\infty(\R^n)$ be $1$ at $0$. Let $\phi$ be a phase function and $a \in S^{m}_{\rho,\delta}$ a symbol. Form the oscillatory integrals:
+\[I(a,\phi) = \int e^{i\phi(x,\theta)}a(x,\theta)\ d\theta\]
+and
+\[I_\epsilon(a,\phi) = \int e^{i\phi(x,\theta)}a(x,\theta)\chi(\epsilon \theta)\ d\theta,\]
+(where this last integral actually converges). Then $I_\epsilon \to I$ weakly.\end{prop}
+\begin{proof}
+We need only show that if $k$ is sufficiently large then
+\[\int e^{i\phi(x,\theta)}L^k(au(1-\chi_\epsilon))\ d\theta \to 0\] for every $u \in C_c^\infty$. Here, $L$ is a differential operator of the form
+\[L = \sum a_j\partial_{\theta_j} + b_j\partial_{x_j} + c,\]
+where $a_j \in S^0_{1,0}$, $b_j,c \in S^{-1}_{1,0}$ and $L^t e^{i\phi} = e^{i\phi}$. Then
+\[L^k = \sum a_{\alpha,\beta}\partial_{\theta}^\alpha\partial_{x}^\beta,\] where $a_{\alpha,\beta} \in S^{|\alpha|-k}_{1,0}$. So,
+\[L^k(au(1-\chi_\epsilon)) = \sum a_{\alpha,\beta}\sum C\partial_{\theta}^{\alpha_1}\partial_{x}^{\beta_1}a\partial_x^{\beta_2}u\partial_{\theta}^{\alpha_2}(1-\chi_\epsilon).\]
+Here the inner sum is taken over $\alpha_1+\alpha_2 = \alpha$, $\beta_1+\beta_2 = \beta$. However, if we only use the terms with $\alpha_2 = 0$, then the sum is just $L^k(au)(1-\chi(\epsilon\theta))$, which is uniformly bounded by an integrable function, in $\theta$, and hence goes to $0$. For the terms $\alpha_2 > 0$, \[\partial_{\theta}^{\alpha_2}(1-\chi_\epsilon) = \epsilon^{|\alpha_2|}\partial_{\theta}^{\alpha_2}(\chi)(\epsilon\theta).\] Thus we may estimate on $\supp u$,
+\[|L^k(au(1-\chi_\epsilon))| \lesssim \sum (1+|\theta|)^{|\alpha|-k}\sum(1+|\theta|)^{m-\rho|\alpha_1|+\delta|\beta_2|}\epsilon^{|\alpha_2|}.\]
+An individual term looks like
+\[(1+|\theta|)^{|\alpha|-k+m-\rho|\alpha_1|+\delta|\beta_2|}\epsilon^{|\alpha_2|}.\] If we integrate this from $0$ to $1$, the integral is obviously bounded by an integrable function, and so the integral goes to $0$ thanks to the $\epsilon$ terms. Over $(1,\infty)$, we may replace the bounds of $(1+|\theta|)^n$ with $|\theta|^n$. We in fact need only to integrate up to to $\sup_\{|x| \: x \in \supp \chi_\epsilon\}$, since the integrand is $0$ outside this region. On this region, we have the bounds
+\[\epsilon^{k-|\alpha|-m+\rho|\alpha_1|-\delta|\beta_2|}\epsilon^{|\alpha_2|}.\]
+The exponent is bounded below by
+\[(1-\delta)k+(\rho-1)|\alpha_1|-m,\] which is positive for large enough $k$. So the integral goes to $0$ with $\epsilon$.
+\end{proof}
+An application of this proposition is as follows:
+\begin{prop}Suppose $X$ is an open subset of $\R^n$, and $f \in C^\infty(X)$ with $\Im f \geq 0$, and $df \neq 0$ if $f(x) = 0$. For $k > 0$ we define
+\[(f(x)+i0)^{-k} = \lim_{\epsilon \to 0^+} (f(x)+i\epsilon)^{-k},\] where the limit is taken in $\mathcal D'(X)$. Then
+\[(f(x)+i0)^{-k} = C_k\int_0^\infty e^{if(x)\tau}\tau^{-1+k}\ d\tau,\] where the integral is determined by taking a smooth cutoff $\chi(\tau)$ of $0$, writing $1 = \chi + (1-\chi)$, noticing that the integral with $\chi$ converges, and the integral is $1-\chi$ is an oscillatory integral (if we extend $1-\chi = 0$ for $\tau < 0$).\end{prop}
+\begin{proof}Using a change of variables and the Gamma function, we see that
+\[(f(x)+i\epsilon)^{-k} = \int_0^\infty e^{i(f(x)+i\epsilon)\tau}\tau^{-1+k}\ d\tau.\] It is clear that
+\[\int_0^\infty e^{i(f(x)+i\epsilon)\tau}\tau^{-1+k}\chi(\tau)\ d\tau \to \int_0^\infty e^{if(x)\tau}\tau^{-1+k}\chi(\tau)\ d\tau.\] To get the convergence of the other part of the integral, we will need a version of the proposition above, but with a small parameter. The proof follows by the same argument. Set
+\[I =  \int_{0}^\infty e^{if(x)}\tau^{-1+k}\phi(\tau) d\tau,\]
+where $\phi = (1-\chi)$ for $\tau \geq 0$ and $0$ otherwise, and
+\[I_\epsilon = \int_{0}^\infty e^{if((x)+i\epsilon)}\tau^{-1+k}\phi(\tau) d\tau.\] We need to show that $I_\epsilon \to I$.
+Fix $\delta > 0$ and consider the distribution
+\[J_\delta = \int_{0}^\infty e^{if(x)}\tau^{-1+k}\phi(\tau)\psi(\delta \tau)\ d\tau,\]
+where $\psi(0) = 1$. Also set
+\[I_{\epsilon,\delta} = \int_{0}^\infty e^{i(f(x)+i\epsilon)}\tau^{-1+k}\phi(\tau)\psi(\delta \tau)\ d\tau.\]
+Then \[I_\epsilon - I = (I_\epsilon - I_{\epsilon,\delta}) + (I_{\epsilon,\delta}-J_{\delta}) + (J_{\delta} - I).\]
+We need to show that when testing against any fixed $u$, then is $\epsilon$ and $\delta$ is small enough, then the right-hand side is small. By the proposition, we may always choose $\delta$ independently of $\epsilon$ to make the last term as small as we like. Treating the symbol in $I_\epsilon$ as $e^{-\epsilon\tau}\tau^{-1+k}\phi(\tau)$, and observing that the first factor and all its dervatives are uniformly bounded as $\epsilon \to 0$, we may use the proposition (with a parameter) to show that we can choose $\delta$ small independent of $\epsilon$ to make the first term as small as we like. Since the integrals of both terms in the middle actually converge, and $\delta$ has been fixed not depending on $\epsilon$, if $\epsilon$ is small enough, it is easy to make the middle term small, as well.\end{proof}
+In turn, this latter proposition is essential in examing $\WF((f(x)+i\epsilon)^{-k})$ and $\singsupp (f(x)+i\epsilon)^{-k})$ in terms of generalities of oscillatory intergals. See \cite[Exercise~7.6]{GS}.
+
+\begin{bibdiv}
+\begin{biblist}
+
+\newcommand{\perafter}[1]{#1.}
+
+\BibSpec{book}{
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{. }{} {publisher}
+  +{, }{} {address}
+  +{, }{\perafter} {year}
+}
+\bib{GS}{book}{
+      author = {Grigis, Alain},
+      author = {Sj\"orstrand, Johannes},
+      title = {Microlocal Analysis for Differential Operators},
+      year = {1994},
+      publisher = {Cambridge University Press},
+      address = {Cambridge},
+			}
+
+\end{biblist}
+\end{bibdiv}
+\end{document}

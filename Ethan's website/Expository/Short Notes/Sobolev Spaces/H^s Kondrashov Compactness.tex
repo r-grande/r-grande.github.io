@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Kondrashov Compactness}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+We show the following:
+\begin{thm}[Kondrashov Compactness for $H^s(\R^n)$]Let $\mathcal E'(K)$ be the space of distributions whose support lies in the compact set $K$, and $t > s \in \R$. Then the inclusion
+\[H^t(\R^d)\n \mathcal E'(K) \embeds H^s(\R^d)\] is compact.\end{thm}
+Set $\langle \xi \rangle = (1+|\xi|^2)^{1/2}$.
+Let $\phi_\epsilon$ be a standard system of mollifiers. Notice that for $v \in H^t(\R^d)$,
+\begin{align*}
+||v\ast \phi_\epsilon||_{C^k(\R^d)} &\lesssim ||\langle \xi \rangle^{k}\hat{v}\hat{\phi_\epsilon}||_{L^1}\\
+&\leq ||\hat{v}\langle \xi \rangle^t||_{L^2}||\hat{\phi_\epsilon}\langle \xi \rangle^{k-t}||_{L^2}\\
+&= C_\epsilon||v||_{H^t(\R^d)},\end{align*}
+with $C_\epsilon < \infty$  since $\hat{\phi_\epsilon} \in \mathcal S(\R^d)$. Also observe that $v\ast \phi_\epsilon$ is supported in $\supp(v)+B(0,\epsilon)$.
+
+It follows that if $u_n \in H^t(\R^d)\n\mathcal E'(K)$ is uniformly bounded in $H^t$, then for every $\epsilon > 0$, and $k > s$, $u_n\ast\phi_\epsilon$ are uniformly bounded together with all their derivatives. Furthermore, their supports lie in the compact set $L =K+\overline{B(0,\epsilon)}$. From Arzela-Ascoli, it follows that for each $\epsilon > 0$ there is a subsequence $n_\ell^\epsilon$ for which
+ \[u_{n_k^\epsilon}\ast\phi_\epsilon \to u_\epsilon \in C^0(L)\] in $C^0(L)$. However, the same is true of their derivatives. Since $K+B(0,\epsilon)$ is open, we deduce that the convergence is actually in $C^k(L)$ (we lose a derivative since it provides the equicontinuity), and hence in $H^k(\R^d)$ as well, since all functions are compactly supported in $L$, and hence in $H^s(\R^d)$. Iterating this argument, we may thus pick a diagonal sequence $n_k$ so that $u_{n_k}\ast\phi_{\epsilon}$ is convergent, and hence Cauchy in $H^s(\R^d)$ for $\epsilon = 1,1/2,1/3,\ldots$.
+ 
+Next, we show that if $v \in H^t(\R^d)$, then for all $\delta > 0$ and $\epsilon > 0$ is small enough, then $||v-v\ast\phi_\epsilon||_{H^s(\R^d)} < \delta||v||_{H^t(\R^d)}$. To prove this, notice that \[\widehat{v-v\ast\phi_\epsilon} = \hat{v}(1-\hat{\phi_\epsilon}),\] and that $\hat{\phi_\epsilon} \to 1$ uniformly on compact sets. So
+\begin{equation}\label{eq}||v-v\ast\phi_\epsilon||_{H^s(\R^d)} = ||\hat{v}\langle \xi \rangle^{t}(1-\hat{\phi_\epsilon})\langle \xi \rangle^{s-t}||_{L^2(\R^d)}.\end{equation} Since $s < t$, $\langle \xi \rangle^{s-t} \to 0$ as $\xi \to \infty$, in particular if $R$ is large enough, $\langle \xi \rangle^{s-t} < \delta$ if $|\xi| > R$. On $|\xi| \leq R$, we may pick $\epsilon$ small enough so that $(1-\phi_\epsilon) < \delta$. Since $\langle \xi \rangle^{s-t} \leq 1$,
+\[|(1-\hat{\phi_\epsilon})\langle \xi \rangle^{s-t}| < \delta\] everywhere. Plugging this bound into \eqref{eq} shows that
+\[||v-v\ast\phi_\epsilon||_{H^s(\R^d)} \leq \delta||\hat{v}\langle \xi \rangle^{t}|| = \delta||v||_{H^t(\R^d)},\] which is what we wanted to show. 
+
+Finally, we show that $u_{n_k}$ (as above) is Cauchy in $H^s(\R^d)$, which suffices to prove the compactness of the inclusion. Suppose $M$ is a uniform upper bound on $||u_n||_{H^t(\R^d)}$. Fix $\delta > 0$, and use the previous paragraph to choose $m > 0$ large enough so that
+\[||v \ast \phi_{1/m}-v|_{H^s(\R^d)} \leq \frac{\delta}{3M}||v||_{H^t}\]
+for all $v \in H^t(\R^d)$. Then
+\[||u_{n_k}-u_{n_j}||_{H^s(\R^d)} \leq ||u_{n_k}-u_{n_k}\ast\phi_{1/m}||_{H^s(\R^d)} + ||u_{n_j}-u_{n_j}\ast\phi_{1/m}||_{H^s(\R^d)} + ||u_{n_k}\ast\phi_{1/m}-u_{n_j}\ast\phi_{1/m}||_{H^s(\R^d)}.\]
+The first two terms are less than $\frac{1}{3}\delta$ each, and the last term can be made arbtrarily small for $k,j$ large enough. This proves the Theorem.
+\end{document}

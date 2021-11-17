@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Fourier Transform of Homogeneous Radial Distributions}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+The purpose of this note is to prove the following theorem, and then its one-dimensional analogue:
+\begin{thm}Let $d \geq 2$, and consider the function on $\R^d$ defined by $|x|^a$ for $-d < a < 0$. Then $|x|^a$ exists as a tempered distribution and has Fourier transform $C_{d,a}|\xi|^{-d-a}$, where 
+\[C_{d,a} = (2\pi)^{d/2}2^{a+d/2}\Gamma\left(\frac{a+d}{2}\right)\left(\Gamma\left(-\frac{a}{2}\right)\right)^{-1} > 0.\]\footnote{Please see my other note where I consider the same theorem for all $a$. By meromorphic continuous, this holds for all $a \not \in \Z$ relatively easily. The other note is more complicated since the cases $a \in \Z$ involve significant difficulty.}\end{thm}
+We will use the following convention on the Fourier transform:
+\[\hat{u}(\xi) = \int e^{-ix\cdot \xi}u(x)\ dx.\]
+\begin{proof}
+Since $-d < a$, $|x|^a \in L^1_{\text{loc}}(\R^d)$ and hence is a tempered distribution. We now develop part of the theory of homogeneous radial distributions.
+\begin{defn} We will call a distribution $u \in \mathcal D'(\R^d\setminus\{0\})$ (resp. $u \in \mathcal S'(\R^d))$) homogeneous of order $a$ if for all $\phi \in C_c^\infty(\R^d\setminus\{0\})$ (resp. $\phi \in \mathcal S(\R^d))$)
+\[\langle u,\phi\rangle = t^{d+a}\langle u,\phi_t\rangle,\]
+where $\phi_t(x) = \phi(tx)$. If $u \in \mathcal D'(\R^d)$ and the above is true for all $\phi \in C_c^\infty(\R^d)$, then we say that $u$ is homogeneous or order $a$ on $\R^d$.\end{defn} This definiton is set up so that homogeneous functions of order $a$ are homogeneous distributinos of the same order. Differentiating with respect to $t$ (and verifying the the formal computation is valid) yields that this is equivalent to the Euler homogeneity relation (c.f. \cite[\S 3.2]{Hor}):
+\[(a+d)\langle u,\phi\rangle + \langle u,r\partial_r \phi\rangle = 0.\] Here $r\partial_r = \sum x_j\partial_{x_j} = x\cdot \nabla$ is the radial vector field. Observing that the formal adjoint of $r\partial_r$ is $-r\partial_r - d$, it follows that the previous display is equivalent to
+\begin{equation}\label{Euler}r\partial_r u = a u.\end{equation}
+\begin{defn}We will call a distribution $u \in \mathcal D'(\R^d\setminus\{0\})$ radial if
+\[\langle u,\phi\rangle = \langle u, \phi\circ T\rangle,\]
+whenever $T \in SO(d)$ is a rotation.\end{defn}
+We now give a useful property of radial distributions.
+\begin{lem}
+If $u \in \mathcal D'(\R^d\setminus\{0\})$ is radial then $Lu = 0$ for every vector field $L$ such that $L_x$ is tangent the sphere of radius $|x|$.\end{lem}
+\begin{proof}
+Let $\eta_\epsilon$ be a system of radial mollifiers. Then $u\ast \eta_\epsilon$ is radial as a distribution. Indeed, one checks that and so for any $T \in SO(d)$,
+\[(\phi \circ T)\ast (\breve{\eta_\epsilon}\circ T) = (\phi\ast \breve{\eta_\epsilon})\circ T.\] Thus,
+\[\langle u,\phi\circ T\ast \breve{\eta_\epsilon}\rangle = \langle u,(\phi\ast \breve{\eta_\epsilon})\circ T\rangle = \langle u,\phi\ast \breve{\eta_\epsilon}\rangle.\]
+So $u\ast\eta_\epsilon$ is radial. Changing variables then gives that $\int ((u\ast \eta_\epsilon)\circ T^{-1})\phi = \int u\ast\eta_\epsilon \phi$, and thus $u\ast \eta_\epsilon$ is radial as a function. In particular $L(u\ast \eta_\epsilon) = 0$ for any tangent vector field $L$. Taking $\epsilon \to 0$ proves the lemma.\end{proof}
+We now state a proposition involving the Fourier transforms of homogeneous and radial distributions.
+\begin{prop}Suppose $u \in \mathcal S'(\R^d)$ is homogeneous of order $a$, then $\hat{u}$. homogeneous of order $-d-a$. Similarly, if $u$, considered as a distsribution in $\mathcal D'(\R^d\setminus\{0\})$ is radial, then so is $\hat{u}$.\end{prop}
+\begin{proof}One only needs to know that for $\phi \in \mathcal S'(\R^d)$, $\hat{\phi_t}(\xi) = t^{-d}\hat{\phi}_{1/t}(\xi)$ and $\widehat{\phi\circ T} = \hat{\phi}\circ T$ for $T \in SO(n)$. Then the proof is just an exercise in definitions.\end{proof}
+
+We can now show that the Fourier transform of $|x|^a$ is $C_{d,a}|\xi|^{-d-a}$, for some constant $C_{d,a}$. $|x|^a$ is homogeneous of order $a$ and radial, and thus its Fourier transform is homogeneous of order $b = -d-a$ and radial. We show that the only such functions are multiples of $|x|^b$, which will show the first part of the theorem. Let $u \in \mathcal S'(\R^d)$ be a radial distribution which is homogeneous of order $b$ when considered as a distribution on $\R^d\setminus\{0\}$. Then $v = |x|^{-b}u$ is radial and homogeneous of order $0$ (notice that $|x|^{-b}$ is smooth on $\R^d\setminus\{0\}$). Thus by \eqref{Euler} $\partial_r v = 0$. However, if $L$ is any vector field tangent to spheres, then $Lv = 0$ too. Since any vetor field on $\R^d\setminus\{0\}$ decomposes into a multiple of $\partial_r$ and a vector field tangent to all circles, we deduce that $Lv = 0$ for any vector field $V$. It follows immediately that $v$ is constant, i.e. $u = C|x|^{b}$, at least on $\R\setminus\{0\}$. In other words, $\supp (u-C|x|^{b}) \subseteq \{0\}$. Thus $u-C|x|^{b}$ is a sum of $\delta$ functions and their derivatives. But such a function, if it is to be homogeneous, is homogeneous of order at most $-d$, or else is $0$. Thus $u-C|x|^b \equiv 0$. Indeed, the Fourier transform of any sums of $\delta$ and its derivatives is a polynomial. If it is to be homogeneous, it is either $0$ or a homogeneous polynomial of degree at least $0$, i.e. the sum of $\delta$ themselves is either $0$ or homogeneous or order at most $-d$, by the above proposition.
+
+Next we determine $C_{a,d}$. Let $G(x) = e^{-|x|^2/2}$ be a standard Gaussian. Then $\hat{G}(\xi) = (2\pi)^{n/2}e^{-|\xi|^2/2}$. Thus,
+\[\int_{\R^d}|x|^{a}e^{-|x|^2/2}\ dx = C_{d,a}(2\pi)^{-d/2}\int_{\R^d} |\xi|^{-d-a}e^{-|x|^2/2}\ d\xi.\]
+The left-hand side is, by a change of variables,
+\[\omega_{d-1}\int_0^\infty r^{a+d-1}e^{-r^2/2}\ dr = \omega_{d-1}2^{(a+d)/2-1}\Gamma\left(\frac{a+d}{2}\right),\]
+where $\omega_{d-1}$ denotes the surface area of the unit $d-1$ sphere. Similarly, the right-hand side is
+\[C_{d,a}\omega_{d-1}(2\pi)^{-d/2}2^{-a/2-1}\Gamma\left(-\frac{a}{2}\right).\]
+Thus,
+\[C_{d,a} = (2\pi)^{d/2}2^{a+d/2}\Gamma\left(\frac{a+d}{2}\right)\left(\Gamma\left(-\frac{a}{2}\right)\right)^{-1} > 0,\]
+where the positivity follows since both arguments of the $\Gamma$ function are real and positive.
+If $a$ is not a negative integer, we can write this in another way. Observe that since $\Gamma(t+1) = t\Gamma(t)$,
+\[\Gamma\left(\frac{a+d}{2}\right) = 2^{-{d-1}}\left(\prod_{k=1}^{d-1}(a+d-k)\right)\Gamma(a/2+1/2).\]
+Next, observe that by duplication,
+\[\Gamma(a/2+1/2) = 2^{-a}\sqrt{\pi}\frac{\Gamma(a+1)}{\Gamma(a/2+1)}.\]
+Finally, notice that by the reflection formula
+\[\Gamma(a/2+1)\Gamma(-a/2) = -\frac{\pi}{\sin(\pi a/2)}.\]
+Putting it all together,
+\[C_{d,a} = -2\pi^{(d-1)/2}\sin(\pi a/2)\Gamma(a+1)\prod_{k=1}^{d-1} (a+d-k).\]
+\end{proof}
+
+Now we turn to the one-dimensional case. In one dimension, $\R\setminus\{0\}$ is not connected, and the notion of a ``radial'' distribution does not make sense. However, there are no directions tangent to a sphere. So we can follow the proof above and deduce that if $u$ is a homogeneous distribution of order $a$ for $-1 < a < 0$, then $u$ is a multiple of $|x|^a$, perhaps a different multiple on the positive and negative axes. If furthermore $u$ is a real-valued even distribution (i.e. one which restricts to a distribution for real-valued functions and is even in the obvious sense), then so is its Fourier transform. We deduce that if $u = |x|^a$, then $\hat{u} = C_{1,a}|\xi|^{-1-a}$, where we can compute $C_{1,a}$ as above (the product is just empty). One can also compute the Fourier transform of distributions such that $v = \chi_{x > 0}|x|^a = x_+^a$, which is aso homogeneous or order $a$. Indeed, $v(x) + v(-x) = |x|^a$, and $v(x)-v(-x) = |x|^a\sgn(x)$. The Fourier transform of the former is $\hat{v}(\xi) + \hat{v}(-\xi) = C_{1,a}|x|^a$. Since $|x|^a\sgn(x)$ is odd and real-valued, so is its Fourier transform. Thus its Fourier transform is of the form $C'_{a}|\xi|^{-1-a}\sgn(\xi)$ for some constant $C'_a$. One can compute $C'_a$ in a similar way to computing $C_{d,a}$, except one uses $H(x) = xe^{-x^2/2}$ instead of $G(x) = e^{-x^2/2}$. Thus, $\hat{v}(\xi) - \hat{v}(-\xi) = C'_a|\xi|^{-1-a}\sgn(\xi)$. This gives a system of 2 equations with two unknowns $\hat{v}(\xi)$ and $\hat{v}(-\xi)$, which can then be solved for. We leave it as an exercise to the reader to determine exactly what $C'_a$, and $\hat{v}(\xi)$ are.
+
+\begin{bibdiv}
+\begin{biblist}
+
+\newcommand{\perafter}[1]{#1.}
+
+\BibSpec{book}{
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{. }{} {publisher}
+  +{, }{} {address}
+  +{, }{\perafter} {year}
+}
+\bib{Hor}{book}{
+      author = {H\"ormander, Lars},
+      title = {The Analysis of Linear Partial Differential Operators I},
+      year = {1990},
+      publisher = {Springer},
+      address = {Berlin},
+			}
+
+\end{biblist}
+\end{bibdiv}
+
+\end{document}

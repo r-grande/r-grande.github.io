@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Essential Spectrum}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\newcommand{\ess}{\sigma_{\text{ess}}}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+The purpose of this note is to prove several equivalent characterizations of the essential spectrum.
+\begin{defn}Let $T:H \to H$ be a bounded self-adjoint operator on a Hilbert space. Then $\lambda \in \ess(T)$ if $T-\lambda$ is not Fredholm.\end{defn}
+We have the elementary consequences:
+\begin{prop}$\ess(T)$ satisfies:
+\begin{enumerate}[label = (\roman*)]
+\item $\ess(T) \subseteq \sigma(T)$;
+\item $\ess(T)$ is closed;
+\item if $K$ is a (self-adjoint) compact operator, then $\ess(T) = \ess(T+K)$.
+\end{enumerate}
+\end{prop}
+\begin{proof}(i) is clear since any invertible operator is Fredholm. (ii) follows from the fact that the set of Fredholm operators is open, and that the map $\lambda \mapsto T-\lambda$ is continuous. (iii) is clear since $T-\lambda$ is Fredholm implies that $T+K-\lambda$ is Fredholm. 
+\end{proof}
+
+Now we prove the following:
+\begin{thm}The following are equivalent:
+\begin{enumerate}[label = (\roman*)]
+\item $\lambda \in \ess(T)$;
+\item (Weyl's Criterion) there exists a sequence $\psi_k$ with $\norm{\psi_k} = 1$ such that
+\[(T-\lambda)\psi_k \to 0\] and $\psi_k$ has no convergent subsequence;
+\item $\lambda$ is an eigenvalue of infinite multiplicity (i.e. $\dim \ker T-\lambda = \infty$) or there exists $\mu_n \in \sigma(T)$ such that $\mu_n \to \lambda$;
+\item for any self-adjoint compact operator $K$, $\lambda \in \sigma(T+K)$;
+\end{enumerate}
+\end{thm}
+\begin{proof}First observe that by self-adjointness, $\ker T-\lambda = \ker (T-\lambda)^{\bot} = \overline{\im T-\lambda}$. In particular $T-\lambda$ is Fredholm if and only if $\dim \ker T-\lambda < \infty$ and $\im T-\lambda$ is closed. We show that (i) is equivalent to each of (ii), (iii), (iv).
+\begin{enumerate}[label = (\roman*)]
+\setcounter{enumi}{1}
+\item
+Suppose (ii) did not hold for $\lambda$. Then there exists some $c > 0$ such that
+\[\inf_{\norm{\psi} = 1, \psi \in \ker (T-\lambda)^{\bot}} \norm{(T-\lambda)\psi} \geq c.\] Indeed, if not then there would be a sequence $\psi_k$ with $\norm{\psi_k} = 1$ and $\psi_k \in \ker (T-\lambda)^{\bot}$ with $(T-\lambda)\psi_k \to 0$, and so since (ii) does not hold, a convergent subsequence $\psi_{n_k} \to \psi$. Then $(T-\lambda)\psi = 0$, $\norm{\psi} = 1$ and $\psi \in \ker (T-\lambda)^{\bot}$, a contradiction. Suppose $y \in \overline{\im T-\lambda}$. Then there is a sequence $\psi_k$ with $(T-\lambda)\psi_k \to \phi$. Projecting onto $\ker (T-\lambda)^\bot$, we may assume that $\psi_k \in \ker (T-\lambda)^{\bot}$. In particular $(T-\lambda)\psi_k$ is Cauchy, and since
+\[c\norm{\psi_k-\psi_j} \leq \norm{(T-\lambda)(\psi_k-\psi_j)},\] so is $\psi_k$. In particular, $\psi_k \to \psi$, and $\phi = (T-\lambda)\psi \in \im (T-\lambda)$. Thus $\im T-\lambda$ is closed. Since (ii) does not hold, it is clear that $\dim \ker (T-\lambda) < \infty$. Thus $\lambda \not \in \ess(T)$.\\[2ex]
+Now suppose $\lambda \not \in \ess(T)$. Then $T-\lambda$ is Fredholm. In particular, $\im T-\lambda$ is closed, and so 
+\[(T-\lambda):\ker (T-\lambda)^{\bot} \to \im T-\lambda =\ker (T-\lambda)^{\bot}\] is invertible.
+Let $\psi_k$ be any sequence with $\norm{\psi_k} = 1$ and $(T-\lambda)\psi_k \to 0$. Let $\psi_k'$ be the projection of $\psi_k$ onto $\ker (T-\lambda)^\bot$. Then $(T-\lambda)\psi_k' \to 0$, and so by invertibility, $\psi_k' \to 0$, too. Let $\psi_k'' = \psi_k-\psi_k'$ be the projection onto $\ker T-\lambda$. Since this is a finite-diemensional space, there is a convergent subsequence $\psi_{n_k}''$. Thus $\psi_{n_k}$ is convergent, so (ii) does not hold.
+\item Suppose (iii) did not hold. Then $\dim \ker (T-\lambda) < \infty$, and either $\lambda \not \in \sigma(T)$ or it is an isolated point of $\sigma(T)$. In the first case, certainly $\lambda \not \in \ess(T)$. In the second case, $\lambda \in \R$ and we claim that there exists $\epsilon > 0$ such that 
+ \[\norm{(T-\lambda)\phi}^2 \geq \epsilon^2\left(\norm{\phi^2} - \norm{{\phi'}^2}\right),\] where $\phi'$ is the projection of $\phi$ onto $\ker T-\lambda$. Indeed, by the Spectral Theorem,
+\begin{align*}
+\norm{(T-\lambda)\phi}^2 &= \langle (T-\lambda)^2\phi,\rangle = \int_{\sigma(T)}(\mu-\lambda)^2\ d\langle E_\mu\phi,\phi\rangle.\end{align*}
+Here $dE_{\lambda}$ is the spectral measure and $d\langle E_{\lambda}\phi,\phi\rangle$ is the non-negative measure which it induces. In particular
+\[\int_{\sigma(T)} 1\ d\langle E_{\mu}\phi,\phi\rangle = \norm{\phi}^2\]
+and
+\[\int_{\{\lambda\}} 1\ d\langle E_{\mu}\phi,\phi\rangle\] is the norm of the projection of $\phi$ onto $\ker (T-\lambda)$. Since $\lambda$ is isolated, there is some $\epsilon > 0$ such that \[(\lambda-\epsilon,\lambda+\epsilon) \n \sigma(T) = \emptyset.\]
+Thus, since $(\mu-\lambda)^2$ vanishes at $\mu=\lambda$.
+\begin{align*}
+&\int_{\sigma(T)}(\mu-\lambda)^2 \ d\langle E_\mu\phi,\phi\rangle\\
+ &= \int_{\sigma(T)\setminus\{\lambda\}} (\mu-\lambda)^2\ d\langle E_\mu\phi,\phi\rangle\\
+ &=\int_{(\lambda-\epsilon,\lambda+\epsilon)^c\n\sigma(T) }(\mu-\lambda)^2\ d\langle E_\mu\phi,\phi\rangle\\
+ &\geq \epsilon^2 \int_{(\lambda-\epsilon,\lambda+\epsilon)^c\n\sigma(T)}\ d\langle E_\mu\phi,\phi\rangle\\
+ &= \epsilon^2\int_{\sigma(T)} 1 \ d\langle E_{\mu}\phi,\phi\rangle-\epsilon^2\int_{\{\lambda\}} 1 \  d\langle E_{\mu}\phi,\phi\rangle.\end{align*}
+ Putting it all together yields that
+ \[\norm{(T-\lambda)\phi}^2 \geq \epsilon^2\left(\norm{\phi^2} - \norm{{\phi'}^2}\right).\]
+ In particular $(T-\lambda)$ satisfies the estimate
+ \[\inf_{\norm{\psi} = 1, \psi \in \ker (T-\lambda)^{\bot}} \norm{(T-\lambda)\psi} \geq \epsilon.\] As above, this implies that $\im (T-\lambda)$ is closed. Thus, in all $T-\lambda$ is Fredholm.\\[2ex]
+ 
+Now suppose $\lambda \not \in \ess(T)$. Then $T-\lambda$ is Fredholm, and so $\dim(\ker(T-\lambda)) < \infty$. If $\lambda \in \C$, then $\lambda$ is a positive distance away from the spectrum. These together means that (iii) does not hold. We now handle $\lambda \in \R$.
+
+Set $S=T-\lambda$. If $\lambda \in \R$, Then $S$ is self-adjoint and Fredholm. We may picture $S$ as a $2\times 2$ matrix
+\[\begin{pmatrix}0 & 0\\
+0&S_{\im S}\end{pmatrix},\]
+where we use the decomposition \[H = \ker S + \im S = \ker S + \ker S^\bot\]
+to make sense of the matrix.
+Since $\ker S = \im S^\bot$ by self-adjointness, $S-\mu$ looks like the matrix
+\[\begin{pmatrix}-\mu & 0\\
+0&S_{\im S}-\mu\end{pmatrix}.\]
+Since $S|_{\im S} \to \im S$ is invertible, $S_{\im S} -\mu$ is invertible for small $\mu$, it is clear from looking at the matrix that this means that so is $S-\mu$. Thus $T-\lambda-\mu$ is invertible for $\mu$ small, i.e. $\lambda$, should it be in $\sigma(T)$, is an isolated point. This completes the proof that (iii) does not hold.
+\item Suppose $\lambda \in \ess(T)$. Then by the proposition, for any self-adjoint compact operator $K$, $\lambda \in \ess(T+K) \subseteq \sigma(T+K)$. Conversely, suppose $\lambda \not \in \ess(T)$. If $\lambda \in \C$, then for any self-adjoint compact $K$, $\lambda \not \in \sigma(T+K)$. If $\lambda \in \R$, write $S = T-\lambda$ as above, and let $P$ be the orthogonal projection onto $\ker S$. Then $P$ has finite rank and is compact (and is self-adjoint since it is a projection). $S+P$ is invertible, since as a matrix it looks like
+\[\begin{pmatrix}1 & 0\\
+0&S_{\im S}\end{pmatrix}.\]
+Therefore, $\lambda \not \in \sigma(T+P)$, and so (iv) does not hold.
+\end{enumerate}
+\end{proof}
+\begin{rk}The set $\sigma(T)\setminus\ess(T)$ is often call the discrete spectrum, denoted $\sigma_{\text{discr}}(T)$, and by (iii) is characterized by the property that $\lambda \in \sigma_{\text{discr}}(T)$ if and only if $0 < \dim \ker T-\lambda < \infty$ and $\lambda$ is an isolated point in the spectrum. Indeed, the only thing which needs justification is the strict inequality $\dim \ker T-\lambda > 0$. But $T-\lambda$ is Fredholm, and so $\im T-\lambda$ is closed, so the only way $T-\lambda$ can fail to be invertible is if $T-\lambda$ has non-trivial kernel.\end{rk}
+\begin{rk}We remark that Weyl's criterion has an analogue for $\sigma(T)$: $\lambda \in \sigma(T)$ if and only if there exists a sequence $\psi_k$ with $\norm{\psi_k} = 1$ and $(T-\lambda)\psi_k \to 0$. There is no assumption on not having a convergent subsequence. The proof is similar to (ii).\end{rk}
+\end{document}

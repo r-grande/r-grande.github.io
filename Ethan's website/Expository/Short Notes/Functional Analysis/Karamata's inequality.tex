@@ -1,0 +1,238 @@
+ \documentclass[12pt]{amsart}
+
+\usepackage{/Users/ethanjaffe/Documents/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/mySettings}
+\usepackage{chngcntr}
+\DeclareMathOperator{\Con}{Con}
+
+\title{A generalized Karamata inequality}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle 
+
+\section{Karamata's inequality}
+
+In this note we prove a generalized version of Karamata's inequality, and give an example of an application of the classical inequality to functional analysis.
+
+First, some notation.
+
+If $z \in \R^n$, write $z^\downarrow \in \R^n$ for the vector which has the same components as $z$, but written in non-increasing order. For $x,y\in \R^n$, we say that ``$y$ \emph{weakly majorizes} $x$'' if for all $1 \leq k \leq n$
+\[\sum_{i=1}^k x^\downarrow_i \leq \sum_{i=1}^k y^\downarrow_i,\]
+and write $x \preccurlyeq y$.
+If in addition $\sum_{i=1}^n x_i = \sum_{i=1}^n y_i$, then we say ``$y$ \emph{strongly majorizes} $x$'' and write $x \prec y$.  Observe that the condition $x \preccurlyeq y$ is equivalent to the following condition: for any $1 \leq \ell \leq n$, if $i_1,\ldots,i_\ell$, $j_1,\ldots,j_\ell$ are indices of the $\ell$ largest elements of $x$ and $y$, respectively, then
+\[\sum_{p = 1}^{\ell}x_{i_p} \leq \sum_{p=1}^{\ell} y_{i_p}.\]
+For $y \in \R^n$, denote $C(y) = \{z \in \R^n \: z^\downarrow \prec y^\downarrow\}$.
+
+Let the permutation group $S_n$ act on $\R^n$ via
+\[\sigma\cdot x = x^{\sigma} =  (x_{\sigma(1)},\ldots,x_{\sigma(n)}),\]
+for $\sigma \in S_n$ and $x \in \R^n$.
+If $A \subseteq \R^n$, let $\Con(A)$ denote its convex hull.
+If $x, y \in \R^n$ then we write $x \leq y$ if $x_i \leq y_i$ for all $i$.
+
+\begin{thm}[Generalized Karamata's inequality]\label{GKI}Suppose $K \subseteq \R^n$ is convex and invariant under the action of $S_n$. Let $\Phi:K \to \R$ be convex and symmetric. Fix $x,y \in K$. Then, if $x \prec y$,
+\[\Phi(x) \leq \Phi(y).\]
+If we assume further that $\Phi$ is non-decreasing in the sense that $u \leq v$ implies $\Phi(u) \leq \Phi(v)$, then if $x \preccurlyeq y$,
+\[\Phi(x) \leq \Phi(y).\].\end{thm}
+\begin{rk}The classical Karamata's inequality is the special case that $C = \R^n$ and $\Phi(z) := \sum_{i=1}^n \phi(z_i)$ for some (nondecreasing) convex function $\phi$ of one real variable.\end{rk}
+The proof will examine the convexity properties of the set $C(y)$. The theorem will follow quickly from the following proposition:
+\begin{prop}\label{workhorse}For $y \in\R^n$, $C(y)$ is convex and compact, and invariant under the action of $S_n$. The set of extreme points\footnote{Recall that an extreme point $e$ of a convex set $K$ is one which lies on no proper line segment in $K$, i.e.\ if $e = (1-t)p + tq$ for $p,q\in K$ and $t \in (0,1)$, then $p = q = e$.} of $C(y)$ is precisely the set
+\[\{y^\sigma \: \sigma \in S_n\}.\]\end{prop}
+We now prove the generalized Karamata's inequality, given \cref{workhorse}.
+\begin{proof}[Proof of \cref{GKI}]Since $y \in K$ and $K$ is invariant under the $S_n$ action, \[\{y^\sigma \: \sigma \in S_n\} \subseteq K,\] and thus by convexity
+\[\Con(\{y^\sigma \: \sigma \in S_n\}) \subseteq K.\] By the Krein-Milman theorem\footnote{See \cref{KM} for proof. Notice that we are working in finite dimensions, and so we do not need to take the closure of the convex hull, although this would not really affect the proof, anyway.} and \cref{workhorse}, $C(y)$ is the convex hull of its extreme points, i.e.\
+\[C(y) = \Con(\{y^\sigma \: \sigma \in S_n\}) \subseteq K.\] Thus $C(y) \n K = C(y)$. Assume first that $x \prec y$. Then 
+\[x \in C(y) \n K = C(y) = \Con(\{y^\sigma \: \sigma \in S_n\}),\] and so $x$ is a convex combination of the points $y^\sigma$, i.e.\ for each $\sigma \in S_n$ there exists $0 \leq t_\sigma \leq 1$ with $\sum_{\sigma \in S_n} t_\sigma = 1$ and 
+\[x = \sum_{\sigma \in S_n} t_\sigma y^\sigma.\] Since $\Phi$ is convex and symmetric,
+\[\Phi(x) \leq \sum_{\sigma \in S_n} t_\sigma \Phi(y^\sigma) = \Phi(y),\]
+which is what we wanted to prove.
+
+Assume now that $x \preccurlyeq y$ and that $\Phi$ is non-decreasing. Since $\Phi$ is symmetric, we may suppose that $x = x^\downarrow$ and $y = y^\downarrow$.The proof will be complete if we can show:
+\begin{lemt}There exists $z \in C(y) = C(y)\n K$ such that $x \leq z$.\end{lemt}
+For if this is true, then $\Phi(x) \leq \Phi(z)$ since $\Phi$ is non-decreasing, and $\Phi(z) \leq \Phi(y)$ by the first part of the theorem since $z \prec y$ by definition.
+\begin{proof}[Proof of lemma]We use induction on $n$. If $n = 1$, then $x \preccurlyeq y$ is equivalent to $x \leq y$, so the lemma holds trivially. We prove the lemma for $n$, assuming it holds true for $n-1$. Write $x',y' \in \R^{n-1}$ for the vectors obtained by deleting the last coordinate of $x,y$, respectively. By assumption, ${x'}^\downarrow = x'$, ${y'}^\downarrow = y'$, and $x' \preccurlyeq y'$. By induction there is
+\[z' \in C(y')\]
+such that $x' \leq z'$. As we showed above,
+\[C(y') = \Con(\{{y'}^\tau \: \tau \in S_{n-1}\},\] and so
+ there is for each $\tau \in S_{n-1}$, a $0 \leq t_\tau \leq 1$ such that $\sum_{\tau \in S_{n-1}} t_\tau = 1$ and
+  \[x' \leq z' = \sum_{\tau \in S_{n-1}} t_\tau {y'}^\tau.\]
+Extend $\tau$ to $S_n$ by letting by setting $\tau(n) = n$, and define $z := \sum_{\tau \in S_{n-1}} t_\tau y^\tau \in C(y)$. Then $z_n= y_n$. If $x_n \leq y_n$, then it follows from $x' \leq z'$ that $x \leq z$, and we are done. Otherwise, $x_n > y_n$. Let us consider
+\[t = \frac{z_1 + \cdots + z_n - (x_1 + \cdots + x_n)}{z_1 + \cdots + z_{n-1} - (x_1 + \cdots + x_{n-1})}.\]
+Notice that the denominator is nonzero. Indeed, if it were not, then since $z_i - x_i \geq 0$ for $1 \leq i \leq n-1$ by assumption, $z_i-x_i = 0$ for all $1 \leq i \leq n-1$, and hence
+\[x_1 + \cdots + x_{n-1} + x_n = z_1 + \cdots + z_{n-1} + x_n = y_1 + \cdots + y_{n-1} + x_n > y_1 + \cdots + y_{n-1} + y_n,\]
+which contradicts $x \preccurlyeq y$.
+The numerator is non-negative, since
+\[x_1 + \cdots + x_n \leq y_1 + \cdots + y_{n-1} + y_n = z_1 + \cdots + z_{n-1} + z_n.\] However, since $z_n-x_n < 0$ by assumption, the numerator is at most the denominator. We deduce that $0 \leq t \leq 1$. Consider $w \in \R^{n-1}$ defined by
+\[w_i = \begin{cases} x_i + (z_i-x_i)t, \ \ &1 \leq i \leq n-1\\
+x_n,\ \ &i = n.\end{cases}\]
+Since $0 \leq t \leq 1$,  $x \leq w$. Furthermore, for $1 \leq \ell \leq n-1$, suppose $i_1,\ldots,i_\ell$ are the indices of the $\ell$-largest elements of $w_i$. Then we may assume that no $i_j$ is $n$, since $w_n = x_n \leq x_i \leq w_i$ for all $i < n$. Thus, since $0 \leq t \leq 1$,
+\[\sum_{j=1}^\ell w_{i_j} = \sum_{j=1}^{\ell} x_{i_j} + t(z_{i_j}-x_{i_j}) \leq \sum_{j=1}^{\ell} z_{i_j} \leq \sum_{j=1}^{\ell} z_j^\downarrow \leq \sum_{j=1}^\ell y_j,\]
+with the last inequality holding since $z' \in C(y')$. But by definition of $t$,
+\[\sum_{j=1}^n w_j = (x_1 + \cdots + x_n) + t(z_1 + \cdots + z_{n-1} - (x_1 + \cdots + x_{n-1})) = z_1 + \cdots + z_n = y_1 + \cdots + y_n.\]
+These last two statements taken together mean that $w \in C(y)$. Thus we have found $x \leq w \in C(y)$.\end{proof}
+\end{proof}
+
+
+
+\begin{proof}[Proof of \cref{workhorse}]
+Write $C = C(y)$. Without loss of generality, we may assume that $y = y^\downarrow$. Then $C$ is by definition invariant under the $S_n$ action.
+To show convexity, suppose $u,v \in C$. Fix $0 \leq t \leq 1$, and suppose $i_1,\ldots,i_k$ are the indices of the $k$-largest elements of $z = (1-t)u+tv$. Then
+\[\sum_{j=1}^k z_{i_j} \leq (1-t)\sum_{j=1}^k u_{i_j} + t\sum_{j=1}^k v_{i_j} \leq (1-t)\sum_{j=1}^k u_j^\downarrow + t\sum_{j=1}^k v_j^\downarrow \leq \sum_{j=1}^k y_j.\] By the same reasoning, $\sum_{j=1}^n z_j = \sum_{j=1}^n y_j$. Thus $z \in C$.
+
+The set $C$ is certainly closed, so to show compactness, it suffices to find uniform bounds of the form $a \leq z_i \leq A$ for all $z \in C$ and $1 \leq i \leq n$. Fix $z \in C$, and without loss of generality assume $z = z^\downarrow$ (the uniform bounds are invariant under permutation). Certianly $z_i \leq z_1 \leq y_1$ for all $1 \leq i \leq n$, so $y_1$ is an upper bound. However, $z_i \geq z_n = \sum_{i=1}^{n-1} y_i-z_i + y_n \geq y_n$, for all $1 \leq i \leq n$, so $y_n$ is a lower bound.
+
+Let us now show that each $y^\sigma$ for $\sigma \in S_n$ is an extreme point of $C$. Since $C$ is invariant under the $S_n$ action, we may assume that $\sigma$ is the identity. Suppose $y = (1-t)x + tz$ for $x,z\in C$, and $0 < t < 1$. Then, for all $1 \leq i \leq n$,
+\[\sum_{i=1}^k y_i = (1-t)\sum_{i=1}^k x_i + t\sum_{i=1}^k z_i \leq (1-t)\sum_{i=1}^k x_i^\downarrow + t\sum_{i=1}^k z_i^\downarrow \leq \sum_{i=1}^k y_i.\]
+Thus equality holds throughout, and $\sum_{i=1}^k x_i =  \sum_{i=1}^k x_i^\downarrow$, $\sum_{i=1}^k z_i =  \sum_{i=1}^k z_i^\downarrow$ and $\sum_{i=1}^k x_i^\downarrow = \sum_{i=1}^k z_i^\downarrow = \sum_{i=1}^k y_i$. Thus $\sum_{i=1}^k x_i = \sum_{i=1}^k z_i = \sum_{i=1}^k y_i$ for all $1 \leq k \leq n \leq k \leq n$. Starting with $k=1$, which yields $x_1 = z_2 = y_1$, one proceeds inductively to show that $x_i = z_i = y_i$ for all $1 \leq i \leq n$.
+
+We will prove that these are the only extreme points by induction on $n$. If $n=1$, then $C(y) = \{y\}$, and the only extreme point is just $y$ itself. To perform the inductive step, we will need a lemma on breaking up and reassembling the set $C(y)$. Fix $1 \leq k \leq n$, and write any $z\in \R^n$ as $(z',z'') \in \R^{k}\times \R^{n-k}$. Define $C' = C(y_1,\ldots,y_k)$ and $C'' = C(y_{k+1},\ldots,y_n)$ (if $k = n$, then leave $C'' := \emptyset$).
+\begin{lemt}
+If $z' \in C'$ and $z'' \in C''$, then $z = (z',z'') \in C$. Conversely, if $z = (z',z'') \in C$, then $z' \in C'$. 
+
+Suppose additionally that $\sum_{i=1}^k z_i = \sum_{i=1}^k y_i$. Then $z'' \in C''$. Moreover, if $z \in C$ is extreme, then $z' \in C'$ and $z'' \in C''$ are extreme.
+\end{lemt}
+\begin{proof}
+Suppose $z' \in C'$ and $z'' \in C''$, and set $z = (z',z'')$. Let $1 \leq \ell \leq k$ and suppose $i_1,\ldots,i_\ell$ are the indices of the $\ell$ largest elements of $z$. Suppose $p$ of the indices are in $\{1,\ldots,k\}$ and $q = \ell-p$ of the are in $\{k+1,\ldots,n\}$. Then
+\begin{align*}
+\sum_{j = 1}^{\ell} z_{i_\ell} &= \sum_{i_\ell \in \{1,\ldots,k\}} z_{i_\ell} + \sum_{i_\ell \in \{k+1,\ldots,n\}} z_{i_\ell}\\
+&= \sum_{i_\ell \in \{1,\ldots,k\}} z'_{i_\ell} + \sum_{i_\ell \in \{k+1,\ldots,n\}} z''_{i_\ell-p}\\
+&\leq \sum_{i=1}^p {z'_{i}}^{\downarrow} + \sum_{j= 1}^q {z''_j}^{\downarrow}\\
+&\leq \sum_{i=1}^p y_i + \sum_{j=k+1}^{k+q} y_j \leq \sum_{i=1}^{p+q=\ell} y_i.\end{align*}
+Similarly,
+\[\sum_{j=1}^n z_j = \sum_{j=1}^p z'_j + \sum_{j=1}^q z''_j = \sum_{j=1}^p y_j + \sum_{j=k+1}^{k+1} y_j = \sum_{j=1}^{p+q=\ell}y_j.\]
+Thus $z \in C$.
+
+Now suppose $z \in C$, and $\sum_{i=1}^k z_i = \sum_{i=1}^k y_i$. Split $z = (z',z'')\in \R^{k}\times \R^{n-k}$. Let us start by showing that $z' \in C'$. Indeed, if $1 \leq \ell \leq k$ and $i_1,\ldots,i_\ell$ are the indices of the $\ell$ largest elements of $z'$, then
+\[\sum_{i=1}^{\ell} z'_i = \sum_{i=1}^\ell z_i \leq \sum_{i=1}^{\ell} z^\downarrow_i \leq \sum_{i=1}^\ell y_i.\] If $\ell = k$, then equality must hold by assumption. To show that $z'' \in C''$, we need to show $\sum_{j=1}^{n-k} z''_j = \sum_{j=1}^{n-k} {y''}_j$ and if $1 \leq \ell \leq n-k$ and $i_1,\ldots, i_\ell$ are the indices of the $\ell$ largest elements of $z''$, then
+\[\sum_{j=1}^\ell z''_{i_j} \leq \sum_{j=1}^\ell y_{k+j}.\]
+For the second, if $z \in C$, then
+\[\sum_{j=1}^k z_i + \sum_{j=1}^{\ell} z_{i_j + k} \leq \sum_{j=1}^{k} y_j + \sum_{j={k+1}}^{\ell} y_j =\sum_{j=1}^{k+\ell} y_j  .\] Since $\sum_{j=1}^k z_i = \sum_{j=1}^k y_j$, this implies that
+\[\sum_{j=1}^{\ell} z''_{i_\ell} = \sum_{j=1}^{\ell} z_{i_\ell + k} \leq \sum_{j=k+1}^{k+\ell} y_j,\] as desired. For the first, use the same trick to notice that
+\[\sum_{j=1}^k y_j + \sum_{j=1}^{n-k} z''_{j}+\sum_{j=1}^k z_i + \sum_{j=1}^{n-k} z''_{j} = \sum_{j=1}^n z_j = \sum_{j=1}^n y_j.\]
+
+Finally, suppose $z$ is extreme in $C$ (still supposing $\sum_{i=1}^k z_i = \sum_{i=1}^k y_i$). Suppose $z'_1,z'_2 \in C'$, $t \in (0,1)$  and $(1-t)z'_1 + tz'_2 = z'$. We need to show that $z'_1 = z'_2 = z'$. Set $z_1 = (z_1',z'')$, $z_2 = (z'_2,z'')$. We have shown that $z'' \in C''$, and so by the first part of this lemma, $z_1,z_2 \in C$, and by definition $(1-t)z_1 + tz_2 = z$. Since $z$ is extreme, $z_1 = z_2 = z$ and so consequently, $z'_1 = z'_2 = z'$. The same argument shows that $z''$ is extreme.
+\end{proof}
+
+We continue with the inductive proof. Assume the claim for $m < n$. We prove it for $n$. Let $e$ be an extreme point of $C$. Since $C$ is invariant under permutation, we may assume that $e = e^{\downarrow}$. Let $k$ is the smallest integer at least $1$ for which $\sum_{j=1}^k e_j = \sum_{j=1}^k y_j$ (by definition this holds for $k=n$, so $k$ is well-defined).
+
+Write $e = (e',e'')$, where $e'$ comprises the first $k$ components and $e''$ comprises the last $n-k$ components. By the lemma, $e' \in C'$ and $e'' \in C''$ ($C'$, $C''$ defined as in the lemma) are both extreme. Since $k \geq 1$, by induction $e''$ has the form
+\[(y_{\sigma(1)+k},\ldots,y_{\sigma(n-k)+k})\] (or $k = n$ in which case there is no $e''$), for some $\sigma \in S_{n-k}$. Since $y = y^\downarrow$ and $e = e^{\downarrow}$, we can assume without loss of generality that $\sigma$ is the identity. If we can show $k = 1$, then since $e'$ is extreme, by by induction $e' = (y_1)$, and thus
+\[e = y \subseteq \{y^\sigma \: \sigma \in S_n\}\] as desired.\footnote{Recall that we are assuming $e = e^{\downarrow}$, so we did not expect $e = y^{\sigma}$ for any non-identity $\sigma$.}
+
+Suppose not, and $k > 1$. Then by definition of $k$, for $1 \leq \ell < k$
+\begin{equation}\label{ss}\sum_{j=1}^{\ell} e_j < \sum_{j=1}^{\ell} y_j.\end{equation} 
+For $\epsilon > 0$ sufficiently small (which we choose later), define 
+\[{e'}^{\pm} = (e_1\pm \epsilon,e_2,\ldots,e_{k-1},e_k \mp \epsilon).\] We show that ${e'}^{\pm} \in C'$. 
+Now suppose $1 \leq \ell \leq k$ and $i_1,\ldots, i_\ell$ are the indices of the $\ell$ largest elements of ${e'}^{\pm}$. We need to show that
+\[\sum_{j=1}^\ell {e'}^{\pm}_{i_j} \leq \sum_{j=1}^\ell y_i,\]
+with equality if $\ell = k$ (i.e.\ the sum runs from $j=1,\ldots,k$). If $\ell = k$, then
+\[\sum_{j=1}^k {e'}^{\pm}_{i_j}  = \sum_{j=1}^kl{e'}^{\pm}_{j} = \sum_{j=1}^k e'_j \pm \epsilon \mp \epsilon = \sum_{j=1}^k y_j.\] If $\ell < k$, then for $\epsilon$ sufficiently small, by \eqref{ss}
+\[\sum_{j=1}^\ell {e'}^{\pm}_{i_j} \leq \sum_{j=1}^\ell {e'}_{i_j} + \epsilon \leq \sum_{i=1}^\ell e'_i +\epsilon < \sum_{j=1}^{\ell} y_j\]
+Thus ${e'}^{\pm} \in C'$. Set $e^{\pm} = ({e'}^{\pm},e'')$. Recall that $e'' \in C''$, and so by the lemma, $e^{\pm} \in C$. By definition $e = \frac{1}{2}e^- + \frac{1}{2}e^+$, which contradicts extremeity. Thus $k = 1$ and the proof is complete.
+\end{proof}
+
+\section{Application to functional analysis}
+
+Now we can give an example application to functional analysis.
+\begin{thm}\label{thmmm}Suppose $A$ and $B$ are compact positive operators on a Hilbert space, $H$. Suppose that $A \leq B$, or more generally that $\Tr(\Pi A) \leq \Tr(\Pi B)$ for any orthogonal projection onto a finite-dimensional subspace. Then if $\phi$ is any non-negative convex non-decreasing function on $\R$ such that $\Tr(\phi(B)) < \infty$, then $\Tr(\phi(A)) \leq \Tr(\phi(B))$.\end{thm}
+This and similar theorems have important applications in the theory of the Schatten class, $\ell^p(H)$, of operators $A$ with $\Tr(|A|^p) < \infty$.
+We prove this theorem in a few parts. First, notice that if $A \leq B$ and $\Pi$ is a projection onto a finite-dimensional subspace of $H$ with orthonormal basis $\{e_1,\ldots,e_n\}$, then
+\[\Tr(\Pi A) = \sum_{i=1}^n \langle Ae_n,e_n\rangle \leq \sum_{i=1}^n \langle Be_n,e_n\rangle = \Tr(\Pi B),\] so that the assumption $A \leq B$ really is a special case of the more general assumption.
+The main tool we use is the following inequality, occasionally attributed to Ky Fan. If $\Sigma \subseteq H$ is finite-dimensional, then write $\Pi_{\Sigma}$ for the orthogonal projection onto $\Sigma$.
+\begin{prop}\label{proppp}Suppose $C$ is a positive self-adjoint operator on a Hilbert space, $H$, with eigenvalues $\lambda_1 \geq \lambda_2 \geq \cdots$. Then
+\[\max_{\dim(\Sigma) = k} \Tr(\Pi_\Sigma C) = \sum_{i=1}^k \lambda_i.\]
+\end{prop}
+
+With this proposition, the proof of the theorem is easy. 
+\begin{proof}[Proof of \cref{thmmm}]If $\lambda_1 \geq \lambda_2 \geq \cdots$ and $\mu_1 \geq \mu_2 \geq \cdots$ are the eigenvalues of $A$ and $B$, respectively, then the hypotheses and the proposition give that for any $k$
+\[\sum_{i=1}^k \lambda_i \leq \sum_{i=1}^k \mu_i.\] Karamata's inequality now yields the result that for any $n$
+\[\sum_{i=1}^n \phi(\lambda_i) \leq \sum_{i=1}^n \phi(\mu_i).\] Suppose $e_1,e_2,\ldots$ is an orthonormal basis of $H$ consisting of eigenvectors for $A$, ordered so that with $Ae_i = \lambda_ie_i$, then $\lambda_i$ is non-increasing. Then taking limits, it follows that
+\[\Tr(\phi(A)) = \sum_{i=1}^{\infty} \langle \phi(A)e_i,e_i\rangle = \sum_{i=1}^\infty \phi(\lambda_i) \leq \sum_{i=1}^{\infty}  \phi(\mu_i) = \Tr(\phi(B)).\]\end{proof}
+
+Now we prove the proposition.
+\begin{proof}[Proof of \cref{proppp}]
+Suppose $e_1,e_2,\ldots$ is an orthonormal basis of $H$ consisting of eigenvectors of $C$, ordered so that with $Ce_i = \lambda_ie_i$, $\lambda_i$ is non-increasing. Then, with $\Sigma = \vspan\{e_1,\ldots,e_k\}$, certainly
+\[\Tr(\Pi_\Sigma C) = \sum_{i=1}^k \lambda_i.\] To prove the proposition, we just need to show that if $\dim \Sigma = k$ is any other subspace, then $\Tr(\Pi_\Sigma C) \leq \sum_{i=1}^k \lambda_i$. Write $a_i = \norm{\Pi_\Sigma e_i}^2 = \langle \Pi_\Sigma e_i,e_i\rangle$. Then $0 \leq a_i \leq 1$. Expanding in the basis $e_1,e_2,\ldots$,
+\begin{align*}
+\Tr(\Pi_\Sigma C) &= \sum_{i=1}^{\infty} \lambda_ia_i = \sum_{i=1}^k \lambda_i + \sum_{i=1}^k\lambda_i (a_i-1) + \sum_{i={k+1}}^{\infty}\lambda_i a_i\\
+&\leq \sum_{i=1}^k \lambda_i + \sum_{i=1}^k\lambda_k(a_i-1) + \sum_{i={k+1}}^{\infty}\lambda_k a_i\\
+&= \sum_{i=1}^k \lambda_i  -k\lambda_k +  \lambda_k\sum_{i=1}^{\infty}a_i.\end{align*}
+The manipulations with the infinite sums are justified since $\Pi_\Sigma C$ has finite rank, and is thus trace class. Alternatively, one can just replace the $\infty$ with some large $N$ in the computation, and take limits. Now, if $f_1,\ldots,f_k,f_{k+1},\ldots$ is an orthonormal basis of $H$ such that $\{f_1,\ldots,f_k\}$ is an orthonormal basis of $\Sigma$, then
+\[\sum_{i=1}^{\infty} a_i = \sum_{i=1}^{\infty} \langle \Pi_\Sigma e_i,e_i\rangle = \sum_{i=1}^{k} \langle \Pi_\Sigma f_i,f_i\rangle = k.\]
+Therefore,
+\[\Tr(\Pi_\Sigma C) \leq \sum_{i=1}^k \lambda_i  -k\lambda_k + k\lambda_k = \sum_{i=1}^k \lambda_i,\] which is the desired inequality.
+\end{proof}
+
+\appendix
+\section{Appendix}
+
+\begin{thm}[Finite-dimensional Krein-Milman theorem]\label{KM}Let $K \subseteq \R^n$ be compact and convex. Then $K$ is the convex hull of its extreme points.\end{thm}
+\begin{proof}
+We use induction on $n$. If $n = 1$, $K = [a,b]$ and the theorem is obvious. Assume the theorem now for $n-1$; we prove it for $n$. Let $x \in K$. We need to show that $x$ is a convex combination of extreme points in $K$. Fix any $v$ with $\norm{v} = 1$, and consider the line $s \mapsto x+sv$. Since $K$ is compact and convex there exist finite minimal and maximal times, $s^- \leq 0 \leq s^+$, for which $x^{\pm} := x+s^\pm \in K$ and $x+sv \not \in K$ for $s > s^+$ or $s < s^-$. We we will show that $x^{\pm}$ are both convex combinations of extreme points of $K$, and thus since $x$ lies on the line segment between $x^-$ and $x^+$, it is a convex combination of $x^-$ and $x^+$, and hence also a convex combination of extreme points of $K$.
+
+We focus on the case for $x^+$. The case of $x^-$ is handled in the same way. We show that there is some unit vector $w \in \R^n$ such that $\langle x^+,w\rangle$ maximizes the functional $\phi = \langle \bullet,w\rangle$ over $K$. By definition, $x^++1/n \not \in K$ for all $n \in \N$. In particular, we can separate $x^++1/n$ from $K$ with a hyperplane, i.e.\ there exists a unit vector $w_n \in \R^n$ such that
+\begin{equation}\label{conv}\langle x^++1/n,w_n \rangle \geq \langle z,w_n\rangle\end{equation}
+for all $z \in K$. Since the $w_n$ are bounded, we may extract a convergent subsequence $w_{n_k} \to w$. Taking limits in \eqref{conv} yields
+\[\langle x^+,w\rangle \geq\langle z,w\rangle\] for all $z \in K$, i.e. $x^+$ maximizes $\phi$ over $K$. 
+Set $a = \langle x^+,w\rangle$, and set
+\[K' = (K\n\phi^{-1}(a))-x^+ = (K-x^+)\n \phi^{-1}(0).\]
+Notice that $K'$ is compact and convex, and contains $0$.
+Since $\phi$ is a nonzero functional, $\dim \ker \phi = n-1$, and $\ker \phi$ is isomorphic to $\R^{n-1}$ as a vector space.\footnote{Notice that notions of convexity and being an extreme point, etc., depend only on the vector-space structure, so are carried through under the isomorphism.} Identifying $K'$ with its image under this isomorphism, by induction every point in $K'$ is a convex combination of its extreme points. In particular $0$ is a convex combination of the extreme points of $K'$. We will show that for every extreme point $e \in K'$, $e+x^+$, which is in $K$, is an extreme point of $K$. Thus if
+\[0 = t_1e_1 + \cdots + t_ke_k\] is a convex combination of extreme points in $K'$, then
+\[x^+ = t_1(e_1+x^+) + \cdots + t_k(e_k+x^+)\] is a convex combination of extreme points in $K$, which is what we wanted to show.
+
+Suppose $e \in K'$ is extreme, and $e+x^+ = (1-t)z_1 + tz_2$ for $z_1,z_2 \in K$ and $t \in (0,1)$. Recall that $a = \phi(x^+)$ is the maximum of $\phi$ over $K$. Then
+\[a = \phi(e+x^+) = (1-t)\phi(z_1) + t\phi(z_2) \leq (1-t)a + ta = a.\] Thus equality must hold throughout, and $\phi(z_1) = \phi(z_2) = a$, and hence $z_1-x^+,z_2-x^+ \in K'$. Since $e = (1-t)(z_1-x^+) + t(z_2-x^+)$ and $e$ is extreme in $K'$, this means $z_1-x^+ = z_2-x^+ = e$. Thus $e+x^+$ is extreme in $K$, as desired.
+\end{proof}
+
+%
+%We conclude this note with an appendix containing some basics about convex optimization whic we used.
+%\begin{thm}\label{tmmm}Let $C$ be a compact, convex set in some normed vector space, and let $\Phi: C \to \R$ be a convex, upper-semicontinuous function. Then the maximum of $\Phi$ is attained at an extreme point.\end{thm}
+%\begin{proof}
+%Since $\Phi$ is upper semicontinuous, the maximum is achieved. Suppose the maximum as attained at $c_0 \in C$. While $c_0$ may not be an extreme point, we will show that $\{c \in C \: \Phi(c) = \Phi(c_0)\}$ contains an extreme point. Let $\phi$ be a subderivative of $\Phi$ at $c_0$, i.e.\ $\phi$ is a continuous linear functional for which $\ell(c) := \phi(c-c_0) + \Phi(c_0) \leq \Phi(c)$ for all $c \in C$ and $\ell(c_0) = \Phi(c_0)$. Let $D = \{c \in C \: \phi(c) = \phi(c_0)\}$. First, notice that if $c \in D$, then $\Phi(c) = \Phi(c_0)$. Indeed,
+%\[\Phi(c) \leq \Phi(c_0) = \ell(c_0) = \ell(c) \leq \Phi(c),\] and so equality holds throughout. Also notice that $\sup_{c \in C} \phi(c) = \phi(c_0)$. Indeed, for $c \in C$,
+%\[\phi(c)-\phi(c_0) + \Phi(c_0) = \ell(c) \leq \Phi(c) \leq \Phi(c_0).\]
+%
+%Notice that $D$ is convex and closed (and therefore compact), and thus has an extreme point, $e$ (see the lemma below). We show that $e$ is extreme in $C$. 
+%
+%Suppose $e = ta + (1-t)b$ for $a,b \in C$ and $0 < t < 1$. Observe that since $e \in D$, $\phi(e) = \phi(c_0)$ is the maximum of $\phi$ on $C$. Thus, $\phi(a), \phi(b) \leq \phi(e)$, and it follows that $\phi(e) = t\phi(a) + (1-t)\phi(b) \leq \phi(e)$. So $\phi(a) = \phi(b) = \phi(e) = \phi(c_0)$, and so $a,b \in D$, and thus since $e$ is extreme in $D$, $a = b = e$, and thus $e$ is extreme in $C$.
+%\end{proof}
+%To apply this theorem to prove the generalized Karamata's inequality, we need to show:
+%\begin{lem}\label{upper}Every convex function $\Phi:\R^n\to \R$ is upper semicontinuous.\end{lem}
+%\begin{rk}Owing to the existence of subgradients, every convex function on $\R^n$ is lower semicontinuous. Thus, this lemma shows that all convex functions on $\R^n$ are continuous.\end{rk}
+%\begin{proof}
+%We begin by showing that $\Phi$ is uniformly bounded on the convex hull of finitely many points by the maximum of $\Phi$ at those points.
+%Indeed, if $a_1,\ldots,a_k$ are finitely many points, and $a = t_1a_1 + \cdots t_ka_k$, $t_1 + \cdots + t_k = 1$, is a point in the convex hull, then by convexity \[\Phi(a) \leq t_1\Phi(a_1) + \cdots +t_k\Phi(a_k) \leq \max_k \Phi(a_k).\] Let $e_i$ denote the $i$th canonical basis vector in $\R^n$. Let $x_i^{\pm} = \max(\pm x_i,0)$, i.e.\ $x_i^{\pm} = |x_i|$ if $\pm x_i \geq 0$, and otherwise $x_i^{\pm} = 0$. Then
+%\[x = x_1^+e_1 - x_1^-e_1 + \cdots + x_n^+e_n - x_n^-e_n.\] Observe that $x_1^+ + x_1^- + \cdots + x_n^+ + x_n^- = \norm{x}_{\ell^1}$. It follows that
+%\[x =  \frac{x_1^+}{\norm{x}_{\ell^1}}(\norm{x}_{\ell^1}e_1) + \frac{x_1^-}{\norm{x}_{\ell^1}}(-\norm{x}_{\ell^1}e_1) + \cdots + \frac{x_n^+}{\norm{x}_{\ell^1}}(\norm{x}_{\ell^1}e_n) + \frac{x_n^-}{\norm{x}_{\ell^1}}(-\norm{x}_{\ell^1}e_n)\]
+%is a convex combination of the the points $\{\pm \norm{x}_{\ell^1}e_i\}$, and thus \[\Phi(x) \leq \max \Phi(\pm \norm{x}_{\ell_1}e_i).\] In particular, $\Phi$ is uniformly bounded on compact sets.
+%
+%Suppose for contradiction that $\Phi$ is not upper semicontinuous. Then there exists a sequence of points $x_n \to x$ with $\Phi(x) < \limsup \Phi(x_n)$. Let $y_n$ be the point on the ray between $x$ and $x_n$ with $\norm{y_n-x} = 1$. Then $y_n = (1-t_n)x + t_nx_n$, for \[t_n = \norm{y-x}/\norm{x_n-x} \to \infty.\]
+%By convexity, if $t_n \geq 1$,
+%\[\Phi(y_n) \geq (1-t_n)\Phi(x) + t_n\Phi(x_n) = \Phi(x) +  t_n(\Phi(x_n)-\Phi(x)).\]
+%Since $t_n \to \infty$ and $\limsup \Phi(x_n)-\Phi(x) > 0$, it follows that
+%\[\limsup \Phi(y_n) = \infty,\]
+%which contradicts the fact that $\Phi$ is uniformly bounded on the compact set $\{y\: \norm{y-x} = 1\}$.
+%\end{proof}
+%
+%\begin{lem}Let $C$ be a compact, convex set of a normed vector space.Then $C$ has a extreme point.\end{lem}
+%\begin{proof}
+%We first present a proof which works even in the infinite-dimensional setting, but relies on Zorn's lemma. After this, we present a proof that works in the finite-dimensional setting, but avoids the use of Zorn's lemma (this proof can also be easily adapted to the separable setting).
+%
+%Recall the notion of an extreme set $E \subseteq C$. We say that $E$ is extreme if $E$ is non-empty, compact, convex and satisfies the extremeity condition: if $a,b \in C$, $0 < t < 1$ and $ta + (1-t)b \in E$, then $a,b \in E$. Thus an extreme point is just an extreme set consisting of one point. Let $\mathcal E$ denote the collection of extreme sets in $C$ with the order $E_1 \leq E_2$ if $E_1 \supseteq E_2$ (i.e.\ the ordering is the reverse of the usual). Any chain in $\mathcal E$ has an upper bound; indeed, the intersection of any decreasing collection of extreme sets is compact, non-empty by compactness, convex, and satisfies the extremeity property. Thus the intersection of a decreasing collection of extreme sets is itself extreme and is an upper bound on the chain. Also notice that the collection is non-empty, since $C$ itself is an extreme set.
+%
+%By Zorn's lemma, there exists a maximal (i.e.\ minimal under $\subseteq$) extreme set $E^\ast$. We show that $E^\ast$ contains exactly one point. Suppose not. Since $E^\ast$ is non-empty, it contains at least two points $a$ and $b$. Let $\phi$ be a continuous functional for which $\phi(a-b) = \norm{a-b}$, and so $\phi(a) \neq \phi(b)$. Suppose without loss of generality that $\phi(a) > \phi(b)$. Let $c \in E^\ast$ be a point where the maximum of $\phi|_{E^\ast}$ is achieved. Then $\phi(c) > \phi(b)$, too. 
+%
+%We claim $E^\ast \n \phi^{-1}(\phi(c))$ is again extreme. Indeed, it is closed (and hence compact), convex, non-empty (since it contains $a$). We show now that it satisfies the extremeity condition. If $c_1,c_2 \in C$, $0 < t < 1$ and $tc_1 + (1-t)c_2 \in E^\ast \n \phi^{-1}(\phi(c))$, then $c_1,c_2 \in E^\ast$ by extremeity, and $t\phi(c_1) + (1-t)\phi(c_2) = \phi(c)$, and so since $\phi(c) \geq \phi(c_1),\phi(c_2)$, it follows that $\phi(c_1) = \phi(c_2) = \phi(c)$. Thus $c_1,c_2 \in E^\ast \n \phi^{-1}(\phi(c))$, which shows that $c_1,c_2 \in \phi^{-1}(\phi(c))$, too. Since $b \not \in E^\ast \n \phi^{-1}(\phi(c))$, $E^\ast \n \phi^{-1}(\phi(c)) \subsetneq E^\ast$, which contradicts minimality. Thus $E^\ast$ has a single point, and so $E^\ast = \{e\}$ and $e$ is extreme.\\[1.5ex]
+%
+%Now we present a proof which avoids the use of Zorn's lemma, but only works in the finite-dimensional setting (or separable setting with minor modifications). The idea is to replace the contradiction step of the Zorn's-lemma proof, which establishes the minimality, with an inductive construction.
+%Choose a basis $\{\phi_1,\ldots,\phi_n\}$ of the dual space $X'$.\footnote{In the separable setting, one needs instead to choose a countable collection of continuous functionals separating the points of $X$, for instance by choosing a countable dense set $\{s_1,s_2,\ldots\}$ of $X$ and choosing a functional $\phi_j$ of norm $1$ with $\phi_j(s_j) = \norm{s_j}$. Notice that it is \emph{not} required for $X'$ to be separable.} We define a sequence of extreme sets
+%\[C = E_0 \supset E_1 \supset E_2 \supset \cdots \supset E_n\] with the property that $\phi_i$ is constant on $E_i$, $i \geq 1$. We will show that $E_n$ is a singleton,\footnote{In the separable setting, there may not be a final set $E_n$ and one has to take an infinite intersection, instead.} and thus its sole member is an extreme point.
+%Given $E_{i-1}$, suppose $c = \max_{x \in E_{i-1}} \phi_i(x)$, and set $E_{i-1} = E_i \n \phi_i^{-1}(\phi(c))$. As in the Zorn's lemma proof, $E_{i-1}$ is extreme. Observe also that by definition $\phi_{i}(x) = c$ for all $x \in E_i$, and thus $\phi_i$ is constant on $E_i$.
+%
+%We now show that $E_n$ is a singleton. Since $\phi_i$ is constant on $E_i$, it is constant on $E_n \subseteq E_i$. Thus $\phi_1,\ldots,\phi_n$ are all constant on $E_n$. If $a,b \in E_n$, then $\phi_i(a-b) = 0$ for all $i$. Since the $\phi_i$ span $X'$, this is impossible unless $a-b = 0$, i.e.\ $a = b$. Thus $E_n$ contains at most one point. \end{proof}
+
+\end{document}
+
+

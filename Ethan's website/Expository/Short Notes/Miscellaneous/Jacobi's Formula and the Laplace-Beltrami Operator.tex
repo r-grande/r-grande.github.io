@@ -1,0 +1,92 @@
+\documentclass[12pt]{article}
+
+
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+\usepackage{appendix}
+
+\title{Jacobi's Formula and the Laplace-Beltrami operator}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{0}
+The purpose of this note it to prove an identity from linear algebra called ``Jacobi's Identity'' and use it to give a description in coordinates of the Laplace-Beltrami operator. Recall that the \href{https://en.wikipedia.org/wiki/Adjugate_matrix}{Adjugate Matrix} to a matrix $g$ is defined by
+\[g\Adj(g) = \det(g).\]
+If $g$ is invertible, this takes the pleasant form
+\[\Adj(g) = g^{-1}\det(g).\]
+Identity $M_n(\C)$, the set of $n\times n$ matrices with $\C^{n^2}$. Then $\det:M_n(\C) \to \C$ is a differentiable map. Jacobi's formula lets one compute the derivative of this map. For simplicity of notation we state the identity for differentiable families.
+\begin{thm}[Jacobi's Identity]Let $g(t):\R \to M_n(\C)$ be differentiable. Then
+\[\frac{d}{dt} \det(g(t)) = \tr\left(\Adj(g(t)) \frac{d}{dt} g(t)\right).\]
+\end{thm}
+\begin{proof}
+To avoid difficult computations, we instead use a bit of analysis.
+
+We first prove this for a very special family and a very speial $t$, $t=0$ and $g(t) = tg+1$. Then, either by direct computation or putting $g$ into a normal form, we see that
+\[\left.\frac{d}{dt} \det(g(t))\right|_{t=0} = \tr g = \tr\left(\Adj(1)g\right).\]
+
+Now we prove the formula under the assumption that $g(t)$ is invertible at $t=t_0$, which we assume without loss of generality to be $t_0=0$. Since $\det$ is differentiable and $g(t)$ is differentiable,
+\[g(t) = g(0) + tg'(0) + o(t)\]
+and so (for instance by the mean value theorem)
+\[\det(g(t))-\det(g(0) + tg'(0)) \in o(t).\]
+ Thus, from the definition of the derivative,
+\begin{align*}
+\left.\frac{d}{dt} \det g(t)\right|_{t=0} &= \lim_{t \to 0} \frac{\det g(t)-\det g(0)}{t}\\
+&= \lim_{t \to 0} \frac{\det(g(0)+tg'(0))-\det(g(0))}{t} + o(1)\\
+&= \lim_{t \to 0} \frac{\det(g(0)+tg'(0))-\det(g(0))}{t}.\end{align*}
+We may rewrite
+\[\det(g(0) + tg'(0)) = \det(g(0))\det(1+tg^{-1}(0)g'(0)),\] and use the special case to deduce that
+\[\left.\frac{d}{dt} \det(g(0) + tg'(0))\right|_{t=0} = \det(g(0))\tr(g^{-1}(0)g'(0)) = \tr(\det(g(0))g^{-1}(0)g'(0)),\]
+which is what we want since $\Adj(g(0) = \det(g(0))g^{-1}(0)$. 
+
+But what if $g(0)$ is not invertible? Consider instead the family for $s > 0$ defined by
+\[g_s(t) = s+g(t).\] One easily sees that $g_s(0)$ is invertible for $s$ small. Either one can use a normal form, or notice that $\det(s+g(0))$ is a polynomial, so has isolated zeroes.
+So,
+\[\left.\frac{d}{dt} \det g_s(t)\right|_{t=0} = \tr(\Adj(g_s(0))g'_s(0)).\]
+Certainly $g_s(t),g'_s(t) \to g(t),g'(t)$, respectively, uniformly in $t$. Since $\tr, \Adj$, and multiplication are continuous, the right-hand side converges to
+\[\tr(\Adj(g(0)g'(0)).\] Since $\det$ is smooth, the chain rule implies that $(\det g_s)' \to (\det g)'$ uniformly (at least on compact sets in $M_n(\C))$. In particular, the left-hand side converges to
+\[\left.\frac{d}{dt} \det g(t)\right|_{t=0}.\]
+This establishes the formula for $t=0$, and hence for all $t$ since the choice $t=0$ was arbitrary.\end{proof}
+
+We have the immediate useful Corollary.\footnote{From here on, we will employ the Einstein summation convention, summing over repeated indices as long as one of the pair is ``raised'' and the other is ``lowered.''}
+\begin{cor}Let $U \subseteq \R^n$ be open, and let $g:U \to \text{GL}(n,\C) \subseteq M_n(\C)$ be differentiable.\footnote{One may interpret this as either a map into a Lie group, or simply a differentiable map whose image consists only of invertible matrices}. Write the components of $g$ as $g_{ij}$, and the components of its inverse as $g^{ij}$. Then
+\[g^{ij}\partial_k g_{ij} = \partial_k g_{ij} g^{ij} = \frac{\partial_k \det g}{\det g} = \partial_k \log(|\det g|).\]\end{cor}
+\begin{proof}Fix $x \in U$ and consider the family $h(t) = g(x+te_k)$, where $e_k$ is the $k$th basis vector. Then
+\[h'(0) = \partial_k g(x)\]
+and
+\[(\det h)'(0) = \partial_k (\det g)(x).\] By the Jacobi Formula,
+\[(\det h)'(0) = \tr(\Adj(h(0))h'(0)) = \det(g(x))\tr(g^{-1}(x)\partial_k g(x)) = \det(g(x))g^{ij}\partial_kg_{ij}.\]
+The identity for the reversed order follows from the fact that $\tr(AB) = \tr(BA)$, which we apply before the last equality.
+\end{proof}
+
+The application is as follows. Let $M$ be a Riemannian (or pseudo-Riemannian) Manifold, with metric $g$ and Levi-Civita connection $D$. Define the divergence of a vector field $V$ by
+\[\divg(V) = \tr(Y\mapsto D_Y V)\]
+and the Laplacian of a smooth function $u$ by
+\[\Delta u = \divg(\grad u).\]
+Choose local coordinates $\{x_1,\ldots,x_n\}$ for $M$.
+Write the components of a vector field $V$ as $V = V^i\partial_i$, and the components of $g$ by
+\[g(\partial_i,\partial_j) = g_{ij}.\] Write $g^{ij}$ for the components of the inverse.
+\begin{prop}With the above definitions,
+\[\divg(V) = \frac{1}{\sqrt{|\det g|}}\partial_i(\sqrt{|\det g|}V^i)\]
+and
+\[\Delta u = \frac{1}{\sqrt{|\det g|}}\partial_i(\sqrt{|\det g|}g^{ij}\partial_j u).\]\end{prop}
+\begin{proof}
+By definition $\divg(V)  = D_iV^i$, where $D_iV^i = (D_iV)^i$ denotes the $i$th component of $D_iV$ (as opposed to the connection applied to the smooth function $V^i$). Set $\Gamma_{ij}^k$ to be the Christoffel symbols of the connection. Then
+\[\divg(V) = \partial_iV^i +\Gamma_{ij}^iV^j.\]
+We know that
+\[\Gamma_{ij}^i = \frac{1}{2}\left(g^{ik}\partial_i g_{ik}-g^{ik}\partial_k g_{ij} + g^{ik}\partial_j g_{ik}\right).\] Since the sum runs over all $i,k$ the symmetry of $g$ and $g^{-1}$ means that the first two terms cancel, and so by the Corollary
+\[\Gamma_{ij}^i = \frac{1}{2}g^{ik}\partial_j g_{ik} = \partial_j\log \sqrt{|\det g|}.\]
+Relabelling indices, we then have that
+\[\divg(V) = \partial_iV^i + \partial_i\log \sqrt{|\det g|}V^i = D_iV^i + \frac{\partial_i \sqrt{|\det g|}}{\sqrt{|\det g|}}V^i = \frac{1}{\sqrt{|\det g|}}\partial_i(\sqrt{|\det g|}V^i),\]
+which is the desired formula.
+
+In coordinates, it is clear that we have
+\[\grad u = g^{ij}\partial_j u \partial_i,\]
+since
+\[g_{ij}g^{ki}\partial_k u V^j = g(\grad u,V) = du(V) = \partial_j u V^j.\]
+Thus,
+\[\Delta u = \frac{1}{\sqrt{|\det g|}}\partial_i(\sqrt{|\det g|}g^{ij}\partial_j u).\]
+\end{proof}
+\end{document}

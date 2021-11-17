@@ -1,0 +1,117 @@
+\documentclass[12pt]{article}
+
+
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+\usepackage{appendix}
+\DeclareMathOperator{\Diff}{Diff}
+
+\title{The b-calculus}
+\author{Ethan Y. Jaffe}
+\date{}
+\begin{document}
+\maketitle
+\section{Introduction}
+The purpose of this note is to give a somewhat detailed exposition of the b-calculus. We are of course indebted to Melrose's ``Greek Book'' \cite[Mel]. We also borrow from Hintz \cite{\S 3.3}[Hin]. There are many different definitions and ways of thinking about the b-calculus, from looking at model spaces: an analytic point of view; or working directly on manifolds: a geometric point of view. Many intermediate points of view are also useful. In this note we will define notions in the (small) b-calculus.\footnote{The small calculus is not enough to invert elliptic operators. This is part of the global theory. We will content ourselves with the microlocal theory in this note. We refer the reader to \cite[Mel] for the full calculus}. The b-calculus  concerns itself with manfiolds with boundary. The ``microlocalization'' of the set of vector fields tangent to the boundary are the b-Pseudodifferential operators. Thus, if $x$ denotes a variable such that $x=0$ defines the boundary, and $y$ is a variable tangent to the boundary, then the basic objects of study are $x\partial_x$ and $\partial_y$, rather than $\partial_x$ and $\partial_y$. It is this observation that motivates the b-calculus. In this treatment we will take an analytic point of view to start, rather than a geometric one, and will work entirely on a model space. After having developed the theory for the model space, we will move to manifolds and introduce the geometric point of view and invariant definitions, and show that these are equivalent to those given by pushing forward the model space constructions onto manifolds.
+
+\section{The b-Tangent Bundle and Differential Operators}
+The main setting of the b-calculus is for a compact manifold $M$ with boundary $X = \partial M$. Ironically, the ``model space'' is either $[0,\infty)\times X$, or $[0,\infty)\times \R^n$, neither of which are compact. We will denote $[0,\infty)$ by $\overline{\R^+}$. The idea behind the b-calculus is that not all vector fields are equal; we only care about those that are tangent to the boundary. Hence, if $(x,y)$ are local coordinates for $M$, with $x$ a boundary-defining function (i.e. locally $M = [0,\epsilon)\times U \subseteq \overline{\R^+}\times\R^n$), then we only care about vector fields of the form
+\[a(x,y)x\partial_x + \sum b_i(x,y)\partial_{y_i}.\] We thus ``define''
+\begin{def}[Prospective Definition]\label{btan}The b-tangent bundle $^bTM$ a vector bundle whose sections $C^\infty(M;^bTM)$ are the vector fields which are tangent to the boundary.\end{def}
+We need to remark that this definition also makes sense for the model spaces. We of course still need check that $^b TM$ exists.
+\begin{lem}There exists a vector bundle $^bTM$ consistent with Definition~\ref{btan} together with a natural map $b^TM \to TM$.\end{lem}
+\begin{proof}
+There are many ways to do this. We take a brute-force approach. Consider a system of charts of $M$ consisting of those charts whose iamges which are disjoint from $X= \partial M$, and those which are of the form $[0,\epsilon)\times V$ for $V$ open in $\R^n$. If $U$ is a chart disjoint from $X$, define $^bTU = TU$, and otherwise define
+\[^bT([0,\epsilon)\times V) = \{(x,y,a(x\partial_x) + v,\}\]
+where $(x\partial_x)$ we think of as a formal symbol, and $v \in T_yV$. We set $^bTM$ to be the disjoint union of these spaces over the system of charts, subject to the following equivalence relation: if $p \in \phi(U)\n \phi'(U')$ and $\phi(U),\phi(U')$ are disjoint from $X$, then we identify $v \in ^bTU$ and $v' \in ^bTU'$ if $v,v'$ lie above $\phi^{-1}(p)$, $(\phi')^{-1}(p)$, respectively, and $d(\phi^{-1}\circ \phi')v' = v$. If $p \in \phi([0,\epsilon)\times V)\n\phi'([0,\epsilon')\times V)$. We know that the vector field $d(\phi^{-1}\circ \phi')(x'\partial_{x'})$ is tangent to the boundary, so is of the form $a(x,y)x\partial_x + \sum b_i(x,y)\partial_{y_i}$. If $p = \phi(x,y) = \phi'(x',y')$, we thus identity $(x',y',cx'\partial_x' + v')$ with \[(x,y,ca(x,y)x\partial_x + b_1(x,y)\partial_{y_1} + \cdots + b_n(x,y)\partial_{y_n} + v,\]
+where $v = d(\phi^{-1}\circ \phi')v'$.
+
+If $\phi(U)$ is disjoint from $X$, and intersection $\phi'([0,\epsilon)\times V)$, then we may also identify a vector field on $U$ with one on $(0,\epsilon)\times V$ in a similar way. This defines an equivalence relation. We choose the charts above to also give the smooth structure and local trivialization. This turns $^bTM$ into a vector bundle. The sections may certainly be identified with vector fields tangent to the boundary if we identify $a(x)(x\partial_x)$ as the vector field $a(x)x\partial_x$. This identification also gives the map $^bTM \to TM$.\end{proof}
+
+From here on $(x,y)$ will always indicate a coordinate in a chart $[0,\epsilon)\times V$.
+
+We may of course interpret vector fields tangent to the boundary as differential operators.
+We then have more general differential operators.
+\begin{def}$\Diff_b(M)$, is the smallest algebra generated by $^bTM$ and $C^\infty(M)$. $\Diff^k_b(M)$ consists of those which are generated by the application of at most $k$ vector fields.\end{def}
+Locally, $P \in \Diff_b^k$ has the representation 
+\[(Pu)(x,y) = \sum_{j+|\alpha| \leq k} a(x,y)(xD_x)^jD_y^{j}u\]
+where $a \in C^\infty(M)$.
+
+The b-calculus is to the usual pseudodifferential calculus as $^bTM$ and $\Diff_b(M)$ are to $TM$ and $\Diff(M)$.
+
+$\Diff_b(M)$ acts on two natural spaces: $C^\infty(M)$, those functions smooth up to $\partial M$ and $\overdot{C}^\infty(M)$, consisting of those smooth functions which vanish to all orders at $\partial M$, i.e. have $0$ Taylor series there. The duals to these spaces are $\overdot{C}^{-\infty}(M)$ and $C^{-\infty}(M)$, respectively (notice that the dual of the dot space has no dot and vice-versa). We call $C^{-\infty}(M)$ the set of ``extendible distributions.'' $\Diff_b$ also acts on the dual spaces by duality.
+
+Really I've lied in the last paragraph. This makes sense for the model space $M = \overline{\R^{+}}\times\R^n$, but not for $M$ since we need to use densities. This will come later.
+
+On also has the dual bundle $^bT^\ast M$. Sections of $^bT^\ast M$ are locally generated by $\frac{dx}{x}$ and $dy$.
+
+\newcommand{\mo}{\overline{\R^+}\times\R^n}
+\section{Spaces of Distributions on the Model Space}
+Recall that $\overdot{C}^\infty(\mo)$ consists of those smooth function $u(x,y)$ with $x^{-n}u(x,y)$ smooth for all $n > 0$, and which vanish for large $x$ and are compactly supported in $y$. Consider the map $\Phi:\R\to \overline{\R^+}$ sending $t \mapsto e^{t}$.
+Then $\Phi^{\ast}(\overdot{C}^\infty(\mo))$ consits of those $v \in C^\infty(\R^{n+1})\: v(t,y)$ which vanish for $t,|y|$ large and for all $k \in \N, r > 0,t \in \R,y \in \R^{n}$, we have the estimate
+\[|\partial_t^k v(t,y)| \leq C_{k,r,K}e^{rt}.\]
+
+Consider a simple operator $P \in \Diff_b(\mo)$
+\[P = \sum_{j+|\alpha| \leq k}a(y)(xD_x)^{j}(D_y)^{\beta},\]
+where $a$ does not depend on $x$. Thus $P$ is invariant under the $\R^+$ action. This is easily seen by changing coordinates $x = \log(t)$. In these new coordinates,
+\[P = \sum_{j+|\alpha| \leq k}a(y)(D_t}^{j}(D_y)^{\beta}\] is $t$-translation invariant. It thus acts naturally on the weighted-Sobolev spaces $e^{rt}H^s(\R^{n+1})$. Indeed,
+\[e^{-rt}P(e^{rt}v) = \sum_{j+|\alpha| \leq k}r^ja(y)(D_y)^{\beta}u \in H^{s-k}(\R^{n+1}).\]
+
+The previous discussion motivates defining the b-Sobolev spaces
+\begin{def}\[H^{s,r}_b(\mo) = (\Phi^{-1})^\ast(e^{rt}H^s(\R^{n+1})).\]\end{def}
+Since $\Phi^{\ast}(\overdot{C}^\infty(\mo))$ consists of Schwartz functions, we have a natural map $H^{s,r}_b(\mo) \to C^{-\infty}(\mo)$. This map is an inclusion since a distribution goes to $0$ if and only if it is the zero distribution.
+
+$\Diff_b(\mo)$ acts in the obvious way on $H^{s,r}_b(\mo)$. Setting $H^s_b(\mo) = H^{s,0}_b(\mo)$, we observe that $H^{s,r}_b(\mo) = x^rH^s_b(\mo)$.
+
+The most fundamental $H^{s,r}_b$ space is $L^2$, i.e.
+\[H^{0,0}_b(\mo) = L^2(\mo;dx/xdy) = L^2_b(\mo).\]
+This is the space of those measurable functions $u$ for which
+\[\int_0^\infty \int_{\R^n} |u(x,y)|^2\frac{dx}{x}dy < \infty.\] 
+
+We clearly have
+\begin{lem}$H^{s,r}_b(\mo) \subseteq H^{s',r'}_b(\mo)$ iff $s \geq s'$ and $r \geq r'$.\end{lem}
+
+One also has the obvious characterization of $H^{k,r}_b(\mo)$ for $k \in \N$.
+\begin{prop}$u \in C^{-\infty}(\mo)$ is in $H^{k,r}_b(\mo)$ if and only if $x^{-r}Pu \in L^2_b(\mo)$ $Px^{-r}u \in L^2_b(\mo)$ for any $P \in \Diff_b^k(\mo)$.\end{prop}
+\begin{proof}
+Multiply by $x^r$ turns the statmement into one about $H^k_b(\mo)$. Then the statement really becomes one about differential operators on $\R^{n+1}$.\end{proof}
+
+We finally also observe that $H^{s,r}_b(\mo)$ is dual to $H^{-s,-r}_b(\mo)$.
+
+%We also have
+%\begin{prop}\label{inters}\begin{enumerate}[label = (\roman*)]
+%\item $\overdot{C}^\infty(\mo) = \bigcap_{r,s} H^{s,r}_b(\mo)$;
+%\item $C^{-\infty}(\mo) = \bigcup_{r,s} H^{s,r}_b(\mo)$.
+%\end{enumerate}
+%Futhermore the topologies are the projective and inductive topology, respectively.
+%\end{prop}
+%\begin{proof}
+%Certainly for any $r,s$ $\overdot{C}^\infty(\mo) \subseteq H^{s,r}_b(\mo)$. Conversely, the Sobolev embedding theorem 
+
+\section{The Mellin Transform}
+The Fourier transform is a central tool in the study of translation-invariant (i.e. constant coefficient) differential operators on $\R$. It's analogue for $\overline{\R^+}$ is the Mellin transform. If $u \in \overdot{C^\infty}(\overline{\R^+})$, then its Mellin transform is defined by
+\[\hat{u}(\sigma) = \int_0^\infty x^{-i\sigma}u(x)\frac{dx}{x} = \int_{-\infty}^\infty e^{-it\sigma}\phi^{\ast}u(t)\frac{dt}.\]
+
+The inverse Mellin transform is given by
+\[\breve{v}(x) = \frac{1}{2\pi}\int_{\R} x^{i\sigma}v(\sigma)\ d\sigma.\]
+This, as well as many other properties, are evident since the Mellin transform is just the Fourier transform in different coordinates.
+These definitions extend to $L^2_b(\mo)$.This turns the Mellin transform into an isometry on $L^2$ by Plancherel's theorem. We observe at this point that $H^{0,0}_b(\mo) = L^2_b(\mo)$, 
+
+Now we consider for $r \in \R$ $H^{0,r}_(\mo) = x^{r}L^2_b(\mo)$. Depending on $r$, this space has some decay at $0$ or infinity, and some blow-up in the opposite direction. Thus its Mellin transform appears not to make sense. However, it does if one lets $\sigma$ be complex. Indeed, it is certainly true that if $u \in x^rL^2_b(\mo)$, then if $\Im \sigma = -r$, $\hat{u}(\sigma)$ makes sense, and futhermore $\hat{u}(\cdot-ir) \in L^2(\R)$. By Plancherel's theorem, this is in fact an isometry (up to a factor of $2\pi$). Its inverse is given by 
+\[\frac{1}{2\pi}\int_{\Im \sigma = -r}x^{i\sigma}v(\sigma)\ d\sigma.\]
+
+Notice that multiplication by $x^r$ has the effect of translating the domain of the Mellin transform down by $ir$.
+
+If $s \geq 0$, $H^{s,r}_b(\mo) \subseteq x^rL^2(\mo)$. We expect $H^{s,r}$ to have a characterization in terms of the Fourier transform, and indeed they do.
+\begin{prop}\label{FTMS}For $s \geq 0$, $H^{s,r}_b(\mo)$ is precisely the space of those $u \in x^rL^2_b(\mo)$ for which
+\[\hat{u}(\cdot-ir,y) \in L^2(\R;H^s(\R^n))\]
+and
+\[\hat{u}(\sigma-ir,y) \in \langle \sigma \rangle^{-s}L^2(\R^{n+1}).\]
+\end{prop}
+\begin{proof}We only prove the case $r=0$. $r \neq 0$ can be proved by the same reasoning or by multiplying by $x^r$. Taking the Fourier transform, we just need to show that
+\[\langle (\sigma,\eta)\rangle^{-s} v \in L^2(\R^{n+1})$ if and only if $\langle \sigma \rangle^{-s} v \in L^2(\R^{n+1})$ and
+\[\langle \eta \rangle^{-s}v \in L^2(\R^{n+1}).\] This is clear since
+\[\langle \sigma \rangle, \langle \eta \rangle\langle (\sigma,\eta)\rangle \lesssim \langle \sigma \rangle + \langle \eta \rangle\]
+and $s \geq 0$.\end{proof}
+\end{document}

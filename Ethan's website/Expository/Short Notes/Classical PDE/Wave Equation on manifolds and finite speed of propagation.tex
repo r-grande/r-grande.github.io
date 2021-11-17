@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Wave equation on manifolds and finite speed of propagation}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+Let $M$ be a Riemannian manifold (without boundary), and let $\Delta$ be the (negative of) the Laplace-Beltrami operator. In this note, we consider the wave equation
+\[\partial_t^2 u + \Delta u = 0,\]
+with initial data $u(x,0) = v(x)$, $\partial_t u(x,0) = v'(x)$. 
+
+The main purpose of these notes is to prove a general existence and uniqueness theorem, and to examine some properties of solutions, namely finite speed of propagation. We will not spend much time in the compact setting, and give a fairly simple (albeit non-elementary) proof. The main techniques used will be energy methods. As a corollary, we obtain that $\Delta$ is essentially self-adjoint on a complete manifold.
+
+There are myriad ways to prove the following theorem. We use a functional-anayltic approach, and comment on a few other methods after.
+\begin{thm}[Existence and Uniqueness for compact manifolds]\label{exuqq}Let $M$ be a compact Riemannian manifold without boundary. Then for every $v,v' \in \mathcal D'(M)$ there exists $u \in C^\infty(\R;\mathcal D'(M))$ which solves the wave equation
+\[\partial_t^2 u + \Delta u = 0\] as distributions on $M$ and $u(x,0) = v(x)$, $\partial_t u(x,0) = v'(x)$ as distributions. Moreover, if $v,v' \in H^s(M)$ for some $s \in \R$, then $u(\cdot, t) \in H^s(M)$, too. In particular if $v,v' \in C^\infty(M)$, $u \in C^\infty(M\times \R)$.\end{thm}
+\begin{proof}We use the fact that $\Delta$ has an $L^2$ orthonormal basis of smooth eigenfunctions, $e_1,e_2,\ldots$, with associated real, non-negative eigenvalues $\lambda_i$. This affords $\Delta$ with a borel functional calculus, i.e. we can make sense of the symbol $f(\Delta)$ for any Borel function $f:\R \to \C$. Explicitly we define
+\[f(\Delta)e_i = f(\lambda_i)e_i,\] and extend by linearity. We may define $(1+\Delta)^s$ via the functional calculus. Using that $(1+\Delta)^s$ is also an elliptic pseudodifferential operator (see \cite[Chapter 2]{Shub}), we see that $H^s(M)$ consists of those $v \in \mathcal D'(M)$ for which $(1+\Delta)^{-s}v \in L^2(M)$ i.e. those $v$ such that
+\[(1+\lambda_i)^{2s}|\langle v,\overline{e_i}\rangle|^2 < \infty,\]
+with the above expression also defining an equivalent norm on $H^s(M)$.
+If $v,v' \in \mathcal D'(M)$, then $v,v' \in H^s(M)$ for some $s \in \R$. 
+Set
+\[u(x,t) = \cos(t\sqrt{\Delta})v + \sqrt{\Delta}^{-1}\sin(t\sqrt{\Delta})v'.\]
+Then it is clear from the definition of the functional calculus that $u(x,t)$ solves the wave equation with $u(x,0) = v$, $\partial_t u(x,0) = v'$. Here, of course, we are interpreting the Borel function $\sqrt{x}^{-1}\sin(t\sqrt{x})$ to be extended continuously to be $t$ at $x=0$. Since the maps $t \mapsto \cos(tx)$ and $t \mapsto x^{-1/2}\sin(tx^{1/2})$ are smooth maps into bounded continuous functions, it is clear from the functional calculus that $u \in C^\infty(\R,H^s(M))$. $u$ is the unique solution. Indeed,
+\begin{align*}
+0 &= \langle u(x,t),\overline{e_i}(x)\rangle = \langle \partial_t^2 u(x,t) + \Delta u(x,t),\overline{e_i}(x)\rangle\\
+&= \partial_t^2 \langle u(x,t),\overline{e_i(x)}\rangle + \lambda_i\langle u(x,t),\overline{e_i(x)},\end{align*}
+which means that $\langle u(x,t),\overline{e_i(x)}$ is either of the form $A\cos(\sqrt{\lambda_i}t)+B\sin(\sqrt{\lambda_i}t)$ if $\lambda_i \neq 0$, or $A+Bt$ if $\lambda_i = 0$.
+Since $\cos(t\sqrt{x})$ and $x^{-1/2}\sin(tx^{1/2})$ are $0$ and $t$ at $x=0$ respectively, we can rewrite \[A+Bt = A\cos(\sqrt{\lambda_i}t)+B\sqrt{\lambda_i}^{-1}\sin(\sqrt{\lambda_i}t)\] for $\lambda_i = 0$, too. Plugging in the initial conditions \[\langle u(x,0),\overline{e_i(x)}\rangle = \langle v,\overline{e_i}\rangle\] and \[\partial_t\langle u(x,0),\overline{e_i(x)}\rangle = \langle v',\overline{e_i}\rangle\]
+shows exactly what $A,B$ need to be.
+\end{proof}
+\begin{rk}\label{rk1}A slightly weaker version of this theorem can be proved in a slightly easier fashion (i.e. avoiding powers of $\Delta$). Namely, one can prove the theorem for initial data in $C^\infty(M)$ and $H^2(M)$ more generally without using powers of $\Delta$. This is enough to eventually show essential self-adjointness of $\Delta$. Let $D \subseteq L^2(M)$ denote the domain of $\Delta$, i.e. a domain on which $\Delta$ is closed. It is certainly true that $C^\infty(M) \subseteq D$. Since $\cos(t\sqrt{x})$ and $\sqrt{x}^{-1}\sin(t\sqrt{x})$ are bounded Borel functions, and thus if $v,v' \in C^\infty(M)$, one may define $u(x,t)$ as above an obtain (for instance using eigenfunction decompositions) that $u(x,t) \in C^\infty(\R;L^2(M))$, without passing to powers of $\Delta$. Since $\Delta f(\Delta) = f(\Delta)\Delta$ for any Borel $f$, it follows that $\Delta u(x,t)$ solves the wave equation with initial values $\Delta u(x,0) = \Delta v$, $\partial_t \Delta u(x,0) = \Delta v'$. Thus $\Delta u(x,t) \in L^2(M)$, too. Iterating, $\Delta^n u(x,t) \in C^\infty(\R;L^2(M))$ for all $n$. Since $\Delta^n$ is elliptic of order $2n$, it follows (from a version of elliptic regularity with parameter) that $u(x,t) \in C^\infty(\R;H^{2n}(M))$ for all $n$, and thus $u(x,t) \in C^\infty(M\times \R)$ by Sobolev embedding.
+
+If one knows that $\Delta:H^2(M) \to L^2(M)$ is Fredholm, then since $\im \Delta$ is closed, one sees that $D = H^2(M)$. From functional calculus (see \cite{Tao}), we know that $u(x,t) \in C^\infty(\R,H^2(M))$.\end{rk}
+\begin{rk}One can also give an alternative proof avoiding an eigenfunction decomposition, and thus the theory of powers of $\Delta$. One proof is much more in the flavour of microlocal analysis. One first solves the Wave equation approximately (i.e. modulo smooth terms), and then corrects these smooth terms via Duhamel's principle. See \cite[Chapter 6, Exercise 6.2]{GS}. Uniqueness follows for smooth intial data via energy methods (see below, or \cite{Tao}), and for distributional initial data via approximations.
+
+Another method is to explicitly construct a parametrix for the wave equation. A third method is to use energy methods and Galerkin approximations, such as in \cite[Chapter 7]{Evans} (the argument must be extended from $\R^n$, but this is not hard). Distributional data still needs to be handled by approximation.\end{rk}
+
+We would like to prove the previous theorem for non-compact manifolds. Unfortunately, the theorem would not be true. The key requirement is for $M$ to be complete.
+\begin{thm}[Existence and Uniqueness for complete manifolds]\label{exuq}Let $M$ be a complete Riemannian manifold without boundary. Then for every $v,v' \in \mathcal D'(M)$ there exists $u \in C^\infty(\R;\mathcal D'(M))$ which solves the wave equation
+\[\partial_t^2 u + \Delta u = 0\] as distributions on $M$ and $u(x,0) = v(x)$, $\partial_t u(x,0) = v'(x)$ as distributions. Moreover, if $v,v' \in H^s_{\text{loc}}(M)$ for some $s \in \R$, then $u \in C^\infty(\R;H^s_{\text{loc}}(M))$, too. In particular if $v,v' \in C^\infty(M)$, $u \in C^\infty(M\times \R)$.\end{thm}
+We will use Thereom~\ref{exuqq}, at least for the torus $\T^n$, together with the following important proposition, which proves the existence of domains of dependence for the wave equation and also finite speed of propagation.
+\begin{prop}[Finite speed of propagation]Let $M$ be a Riemannian manifold. Let $B_r(p)$ be the gesodesic ball of radius $R$ around $p$ (should it exist), and denote by $C_R(p)$ the (open) cone
+\[C_R(p) := \{(x,t) \in M\times \R\: x \in B_{R-t}(p)\}.\] Suppose $u \in C^\infty([0,r);\mathcal D'(M))$, and $u$ solves the wave equation \[\partial_t^2 u + \Delta u = 0\] on $C_R(p)$ with initial data $u(x,0) = 0$, $\partial_t u(x,0) = 0$. Then $u \equiv 0$ on $C_r(p)$. The statement $u$ solves the wave equation on $C_R(p)$ means that
+\[\langle \partial_t^2 u + \Delta u,\phi\rangle = 0\]
+for all $\phi \in C_c^\infty(C_{R-t}(p))$.\end{prop}
+\begin{proof}
+We first assume that $u \in C^\infty(M\times [0,r))$. Define the energy on a ball cone $C_r(p)$ by
+\[E(t) = \int_{B_{r-t}(p)}|\partial_t u|^2 + |\grad_x u|^2\ d\text{vol}.\] Then $E(0) = 0$. We will show that $E'(t) \leq 0$, at least for small time, which implies that $E(t) = 0$ for small time. Then we will iterate to show that $E(t) = 0$ for all $t \leq r$.
+
+We will use an integration in polar coordinates lemma. Denote by $S_r(p)$ the geodesic sphere of radius $r$
+\begin{lem}Let $M$ be a Riemannian manifold. If $p \in M$, and $\exp_p$ is a diffeomorphism from the Euclidean ball of radius $\epsilon$ onto $B_\epsilon(p)$, then if $u \in L^1(B_\epsilon(p))$, and $s < \epsilon$
+\[\int_{B_p(s)} u\ d\text{vol} = \int_0^s\int_{S_t(p)}u\ d\vol_{S_{t}}ds.\]\end{lem}
+\begin{proof}We may change coordinates in the geodesic ball into polar coordinates in $\R^n$. In these coordinates, the normal to $S_t(p)$ is the normal to the Euclidean sphere $S_t(p)$ by the Gauss lemma. Thus, denoting the metric by $g$, and integrating in polar coordinates
+\begin{align*}
+\int_{B_p(s)} u\ d\text{vol} = \omega_{n-1}\int_{0}^s\int_{S^{n-1}}u\sqrt{\det g}t^{n-1}\ d\theta dt.\end{align*}
+Here $\theta$ denotes a coordinate on $S^{n-1}$ and $\omega_{n-1}$ is its volume. Now we observe that in these coordinates, $\sqrt{\det g}t^{n-1}d\theta$ is the volume form of $S_{t}$. This is because in polar normal coordinates, the metric $g$ looks like
+\[\begin{pmatrix}1&0\\
+0&h\end{pmatrix}\]
+where $h$ is the metric of $S_{t}$, and the volume form of $tS^{n-1}$ is $t^{n-1}d\theta$. This completes the proof.\end{proof}
+
+Fix $p \in M$ and $R > 0$. Now, we may choose $\delta > 0$ small enough so that for all $q \in \overline{B_R(p)}$, $\exp_q$ is a diffeomorphism onto $B_\delta(q)$.
+Using the lemma we can write for $r < \epsilon$ small enough so that $v,v'$ are $0$ on $B_r(q)$,
+\[E(t) = \int_0^{r-t}\int_{S_s(q)} |\partial_t u|^2 + |\grad_x u|^2\ d\vol_{S_{s}}ds = \int_0^{r-t}F(s,t)\ ds.\]
+$d\vol_{S_{s}}$ is a smooth measure, and so $F(s,t) \in C^\infty([0,r)\times[0,r))$. Thus
+\[E'(t) = -F(r-t,t) + \int_0^{r-t}\partial_t F(s,t).\]
+We may compute that
+\begin{align*}
+\partial_t F(s,t) &= 2\int_{S_s(q)} \langle \partial_t^2 u,\partial_t u\rangle + \langle \grad_x \partial_t u,\grad_x u\rangle\\
+&=2\int_{S_s(q)} \langle \Delta u,\partial_t u\rangle + \langle\grad_x \partial_t u,\grad_x u\rangle\\
+&=2\int_{S_s(q)}\divg(\partial_t u \grad u) - \langle\grad_x \partial_t u,\grad_x u\rangle + \langle\grad_x \partial_t u,\grad_x u\rangle\\
+&= 2\int_{S_s(q)}\divg(\partial_t u \grad u).\end{align*}
+So, again using the lemma,
+\[\int_0^{r-t}\partial_t F(s,t) = 2\int_{B_{r-t}(q)}\divg(\partial_t u \grad u) = 2\int_{S_{r-t}(q)} \partial_t u\partial_n u,\]
+where $\partial_n$ denotes the normal derivative. By Cauchy-Schwarz,
+\[2\int_{S_{r-t}(q)} \partial_t u\partial_n u \leq \int_{S_{r-t}(q)} |\partial_t u|^2 + |\partial_n u|^2 \leq \int_{S_{r-t}(q)} |\partial_t u|^2 + |\grad_x u|^2 = F(r-t,t).\]
+So,
+\[E'(t) \leq F(r-t,t)-F(r-t,t) = 0.\] In particular, since $E(t) \geq 0$ and $E(0) = 0$, we have that $E(t) = 0$ for all $t < r$, and thus $u \equiv 0$ on $C_r(q)$. Since this is true for $q \in B_R(p)$ and $r < \epsilon$ small enough, we obtain $u \equiv 0$ on
+\[\{(x,t)\: x \in B_{R-t}, t \in [0,\delta)\}.\]
+
+Now we iterate. $u(x,\delta-s) = \partial_t u(x,\delta-s) = 0$ for $x \in B_{R-s}(p)$ and any $s > 0$. Since the $\delta$ we chose in the above argument still works for $B_{R-\delta-s}(p)$, we iterate to obtain that $u \equiv 0$ on
+\[\{(x,t)\: x \in B_{R-t}, t \in [0,2\delta).\] We iterate this $k$ times until $k\delta \geq R$, at which point we're done, and $u \equiv 0$ on $C_R(p)$.
+
+Now if $u \in C^\infty(\R;\mathcal D'(M))$, we will do the same thing, showing that $u$ is $0$ for short time, then iterating. Fix $p\in M$ and $R > 0$. Let $\delta$ be as before. Then $B_{\delta}(q)$ is diffeomorphic to a Euclidean ball. Put $B_{\delta}(q)$ inside some sufficiently large cube, which we identify as a torus $\T^n$. Let $\chi$ be a cutoff of $B_{\delta/2}(q)$ with support contained in $B_{\delta}(q)$. If $g_{ij}$ denotes the Riemannian metric in the Euclidean space, set
+\[\tilde{g}_{ij} = \chi g_{ij} + (1-\chi)\delta_{ij}.\] Then $\tilde{g}_{ij}$ is a Riemannian metric on $\T^n$. Let $\phi_k$ be a system of mollifiers on $\T^n$, and set 
+\[u_k(x,t) = (\chi(x)u(x,t))\ast\phi_k(t).\] Here of course we have identitified $u$ with its pullback to the chart. Now $u_k \to \chi u$ in $C^\infty(\R;\mathcal D'(\T^n))$, and $\chi u = u$ on $B_{\delta/2}(q)\times\R$. Furthermore, $u_k \in C^\infty(\T^n \times \R)$ and  on $B_{\delta/2}(q)\n B_R(p)\n\{\chi = 1\}$,
+\begin{align*}u_k(x,0) &= u(x,0) = 0\\
+\partial_t u_k(x,0) &= \partial_t u(x,0) = 0.\end{align*}
+Since $g_{ij} = \tilde{g}_{ij}$ on $B_{\delta/2}(q) \n B_R(p) \n \{\chi = 1\}$, if $k$ is large enough,
+\[\partial_t^2 u_k + \Delta u_k = \partial_t^2 u + \Delta u\]
+(we need to take $k$ large enough so that if $\psi \in C_c^\infty(B_{\delta/2}(q))$ then $\phi_k\ast \psi$ is supported inside the set $\{\chi \equiv 1\}$). Here of course $\Delta$ is the Laplacian on $\T^n$ with the new metric, which agrees with $\Delta$ on $M$ inside $\{\chi = 1\}$.
+
+Since $u_k$ are smooth, we know from the previous part of the proof that $u_k \equiv 0$, at least on $C_R(p)\n C_{\delta/2}(q)$, thus $u \equiv 0$ there, too (by this we mean that the distribution $u(\cdot, t)$ is $0$ when acting on $C_c^\infty(B_{R-t}(p)\n C_{\delta/2-t}(q))$).
+
+Thus as above, $u$ is $0$ for time at least $\delta/2$ on $C_R(p)$. We then iterate to show that $u \equiv 0$ on $C_R(p)$.\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{exuq}]
+The first step is to solve the wave equation for initial data in $C_c^\infty(M)$ and show that a solution is in $C^\infty(M\times \R)$.
+
+The strategy (c.f. \cite{Tao}) will to use the finite speed of propogation to reduce to the compact case. Finite speed of propagation already shows uniqueness. We will show the following:
+\begin{claim}If $v,v' \in \mathcal D'(M)$, then for all $p \in M$ and $R > 0$, there is $u \in C^\infty([0,\infty);\mathcal D'(M))$ which solves
+\[\partial_t^2 u + \Delta u = 0\] on $C_R(p)$ with $u(x,0) = v(x)$ and $\partial_t u(x,0) = v'(x)$. Furthermore, if $v,v' \in H^s_{\text{loc}}(M)$, then $u(\cdot,t)$ is of class $H^s_{\text{loc}}(B_{R-t}(p))$.\end{claim}
+First we will show how the claim proves the Theorem. The claim shows that we can solve the wave equation in all cones. We simply define a global solution by setting $u(x,t) = w(x,t)$ for $(x,t)$ belongs to some cone, and $w$ a solution in the cone as constructed in the claim. To be precise, if $(x,t) \in C_R(p)$, then if $w(x,t)$ is a solution in $C_R(p)$, we set $u(\cdot, t) = w(\cdot,t)$ when acting on $C^\infty_c(B_{R-t}(p))$. This is well-defined. In fact, let $w$ be a solution in $C_R(p)$ and $\tilde{w}$ be a solution in $C_S(q)$, and let $B_r(x) \in B_{R-t}(p)\n B_{S-t}(q)$. Then $C_{r+t}(x) \subseteq C_R(p)\n C_S(q)$. Since $w,\tilde{w}$ are both solutions in $C_{r+t}(x)$ with the same initial data, then by finite speed of propagation they must agree on $C_{r+t}(x)$, and hence $w(\cdot, t) = \tilde w(\cdot, t)$ when acting on $C_c^\infty(B_r(x))$. This shows that $u$ is well-defined. This solves the wave equation for all positive time. However, we can also solve the wave equation for all negative time by the same argument. That the solution is smooth at $0$ again follows from finite speed of propagation, since we can solve the wave equation in $(-\infty,1]$, as well.
+
+Now we prove the claim. We will show that for all $p \in M$ there exists a non-increasing function $\epsilon(R)$ so that if $v,v' \in \mathcal D'(M)$, there is a solution $u \in C^\infty([0,\epsilon(R);\mathcal D'(M))$ to the wave equation on \[\{(x,t)\: x \in B_{R-t}(p), t \in [0,\epsilon(R))\}\] with intial data $v,v'$. Then we may interate the argument on $B_{R-\epsilon(R)-s}(p)$ (for any $s > 0$) to show that there is a solution $\tilde{u}$ to the wave equation on
+\[\{(x,t)\: x \in B_{R-\epsilon(R)-s-t}(p), t \in [0,\epsilon(R))\}\] with intial data $u(x,\epsilon(R)-s)$. Now $u(x,t)$ and $\tilde{u}(x,t)$ both solve the wave equation, 
+at least for $t \in [\epsilon(R)-s,\epsilon(R))$ and appropriate $x$, and have the same initial data at time $\epsilon(R)-s$, and thus must be the same on these domains. Thus $\tilde{u}$ extends $u$ by at least time $\epsilon(R)-s$ into the future in the cone $C_R(p)$. We now need to piece them together outside the cone, and we do this bruttaly. For $r > 0$ let $\chi$ be a cutoff of $C_{R-r}(p)$ supported in $C_{R}(p)$. Then $\chi u$ and $\chi \tilde{u}$ are $0$ outside of $C_{R}(p)$, and thus agree there, and are equal inside (at least for the times for which they're both defined). Thus we can peice them together to obtain that $\tilde{u}$ extends $u$ into the future (for a time as close to $\epsilon(R)$ as we like). Of course, we've shrunken the size of the set on which they are solutions are defined, but this will not matter in the end. 
+
+Now we iterate this argument, each time increasing the time a solution exists by time as close to $\epsilon(R)$ as we like, and each shrinking the area on which the solution is defined. If we shrink by less and less each time, we eventually will find a solution on all of $C_{R/2}(p)$. Since $R$ was arbitrary, we could have started with $2R$ to find a solution on $C_{R}(p)$.
+
+Now to find $\epsilon(R)$. Choose $\delta > 0$ small enough so that $\exp_q$ is a diffeomorphism from the Euclidean ball of radius $\delta$ onto $B_\delta(q)$ for all $q \in B_R(p)$. Write $B_\delta(0)$ for the ball in Euclidean space diffeomorphic to $B_\delta(q)$ via $\exp_q$. Then there is some cube containing $B_\delta(0)$. Identify this cube with the torus. Let $\chi$ be a smooth cutoff of $B_{\delta/2}(0)$ with supported contained inside $B_{\delta}(0)$ inside the torus. Consider the metric on the cube (and hence the torus) given by
+\[\tilde{g_{ij}} = \chi g_{ij} + (1-\chi)\delta_{ij},\] where $g_{ij}$ is the metric on $B_\delta(0)$ induced via $\exp_q$ from $M$. If $v,v' \in \mathcal D'(M)$, denote also by $v$ its pullback to $B_{\delta}(0)$. Since the torus is compact, We may then solve the wave equation on the torus with the metric $\tilde{g_{ij}}$ with initial data $\chi v$. Call this solution $u_q$. Since $\tilde{g_{ij}} = g_{ij}$ in $B_{\delta/2}(0)$, the pushforward of $u_q$ to $M$, defined on $B_{\delta}\times[0,\infty)$, solves the wave equation in $C_{\delta/2}(q)$ with initial data $v,v'$.
+
+Now we may define $u = u_q$ in $C_{\delta/2}(q)$. This is well-defined for the same reasons as above, namely if $(x,t) \in C_{\delta/2}(q)\n C_{\delta/2}(q')$, then $(x,t) \in C_{\delta'}(x)$, and $u_q,u_{q'}$ solve the wave equation in $C_{\delta'}(x)$ with the same initial data. The collection of cones $C_{\delta/2}(q)$ cover
+\[\{(x,t)\: x \in B_{R-t}(p), t \in [0,\delta/2)\},\]
+so we thus have a solution in this region. By definition $\delta$ can only increase as $R$ decreases, and so the claim is proved. That the regularity persists is obvious.
+\end{proof}
+\begin{rk}Completeness was used every time the existence of $B_R(p)$ was; on a general Riemannian manifold, $B_R(p)$ does not make sense for all $p$ and $R$.\end{rk}
+
+\begin{cor}Let $M$ be a complete Riemmanian manifold. Then $\Delta$ is essentially self-adjoint. In particular, $\Delta$ has a functional calculus.\end{cor}
+\begin{proof}We have solved the wave equation on $M$ by Theorem~\ref{exuq}. The corollary now follows from \cite[Theorem 7, Exercise 29]{Tao}.\end{proof}
+
+
+
+
+
+
+\begin{bibdiv}
+\begin{biblist}
+
+\newcommand{\perafter}[1]{#1.}
+
+\BibSpec{blog}{%
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{}{. } {url}
+}
+
+\BibSpec{book}{
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{. }{} {publisher}
+  +{, }{} {address}
+  +{, }{\perafter} {year}
+}
+
+\bib{Evans}{book}{
+	author = {Evans, Lawrence}
+	title = {Partial Differential Equations}
+	year = {2010}
+	publisher = {American Mathematical Society}
+	address = {Rhode Island}
+		}
+
+\bib{GS}{book}{
+      author = {Grigis, Alain},
+      author = {Sj\"orstrand, Johannes},
+      title = {Microlocal Analysis for Differential Operators},
+      year = {1994},
+      publisher = {Cambridge University Press},
+      address = {Cambridge},
+			}
+			
+\bib{Shub}{book}{
+      author = {Shubin, Mikhail},
+      title = {Pseudodifferential Operators and Spectral Theory},
+      year = {2001},
+      publisher = {Springer-Verlag},
+      address = {Berlin},
+			}
+
+\bib{Tao}{blog}{
+      author = {Tao, Terence},
+      title = {The spectral theorem and its converses for unbounded symmetric operators},
+      url = {\url{https://terrytao.wordpress.com/2011/12/20/the-spectral-theorem-and-its-converses-for-unbounded-symmetric-operators/} }
+			}
+
+\end{biblist}
+\end{bibdiv}
+\end{document}

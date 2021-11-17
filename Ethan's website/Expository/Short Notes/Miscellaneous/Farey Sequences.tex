@@ -1,0 +1,68 @@
+ \documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/mySettings}
+\usepackage{appendix}
+\renewcommand{\sp}{\textrm{sp}}
+\usepackage{chngcntr}
+
+\title{Farey Sequences}
+\author{}
+\date{}
+
+\counterwithout{thm}{section}
+
+\begin{document}
+Let $m \in \N_{\geq 1}$ be a natural number, and consider the set $S_m$ of all rational numbers $\frac{a}{b} \in [0,1]$ such that if $\frac{a}{b}$ is written in lowest terms, $1 \leq b \leq m$.\footnote{We take the convention that $0 = 0/1$ is written in lowest terms and no other representation of $0$ is.}
+\begin{defn}The Farey sequence $F_m$ is the sequence of elements of $S_m$ in increasing order.\end{defn}
+For example,
+\begin{align*}
+F_1 &= \left(\frac{0}{1},\frac{1}{1}\right)\\
+F_2 &= \left(\frac{0}{1},\frac{1}{2},\frac{1}{1}\right)\\
+F_3 &= \left(\frac{0}{1},\frac{1}{3},\frac{1}{2},\frac{2}{3},\frac{1}{1}\right)\\
+\end{align*}
+We will say that two rational numbers $\frac a b < \frac c d$ are \emph{neighbours} if $\frac a b$ and $\frac c d$ are consecutive elements in some Farey sequence $F_m$ (which of course may be taken without loss of generality to be $F_{\max(b,d)}$). We will say that they are neighbours in $F_m$ if they appear consecutively in $F_m$.
+
+\begin{defn}We define the mediant $\frac a b \oplus \frac c d$ of two fractions written in lowest terms by
+\[\frac a b \oplus \frac c d = \frac{a+c}{b+d}.\]\end{defn}
+
+\begin{lem} Suppose $\frac ab < \frac cd$ and $bc-ad = 1$. Then $\frac a b \oplus \frac c d$ is written in lowest terms.\end{lem}
+\begin{proof}
+If either of $a, \ c = 0$, then this is trivial. Otherwise, $a+c \geq 1$, and it suffices to find integers $x,y$ for which $x(a+c) + y(b+d) = 1$, since then $a+c, \ b+d$ are coprime. The condition $bc-ad = 1$ implies that $a,b$ are coprime, so we may find $u,v$ such that $ua + vb = 1$. Observe that $(u+kb)a + (v-ka)b = 1$ for any integer $k$. Letting $x = u+kb, \ y = v-ka$, we need to find $k$ with
+\[1 = (u+kb)c + (v-ka)d.\] Using $bc-ad = 1$, this is equivalent to $k = 1-uc-vd$.\end{proof}
+
+\begin{prop}Suppose $0 \leq \frac ab < \frac cd \leq 1$ are written in lowest terms. Then
+\[\frac ab < \frac{a}{b}\oplus \frac{c}{d} < \frac{c}{d}.\] Next, assume $bc-ad = 1$ and suppose $\frac ef$ is written in lowest terms and satisfies $\frac ab < \frac ef < \frac cd$. Then $f \geq b+d$. If equality holds and $f = b+d$, then $e = a+c$, i.e. $\frac{e}{f} = \frac ab \oplus \frac bd$ is the mediant. \end{prop}
+\begin{proof}
+One easily checks the inequality
+\[\frac{a}{b} < \frac{a}{b}\oplus \frac{c}{d} < \frac{c}{d}.\]
+
+If $a = 0$, then the second set of statements is obvious. So, we may suppose $a > 0$. Let us suppose first $d \geq b$.
+
+Using that $bc-ad = 1$, the inequality $\frac ab < \frac ef < \frac cd$ may be rewritten $0 < d(eb-fa) < f$. Since $eb-fa$ is an integer and $\frac{a}{b} < \frac{e}{f}$, $1 \leq eb-fa \in \N$. If $eb-fa \geq 2$, then $0 < 2d < f$, and so using the assumption $d \geq b$, the conclusion $f \geq b+d$ follows. If instead $eb-fa = 1$, one easily checks that $e' = a+c$ and $f' = b+d$ satisfy $e'b-f'a = 1$, and so $(e-e')b = (f-f')a$, i.e.\ both $(e-e')b$ and $(f-f')a$ are the same common multiple of $a$ and $b$. Since $a$ and $b$ are coprime, this forces $(e-e')b = kab = (f'-f')b$ for some $k \in \Z$, i.e.\
+\[e = (1+k)a + c, f = (1+k)b + d.\] Since $eb-fa = 1$, the inequality $d(eb-fa) < f$ implies
+\[d < f = (1+k)b + d,\] and so $k > -1$. Since $k$ is an integer, $k \geq 0$, and so $f = (1+k)b + d \geq b+d$, as desired. if $f = b+d$, then this forces $k = 0$, and so $e = a+c$, as desired.
+
+In the case $b \geq d$, one uses a similar argument, except one rewrites the inequality the other way as $0 < b(fc-ed) < f$, and uses $fc-ed$ in place of $eb-fa$, $c$ instead of $a$ and $d$ instead of $b$, where appropriate.\end{proof}
+
+\begin{thm}Two rational numbers $0 \leq \frac ab < \frac cd \leq 1$, written in lowest terms, are neighbours if and only if $bc-ad = 1$.\end{thm}
+\begin{proof}
+If $bc-ad = 1$, then by the proposition the only way for there to be a rational $\frac ef$, in lowest terms, strictly between $\frac ab$ and $\frac bc$ is if $f \geq b+d > \max(b,d)$, and hence $\frac{a}{b}$ and $\frac{c}{d}$ are neighbours in $F_{m}$ for $\max(b,d) \leq m < b+d$.
+
+Conversely, we will  prove that if two rational numbers are neighbours, then $bc-ad = 1$. We will show this by induction on the Farey sequence $F_m$, showing that if two rationals $\frac{a}{b} < \frac{c}{d}$ in lowester terms are neighbours in $F_m$, then $bc-ad = 1$. It is certainly true for $F_1$. Now, to obtain $F_{m}$ from $F_{m-1}$, between two neigbours $\frac{a}{b} < \frac{c}{d}$ (written in lowest terms) one either inserts no new rationals, or one inserts at least one new rational $\frac{e}{m}$ (written in lowest terms) between them. A priori, one could insert multiple rationals, but we will show shortly this is not the case. If one inserts no new rationals, then $\frac{a}{b} < \frac{c}{d}$ remain neighbours in $F_m$ and by induction $bc-ad = 1$. Otherwise, $\frac{e}{m}$, in lowerst terms, is strictly between them. Since $bc-ad = 1$, by the proposition the mediant $\frac{a}{b} \oplus \frac{c}{d}$ also lies strictly between $\frac{a}{b}$ and $\frac{c}{d}$, and by the lemma is written in lowest terms. Since $\frac{a}{b}$ and $\frac{c}{d}$ are neighbours in $F_{m-1}$, it follows that their mediant can only belong to some $F_k$ for $k \geq m$, and hence $b+d \geq m$. But by the proposition, $m \geq b+d$, and so $m = b+d$. Invoking the proposition again, it follows that $e = a+c$, and thus in this case $\frac{e}{m}$ is the unique rational number in $F_m$ strictly between $\frac{a}{b}$ and $\frac{c}{d}$, and coincides with the mediant $\frac a b \oplus \frac c d$. In particular $\frac{a}{b} < \frac{e}{m}$ and $\frac{e}{m} < \frac{c}{d}$ are neighbours in $F_m$. One readily checks ith $e = a+c$ and $m = b+d$ that \[be-fa = fc-ed = bc-ad = 1,\] which completes the inductive step.
+\end{proof}
+
+\begin{cor}Let $\frac{a}{b} < \frac{p}{q} < \frac{c}{d}$, written in lowest terms, be consecutive elements in a Farey sequence $F_m$ Then $\frac{p}{q} = \frac{a}{b}\oplus \frac{c}{d}$.\end{cor}
+\begin{proof}By assumption, $\frac ab < \frac pq$ and $\frac pq < \frac cd$ are neighbours, and so, assuming eveything is in lowest terms, by the theorem
+\begin{align*}
+bp - aq &= 1\\
+-dp + cq &= 1.\end{align*}
+This is a linear system in $p$ and $q$ with $a,b,c,d$ as coefficients. Multiplying the first equation by $c$, and the second by $a$ and adding them, and then multiply the first equation by $d$ and the second by $b$ and adding them yields the pair of equations.
+\begin{align*}(bc-ad)p& = a+c\\
+(bc-ad)q &= b+d\end{align*}
+Since $\frac{a}{b} \neq \frac{c}{d}$, $bc-ad \neq 0$, and thus 
+\[\frac{p}{q} = \frac{a+c}{b+d} =  \frac ab \oplus \frac cd,\] as desired.
+\end{proof}
+
+\end{document}
+

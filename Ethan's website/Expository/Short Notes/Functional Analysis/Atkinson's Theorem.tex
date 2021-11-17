@@ -1,0 +1,135 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/mySettings}
+
+\title{Atkinson's Theorem}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+In this note we give a proof of a version of Atkinson's Theorem for Fredholm operators on Banach spaces.
+
+Recall that if $V,W$ are Banach spaces, a bounded operator $T:V\to W$ is called Fredholm if $\ker T$ and $\cok T = W/\im T$ are finite dimensional, and $\im T$ is closed. In fact, $\cok T$ finite-dimensional implies that $\im T$ is closed (see Lemma~\ref{op}). If $V=W=H$ is a Hilbert space, then $T:H\to H$ is Fredholm if $\ker T$ is closed, $\im T^\bot$ is closed, and $\im T$ is finite-dimensional. None of these conditions is redundant since we need to assume that $\im T$ is closed to have an isomorphism $\cok T \to \im T^\bot$.
+
+We will also denote by $U'$ the continuous dual space to the normed vector space $U$.
+
+We recall Atkinson's Theorem which says:
+\begin{thm}[Atkinson]A bounded operator on a Hilbert space $T:H \to H$ is Fredholm if and only if there exist $R,S$ such that $I-RT$ and $I-TS$ are compact.\end{thm}
+\begin{rk}We remark that we can always assume $R=S$ in the above. Indeed, if $RT = I-K_1$ and $TS = I-K_2$, then notice that
+\[S-K_1S = (I-K_1)S = (RT)S = R(TS) = R(I-K_2) = R-RK_2,\]
+and so $S-R = K_3$ is compact, and hence
+\[ST = RT + K_3T = I -I_1+K_3T,\] where the sum of the latter two operators is compact, and similarly for $TR$.\end{rk}
+We give a quick proof.
+\begin{proof}Suppose $R,S$ exist as above. If $\ker T$ were infinite-dimensional, we could extract an infinite orthonormal sequence $v_n \in \ker T$. Then $RTv_n = 0 = v_n-K_1v_n$. Passing to a subsequence of $K_1v_n$, we see that $v_{n_k}$ is convergent, which contradicts orthogonality. Observe that $\im T^\bot = \ker T^\ast$, and that $S^\ast T^\ast = (TS)^\ast = I-K_2^\ast$. $K_2^\ast$ is compact since it is also the limit of finite-rank operators (an alternative, more general, proof is given below in Lemma~\ref{comp}). Thus we apply the previous argument to $T^\ast$ to conclude that $\im T^\bot$ is finite-dimensional.
+
+Next we show that $\im T$ is closed. Suppose $v_n = Tw_n \to v$. Without loss of generality, we may assume that $w_n \in \ker T^\bot$. Then $Rv_n = RTw_n = w_n -K_1w_n \to Rv$. First assume $\sup_n \norm{w_n} = \infty$. Then passing to a subsequence,  we may assume $Tw_n/\norm{w_n} \to 0$, and hence $RTw_n/\norm{w_n} = w_n/\norm{w_n} - K_1w_n/\norm{w_n} \to 0$. Since $K_1$ is compact, passing to a futher subsequence, we obtain that $w_n/\norm{w_n}$ is convergent to some $u$, with $\norm{u} = 1$. Thus $Tu = \lim Tw_n/\norm{w_n} = 0$. But $u \in \ker T^\bot$, and so $u = 0$, too, a contradiction. Thus the $w_n$ are unifomrly bounded. Then $w_n - K_1w_n = Rv_n \to Rv$, and so passing to a subsequence and using that $K_1$ is compact, $w_n \to w$, and $Tw = \lim Tw_n = v$, and so $v \in \im T$.
+
+Conversely, if $T$ is Fredholm, then $T|_{\ker T^\bot}:\ker T^\bot \to \im T$ is invertible. Let $R$ be its inverse, which is bounded by the open mapping theorem since $\im T$ is closed and hence a Hilbert space. Since $\im T$ is closed, $H = \im T\oplus \im T^\bot$, and thus we may extend $R$ to a map on all of $H$ by setting $R|_{\im T^\bot} \equiv 0$. Considering the cases $v \in \ker T$ and $v \in \ker T^\bot$ separately, it is clear that $RTv = I-P_{\ker T}$. Here, $P_V$ denotes the projection onto a subspace $V$, which is finite rank (and hence compact) if $V$ is finite-dimensional, as is in the given case. Similarly, consider $v \in \im T$ and $v \in \im T^\bot$ seperately, $TR = I-P_{\im T^\bot}$. This completes the proof.\end{proof}
+
+We now state the generalization to Banach spaces.
+\begin{thm}[Banach Space Atkinson]A bounded operator between Banach spaces $T:V \to W$ is Fredholm if and only if there exist $R,S$ such that $I-RT$ and $I-TS$ are compact.\end{thm}
+For Banach spaces, an operator is compact if the image of the unit ball is precompact, i.e. every bounded sequence gets mapped to one which a convergent subsequence.
+
+\begin{proof}The idea is to mimic the proof for Hilbert spaces. We will mention the subsitutes to constructions used in Hilbert spaces and prove them as lemmas after the proof.
+
+First suppose that $I-RT$ and $I-TS$ are compact. To prove that $\ker T$ is finite-dimensional we need only find a substitute for orthonormality. This is given by the so-called Riesz lemma (Lemma~\ref{riesz}), a corollary of which asserts that if $\ker T$ is infinite-dimensional, there exists a sequence $v_n$ with $\norm{v_n} = 1$ and $\norm{v_n-v_m} \geq 1/2$ for any $n\neq m$. In particular no subsequence of $v_n$ is convergent, and the argument above goes through.
+
+We now need to prove that $\cok T$ is finite-dimensional, which also implies that $\im T$ is closed by Lemma~\ref{op}. By Lemma~\ref{dual}, it suffices to show that $(\cok T)'$ is finite-dimensional.
+Denote (suggestively) by $\im T^\bot \subseteq W'$ the set of all functionals vanishing on $\im T$. Ignoring the topology for now, we should have an isomorphism $\im T^\bot \leftrightarrow (\cok T)'$, since any functional vanishing on $\im T$ induces one on $\cok T$ and vice-versa. Lemma~\ref{bounded} asserts that this is in fact an isometry of normed spaces (with the operator nom).
+
+So we need to prove that $\im T^\bot$ is finite-dimensional. We need a substitute for adjoints on Hilbert spaces. Fortunately, these exist: if $A:X\to Y$, we may define its adjoint $A^\ast: Y' \to X'$ by $A^\ast(\phi)= \phi\circ A$. It is easy to check that $A^\ast$ is bounded if $A$ is. It is also clear that $\im T^\bot = \ker T^\ast$, that $I^\ast = I$ and that $(AB)^\ast = B^\ast A^\ast$ if $B:Z\to X$ and $A:Y \to Y$. What is slightly harder to check is that if $K:X\to Y$ is compact, then $K^\ast:Y' \to X'$ is compact. This is the content of Lemma~\ref{comp}.
+
+With this, we observe as in the case for Hilbert spaces that $T^\ast$ satisfies the hypotheses of Atkinson's theorem, and so $\ker T^\ast = \im T^\bot \iso \cok T$ is finite-dimensional.
+
+To prove the converse, we need a substitute for orthogonal complements. Unfortunately these don't exist generically for even closed subspaces of Banach spaces, but they do for the cases that we need. Lemma~\ref{compl} provides for this. Given this, we may write $V = \ker T + X$, where $X \n \ker T = 0$, $X$ is closed, and $W = \im T + Y$, where $Y\n \im T = 0$ and $Y$ is finite-dimensional and closed, and furthermore the projections onto each summand (which are well-defined because each $v \in V$ and $w \in W$ decomposes uniquely) are bounded. With this set up, the proof of the converse for Hilbert spaces goes through nearly verbatim. \end{proof}
+
+\section{Lemmas}
+We now prove the various lemmas used in the proof.
+
+\begin{lem}\label{op}Suppose $V,W$ are Banach spaces, and $T:V \to W$ is bounded. If $\dim \cok T < \infty$, then $\im T$ is closed.\end{lem}
+\begin{proof}
+Quotienting out $V$ by $\ker T$, and replacing $T$ by the map on the quotient space (which is still bounded by Lemma~\ref{bounded}) does not change $\im T$, but now we may consider $T$ to be injective.
+
+Pick a basis $\{w_i+\im T\}$ of $\cok T = W/\im T$. Rescaling, we may assume that $\norm{w_i} = 1$. Since $\cok T \iso \C^d$ for some $d < \infty$, putting $\norm{\sum a_i(w_i+\im T)}' = \sup |a_i|$ gives a norm on $\cok T$, which is equivalent to the quotient norm on $\cok T$.
+Define a norm on $\C^d \oplus V$ by
+\[\norm{(x,v)} = \sup_{i} |x_i| + \norm{u}.\]
+Notice that this norm makes $\C^d \oplus V$ into a Banach space since both $\C^d$ and $V$ are, and convergence with respect to the norm on $\C^d \oplus V$ is just convergence with respect both convergence in $\C^d$ and $V$.
+
+We define a map
+\[\C^d\oplus V \to W\] by
+\[(a_1,\ldots,a_d,u) \mapsto a_1w_1+\cdots + a_dw_d + Tv.\]
+We will show that this map is a bounded linear bijection, and hence an isomorphism by the open mapping theorem. Since $V$ is certainly a closed subspace of $\C^d\oplus V$, its image under the isomorphism, which is precisely $\im T$, is closed in $W$, which is what we need to show.
+
+This map is clearly linear. It is also injective since $a_1w_1+\cdots a_dw_d + Tv = 0$ means that $a_1w_1+\cdots a_dw_d \in \im T$, which means that 
+\[a_1(w_1+\im T)+\cdots a_d(w_d+\im T) = 0\] which means that all $a_i = 0$. We can thus conclude that $Tv = 0$, which means that $v=0$. It is also surjective since if $w\in W$, then
+\[w+\im T = a_1(w_1+U)+\cdots a_d(w_d+U)\] for some $a_i$, in which case we may set
+\[w'= w-(a_1w_1+\cdots a_dw_d) \in \im T,\]
+and hence $w' = Tv$ for some $v \in V$.
+
+Lastly, we show boundedness. This is easy since
+\[\norm{a_1w_1+\cdots a_dw_d + Tv} \leq d\sup |a_i| + \norm{Tv} \leq (d+\norm{T})\norm{(a_1,\ldots,a_d,v)}.\]\end{proof}
+\begin{rk}It may seem as though considering $T$ is redundant. However, if $U \subseteq V$ is a subspace of a Banach space, and $V/U$ is finite-dimensional, then it's not necessarily true that $U$ is closed. Indeed, consider $\ell^2(\C)$. Extend any orthonormal basis to a vector space basis by adding on a non-empty (in fact uncountable) collection of vectors $\{v_{\alpha}\: \alpha \in A\}$. Let $U$ be the subspace spanned by all the orthonormal basis vectors and all but one of the $v_\alpha$. Then $\dim \ell^2(\C)/U = 1$, but $U$ is dense in $\ell^2(\C)$, and thus is in particular not closed.\end{rk} 
+
+\begin{lem}{\label{comp}}Suppose $V,W$ are Banach spaces and $K:V\to W$ is compact. Then $K^\ast:W' \to V'$ is compact as well.\end{lem}
+\begin{proof}
+Suppose $\phi_n \in W'$ are uniformly bounded in the operator norm. Then by definition $K^\ast(\phi_n) = \phi_n\circ K$, and so we need to show that $\phi_n\circ K$ has a uniformly Cauchy subsequence.
+
+By compactness of $K$, $L = \overline{K(\overline{B(0,1)})}$ is compact in $W$. Since the $\phi_n$ are uniformly bounded in the operator norm and are linear, they are equicontinuous. In particular by Arzela-Ascoli, and passing to a subsequence without changing notation, we may assume that $\phi_n|_{L}$ are uniformly Cauchy, i.e. for all $\epsilon > 0$ if $m,n$ are large enough, then for all $y \in L$,
+\[|\phi_n(y)-\phi_m(y)| < \epsilon.\] This means that for all $x \in V$, $K(x/|x|) \in L$ and so
+\[|\phi_n(K(x))-\phi_m(K(x))| < |x|\epsilon,\]
+i.e. the family of functionals $\phi_n\circ K$ are Cauchy in the operator norm, which is what we needed to show.
+\end{proof}
+\begin{lem}[Riesz]\label{riesz}Suppose $V$ is a Banach space and $U \subsetneq V$ is a closed proper subspace. For $v \in V$ set $\norm{v+U} = \inf_{u \in U} \norm{v-u}$. Then for all $\epsilon > 0$ there exists $v \in V$ with $\norm{v} = 1$ and $\norm{v+U} \geq 1-\epsilon$.\end{lem}
+As a corollary we get the substitute for orthonormality
+\begin{cor}\label{subs}If $V$ is an infinite-dimensional Banach space, then there exists a sequence in $v_n$ with $\norm{v_n} = 1$ and $\norm{v_n-v_m} \geq 1/2$ whenever $v \neq m$.\end{cor}
+\begin{proof}[Proof of Lemma~\ref{riesz}]We try the only thing we can. We know since $U$ is closed that there exists $x \in V$ with $\norm{x+U} = \rho > 0$. We only have access to $x$ and $U$, so the only thing we can do is take linear combinations of $x$ and things in $U$. Since $U$ is invariant under dilation, all things are of the form
+\[v = \frac{x-u}{\lambda}.\] If we want $\norm{v} = 1$, we must have $\lambda = \norm{x-u} \geq \rho > 0$. We also want $\norm{(x-u)\lambda^{-1}+U} = \lambda^{-1}\norm{x+U} = \lambda^{-1}\rho\geq 1-\epsilon$. The only way this can happen is if $\lambda \leq \rho(1-\epsilon)^{-1}$. Since $(1-\epsilon)^{-1} > 1$, there is enough room to find some $u \in U$ with $\lambda = |x-u| \leq (1-\epsilon)^{-1}\rho$.\end{proof}
+\begin{proof}[Proof of Corollary~\ref{subs}]Let $v_1 \in V$, $\norm{v_1} = 1$, and set $V_1 = \vspan(v_1)$. Then $V_1$ is finite-dimensional, and thus closed, and so there exists $v_2 \in V$, $\norm{v_2} = 1$ and $\norm{v_2+V_1} \geq 1/2$. Set $V_2 = \vspan(v_1,v_2)$. Then we can find $v_3 \in V$ with $\norm{v_3} = 1$ and $\norm{v_3+V_2} \geq 1/2$. Continue in this fashion to define $v_n$. Then if $n < m$ $\norm{v_n-v_m} \geq \norm{v_m+V_n} \geq 1/2$.\end{proof}
+
+\begin{lem}\label{dual}Suppose $V$ is a Banach space. If $V'$ is finite-dimensional, so is $V$.\end{lem}
+\begin{proof}If $V$ were reflexive, we'd be done since it is clear that $V'' \iso V$ is finite-dimensional. The theorem is important since it is true even without this assumption.
+
+Suppose $V$ were infinite-dimensional. Let $\{v_1,v_2,v_3,\ldots\}$ be an infinite linearly-independent set, and set $V_i = \vspan(v_1,\ldots,v_i)$. Define a functional $\psi_i:V_i \to \C$ by $\psi_i(v_j) = \delta_{ij}$. Since $V_i$ is finite-dimensional, $\psi_i$ is bounded and so extends by the Hahn-Banach theorem to a functional $\psi_i \in V'$. Now the collection of the $\psi_i$ are linearly independent. Indeed, if 
+\[a_1\psi_1+\cdots + a_n\psi_n = 0,\] then we may plug in $v_i$, $1 \leq i \leq n$ to see that all $a_i = 0$. This contradicts that $V'$ is finite-dimensional.\end{proof}
+\begin{rk}The lemma is still true, with a similar proof, if one merely assumes that $V$ is a Hausdorff locally-convex vector space. The lemma is not true in general, even with the assumption of Hausdorff. For example, the space $L^{1/2}([0,1]) = \{\text{measurable }f:[0,1] \to \C\: \int_0^1 |f|^{1/2} < \infty\}$ endowed with the metric $d(f,g) = \int_0^1 |f-g|^{1/2}$ is certainly infinite dimensional (and is also a complete metric space, so is in particular Hausdorff), but its dual is the trivial vector space.\end{rk}
+
+\begin{lem}\label{bounded}Suppose $V$ is a Banach space, and $U \subseteq V$ is a closed subspace. Let $W$ be any normed vector space. Then there is an isometry between the space of bounded operators $T:V\to W$ which vanish on $U$ and the space of bounded operators $T:V/U \to W$ (where we give the domain the quotient norm) defined by sending $T:V \to W$ vanishing on $U$ to
+\[\overline{T}:V/U \to W\] defined by $\overline{T}(v+U) = T(v)$.\end{lem}
+\begin{proof}If $T:V \to W$ vanishes on $U$, then $\overline{T}$ is clearly well-defined. We will show that if $T$ is bounded, then so is $\overline{T}$. In fact we will show that the assingment $T \mapsto \overline{T}$ is norm-decreasing. Given $v+U \in V/U$, we may pick $v_n \in v+U$ so that $\norm{v_n} \to \norm{v+U}$. Also for all $n$,
+\[\norm{\overline{T}(v+U)} = \norm{\overline{T}(v_n+U)} = \norm{T(v_n)} \leq \norm{T}\norm{v_n}.\] Taking limits shows that $\norm{\overline{T}(v+U)} \leq \norm{T}\norm{v+U}$.
+
+Conversely, if $\overline{T}:V/U \to W$ is bounded, we may define $T(v) = \overline{T}(v+U)$. This turns $T$ into a map $V \to W$ which vanishes on $U$. We now show that $T$ is bounded and the map $\overline{T} \mapsto T$ is norm-decreasing. Indeed,
+\[\norm{T(v)} = \norm{\overline{T}(v+U)} \leq \norm{\overline{T}}\norm{v+U} \leq \norm{\overline{T}}\norm{v}.\]
+
+It is clear that the above assignments are inverses of each other. Since both assignments are norm-decreasing, it follows that they are both in fact isometries.\end{proof}
+
+\begin{lem}\label{compl}Suppose $V$ is a Banach space. If $X \subseteq V$ satisfies
+\begin{enumerate}[label = (\roman*)]
+\item  $X \subseteq V$ is finite-dimensional, or
+\item $X \subseteq V$ is closed and $V/X$ is finite-dimensional
+\end{enumerate}
+then there exists a complementary subspace $Y \subseteq V$ closed with $V = X+Y$ and $X\n Y = 0$, and the projections $P_X$ and $P_Y$ are well-defined and bounded. Furthrmore, in the case of (ii), $\dim Y  = \dim V/X$. Here the projections $P_X$ are defined by $P_X(x+y) = x$ where $x+y$ is the unique such decomposition of an element in $V$, and similarly for $P_Y$.\end{lem}
+\begin{proof}To show the existence of $Y$ and the boundedness of the projections, it suffices to find a bounded operator $P_X:V \to X$ which is the identity on $X$. Indeed, we will show that we can take $Y = \ker P_X$.
+
+For any $v \in V$, $v = P_X v + (1-P_X)v$. The first term is in $X$. Since $P_X$ is the identity on $X$, $P_X^2 = P_X$,and so the second term is in $\ker P_X = Y$. This shows that $X + Y = V$. If $v \in X\n \ker P_X$, then $v = P_Xv = 0$, so $X\n \ker P_X = 0$. By definition, $v = P_Xv + (1-P_X)v$, so $P_X$ is the projection onto $X$, and is bounded by assumption. Since $P_Y = 1-P_X$, it is also bounded.
+
+We now show the existence of $P_X$ in the case of (i) and (ii). Suppose $X \subseteq V$ is finite-dimensional, and pick a basis $x_1,\ldots, x_n$ of $X$. Then any $x \in X$ has a unique representation 
+\[x = \sum a_ix_i,\] for some $a_i \in \C$. The assignment $x \mapsto a_i$ is actually a linear functional on $X$,which we henceforth denote by $a_i(x)$. Since $\dim X< \infty$, $a_i$ is bounded. Thus $a_i$ extends to a bounded functional on all of $V$. This lets us define a bounded $P_X:V \to X$ by 
+\[P_X(v) = \sum a_i(v)x_i,\]
+which is by definition the identity on $X$.
+
+Now suppose $X \subseteq V$ is closed and $\dim V/X$ is finite. Pick $v_i \in V$ so that the collection $\{v_i+X\}$ form a basis of $V/X$. Since $V/X$ is finite-dimensional, it is isomorphic (but perhaps not isometric) as a Banach space to $\C^d$ for some $d < \infty$, where we put the $\sup$ norm on $\C^d$, with the isomorphism taking
+\[a_1(v_1+X)+\cdots a_d(v_d+X) \mapsto (a_1,\ldots,a_d).\]
+Similar to the proof in Lemma~\ref{op}, we define a map
+\[T: \C^d\oplus X \to V\]  by
+\[(a_1,\ldots,a_d,x) \mapsto a_1v_1 + \cdots a_dv_d + x.\]
+It is clear (like in the proof of Lemma~\ref{op}) that this map is surjective, injective, and bounded. Likewise, since $X$ is a closed subspace of a Banach space, it is a Banach space itself, and thus $\C^d \oplus X$ is a Banach space under any obvious norm. The image of $0\oplus X$ under $T$ is clearly just $X \subseteq V$ itself. Let $P:\C^d \oplus X \to 0\oplus X$ be the projection onto the second factor, which is bounded. Define the bounded operator $P_X = TPT^{-1}:V \to V$, which certainly maps $V$ into $X$, and is the identity on $X$. 
+
+Thus we have shown in both cases (i) and (ii) the existence of the complementary subspace $Y$ and the boundedness of the projections. In the case of (ii), we need to show that $\dim Y = \dim V/X$.
+
+It is clear that $\ker P_Y = X$. By Lemma~\ref{bounded}, $P_Y:V \to Y$ descends to a map $\overline{P_Y}:V/X \to Y$, which is surjective. It is injective, for if $0 = \overline{P_Y}(v+X) = P_Yv$, then $v \in \ker P_Y = X$, and so $v+X = 0$. Thus $\overline{P_Y}$ is a linear isomorphism, and $\dim Y = \dim V/X$.
+\end{proof}
+\end{document}

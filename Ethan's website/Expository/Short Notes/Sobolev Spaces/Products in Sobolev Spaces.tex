@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+
+\title{Products in Sobolev Spaces}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{1}
+In this note we prove the following two theorems about multiplication in Sobolev spaces:
+\begin{thm}\label{harder}Suppose $s_1,s_2 \geq s$, and $s_1+s_2 > s+d/2$. Then there is a continuous multiplication map
+\[H^{s_1}(\R^d)\times H^{s_2}(\R^d) \to H^s(\R^d)\]
+taking
+\[(u,v) \to uv,\]
+and satsifying the estimate
+\[\norm{uv}_{H^s(\R^d)} \leq C\norm{u}_{H^{s_1}(\R^d)}\norm{u}_{H^{s_2}(\R^d)}.\]
+\end{thm}
+This has the useful corollary:
+\begin{cor}\label{hard}If $s > d/2$ then there is a continuous multiplication map
+\[H^{s}(\R^d)\times H^{s}(\R^d) \to H^s(\R^d)\]
+taking
+\[(u,v) \to uv,\]
+and satisfying the estimate
+\[\norm{uv}_{H^s(\R^d)} \leq C\norm{u}_{H^{s}(\R^d)}\norm{u}_{H^{s}(\R^d)}.\]
+\end{cor}
+In particular we see that $H^s(\R^d)$ is an algebra, provided $s > d/2$.
+
+We will prove the corollary first (even though it follows from the theorem directly), since it is the more useful result in practice, and its proof has most of the ideas of the proof of the theorem. We will make use of the following lemma:
+\begin{lem}\label{one}Suppose $t \geq 0$. Then there exists a constant $C = C(t)$, such that
+\[(1+|x|+|y|)^{t} \leq C((1+|x|)^t + (1+|y|)^t).\]\end{lem}
+\begin{proof} We write
+\[(1+|x|+|y|) \leq ((1+|x|)+(1+|y|)).\] 
+By H\"older's inequality, if $t \geq 1$ then
+\[(1+|x|+|y|)^t \leq ((1+|x|)+(1+|y|))^t \leq 2^t((1+|x|)^t+(1+|y|)^t).\]
+If $t = 0$ then the inequality is trivial. If $0 < t < 1$, suppose without loss of generality that $1+|x| \geq 1+|y|$. Then
+\[((1+|x|)+(1+|y|))^t \leq 2^t(1+|x|)^t \leq 2^t((1+|x|)^t+(1+|y|)^t).\] This completes the proof.\end{proof}
+\begin{proof}[Proof of Corollary~\ref{hard}.]Observe that by the lemma
+\[(1+|\xi|)^s \leq C(1+|\xi-\eta|)^s+(1+|\eta|))^s.\] Thus, since $\widehat{uv} = \hat{u}\ast\hat{v}$,
+\begin{align*}
+\norm{uv}_{H^s(\R^d)} &= \left(\int |\widehat{uv}|^2(1+|\xi|)^{2s}\ d\xi\right)^{1/2}\\
+&\lesssim\left(\int \left|\int (1+|\xi-\eta|)^s|\hat{u}(\xi-\eta)||\hat{v}(\eta)|+ (1+|\eta|)^s|\hat{u}(\xi-\eta)||\hat{v}(\eta)|\ d\eta\right|^2\ d\xi\right)^{1/2}.\end{align*}
+Using the lemma again with $t=2$ and $t=1/2$ us bound this by
+\begin{equation}\label{qw}\left(\int \left|\int (1+|\xi-\eta|)^s|\hat{u}(\xi-\eta)||\hat{v}(\eta)|\ d\eta\right|^2\ d\xi\right)^{1/2}+\left(\int \left|\int (1+|\eta|)^s|\hat{u}(\xi-\eta)||\hat{v}(\eta)|\ d\eta\right|^2\ d\xi\right)^{1/2}.\end{equation}
+We change variables in the inner integral of the second sum to obtain
+\[\left(\int \left|\int (1+|\xi-\eta|)^s|\hat{u}(\eta)||\hat{v}(\xi-\eta)|\ d\eta\right|^2\ d\xi\right)^{1/2}.\] Now there is symmetry between the terms in \eqref{qw}, with the places of $u,v$ swapped, so we only show how to bound the first one. We use Minkowki's inequality:
+\[\leq \int\left(\int (1+|\xi-\eta|)^{2s}|\hat{u}(\xi-\eta)|^2|\hat{v}(\eta)|^2\ d\xi\right)^{1/2}\ d\eta = \int |\hat{v}(\eta)|\norm{u}_{H^s(\R^d)}\ d\eta = |\norm{u}_{H^s(\R^d)}\int |\hat{v}(\eta)\ d\eta.\]
+But
+\[\int |\hat{v}(\eta)|\ d\eta = \int |\hat{v}|(\eta)(1+|\eta|^{s})(1+|\eta|)^{-s}\ d\eta \leq \norm{v}_{H^s(\R^d)}\norm{(1+|\eta|)^{-2s}}_{L^1(\R^d)},\]
+by Cauchy-Schwarz, and the second factor is finite since $s > d/2$. In all, the first integral is bounded by
+\[\norm{u}_{H^s(\R^d)}\norm{v}_{H^s(\R^d)},\] and similarly for the second integral.\end{proof}
+
+To prove Theorem~\ref{harder}, we need a generalization of Lemma~\ref{one}.
+\begin{lem}Suppose $t,r_1,r_2 \geq 0$. Then there is a constant $C$ so that
+\[(1+|x|+|y|)^{t} \leq C((1+|x|)^{t+r_1}(1+|y|)^{-r_1} + (1+|x|)^{-r_2}(1+|y|)^{t+r_2}).\]\end{lem}
+\begin{proof}
+It suffices to show that
+\[(1+|x|+|y|)^{t}(1+|x|)^{r_1}(1+|y|)^{r_2} \leq C((1+|x|)^{t+r_1+r_2} + (1+|y|)^{t+r_1+r_2}).\] But of course
+\[(1+|x|)^{r_2}(1+|y|)^{r_1} \leq (1+|x|+y|)^{r_1+r_2},\] and so
+\[(1+|x|+|y|)^{t}(1+|x|)^{r_2}(1+|y|)^{r_1} \leq (1+|x|+|y|)^{t+r_1+r_2},\] and so the lemma follows from Lema~\ref{one}.\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{harder}.] We apply the lemma with $t=s$ and $r_1 = s_1-s$, $r_2 = s_2-s$ to see that
+\[(1+|\xi|)^s \leq C((1+|\xi-\eta|)^{s_1}(1+|\eta|)^{s-s_1} + (1+|\xi-\eta|)^{s_2}(1+|\eta|)^{s-s_2}.\] We mimic the proof of Corollary~\ref{hard}. Using the same tricks, we may bound
+\[\norm{uv}_{H^s(\R^d)} \lesssim  \norm{u}_{H^{s_1}(\R^d)}\left(\int |(1+|\eta|)^{s-s_1}\hat{v}(\eta)\ d\eta\right) + \norm{v}_{H^{s_2}(\R^d)}\left(\int |(1+|\eta|)^{s-s_2}\hat{u}(\eta)\ d\eta\right).\]
+Now 
+\[\int |(1+|\eta|)^{s-s_1}\hat{v}(\eta)\ d\eta = \int |(1+|\eta|)^{s_2}\hat{v}(\eta)(1+|\eta|)^{-(s_1+s_2-s)}\ d\eta \leq \norm{v}_{H^s(\R^d)}\norm{(1+|\eta|)^{-2(s_1+s_2-s)}}_{L^1(\R^d)},\]
+and the second factor is finite since $s_1+s_2-s > d/2$. Thus,
+\[\norm{u}_{H^{s_1}(\R^d)}\left(\int |(1+|\eta|)^{s-s_1}\hat{v}(\eta)\ d\eta\right) \lesssim \norm{u}_{H^{s_1}(\R^d)}\norm{v}_{H^{s_2}(\R^d)}.\] A similiar proof shows that
+\[\norm{v}_{H^{s_2}(\R^d)}\left(\int |(1+|\eta|)^{s-s_2}\hat{u}(\eta)\ d\eta\right) \lesssim \norm{u}_{H^{s_1}(\R^d)}\norm{v}_{H^{s_2}(\R^d)}.\] So in all,
+\[\norm{uv}_{H^s(\R^d)} \leq C\norm{u}_{H^{s_1}(\R^d)}\norm{u}_{H^{s_2}(\R^d)},\]
+as desired.\end{proof}
+
+
+\end{document}

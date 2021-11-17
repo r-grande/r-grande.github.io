@@ -1,0 +1,129 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/mySettings}
+\usepackage{appendix}
+
+\title{An overview of mathematical General Relativity}
+\author{Ethan Y. Jaffe}
+\date{04/28/2017}
+
+\begin{document}\maketitle
+\abstract{In this talk we'll give an overview of some of the aspects of modern mathematical general relativity.}
+\section{Lorentzian Geometry}
+The background of general relativity (GR) takes place against a Lorentzian manifold. At the most basic level, a Lorentzian geometry can be seen as a ``hyperbolic'' analogue to Riemmanian geometry, which is ``elliptic.'' We'll review some basic definitions and contrast them to Reimmanian geometry.
+
+\begin{tabular}{l | l}
+Riemannian Geometry & Lorentzian Geometry\\
+\hline
+Smoothly varying symmetric & Smoothly varying symmetric  \\
+non-degenerate  bilinear form  of signature& non-degenerate  bilinear form of signature\\
+ $(+,\cdots,+)$, $g$, called the metric  &  $(-,+,\cdots,+)$, $g$, called the metric\\
+Levi-Civita connection $\nabla$ & Levi-Civita connection $\nabla$\\
+Laplace operator $\Delta u = -\divg \grad u$ & Wave operator $\Box u = -\divg \grad u$\\
+Riemannian, Ricci and Scalar curvature & Riemannian, Ricci and Scalar curvature
+\end{tabular}\\[2ex]
+
+Let's take a closer look at these differences. In Riemmanian geometry, any nonzero vector has \emph{positive} length,
+\[g(v,v)  > 0 \ \forall v \in T_xM.\]
+In Lorentzian geometry, nonzero vectors can have positive, negative, or zero length. We give these vectors special names.
+
+\begin{tabular}{c | c}
+$g(v,v) > 0$ & $v$ is spacelike\\
+$g(v,v) = 0$ & $v$ is null, or light-like\\
+$g(v,v) < 0$ & $v$ is timelike\end{tabular}\\[2ex]
+
+Let's look at a tangent space to a Lorentzian manifold. This is just a vector space equipped with a single bilinear form of signature $(-,+,\cdots,+)$, so we may choose a basis $e_0,e_1,\ldots,e_n$ where $e_0$ is timelike and $e_i$ is spacelike $i \geq 1$. The ``light cone'' divides the tangent space into the spacelike region and the timelike region.
+
+Similarly, an immersed submanifold $N \subseteq M$ is called spacelike (resp. null, timelike) if all its tangent vectors are spacelike (resp. null, timelike). The notion of a \emph{null geodesic} plays an important role in the theory.
+
+On a Riemannian manifold, $\Delta$ is an elliptic operator, whereas on a Lorentzian manifold $\Box$ is a hyperbolic operator.
+ 
+ A Lorentzian manifold is often called a ``spacetime.'' A massive particle travelling through spacetime always travels along timelike curves, whereas light travels along null curves. In fact, light will travel along null geodesics.
+
+Let's look at some examples of Lorentzian manifolds.
+\begin{enumerate}
+
+\item Minkowski spacetime $\R^{n+1}$. This is just $\R^{n+1}$ equipped with the Minkowski inner product
+\[g((t_1,x_1),(t_2,x_2)) = -t_1t_2 + x_1\cdot x_2.\] This is ``flat'' spacetime. Null geodesics lie on ``light cones.'' $\Box = -\partial_t^2 + \Delta $ is the usual d'Alebertian. 
+
+\item More generally, if $M$ is a Riemmanian manifold with metric $h$, then $M\times \R$ with metric $-dt^2 + h$ is Lorentzian. Null geodesics are curves whose projections onto $M$ are ordinary geodesics, and which move through time at a rate of their affine parameter. $\Box = -\partial^2 + \Delta$ is the wave operator on $M$.
+
+\item Even more generally, we may take $M$ to be a Riemannian manifold, and choose any nonvanishing vector field on $V$ on $M\times \R$ which is never tangent to the slices $M \times \{t\}$. Then we may put a Lorentzian metric on $M\times \R$ by declaring $M \times \{t\}$ to be spacelike with metric $h$, and $V$ to be timelike (say $g(V,V) = -1$) and orthogonal to $M \times \{t\}$. Null geodesics project onto space geodesics, and traverse in time according to some ODE. The wave operator $\Box$ has leading order part
+$g^{\alpha\beta}\partial_{\alpha}\partial_{\beta},$ where $g^{\alpha\beta}$ is the inverse to $g_{\alpha\beta}$.
+\end{enumerate}
+
+\section{The Einstein Equations}
+Einstein's idea was that spacetime is curved by mass-energy. This is a symmetric $2$-(co)tensor $T_{\alpha\beta}$. Physical considerations mean that energy is conserved, i.e. its dual tensor is divergence free
+\[\divg T^{\sharp} = \nabla_{\alpha}T^{\alpha\beta} = 0.\]
+There is a natural curvature which is symmetric, the Ricci Curvature. So, we can try
+\[\Ric(g) = T\] for the Einstein equations. However, $\divg Ric(g) \neq 0$. Fortunately, there is a modification, the Einstein tensor,
+\[G = \Ric(g) - \frac{R}{2}g\] is divergence free, where $R$ is the scalar curvature. This is obtained by contracted the (second) Bianchi identities. We thus write the Einstein equations:
+\[\Ric(g) -\frac{R}{2}g = G = T.\]  We also have the Einstein equations with positive cosmological constant,
+\[\Ric(g)-\frac{R}{2}g + \Lambda g = T.\]
+
+For the rest of this talk, we will focus on the vacuum Einstein equations, where $T \equiv 0$. In dimensions not $2$, we can take the trace of the previous equations to get
+\[\Ric(g) = 0\]
+and
+\[\Ric(g) + \Lambda g = 0,\] (where this $\Lambda$ is not exactly the $\Lambda$ above). In other words, the vacuum Einstein equations for $0$ cosmological constant is equivalent to a Ricci-flat Lorentzian metric.
+
+There are two annoying features to the Einstein equations. The first is diffeomorphism invariance. If $g$ is a solution, and $\phi$ is a diffeomorphism, then $\phi^{\ast}g$ is also a solution. The second is that the equation is \emph{intrinsic}. This means that if we pick coordinates, it's possible that the solution is nice, but the coordinates blow up.
+
+\section{Explicit Solutions}
+Now I want to give a few exact solutions to the Einstein equations and talk about examples of  ``bad coordinates'' I described above.
+\begin{enumerate}
+\item Minkowski space. This is clearly flat.
+\item de Sitter space. This is the analogue of the sphere for Lorentzian manifolds. It is defined as the subset
+\[\text{dS}_{n} = \{-t^2 + |x|^2 = 1\} \subseteq \R^{n+1}\] with the induced metric. Just like for the sphere, the vector $x$ is orthogonal to $T_x\text{dS}_n$, so using the same argument in computing the curvature of $S^n$, one computes that the (sectional) curvature of $\text{dS}_n$ is $1$, too.
+\item Schwarzschild solution was the first non-trivial solution to be discovered. Let me write down the metric and then we can try to determine which manifold it lives on. It is really a 1-parameter family parametrized by a real number $m$ the ``mass.''
+\[g = \left(1-\frac{2m}{r}\right)dt^2 + \left(1-\frac{2m}{r}\right)^{-1}dr^2 + r^2\circ{g},\]
+where $\circ{g}$ is the metric on an ordinary round sphere $S^2$.
+First of all, if $r > 2m$, then this is a valid spacetime on the manifold $S^2\times \R_+ \times \R$, and models the spacetime around a static body of mass $m$ outside the region $r > 2m$. But what if the body is a ``black hole,'' so a point mass? We'd like to have a metric smooth down to $r = 0$. $g$ is smooth for $r > 2m$ and $r < 2m$, but it's not smooth at $0$, right? We can actually compute various coordinate-invariant quantities of the metric (such as its determinant), which don't blow up, so maybe it is...
+
+Let's introduce Eddington-Finkelstein coordinates by setting
+\[v = t+r+2m\log\left(\frac{r}{2m}-1\right).\] This change of variables turns the metric into
+\[g = -\left(1-\frac{2m}{r}\right)dv^2 + 2drdv + r^2\circ{g},\]
+which is now clearly smooth for all values of $v,r$ and the angular variables. One could talk for a while about features of the Schwarzschild spacetime, but I won't here. The point to illustrate is that the metric was fine; we just chose bad coordinates.\end{enumerate}
+
+\section{Solving the Einstein equations: Local Well-Posedness}
+We want General Relativity to be a causal theory. If I know the state of the universe, I should be able to predict how it will evolve. The equation $\Ric(g) = 0$ does not appear to be a causal theory, so we will need to do some work. We want to prove a ``local well-posedness'' theory for the Einstein equations.
+
+Let's first make a detour and review the ordinary linear wave equation on $\R^{n+1}$ and see what happens. Suppose we want to solve $\Box u = f$. This is a second-order hyperbolic pde, so we need to provide initial data. This consists of two functions $u_1,u_2$ defined on $\R^n\times\{0\}$. Then
+\begin{thm}There exists a unique solution $u$ to $\Box u = f$ on $\R^{n+1}$ satisfying $u(\cdot,0) = u_1$ and $\partial_t u(\cdot,0) = u_2$.\end{thm}
+Let's examine the theorem a little more from a geometric point of view. Geometrically, $\R^{n}\times \{0\}$ is just a spacelike hypersurface in $\R^{n+1}$, and $\partial_t$ is just a transverse vector field. This motivates the following statement, which is also true.
+\begin{thm}Let $M$ be a Lorentzian manifold, and $H \subseteq M$ a spacelike hypersurface. Let smooth functions $u_1,u_2$ on $H$ and $f$ on $M$, and a vector field $V$ on $M$, transverse to $H$, be given Then there exists a unique $u$ solving $\Box u = f$ on $M$ with $u|_{H} = u_1$ and $(Vu)|_{H} = u_2$.\end{thm}
+Really, I should be assuming that $M$ is of the type of example 3 in \S 1 to obtain a global solution, but I'm not really being careful. To prove this theorem, one uses energy estimates which aren't terribly different from the standard treatment of hyperbolic PDE (such as in example 2). The only difficulty is finding the correct conserved energy quantity.
+
+How does this relate to General Relativity? First of all, observe that we can extend $\Box$ to act on tensors. Thus, on a manifold $M\times \R$, we can consider the equation
+\[\Box_g(g) = 0\] for a symmetric two-tensor $g$. While this looks linear, the operator $\Box$, which top order in coordinates looks like
+\[(g^{-1})^{\mu\nu}\partial_\mu\partial_\nu g_{\alpha\beta},\] has the coefficients of the top order term depending on the solution! Such equations are called ``quasilinear'' and are solved (only for short time) via a fixed point perturbative method.
+
+With this, one can prove local well-posedness for the Einstein equations via an approach due to Choquet-Bruhat in 1952\footnote{CB was the first woman ever elected to the French Academy of Sciences.} First, we need to go back to specifying initial data. It's clear that the initial data should consist of a Riemannian metric on a spacelike hypersurface $H$. We also need a first derivative of the metric. This will be given by its second fundamental form $K$ of the embedding $H$ into $M$. But this is too much to provide if we want to solve the Einstein equations; if $\Ric(g) = 0$, then the Gauss and Codazzi equations imply the following two constraints
+\begin{align*}
+\divg K -\nabla \tr K = 0 \ \ \ &(\text{momentum constraint})\\
+R_g - |K|^2 + (\tr K)^2 = 0\ \ \ &(\text{Hamiltonian constraint}.\end{align*}
+
+The remarkable thing is that these are the only two constraints. We thus have the following Theorem
+\begin{thm}[Choquet-Bruhat 1952]Let $(H,h)$ be a Riemannian manifold, and $K$ a symmetric $2$ tensor on $H$. Suppose $K$ satisfies the constraint equations. Then there exists some $T > 0$ and a Lorentzian metric $g$ on $M = H\times[0,T]$ satisfying the Einstein equations such that  $g|_H = h$ and $K$ is the second fundamental form of the embedding of $H \embeds M$. Furthermore, any two such solutions are isometric.\end{thm}
+\begin{proof} The equations $\Ric(g) = 0$ can be written as
+\[P(g) + Q(g) = 0,\] where $P$ and $Q$ are $2$nd order operators on $g$, and $P$ is, to top order, $\Box_g$. The equation $P(g) = 0$ is called the \emph{reduced} Einstein equations, and the theory of quasilinear hyperbolic PDE says that it has a short time solution on $H\times [0,T]$. 
+
+But what of $Q$? Suppose that we already had a solution $g$ on  $H\times [0,T]$. If we chose coordinates, $x^\mu$ which were ``harmonic'', i.e. $\Box x^\mu = 0$, then $Q \equiv 0$ in these coordinates. Such a coordinate system is called a ``harmonic gauge'' or a ``wave gauge.'' This is how we treat the diffeomorphism invariance and solve the equations.
+
+Thus the Einstein equations are equivalent to the reduced Einstein equations. If we could build up the wave gauge as we built up the solution to $P(g) = 0$, then we would have a solution, so this is what we do.
+
+The condition $\Box x^\mu = 0$ can be seen to be equivalent to the vanishing of a quantity $F = (F^\mu)$. Now for any coordinate system, $F^\mu$ itself satisfies a linear hyperbolic equation. So, if $F^\mu|_H$ and $\partial_t F^\mu|_H$ both vanish, then $F^\mu \equiv 0$ for all time, and so the coordinates in which we solve the Einstein equations are harmonic. But can we arrange for $F^\mu$ to satisfy the above contrainsts? Recall that already $P(g) = 0$ puts constraints on what the coordinates can be. Fortunately, though
+\begin{lem}It can be arranged that $F^\mu|_H = \partial_t F^\mu|_H = 0$ if and only if $(h,K)$ satisfy the constraint equations.\end{lem}
+Thus we arrange for $F^\mu \equiv 0$ in some coordinates, and solve $P(g) = 0$, which gives a solution to $\Ric(g) = 0$.
+
+To prove uniqueness, one needs only use uniqueness of hyperbolic equations, and the ability to convert one wave gauge to another.\end{proof}
+
+\section{Stability}
+Suppose $g_0$ is one solution to the Einstein equations on a spacetime $M$, and let $H$ be a spacelike hypersurface. We can ask what happens if we perturb $g_0$ a little bit on $H$. Does the resulting spacetime exist forever, and if it does, does it eventually settle to be close to $g$. This is stability. As of today, only three spacetimes have been proven to be stable.
+\begin{itemize}
+\item de Sitter spacetime (Friedrich, 1986)
+\item Minkowski spacetime (Christodoulou--Klainerman, 1993)
+\item slowly rotating Kerr-de Sitter spacetime (Hintz--Vasy, 2016).
+\end{itemize}
+The first two are pretty self-explanatory, so let me talk about the third. Kerr black holes are like Schwartzschild black holes, but the black hole is also rotating. Kerr-de Sitter spacetime is the analogoue of Kerr spacetime in de Sitter spacetime. The foremost example is the Shchwarzschild de Sitter spacetime. Hintz-Vasy prove that if you perturn a slowly rotating Kerr-de Sitter blackhole, then you get another Kerr-de Sitter black hole, perhaps with slightly different angular momentum and mass. One of the many reasons that stability results are so hard to prove is that you need to arrange for a global solution., which is complicated by having to choose a gauge.
+\end{document}

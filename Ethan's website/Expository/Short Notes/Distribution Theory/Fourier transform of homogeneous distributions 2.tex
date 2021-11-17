@@ -1,0 +1,319 @@
+\documentclass[12pt]{article}
+
+\usepackage{/Users/ethanjaffe/Documents/Work/myMacros}
+\usepackage{/Users/ethanjaffe/Documents/Work/HWSettings}
+
+\title{Homogeneous Distributions and The Fourier Transform}
+\author{Ethan Y. Jaffe}
+\date{}
+
+\begin{document}
+\maketitle
+\setcounter{section}{0}
+\section{Introduction}
+The purpose of this note is to interpret radial, homogeneous functions on $\R^d$ ($d \geq 2$), viz. $|x|^s$ ($s \in \C$) as tempered distributions, and compute their Fourier transform. This note serves as a generalization to another note, where the simpler case $s \in \R$ and $-d < s < 0$ is examined. We will also examine analogues in the case $d=1$ in this note. We first have a proposition about existence, uniqueness, and structure of homogeneous radial distributions.
+\begin{prop}\label{ext}
+Let $d \geq 2$ and $s \in \C$. 
+\begin{enumerate}[label =(\roman*)]
+\item \emph{Existence/Uniqueness.} Suppose $s \neq -d-2k$ for $k \in \N_{\geq 0}$. Then there exists a unique $u \in \mathcal S'(\R^d)$ which is radial and homogeneous, such that, when interpreted as an element in $\mathcal D'(\R^d\setminus\{0\})$, $u = |x|^s$.\footnote{If $a \in \R$, $a > 0$, then $a^s$ is defined by $a^s = e^{\log(a)s} = a^{\Re(s)}e^{i\Im(s)\log(a)}$, where we choose the usual branch of $\log$.} Furthermore, $u$ is homogeneous of order $s$ and radial. If $s  =-d-2k$, then there still exists an extension $u$. However it is only unique up to an appropriate linear combination of $\delta$ functions and its derivatives, and it is not homogeneous.
+\item \emph{Structure.} In the case $s \neq -d-2k$, any radial distribution, homogeneous of order $s$, is, up to a constant multiple, of the above form, i.e. a multiple of $u$. In the case $s = -d-2k$, then there are no radial distributions homogeneous of order $s$ which extend $|x|^s$, and any distribution extending $|x|^s$ is unique up to $\delta$ functions.
+\end{enumerate}
+Furthermore, for $s \neq -d-2k$, $|x|^s$ is a meromorphic family of distributions with poles at $s = -d-2k$, $k \in \N_{\geq 0}$. The residues are
+\[(-1)^{k}2^{1-k}\pi^{d/2}\frac{1}{\Gamma(k+d/2)}\sum_{|\alpha| = k}\frac{\partial^{2\alpha}\delta}{\alpha!}.\]
+\end{prop}
+By ``meromorphic'' we mean that $\langle |x|^s,\phi\rangle$ is a meromorphic function for each test function $\phi \in \mathcal S'\R)$.
+We will identify $|x|^s$ with the extension constructed by the Proposition. Ocassionally $|x|^s$ will be used to refer to both the extension, and to the distribution in $\mathcal D'(\R^d\setminus\{0\})$. Context will provide for which is meant.
+The Proposition will follow from its one-dimensional analogue:
+\begin{prop}\label{bext}
+\begin{enumerate}[label =(\roman*)]
+Let $s \in \C$.
+\item \emph{Existence/Uniqueness.} Let $s \neq -1-k$, $k \in \N_{\geq 0}$. Then there exists a unique $u \in \mathcal S'(\R)$ such that $u$ is homogeneous, $\supp u \subseteq [0,\infty)$, and when interpreted as an element in $\mathcal D'(\R\setminus\{0\})$, $u = x_+^s$.\footnote{$x_+$ is defined by $x_+ = \max(0,x)$.} Furthermore, $u$ is homogeneous of order $s$. If $s = -1-k$, then there still a $u$; however it is only unique up to delta functions and it is not homogeneous. However it is quasi-homogeneous in a sense which will be made precise during the proof. 
+\item \emph{Structure.} In the case $s \neq -1-k$, any distribution supported in $[0,\infty)$, homogeneous of order $s$, is, up to a constant multiple, of the above form, i.e. a multiple of $u$ in the case. In the case $s = -1-k$, then there are no distributions, supported in $[0,\infty)$ homogeneous of order $s$ which extend $x_+^s$, and any distribution extending $x_+^{s}$ is unique up to $\delta$ functions.\end{enumerate}
+Furthermore, $x_+^s$ is a meromorphic family of distributions with simple poles at $s = -1-k$, $k \in \N$. The residue at $-1-k$ is $\frac{(-1)^{k}}{k!}\frac{d^k}{dx^k}\delta$. \end{prop}
+We will identify $x_+^s$ with the extension constructed by the Proposition.
+\begin{rk}For Proposition~\ref{ext}, in the case $s = -d-2k$, use of the term $|x|^s$ is a bit of an abuse of notation, since it is not unique. Similarly for Proposition~\ref{bext}, in the case $s=-1-k$, use of the term $x_+^s$ is an aubse of notation.\end{rk}
+\begin{thm}\label{FT}Let $d \geq 2$, and suppose $s \in \C$. Then if $s \neq -d-2k$, $k \in \N_{\geq 0}$ and if $s \neq 2k$, $k \in \N_{\geq 0}$,
+\[\widehat{|x|^s} = f_d(s)|\xi|^{-d-s},\]
+where $f_d(s)$ is the meromorphic function
+\[f_d(s) = (2\pi)^{d/2}2^{s+d/2}\Gamma\left(\frac{s+d}{2}\right)\left(\Gamma\left(-\frac{s}{2}\right)\right)^{-1}\]
+with poles at $-d-2k$, $k \in \N_{\geq 0}$.
+
+If $s = 2k$, then \[\widehat{|x|^s} = \sum_{|\alpha| = k} (-1)^{k}{k \choose \alpha}\partial^{2\alpha}\delta.\]
+
+If $s = -d-2k$ then\footnote{There is a chance there is a computation error in this formula. Use with caution.}
+\[\widehat{|x|^s} = \frac{(-1)^k}{k!}(\pi)^{d/2}2^{-2k}\Gamma(d/2+k)^{-1}|\xi|^{2k}\left(2\log(2)-2\psi(-d/2+k)-2\log|\xi| + H_k-\gamma\right),\]
+where $\psi(z) = \frac{\Gamma'(z)}{\Gamma(z)}$ is the digamma function, and $H_k = 1 + 1/2+ \cdots 1/k$ is the $k$th Harmonic number.\end{thm}
+We also have its one dimensional analogue. We will define $x_-^s$ by
+\[\langle x_-^s,\phi(x)\rangle = \langle x_+^s,\phi(-x)\rangle.\]
+\begin{thm}\label{bFT}Suppose $s \in \C$. Then 
+\[\widehat{x_+^s} = -i\Gamma(s+1)e^{-i\pi/2 s}x_+^{-1-s} + i\Gamma(s+1)e^{i\pi/2s}x_-^{-1-s}\] if $s \neq 0,1,2\ldots,-1,-2,\ldots,$ and
+\[\widehat{x_+^s} =\frac{(-1)^{k+1}}{k!}ie^{-i\pi/2}\left(H_k-\gamma-\frac{i\pi}{2}-\log(x_+)\right)x_+^k + \frac{(-1)^{k}}{k!}ie^{i\pi/2}\left(H_k-\gamma+\frac{i\pi}{2}-\log(x_-)\right)x_-^{k}\] if $s = -1,-2,\ldots$.\end{thm}
+ Computing $\widehat{x_+^s}$ for $s = 0,1,\ldots$ would require introducing other distributions, so we will not attempt it in this note.
+
+\section{Definitions}
+We recall the definitions and lemmas given in my other note. Proofs can be found there.
+
+\begin{defn} We will call a distribution $u \in \mathcal D'(\R^d\setminus\{0\})$ (resp. $u \in \mathcal S'(\R^d))$) homogeneous of order $s$ if for all $\phi \in C_c^\infty(\R^d\setminus\{0\})$ (resp. $\phi \in \mathcal S(\R^d)$)
+\[\langle u,\phi\rangle = t^{d+s}\langle u,\phi_t\rangle,\]
+where $\phi_t(x) = \phi(tx)$. \end{defn} 
+We recall the Euler homogeneity relation
+\begin{equation}\label{Euler}r\partial_r u = s u,\end{equation}
+where $r\partial_r = x\cdot\nabla$ is the radial vector field.
+\begin{defn}We will call a distribution $u \in \mathcal D'(\R^d\setminus\{0\})$ radial if
+\[\langle u,\phi\rangle = \langle u, \phi\circ T\rangle,\]
+whenever $T \in SO(d)$ is a rotation.\end{defn}
+\begin{lem}
+If $u \in \mathcal D'(\R^d\setminus\{0\})$ is radial then $Lu = 0$ for every vector field $L$ such that $L_x$ is tangent the sphere of radius $|x|$.\end{lem}
+\begin{prop}Suppose $u \in \mathcal S'(\R^d)$ is homogeneous of order $s$, then $\widehat{u}$. homogeneous of order $-d-s$. Similarly, if $u$, considered as a distsribution in $\mathcal D'(\R^d\setminus\{0\})$ is radial, then so is $\widehat{u}$.\end{prop}
+
+We also recall how the Fourier transform interacts with homogeneity and being radial:
+\begin{prop}Suppose $u \in \mathcal S'(\R^d)$ is homogeneous of order $a$, then $\widehat{u}$. homogeneous of order $-d-a$. Similarly, if $u$, considered as a distsribution in $\mathcal D'(\R^d\setminus\{0\})$ is radial, then so is $\widehat{u}$.\end{prop}
+
+\section{Construction of extensions}
+In this section we will prove Propositions~\ref{ext} and Proposition~\ref{bext}.
+\begin{proof}[Proof of Proposition~\ref{bext}]We will first prove the uniqueness statement and the structure statement about homogeneous distributions supported in $[0,\infty)$. Suppose $s \neq -1-k$, $k \in \N_{\geq 0}$. Let $u \in \mathcal S'(\R)$ be supported in $[0,\infty)$ and homogeneous of order $s$. Consider $u$ as belonging to $\mathcal D'(\R\setminus\{0\})$. Then $x_+^{-s}u \in \mathcal D'(\R\setminus\{0\})$ is well-defined, homogeneous of order $0$, and supported in $(0,\infty)$. Since it is homogeneous of order $0$, \eqref{Euler} implies that its derivatives are $0$. Thus $x_+^{-s}u$ is constant on each connected component of $\R\setminus\{0\}$. Since it is $0$ to the left of the origin, we deduce that $u = Cx_+^{s}$ on $\R\setminus\{0\}$. Assume for the moment that the extension of $x_+^s$ to $\mathcal S'(\R)$ has been found. Then
+\[\supp u - Cx_+^s \subseteq \{0\},\] and so $u - Cx_+^s$ is a linear combination of $\delta$ functions and their derivatives. Since $\delta$ functions and their derivatives are homogeneous of order $-1-k$, and $u-Cx_+^s$ is homogeneous of order $s$, there are no $\delta$ functions. Thus $u = Cx_+^s$, if $s \neq -1-k$. The same arguments shows that there is a unique $u$ extending $x_+^s$, up to $\delta$ functions if $s = -1-k$.
+
+
+Now for existence. First suppose $s \neq -1-k$. We follow \cite[\S 3.2]{Hor}. Observe that if $\Re(s) > -1$, then $x_+^s \in L^1_{\text{loc}}(\R)$, and so is already a tempered distribution. If $\Re(s) > 0$, then in fact
+\[\frac{d}{dx} x_+^s = sx_+^{s-1},\]
+as distributions,
+i.e.
+\[-\int_0^\infty x^s\phi'(x) \ dx = s\int_0^\infty x^{s_1}\phi(x)\ dx.\]
+This allows us to consistently define $x_+^s$ for $s \in \C\setminus\{-1,-2,-3,\ldots\}$ by
+\[x_+^s = \frac{1}{(s+n)(s+n-1)\cdots (s+1)}\frac{d^n}{dx^n} x_+^{s+n},\]
+provided $\Re(s+n) > -1$
+i.e.
+\[\langle x_+^s,\phi\rangle = \frac{(-1)^n}{(s+n)(s+n-1)\cdots (s+1)}\int_0^\infty x_+^{s+n}\frac{d^n}{dx^n} \phi(x)\ dx.\]
+The support condition is obvious. Homogeneity follows from the above formula and the chain rule.
+
+To check meromorphicity, it we observe that
+\[\frac{d}{ds}\langle x_+^s,\phi\rangle =  \frac{(-1)^n}{(s+n)(s+n-1)\cdots (s+1)}\int_0^\infty \log(x_+)x_+^{s+n}\frac{d^n}{dx^n} \phi(x)\ dx,\] is is well-defined provided $\Re(s+n) > 0$. Thus $x_+^s$ is holomorphic away from $s = -1-k$. However, from the definition (for $s > -1-k$)
+\begin{align*}
+(s+k+1)\langle x_+^s,\phi\rangle &= \frac{(-1)^{k+1}}{(s+k-1)\cdots (s+1)}\int_0^\infty x_+^{s-k-1}\frac{d^{k+1}}{dx^{k+1}} \phi(x)\ dx\\
+&\to -\frac{1}{k!}\int_0^\infty\frac{d^{k+1}}{dx^{k+1}} \phi(x)\ dx\\
+&= \frac{1}{k!}\frac{d^k}{dx^k}\phi(0).\end{align*} This shows that the singularities are in fact poles with the desired residue.
+
+Next suppose $s = -1-k$. For $\phi \in \mathcal S(\R)$ set
+\[P_n[\phi](x) = \sum_{j=0}^{n} \frac{d^j}{dx^j}\phi (0)\frac{x^j}{j!},\]
+the $n$th order Taylor polynomial of $\phi$ at $0$, and
+\[I_n[\phi](x) = \frac{d^n}{dx^n}\phi(0) \frac{\log(x)}{n!} - \sum_{j=0}^{n-1} \frac{d^j}{dx^j} \phi(0) \frac{x^{j-n}}{j!(n-j)}.\] Observe that
+\[(I_n[\phi])'(x) = x^{-(n+1)}P_n[\phi](x).\] We define $x_+^s$ by
+\[\langle x_+^{-1-k},\phi\rangle = \int_0^y x^{-1-k}(\phi(x)-P_k[\phi](x))\ dx + \int_y^\infty x^{-1-k}\phi(x)\ dx + I_k[\phi](y)\]
+for any $y > 0$.
+Both integrals are well-defined; the second clearly and the first since $\phi(x)-P_k[\phi](x) = O(x^{k+1})$. Defining $x_+^s$ like this certainly extends $x_+^{-1-k}$ and is supported in $[0,\infty)$. We now check that the definition does not depend on the choice of $y$. Suppose we used $y' > y$ instead of $y$ in the definition. Substracting the results from the two definitions yields
+\begin{align*}
+&\int_y^{y'} x^{-1-k}(\phi(x)-P_k[\phi](x))\ dx - \int_{y}^{y'} \phi(x)\ dx + I_k[\phi](y')-I_k[\phi](y)\\
+&=-\int_y^{y'} x^{-1-k}P_k[\phi](x)\ dx + I_k[\phi](y')-I_k[\phi](y) = 0\end{align*}
+by the fundamental theorem of calculus and the definition of $I_k[\phi]$.
+
+
+Lastly we check (and define) the quasi-homogeneity of this distribution. By chain rule,
+\[P_k[\phi_t](x) = P_k[\phi](tx) = (P_k[\phi])_t(x).\]
+Thus
+\[\int_0^y x^{-1-k}(\phi_t(x)-P_k[\phi_t](x)\ dx = t^k\int_0^{ty} x^{-1-k}(\phi(x)-P_k[\phi](x))\ dx,\]
+and
+\[\int_y^\infty x^{-1-k}\phi_t(x)\ dx = t^k\int_{ty}^\infty x^{-1-k}\phi(x)\ dx.\]
+We conclude that
+\[t^{1+s}\langle x_+^s,\phi_t\rangle - \langle x_+^{s},\phi\rangle = t^{-k}\langle x_+^{-1-k},\phi_t\rangle- \langle x_+^{-1-k},\phi\rangle = t^{-k}I_k[\phi_t](y) - I_k[\phi](ty).\]
+A rudimentary computation yields that this is
+\[\frac{d^k}{dx^k}\phi(0)\frac{\log(y)-\log(ty)}{k!} = -\frac{d^k}{dx^k}\phi(0)\frac{\log(t)}{k!},\]
+so
+\[t^{1+s}\langle x_+^s,\phi_t\rangle - \langle x_+^{s},\phi\rangle = -\frac{d^k}{dx^k}\phi(0)\frac{\log(t)}{k!}.\]
+
+Finally, we show that there is no homogeneous extension of $x_+^{-1-k}$, $k \in \N_{\geq 0}$. Indeed by the structure result, it would differ from the extension $x_+^{-1-k}$ we constructed above by delta functions. Thus
+\[u = x_+^{-1-k} + \sum_{\ell=0}^N c_{\ell}\delta^{(\ell)}(0)\] is homogeneous. Examining the homogeneity of the $\delta$ functions and the quasi-homogeneity of $x_+^{-1-k}$ shows that this is impossible. Indeed, if $\phi \in \mathcal S(\R)$, then
+\[\langle u,\phi\rangle = t^{-k}\langle u,\phi_t\rangle = \langle x_+^{-1-k},\phi\rangle -\frac{d^k}{dx^k}\phi(0)\frac{\log(t)}{k!} + t^{-k+\ell}\sum_{\ell=0}^N c_\ell (-1)^{\ell}\phi^{\ell}(0).\]
+In particular, choosing a $\phi$ whose derivatives of order $k$ and order $\ell=0,1\ldots, N$ do not vanish, we see that the left-hand side is constant, bu the right-hand side is certainly not since all terms have different orders of growth.
+\end{proof}
+
+We have an alternative construction of $x_+^s$ similiar in spirit to $x_+^{-1-k}$ which we now provide.
+\begin{lem}\label{alt}For $s \in C$, and $k \in \N_{\geq 0}$ with $\Re(s+k+1) > 0$ ($s +k + 1 \neq 0$) and $\phi \in \mathcal S(\R)$ set
+\[I_{k,s}[\phi](y) = \frac{d^k}{dy^k}\phi(0)\frac{y^{s+k+1}}{k!(s+1+k)} + \sum_{j=0}^{k-1}\frac{d^j}{dy^j} \phi(0) \frac{y^{j-k}}{j!(j+s+1)}.\]
+Then
+\[\langle x_+^s,\phi\rangle = \int_0^y x^{s}(\phi(x)-P_k[\phi](x))\ dx + \int_y^\infty x^{s}\phi(x)\ dx + I_{k,s}[\phi](y).\]
+\end{lem}
+\begin{proof}
+One easily checks as in the proof of Proposition~\ref{bext} that the right-hand side is well-defined, extends $x_+^s$, and is homogeneous rather than quasi-homogeneous. Uniqueness then proves the lemma.\end{proof}
+
+We are now in a position to prove Proposition~\ref{ext}.
+
+\begin{proof}[Proof of Proposition~\ref{ext}]The proof of uniqueness and structure statement are similar to the proof of \ref{bext}. Suppose $s \neq -d-2k$, $k \in \N_{\geq 0}$. If $u$ is radial and homogeneous of order $s$, then $|x|^{-s}u$, considered as a distribution in $\mathcal D'(\R^d\setminus\{0\})$, is radial and homogeneous of order $0$. Thus $\partial_r |x|^{-s}u = 0$. If $L$ is a vector field with $L_x$ tangent to the sphere of radius $|x|$ then, being radial, $L (|x|^{-s}u) = 0$. Thus $\nabla (|x|^{-s}u) = 0$, and so $u = C|x|^s$ as elements of $\mathcal D'(\R^d\setminus\{0\})$. Assume we have defined a radial extension $|x|^s$. This means that $u-C|x|^s$ is a linear combination of $\delta$ functions. If $s \neq -d-k$, then there are no $\delta$ functions since the extension is homogeneous of order $s \neq -d-k$.
+
+ If $s =-d-k$, and $k$ is odd, we need to show that there are also no delta functions. This will follow from the following easy lemma:
+ \begin{lem}Suppose $I$ is a set of multi-indices and \[v = \sum_{\alpha \in I} (-i)^{\alpha}c_\alpha\partial^{\alpha}\delta.\] Then $v$ is radial and homogeneous of order $s$ if and only if $s = -d-2k$, $k \in \N_{\geq 0}$, and $I = \{2\beta \: \beta \in J\}$ where $J$ contains all multi-indices of length $k$, and $c_\alpha = C{k \choose \alpha/2}$ is the multinomial coefficient, and $C$ is a fixed constant not depending on $\alpha$.\end{lem}
+\begin{proof}Taking the Fourier transform, we know that $\widehat{v}$ is on the one hand a polynomial $p(x)$ and on the other hand is homogeneous and radial. This means that $p(x) = C|x|^{-d-s}$ for some constant $C$. For $p$ to be a polynomial means that $s = -d-2k$ for $k \in \N_{\geq 0}$. The other direction follows from the reverse argument.\end{proof}
+This proves the structure statement. The uniqueness statement follows from the same argument.
+
+Next for existence. Since $\supp x_+^s \subseteq [0,\infty)$, $x_+^s$ is really a distribution on those $\phi$ defined on $[0,\infty)$, Schwartz at $\infty$ and smooth to $0$ (indeed by Borel's lemma we may extend $\phi$ arbitrarily to $\mathcal S(\R)$; the support condition means the choice of extension does not matter. That we have the desired estimates making the functional continous is clear from the definition of $x_+^s$). Call this space $\mathcal S([0,\infty))$. One checks that for $\phi \in \mathcal S(\R^d)$ the map
+\[F[\phi](r) = \int_{S^{d-1}} \phi(r\theta)\ d\theta\] is in $\mathcal S([0,\infty))$ and furthermore $F:\mathcal S(\R^d) \to \mathcal S([0,\infty))$ is continuous, where the codomain is given the obvious topology (the topology where one-sided dervatives takes taken at $0$). 
+
+The only thing to check is that $F[\phi]$ is smooth down to $0$. We use Taylor's theorem to write
+\[\phi(r\theta) = \sum_{|\alpha| \leq N} \partial^{\alpha}\phi(0)\frac{r^{|\alpha|}\theta^{\alpha}}{\alpha!} + R_N(r,\theta),\]
+where
+\[R_N(r,\theta) = \sum_{|\alpha| = N+1} \frac{(N+1)\theta^{\alpha}}{\alpha!}\int_0^r (r-t)^{N}\partial^{\alpha}\phi(t\theta)\ dt.\]
+We observe then that $\partial_r^j R_N(r,\theta) \in O(r^{N+1-j})$ as $r \to 0$ uniformly in $\theta$ for $j \leq N$. Plugging this in shows the desired smoothnes down to $0$.
+
+
+Mimicing polar coordinates, we may define
+\[\langle |x|^s,\phi\rangle := \langle r_+^{s+d-1},F[\phi]\rangle.\] Since $F[\phi_t] = F[\phi]_t$, if $s \neq -d-k$ for $k \in \N_{\geq 0}$, homogeneity is clear. Since $F[\phi] = F[\phi\circ T]$ for $T \in SO(d)$, $|x|^s$ is also radial. Integrating in polar coordinates shows that this distribution extends $|x|^s$.
+
+
+Unlike in Proposition~\ref{bext}, the existence of such a distribution defined for all $s$ does not rule out the existence of a homogeneous extension of $|x|^{-d-k}$, for $k \in \N_{\geq 0}$. In fact, the distribution defined above \emph{is} homogeneous if $k$ is odd, but is not if $k$ is even. By quasi-homogeneity, the ``defect'' in homogeneity is proportional to $\frac{d^k}{dr^k} F[\phi](0)$. If $k$ is odd, we will show this quantity always vanishes. If $k$ is even, we will show that there are $\phi$ for which it does not. 
+
+We again use Taylor's theorem,
+\[\phi(r\theta) = \sum_{|\alpha| \leq N} \partial^{\alpha}\phi(0)\frac{r^{|\alpha|}\theta^{\alpha}}{\alpha!} + R_N(r,\theta),\]
+where $\partial_r^{j} R_N(r\theta) = O(r^{N+1-j})$ as $r \to 0$. Here $\alpha$ is a multi-index and we use multi-index notation. By symmetry, $\int_{S^{n-1}}\theta^{\alpha} \ d\theta = 0$ unless all components of $\alpha$ are even, in which case the integral is non-zero. Indeed, the sphere has reflective symmetry $\theta_i \mapsto -\theta_i$, and if $\alpha_i$ is odd then $\theta^{\alpha}$ picks up a sign under this reflection. Thus,
+\[\partial_r^k\phi(r,\theta) = \sum_{|\alpha| = k}\partial^{\alpha}\phi(0)\frac{k!}{\alpha!}\theta^{\alpha} + S_N(r,\theta),\]
+where $S_N(r,\theta) = O(r)$. In particular if $k$ is odd then the leading terms all have integral $0$, and so 
+\[\frac{d^k}{dr^k}F[\phi](0) = \lim_{r \to 0} \int \frac{\partial^k}{\partial r^k} \phi(r,\theta)\ d\theta = \lim_{r \to 0} O(r) = 0.\]
+
+However, if $k$ is even, then it is always possible to construct a $\phi$ with $\partial^{\alpha} \phi(0) \neq 0$, and so a $\phi$ can always be chosen with the defect non-zero. This analysis rules out the possibility of a homogeneous radial extension if $k$ is even by the same argument as in Proposition~\ref{bext}.
+
+Another way to see the non-existence is to consider the Fourier transform. If $u$ is any radial distribution homogeneous of order $-d-2k$, then its Fourier transform, $\widehat{u}$, is radial and homogeneous of order $2k$, in particular by the structure statement, is a multiple of $|x|^{2k}$. Since $|x|^2$ is a polynomial, $\widehat{u}$ is a polynomial. Thus $u$ is a sum of $\delta$ functions, which cannot extend $|x|^{-d-2k}$.
+
+Meromorphicity follows from the meromorphicity of $r_+^s$. A priori there can be poles at $s=-d-k$ for $k$ odd. But when we compute the residues, we will show they vanish if $k$ is odd. From Proposition~\ref{bext}, we know that the residue of
+$\langle |x|^s,\phi\rangle$ at $s=-d-k$ is $\frac{1}{k!}\frac{d^k}{dr^k}F[\phi](0)$. We showed above that this vanishes if $k$ is odd. If $k$ is even then a similar computation shows that it is
+\[\sum_{|\alpha|=k} \partial^{\alpha}\phi(0)\frac{1}{\alpha!}\int_{S^{d-1}} \theta^{\alpha}\ d\theta.\]
+This is just
+\[2\sum_{|\alpha| = k; \ \alpha_i \text{ even }}\partial^{\alpha}\phi(0)\frac{1}{\alpha!}\frac{\Gamma((\alpha_1+1)/2)\cdots\Gamma((\alpha_d+1)/2)}{\Gamma((k+d)/2)}.\] Replacing $k$ with $2k$ and applying the duplication formula yields the form for the residue appearing statement of the Proposition.
+
+The appearance of $\Gamma$ is explained by the following lemma.
+\begin{lem}If $\alpha_i$ is even for all $\alpha$. \[\int_{S^{d-1}} \theta^{\alpha} = 2\frac{\Gamma((\alpha_1+1)/2)\cdots\Gamma((\alpha_d+1)/2)}{\Gamma((|\alpha|+d)/2)}.\]\end{lem}
+\begin{proof}[Proof sketch]Let $I$ denote the integral. Then
+\[\int_{\R^d} x^{\alpha}e^{-|x|^2/2}\ dx = I \int_0^\infty r^{|\alpha|+d-1}e^{-r^2/2}\ dr.\] The second factor on the right-hand side can easily be computed by making a substitution turning it into the integrand appearing the $\Gamma$ function. The left-hand side may be evaluated by Fubini's theorem and then turning each factor into a $\Gamma$ integrand.
+\end{proof}
+This completes the proof.
+\end{proof}
+We now state a lemma which will allow us to relate $|x|^s$ and $x_+^s$ for $s$ a pole to the regularized values of the corresponding meromorphic families.
+
+\begin{lem}\label{convg}For $k \in \N_{\geq 0}$, the following convergence holds in the sense of $\mathcal S'(\R)$:
+\[\lim_{\epsilon \to 0^+} x_+^{-1-k+\epsilon} + \frac{(-1)^{k+1}}{k!\epsilon}\frac{d^k}{dx^k}\delta = x_+^{-1-k}.\]\end{lem}
+\begin{proof}
+We use Lemma~\ref{alt}. Set $s = -1-k+\epsilon$. Then the only terms in $\langle x_+^s,\phi\rangle$, using the representation in Lemma~\ref{alt}, which do not converge to the corresponding terms in the definition $x_+^{-1-k}$ is the first term of $I_{k,s}$. The problem is that
+\[\frac{y^{\epsilon}}{\epsilon} \not \to \log(y).\] However, if we subtract $\frac{1}{k!\epsilon}\frac{d^k}{dx^{k}}\phi(0)$ from $\langle v_\epsilon,\phi\rangle$, then we do obtain convergence, since
+\[\frac{y^\epsilon-1}{\epsilon} \to \left.\frac{d}{dy} y^{\epsilon}\right|_{y=0} = \log(y).\]
+\end{proof}
+
+\begin{cor}\label{regvalue}Let $\Pi$ denote the residue of either $x_+^s$ or $|x|^s$ at a pole, $s=-1-k$ for the former and $s=-1-2k$ for the latter, $k \in \N_{\geq 0}$. Then
+\[\lim_{t \to s} x_+^t - (t-s)^{-1}\Pi = x_+^s\] and
+\[\lim_{t \to s} |x|^t - (t-s)^{-1}\Pi = |x|^s.\]
+\end{cor}
+\begin{proof}Lemma~\ref{convg} together with the meromorphicity proves the first statement. Indeed in Lemma~\ref{convg} the value we are subtracting off is precisely the residue. Since the convergence happens from one direction, the meromorphicity implies it happens for all direction. The second statement follows from the first and the fact that the residue of $|x|^t$ as $t=s$ is precisely what one gets by evaltuating the residue on $F[\phi]$.\end{proof}
+
+
+\section{Fourier Transforms}
+In this section we finally compute all the Fourier transforms of the distributions we constructed in the previous section. 
+\begin{proof}[Proof of Theorem~\ref{FT}]
+We know that $\widehat{|x|^s}$ is a meromorphic family of distributions with poles when $s = -d-2k$. If $s = -d-2k$, then $\widehat{|x|^{-d-2k}}$ is, by Corollary~\ref{regvalue} the regularized value of this family, i.e. the term of order $0$ around $s=-d-2k$. This is because $|x|^{-d-2k}$ is the regularized value, and the Fourier transform is linear. We will show below that if $-d < s < 0$ then
+\[\widehat{|x|^s} = (2\pi)^{d/2}2^{s+d/2}\Gamma\left(\frac{s+d}{2}\right)\left(\Gamma\left(-\frac{s}{2}\right)\right)^{-1}|\xi|^{-d-s}.\]
+The last factor is holomorphic since $\Gamma$ has no zeroes. Uniqueness of meromorphic continuation means that this formula is valid as long as $s \neq -d-2k$, and $s \neq 2k$, away from where the $\Gamma$ factor and $|x|^{-d-s}$ have poles. If $s = 2k$, then $|x|^{s}$ is a polynomial, whose Fourier transform is easy to compute. If $s = -d-2k$ we will need to use the regularized value.
+
+\begin{lem}Suppose $-d < s < 0$. Then $\widehat{|x|^s}$ is given by the above formula.\end{lem}
+\begin{proof}
+Let $G(x) = \exp(-|x|^2/2)$ be the standard Gaussian, with Fourier transform $\widehat{G}(\xi) = (2\pi)^{d/2}G(\xi)$. We know a priori that the Fourier transform of $|x|^{s}$ is homogeneous and radial, is is therefore some multiple $f_d(s)$ of $|\xi|^{-d-s}$. We use the definition of the Fourier transform to determine that
+\[f_d(s)\langle |\xi|^{-d-s},G(\xi)\rangle = (2\pi)^{d/2}\langle |x|^{s},G(x)\rangle.\]
+We use polar coordinates to evaluate the distributional pairing (these are actually integrals since $-d < -d-s,s < 0$ and so both distributions are actually in $L^1_{\text{loc}}(\R^d)$. The left-hand integral is
+\[\omega_{d-1}\int_0^\infty r^{-s-1}e^{-r^2/2}\ dr = 2^{-s/2-1}\int_0^\infty \rho^{-s/2-1}e^{-\rho}\ d\rho = \omega_{d-1}2^{-s/2-1}\Gamma(-s/2).\]
+Similarly the right-hand integral is
+\[\omega_{d-1}2^{(s+d)/2-1}\Gamma((s+d)/2).\] Putting it all together yields the desired formula.\end{proof}
+
+
+In order to compute the Fourier transform of $|x|^{-d-2k}$,we need to compute a regularized value. The first step is to compute the regularized values of $\Gamma(z)$.
+\begin{prop}\label{regamma}Let
+\[H_n = \sum_{j=1}^n \frac{1}{j}\] denote the $n$th harmonic number. Then the regularized value of $\Gamma(z)$ at the pole $z=-k$ is
+\[\frac{(-1)^k}{k!}(H_k-\gamma),\]
+where $\gamma$ is the Euler-Mascheroni constant.\end{prop}
+\begin{proof}
+We need to examine for $k \in \Z$
+\[\left.\frac{d}{dz} (z+k)\Gamma(z)\right|_{z=-k},\] since this is the regularized value.
+
+Set $\Gamma_n(z) = \frac{n!n^z}{(z)(z+1)\cdots (z+n)}$. Then
+\[\frac{d}{dz} \Gamma_n(z) = \Gamma_n(z)\left(\log(n)-\sum_{k=0}^n \frac{1}{z+n}\right).\]
+One checks using Stirling's formula that
+\[\frac{\Gamma_n(z)}{\Gamma(z)} \to 1\] uniformly on compact subsets, at least for $z > 0$ and $\Im (z)$ near $0$. Since
+\[\lim_{n \to \infty} (\log(n)-\sum_{k=0}^n \frac{1}{1+n} = -\gamma,\] and $\frac{1}{z+n}-\frac{1}{1+n} \in O(n^{-2})$ uniformly for $z$ in compact sets, one has that \[\Gamma_n,\Gamma_n' \to \Gamma, \Gamma',\] respectively, uniformly on compact sets for $\Im(z)$ near $0$ and $z > 0$. In partcular,
+\[\Gamma'(1) = \lim_{n \to \infty} \Gamma_n(1)\left(\log(n)-\sum_{k=0}^n \frac{1}{z+n}\right) = -\gamma.\]
+
+Using this we may compute the regularized value. One has that
+\[(z+k)\Gamma(z) = \frac{(z+k)(z+k-1)\cdots(z)}{(z+k-1)\cdots(z)}\Gamma(z) = \frac{\Gamma(z+k+1)}{(z+k-1)\cdots z}.\]
+Let $A_k(z)$ be the denominator. Then
+\[\left.\frac{d}{dz} (z+k)\Gamma(z)\right|_{z=-k} = \frac{\Gamma'(1)A_k(-k) - \Gamma(1)A_k'(-k)}{A_k(-k)^2}.\]
+We know that $\Gamma'(1) = -\gamma$ and $\Gamma(1) = 1$. Clearly $A_k(-k) = (-1)^kk!$. One also easily checks that
+\[A_k'(-k) = \sum_{j=1}^k\prod_{\ell \neq k} -\ell = \sum_{j=1}^k (-1)^{k-1}\frac{k!}{j} = (-1)^{k-1}k!H_k.\] Putting this all together proves the lemma.\end{proof}
+
+Also recall that the residue of $\Gamma(z)$ at $z = -k$ is $(-1)^k/k!$. This follows immediately from the functional equation.
+If $f(z) = f_0 + f_1(z-z_0) + O(z^2)$ is holomorphic near $z_0$, with and $g(z)$ has a simple pole at $z_0$ with residue $g_{-1}$ and regularized value $g_0$, then the regularized value of $fg$ at $z_0$ is $g_{-1}f_1 + g_0f_0$. Since $(s+d)/2+k = 1/2(s+(2k+d))$, the residues of $\Gamma((s+d)/2)$ and $\Gamma(z)$ will differ by a factor of $2$. Putting this all together (and bieng very careful), it follows that the regualized value of $\widehat{|x|^{s}}$ at $s=-d-2k$ is
+\[\frac{(-1)^k}{k!}(\pi)^{d/2}2^{-2k}\Gamma(d/2+k)^{-1}|\xi|^{2k}\left(2\log(2)-2\psi(-d/2+k)-2\log|\xi| + H_k-\gamma\right).\]
+There are more elementary expressions for $\Gamma(d/2+k)$ and $\psi(-d/2+k)$ depending on whether $d$ is even or odd, but we will not go into that here. In all, we conclude that $\widehat{|x|^{-d-2k}}$ is the previous display.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{bFT}]The proof is similar. We establish a formula first for $\widehat{x_+^s}$ valid when $-1 < s < 0$ and extend this via meromorphic continuation and taking regularized values.
+
+The Fourier transform does not taking distributions supported in $[0,\infty)$ to those supported in $[0,\infty)$, so we will need to work around this. If $\phi \in \mathcal S(\R)$, define $\phi^\ast \in \mathcal S(\R)$ by
+\[\phi^{\ast}(x) = \phi(-x).\] If $u \in \mathcal S'(\R)$, then define $u^\ast \in \mathcal S'(\R)$ by
+\[\langle u^\ast,\phi\rangle = \langle u,\phi^\ast\rangle.\] We observe that $\widehat{u^\ast} = (\widehat{u})^\ast$.
+
+We will call $u \in \mathcal S'(\R)$ \emph{even} if $u^\ast = u$, and \emph{odd} if $u^\ast = -u$. 
+
+%We will call $u \in \mathcal S'(\R)$ \emph{real-valued} if $\langle u,\phi\rangle \in \R$ for any real-valued $\phi \in \mathcal S(\R)$. Likewise we say that $u$ is \emph{imaginary-valued} if $\langle u,\phi\rangle \in i\R$ for any real-valued $\phi \in \mathcal S(\R)$ (observe that $\phi$ is still real-valued).
+The following lemma is an easy consequence of definitions and duality
+\begin{lem}If $u$ is even (resp. odd), then $\hat{u}$ is even (resp. odd).\end{lem}
+\begin{proof} If $u$ is even, then $u = \frac{1}{2}(u + u^\ast)$. Thus $\hat{u} = \frac{1}{2}(\hat{u}+\hat{u}^{\ast})$ is even. A similar argument holds if $u$ is odd.
+\end{proof}
+
+Let us set
+\[u(s) = x_+^s + (x_+^s)^{\ast} = x_+^s + x_-^s\]
+and
+\[v(s) = x_+^s - (x_+^s)^{\ast} - x_+^s - x_-^s.\]
+Then $u(s),v(s)$ are even/odd, respectively, and extend the distributions $|x|^s$ and $\sgn(x)|x|^s$ from $\R\setminus\{0\}$ to $\R$. If $-1 < s < 0$, then $u,v \in L^1_{\text(loc)}(\R)$ are actually functions, and are certainly homogeneous. So, $\widehat{u(s)},\widehat{v(s)}$ are homogeneous of order $-1-s$ and are even/odd, respectively. The same proof as the uniqueness/structure proof of Proposition~\ref{bext} shows that $\widehat{u(s)}$, considered as a distribution in $\mathcal D(\R\setminus\{0\})$ is a multiple of $x_+^{-1-s}$ to the right of $0$, and an a priori different multiple of $x_-^{-1-s}$ to the left of 0. Thus, as a tempered distribution,
+\[\widehat{u(s)} = h_+(s)x_+^{-1-s} + h_-(s)x_-^{-1-s} + \sum_{\ell=0}^N c_\ell \frac{d^\ell}{dx^{\ell}}\delta.\] Homogeneity constraints mean that all $c_\ell$ vanish. Similarly,
+\[\widehat{v(s)} = g_+(s)x_+^{-1-s} + g_-(s)x_-^{-1-s}.\]
+
+The upshot is that
+\[\widehat{x_+^s} = \frac{1}{2}(\widehat{u(s)} + \widehat{v(s)}) = \frac{h_+(s)+g_+(s)}{2}x_+^{-1-s} + \frac{h_-(s)+g_-(s)}{2}x_-^{-1-2}.\]
+
+So we need to find $h_{\pm},g_{\pm}$.  First, $\widehat{u(s)}$ is even and $\widehat{v(s)}$ is odd. Thus $h_+ = h_-$ and $g_+ = -g_-$. We use a similiar technique to the one used in the proof of Theorem~\ref{FT}, i.e. testing against a Gaussian $G(x)$ for $u(s)$. Thus we have that
+\[(2\pi)^{1/2}\int_{-\infty}^\infty |x|^se^{-x^2/2}\ dx = h_{\pm}(s)\int_{-\infty}^\infty|x|^{-1-s}e^{-x^2/2},\]
+i.e.
+\[h_\pm(s) = \pi^{1/2}2^{s+1}\Gamma\left(\frac{s+1}{2}\right)\Gamma\left(\frac{-s}{2}\right)^{-1} = -2\sin\left(\frac{\pi s}{2}\right)\Gamma(s+1),\]
+where we have used the reflection formula\footnote{i.e. $\Gamma(z)^{-1} = \Gamma(1-z)\frac{\sin(\pi z)}{\pi}$} and the dulplication formula.
+
+Since $v(s)$ is odd, testing against $G(x)$ will not do anything. Instead, let us set $H(x) = G'(x) = -xG(x)$. Then $\hat{H}(\xi) = -i(2\pi)^{1/2}H(\xi)$, so we may use this to compute $g_{\pm}(s)$. We have that
+\[-i(2\pi)^{1/2}\int_{-\infty}^\infty |x|^{s+1}e^{-x^2/2}\ dx = \pm g_{\pm}(s)\int_{-\infty}^\infty|x|^{-s}e^{-x^2/2},\]
+i.e.
+\[g_{\pm}(s) = \mp i\pi^{1/2}2^{s+1}\Gamma\left(\frac{s}{2}+1\right)\Gamma\left(\frac{1-s}{2}\right)^{-1} = \mp 2i\sin\left(\frac{1-s}{2}\pi\right)\Gamma(s+1).\]
+
+Putting it all together gives that
+\[\widehat{x_+^s} = -i\Gamma(s+1)e^{-i\pi/2 s}x_+^{-1-s} + i\Gamma(s+1)e^{i\pi/2s}x_-^{-1-s}.\]
+
+As we would expect, by meromorphic continuation this formula remains valid so long as $s \neq -1,-2,\ldots$ or $s = 0,1,\ldots$. We know that for $s = -1,-2,\ldots$, we must take the regularized value. From Proposition~\ref{regamma} and the discussion around, we know how to compute it. It is
+\[\widehat{x_+^{-1-k}} = \frac{(-1)^{k+1}}{k!}ie^{-i\pi/2}\left(H_k-\gamma-\frac{i\pi}{2}-\log(x_+)\right)x_+^k + \frac{(-1)^{k}}{k!}ie^{i\pi/2}\left(H_k-\gamma+\frac{i\pi}{2}-\log(x_-)\right)x_-^{k}.\]
+\end{proof}
+
+
+
+\begin{bibdiv}
+\begin{biblist}
+
+\newcommand{\perafter}[1]{#1.}
+
+\BibSpec{book}{
+  +{}{\PrintAuthors} {author}
+  +{,}{ \textit} {title}
+  +{. }{} {publisher}
+  +{, }{} {address}
+  +{, }{\perafter} {year}
+}
+\bib{Hor}{book}{
+      author = {H\"ormander, Lars},
+      title = {The Analysis of Linear Partial Differential Operators I},
+      year = {1990},
+      publisher = {Springer},
+      address = {Berlin},
+			}
+
+\end{biblist}
+\end{bibdiv}
+
+\end{document}
