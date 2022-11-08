@@ -21,7 +21,7 @@
 \usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
 
 % adjust the page margins
-\usepackage[scale=0.83]{geometry}
+\usepackage[scale=0.84]{geometry}
 \setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column of the timeline
 %\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. Be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks.
 \usepackage{ragged2e} %Lo he incluido yo para poder justificar la cover letter. Parece que no da problemas.
@@ -88,11 +88,14 @@
 %\name{\huge \textbf{Ricardo}}{\huge \textbf{Grande Izquierdo}} %Cambiar segun si quiero el CV o la carta
 \name{Ricardo}{Grande}
 \title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
-\address{Dept. of Mathematics, Office 2842}{U. of Michigan, Ann Arbor, MI 48109}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
-\phone[mobile]{(+1)~210~362~0805}                   % optional, remove / comment the line if not wanted
+%\address{Dept. of Mathematics, Office 2842}{U. of Michigan, Ann Arbor, MI 48109}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+\address{D\'ept. de math\'ematiques et applications, Bureau C16}{\'Ecole Normale Sup\'erieure, Paris 75005}
+%\phone[mobile]{(+1)~210~362~0805}                   % optional, remove / comment the line if not wanted
+\phone[mobile]{(+33)~661~361~257}                   % optional, remove / comment the line if not wanted
 %\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
 %\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
-\email{grander@umich.edu}                               % optional, remove / comment the line if not wanted
+%\email{grander@umich.edu}                               % optional, remove / comment the line if not wanted
+\email{ricardo.grande@ens.fr}                               % optional, remove / comment the line if not wanted
 %\homepage{math.mit.edu/\textasciitilde{}rgi/}                         % optional, remove / comment the line if not wanted
 %\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
 %\photo[64pt][0.4pt]{images/picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file stored
@@ -116,7 +119,8 @@
 % Example: \cvitem{supervisors}{My supervisors' names go here}
 % Example: \cvitem{description}{Short thesis abstract}
 
-\cvitem{}{Nonlinear Dispersive PDEs, Harmonic Analysis}
+\cvitem{}{Nonlinear PDEs, Kinetic theory, Harmonic Analysis}
+\cvitem{}{Probability, Stochastic Processes}
 
 
 %-------------------Academic Appointments-------------------------------------------------------------------
@@ -134,9 +138,13 @@
 % Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
 
 %\tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
-\cvitem{2020 - Currently}{\textbf{Postdoctoral Assistant Professor}, \emph{University of Michigan, Ann Arbor}}
-\cvlistitem{ \emph{Mentor:} Zaher Hani}
+\cvitem{2021 - Currently}{\textbf{Postdoctoral Researcher}, \emph{\'Ecole Normale Sup\'erieure, Paris}}
+\cvlistitem{ \emph{Mentors:} Isabelle Gallagher (ENS) and Laure Saint-Raymond (IHES)}
+\cvlistitem{ Postdoctoral associate of the Simons Collaboration in Wave Turbulence}
 
+\cvitem{2020 - 2021}{\textbf{Postdoctoral Assistant Professor}, \emph{University of Michigan, Ann Arbor}}
+\cvlistitem{ \emph{Mentor:} Zaher Hani}
+\cvlistitem{ Postdoctoral associate of the Simons Collaboration in Wave Turbulence}
 
 %-------------------Education Section-------------------------------------------------------------------
 
@@ -153,55 +161,20 @@
 % Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
 
 %\tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
-\cvitem{2015 - 2020}{\textbf{PhD  in Mathematics}, \emph{Massachusetts Institute of Technology}}
+\cvitem{2015 - 2020}{\textbf{PhD  in Mathematics}, \emph{Massachusetts Institute of Technology}.}
 \cvlistitem{ \emph{Advisor:} Gigliola Staffilani}
 \cvlistitem{ \emph{Thesis title:} The role of smoothing effect in some dispersive equations} %{ \ \emph{GPA}: 5.0/5.0.}
 \cvitem{2014 - 2015}{\textbf{Master of Advanced Study in Mathematics}, \emph{University of Cambridge}}
 \cvlistitem{ \emph{Essay:} Averaging Lemmas and the X-ray transform}
-\cvlistitem{ \emph{Directed by:} Cl\'ement Mouhot}
+\cvlistitem{ \emph{Directed by:} Cl\'ement Mouhot}%, \ \emph{Grade}: Merit (First-class honours).}
 \cvitem{2010-2014}{\textbf{Licenciatura en Matem\'aticas}, \emph{Universidad del Pa\'is Vasco (UPV-EHU)}}
-%\cvlistitem{Valedictorian Award}
-
-
-%-------------------Publications----------------------------------------------------------------
-
-\section{Publications}
-
-% Format:  \cvlistitem{Achievement}
-% Example: \cvlistitem{Received best student award}
-% Example: \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
-
-\cvitem{}{R. Grande, K. M. Kurianski, G. Staffilani, \emph{On the nonlinear Dysthe equation}, Nonlinear Analysis 207, 112292 (2021)}
-\cvitem{}{R. Grande, \emph{Continuum limit for discrete NLS with memory effect}, submitted, preprint available at \url{arxiv.org/abs/1910.05681}}
-\cvitem{}{R. Grande, \emph{Space-time fractional Nonlinear Schr\"odinger equation}, SIAM J.$\!$ Math.$\!$ Anal (2019), 51(5), 4172-4212}
-\cvitem{}{R. Grande, I. Kov\'acs, K. Kutnar, A. Malni\v{c}, L. Mart\'inez, D. Maru\v{s}i\v{c},  \emph{Equisizable partial sum families}, Journal of Algebraic Combinatorics 51, 273-296 (2020)}
-\cvitem{}{M. Conder, R. Grande, \emph{On embeddings of circulant graphs}, Electronic Journal of Combinatorics 22 (2015), $\#$ P2.28}
-
-%-------------------Conferences and Workshops------------------------------------------------------------------
-
-\section{Conferences and Workshops}
-
-\cvitem{Nov 2020}{\textbf{Differential Equations Seminar}, University of Michigan (Invited speaker)}
-\cvitem{May 2020}{\textbf{Mathematics of Planet Earth: Analysis and Modelling}, \href{https://sites.google.com/view/mpe2020-webinars/home}{Webinar} (Invited speaker)}
-\cvitem{May 2020}{\textbf{Mathematical Questions in Wave Turbulence}, Banff International Research Station}
-\cvitem{Jan 2020}{\textbf{Winter School: Turbulence in fluids and PDEs}, Lausanne (Invited speaker)}
-\cvitem{Jan 2020}{\textbf{Seminar}, GSSI L'Aquila. (Invited speaker)}
-\cvitem{Jan 2020}{\textbf{BCAM Scientific Seminar}, BCAM. (Invited speaker)}
-\cvitem{Dec 2019}{\textbf{Meeting: Simons Collaboration in Wave Turbulence}, Courant Institute}
-\cvitem{Nov 2019}{\textbf{Brown-BU-UMass Amherst seminar in PDE and Dynamics}, Brown University (Invited speaker)}
-\cvitem{Nov 2018}{\textbf{Gran Sasso Quantum Meeting: From Many Particle Systems to Quantum Fluids}, GSSI L'Aquila}
-\cvitem{Oct 2018}{\textbf{FRG Meeting: Long-Term Dynamics of Nonlinear Dispersive and Hyperbolic Equations}, University of Chicago}
-\cvitem{May 2018}{\textbf{Conference on Nonlinear Waves}, Brown University}
-\cvitem{May 2018}{\textbf{School and Conference on Nonlinear Waves: Stability vs Turbulence},  celebrating the contributions of Jalal Shatah, Georgia Tech}
-\cvitem{Sept 2016}{\textbf{FRG Conference in Dispersive and Wave equations}, MIT}
-\cvitem{July 2015}{\textbf{BCAM Workshop on Harmonic Analysis and PDEs}, BCAM}
-\cvitem{July 2014}{\textbf{10th AIMS Conference on Dynamical Systems, Differential Equations and Applications}, ICMAT}
-\cvitem{March 2014}{\textbf{IV School of Functional Analysis and Applications}, Brownian Motion and Ito's formula, Universidad de Sevilla}
-
+\cvlistitem{Valedictorian Award} %,  \emph{Final grade:} 9.69/10.}
 
 %-------------------Teaching Experience------------------------------------------------------------------
 \section{Teaching Experience}
-
+\cvitem{Summer 2021}{\textbf{REU co-mentor} (with Z. Hani), University of Michigan}
+\cvlistitem{\emph{Students:} Yubing Cui and Joshua Messing}
+\cvlistitem{\emph{Project:} Wave Kinetic Equation and Kolmogorov-Zakharov Cascade Spectra} 
 \cvitem{Winter 2021}{\textbf{Math 316 - Differential Equations}, University of Michigan}
 \cvitem{Fall 2020}{\textbf{Math 116 - Calculus II}, University of Michigan}
 \cvitem{Spring 2020}{\textbf{Grader} for 18.615 - Introduction to Stochastic Processes, MIT}
@@ -216,25 +189,86 @@
 \cvitem{Summer 2016}{\textbf{UROP+ Research Supervisor}, MIT}
 \cvlistitem{\emph{Student:} Eli Sadovnik}
 \cvlistitem{\emph{Project:} A Central Limit Theorem for Fluctuations of Internal
-Diffusion-Limited Aggregation with Multiple Sources} 
+Diffusion-Limited \\ Aggregation with Multiple Sources} 
+
+%-------------------Publications----------------------------------------------------------------
+
+\section{Publications}
+
+% Format:  \cvlistitem{Achievement}
+% Example: \cvlistitem{Received best student award}
+% Example: \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+\cvitem{1.}{R. Grande, Z. Hani, \emph{Derivation of the Wave Kinetic Equation for the Stochastic NLS Equation}, in preparation (2022)}
+\cvitem{2.}{M. A. Garrido, R. Grande, K. M. Kurianski, G. Staffilani, \emph{Large deviations principle for the cubic NLS equation}, to appear on Comm. on Pure and Applied Mathematics (2022), preprint available at \url{https://arxiv.org/abs/2110.15748}}
+\cvitem{3.}{R. Grande, K. M. Kurianski, G. Staffilani, \emph{On the nonlinear Dysthe equation}, Nonlinear Analysis 207, 112292 (2021)}
+\cvitem{4.}{R. Grande, \emph{Continuum limit for discrete NLS with memory effect}, submitted, preprint available at \url{arxiv.org/abs/1910.05681}}
+\cvitem{5.}{R. Grande, \emph{Space-time fractional Nonlinear Schr\"odinger equation}, SIAM J.$\!$ Math.$\!$ Anal (2019), 51(5), 4172-4212}
+\cvitem{6.}{R. Grande, I. Kov\'acs, K. Kutnar, A. Malni\v{c}, L. Mart\'inez, D. Maru\v{s}i\v{c},  \emph{Equisizable partial sum families}, Journal of Algebraic Combinatorics 51, 273-296 (2020)}
+\cvitem{7.}{M. Conder, R. Grande, \emph{On embeddings of circulant graphs}, Electronic Journal of Combinatorics 22 (2015), $\#$ P2.28}
+
+%-------------------Conferences and Workshops------------------------------------------------------------------
+
+\section{Conferences and Workshops}
+
+\vspace{0.25cm}
+
+\hspace{3.2cm} {\large Invited speaker}
+
+\vspace{0.25cm}
+
+\cvitem{Sept 2022}{\textbf{Trials in wave turbulence: from random waves to kinetic equations}, GSSI}
+\cvitem{June 2022}{\textbf{Mini-course about Large Deviations et PDEs (4h)}, SISSA Trieste}
+\cvitem{May 2022}{\textbf{Ghent Methusalem Junior Seminar}, Ghent University}
+\cvitem{May 2022}{\textbf{Oberwolfach Workshop}, Deterministic Dynamics and Randomness in PDE, Junior talk}
+\cvitem{March 2022}{\textbf{Analysis and PDE seminar}, BCAM}
+\cvitem{March 2022}{\textbf{SIAM PD22}, Decay, Stability and Growth in Fluids and Wave Systems minisymposium}
+\cvitem{Dec 2021}{\textbf{Simons Collaboration in Wave Turbulence Annual Meeting}, Courant Institute}
+\cvitem{Nov 2020}{\textbf{Differential Equations Seminar}, University of Michigan}
+\cvitem{May 2020}{\textbf{Mathematics of Planet Earth: Analysis and Modelling}, \href{https://sites.google.com/view/mpe2020-webinars/home}{Webinar}}
+\cvitem{Jan 2020}{\textbf{Winter School: Turbulence in fluids and PDEs}, Lausanne}
+\cvitem{Jan 2020}{\textbf{Seminar}, GSSI L'Aquila}
+\cvitem{Jan 2020}{\textbf{BCAM Scientific Seminar}, BCAM}
+\cvitem{Nov 2019}{\textbf{Brown-BU-UMass Amherst seminar in PDE and Dynamics}, Brown University}
+
+\vspace{0.25cm}
+
+\hspace{3.2cm} {\large Participant}
+
+\vspace{0.25cm}
+
+\cvitem{July 2022}{\textbf{Wave Turbulence and Beyond}, Universit\`{a} degli Studi di Torino}
+\cvitem{June 2022}{\textbf{Normal forms and splitting methods}, Centre Henri Lebesgue}
+\cvitem{Fall 2021}{\textbf{ICERM}, Hamiltonian Methods in Dispersive and Wave Evolution Equations}
+\cvitem{May 2020}{\textbf{Mathematical Questions in Wave Turbulence}, Banff International Research Station}
+\cvitem{Dec 2019}{\textbf{Simons Collaboration in Wave Turbulence Meeting}, Courant Institute}
+\cvitem{Nov 2018}{\textbf{From Many Particle Systems to Quantum Fluids}, GSSI L'Aquila}
+\cvitem{Oct 2018}{\textbf{Long-Term Dynamics of Nonlinear Dispersive and Hyperbolic Equations}, U. of Chicago}
+\cvitem{May 2018}{\textbf{Conference on Nonlinear Waves}, Brown University}
+\cvitem{May 2018}{\textbf{School and Conference on Nonlinear Waves: Stability vs Turbulence}, Georgia Tech}
+\cvitem{Sept 2016}{\textbf{FRG Conference in Dispersive and Wave equations}, MIT}
+\cvitem{July 2015}{\textbf{BCAM Workshop on Harmonic Analysis and PDEs}, BCAM}
+\cvitem{July 2014}{\textbf{10th AIMS Conference on Dynamical Systems, Differential Equations and Applications}, ICMAT}
+\cvitem{March 2014}{\textbf{IV School of Functional Analysis and Applications}, Brownian Motion and Ito's formula, Universidad de Sevilla}
+
 
 %-------------------Awards and Fellowships------------------------------------------------------------------
 
-\section{Awards and Fellowships}
-
-\cvitem{2015}{\textbf{Summer internship position}, Basque Center for Applied Mathematics (BCAM)}
-\cvlistitem{ \emph{Advisor}: Luis Vega}
-\cvlistitem{ \emph{Project:} Probabilistic interpretation of the Hardy uncertainty principle}
-\cvitem{2014-2015}{\textbf{La Caixa Europe Fellowship}, La Caixa Foundation}
-\cvlistitem{Full funding of master degree at the University of Cambridge}
-\cvitem{2013-2014}{\textbf{Collaboration Scholarship}, Government of the Basque Country}
-\cvlistitem{\emph{Advisor}: Luis Escauriaza}
-\cvlistitem{ \emph{Project}: Harmonic Analysis and applications}
-\cvitem{2012}{\textbf{Summer Research Scholarship}, University of Auckland}
-\cvlistitem{\emph{Advisor}: Marston Conder}
-\cvlistitem{\emph{Project}: Embeddings of circulant graphs}
+%\section{Awards and Fellowships}
+%
+%\cvitem{2015}{\textbf{Summer internship position}, Basque Center for Applied Mathematics (BCAM)}
+%\cvlistitem{ \emph{Advisor}: Luis Vega}
+%\cvlistitem{ \emph{Project:} Probabilistic interpretation of the Hardy uncertainty principle}
+%\cvitem{2014-2015}{\textbf{La Caixa Europe Fellowship}, La Caixa Foundation}
+%\cvlistitem{Full funding of master degree at the University of Cambridge}
+%\cvitem{2013-2014}{\textbf{Collaboration Scholarship}, Government of the Basque Country}
+%\cvlistitem{\emph{Advisor}: Luis Escauriaza}
+%\cvlistitem{ \emph{Project}: Harmonic Analysis and applications}
+%\cvitem{2012}{\textbf{Summer Research Scholarship}, University of Auckland}
+%\cvlistitem{\emph{Advisor}: Marston Conder}
+%\cvlistitem{\emph{Project}: Embeddings of circulant graphs}
 
 %-------------------Languages Section-------------------------------------------------------------------
+\newpage
 
 \section{Languages}
 
@@ -244,9 +278,9 @@ Diffusion-Limited Aggregation with Multiple Sources}
 
 \cvitemwithcomment{}{\textbf{Basque}, Mother tongue}{Euskararen Gaitasun Agiria [C1], 2009}
 \cvitemwithcomment{}{\textbf{Spanish}, Mother tongue}{}
-\cvitemwithcomment{}{\textbf{English}, Fluent}{Certificate of Proficiency in English [C2], 2013}
-\cvitemwithcomment{}{\textbf{Italian}, Good working knowledge}{}
 \cvitemwithcomment{}{\textbf{French}, Intermediate}{French IV at MIT, 2020}
+\cvitemwithcomment{}{\textbf{English}, Fluent}{Certificate of Proficiency in English [C2], 2013}
+\cvitemwithcomment{}{\textbf{Italian}, Fluent}{}
 \cvitemwithcomment{}{\textbf{Portuguese}, Good working knowledge}{Portuguese I-IV at MIT, 2017-18}
 
 

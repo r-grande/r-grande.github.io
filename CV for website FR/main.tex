@@ -1,0 +1,486 @@
+%% start of file `main.tex'.
+%% Copyright 2014 Francois Mouton (moutonf@gmail.com).
+%
+% This template is adapted from the work performed by Xavier Danaux (xdanaux@gmail.com).
+% This template further extends the functionality by integrating the moderntimeline package.
+% This template also includes custom Biblatex style to print bibliography items with the moderntimeline package.
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[10pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+\usepackage{amsfonts}
+
+% moderncv themes
+\moderncvstyle{classic}                             % Only the 'classic' style is fully functional with the modifications made. The other options, 'casual' (default), 'oldstyle' and 'banking' has minor typesetting problems with the current modifications.
+\moderncvcolor{black}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+
+% adjust the page margins
+\usepackage[scale=0.83]{geometry}
+\setlength{\hintscolumnwidth}{2.4cm}                % if you want to change the width of the column of the timeline
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. Be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks.
+
+\usepackage{ragged2e} %Lo he incluido yo para poder justificar la cover letter. Parece que no da problemas.
+
+%-------------------Inlcuding pdfpages package-------------------------------------------------------------
+
+\usepackage{pdfpages/pdfpages}
+
+%-------------------Including moderntimeline package-------------------------------------------------------
+
+\usepackage{moderntimeline/moderntimeline}
+
+\tlmaxdates{2004}{2022}                             % Set the scale of the timeline. \tlmaxdates{startDate}{endDate}
+
+%-------------------Including xpatch package---------------------------------------------------------------
+
+\usepackage{xpatch/xpatch}
+
+%-------------------Including Biblatex package-------------------------------------------------------------
+
+\usepackage[url=false,
+    backend=biber,                                  % This can be set to either biber or bibtex. If references are missing just change back and forth between biber and bibtex..
+    style=authoryear,
+    doi=false,  
+    isbn=false,
+    backref=false,
+    dashed=false,                                   % Do not add a dash out authors for subsequent articles with the same authors.
+    maxnames=99,                                    % Amount of authors to include before abbreviating.
+    sorting=ydnt]{biblatex}                         % Sorting in reverse order
+
+\addbibresource{cvreferences.bib}                   % Include your bibtex file here. Format: fileName.bib
+
+\input{biblatex_modifications/standard_modification.tex}        % Modifying the default standard.tex style of Biblatex. This modification is performed to include the moderntimeline package.
+
+%-------------------Defining a CV Reference column style and a CV reference entry block-------------------
+
+% Adapted from the solution provided in: http://tex.stackexchange.com/questions/34881/references-section-in-a-cv
+% usage: \cvreference{name}{address line 1}{address line 2}{address line 3}{address line 4}{e-mail address}{phone number}{mobile phone number}
+% Everything but the name is optional
+% If \addresssymbol, \emailsymbol or \phonesymbol are specified, they will be used.
+% (Per default, \addresssymbol isn't specified, the other two are specified.)
+% If you don't like the symbols, remove them from the following code, including the tilde ~ (e.g. \phonesymbol~).
+
+\newcommand{\cvreferencecolumn}[2]{%
+  \cvitem[0.75em]{}{%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#1\end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
+    }%
+}
+
+\newcommand{\cvreference}[8]{%
+    \textbf{#1}\newline% Name
+    \ifthenelse{\equal{#2}{}}{}{\addresssymbol~#2\newline}%
+    \ifthenelse{\equal{#3}{}}{}{#3\newline}%
+    \ifthenelse{\equal{#4}{}}{}{#4\newline}%
+    \ifthenelse{\equal{#5}{}}{}{#5\newline}%
+    \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{\href{mailto:#6}{\nolinkurl{#6}}}\newline}%
+    \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7\newline}
+    \ifthenelse{\equal{#8}{}}{}{\mobilephonesymbol~#8}}
+
+%-------------------Personal Data for CV title-----------------------------------------------------------
+% Example:
+%\name{\huge \textbf{Ricardo}}{\huge \textbf{Grande Izquierdo}} %Cambiar segun si quiero el CV o la carta
+\name{Ricardo}{Grande}
+\title{Curriculum Vitae}                               % optional, remove / comment the line if not wanted
+\address{D\'ept. de Math\'ematiques et Applications, Bureau C16}{\'Ecole Normale Sup\'erieure, Paris 75005}% optional, remove / comment the line if not wanted; the "postcode city" and and "country" arguments can be omitted or provided empty
+%\phone[mobile]{(+33)~661~361~257}                   % optional, remove / comment the line if not wanted
+%\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\email{ricardo.grande@ens.fr}                               % optional, remove / comment the line if not wanted
+\homepage{r-grande.github.io}                         % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{images/picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file stored
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+%-------------------------------------------------------------------------------------------------------
+%   Content
+%-------------------------------------------------------------------------------------------------------
+\begin{document}
+
+%-------------------Resume------------------------------------------------------------------------------
+
+\makecvtitle
+
+%-------------------Research Interests--------------------------------------------------------------
+
+\vspace{-0.5cm}
+
+\section{Recherches}
+
+% Format:  \cvitem{Section Name}{Description}
+% Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+% Example: \cvitem{supervisors}{My supervisors' names go here}
+% Example: \cvitem{description}{Short thesis abstract}
+
+\cvitem{}{\'Equations dispersives non lin\'eaires, th\'eorie cin\'etique, analyse harmonique}
+\cvitem{}{Probabilit\'es, processus stochastiques}
+
+
+%-------------------Academic Appointments-------------------------------------------------------------------
+
+\section{Exp\'eriences professionelles}
+
+% For a date range: (To indicate 'up to present', set EndYear to 0)
+% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
+% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+%\tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+% For a single year:
+% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+
+%\tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+\cvitem{2021 - 2023}{\textbf{Recherches post-doctorales}, \emph{\'Ecole Normale Sup\'erieure, Paris}}
+\cvlistitem{ \emph{Encadrentes:} Isabelle Gallagher (DMA) et Laure Saint-Raymond (IHES)}
+\cvlistitem{ Bourse de la Simons Collaboration in Wave Turbulence}
+
+\cvitem{2020 - 2021}{\textbf{Recherches post-doctorales}, University of Michigan, Ann Arbor}
+\cvlistitem{ \emph{Encadrent:} Zaher Hani}
+\cvlistitem{ Bourse de la Simons Collaboration in Wave Turbulence}
+
+%-------------------Education Section-------------------------------------------------------------------
+
+\section{Formation}
+
+% For a date range: (To indicate 'up to present', set EndYear to 0)
+% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
+% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+%\tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+% For a single year:
+% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+
+%\tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+\cvitem{2015 - 2020}{\textbf{Doctorat  en Math\'ematiques}, \emph{Massachusetts Institute of Technology}}
+\cvlistitem{ \emph{Directrice de th\`ese:} Gigliola Staffilani}
+\cvlistitem{ \emph{Sujet de th\`ese:} The role of smoothing effect in some dispersive equations} %{ \ \emph{GPA}: 5.0/5.0.}
+\cvlistitem{ \emph{Composition du jury:} Gigliola Staffilani, MIT (Président du jury)}
+
+\vspace{-0.08cm}
+
+\hspace{6.16cm} David Jerison, MIT (Rapporteur) 
+
+\hspace{6.16cm} Andrew Lawrie, MIT (Rapporteur) 
+
+\vspace{0.1cm}
+
+\cvitem{2014 - 2015}{\textbf{Master of Advanced Study en Math\'ematiques} (\'equivalent du M2), \emph{University of Cambridge}}
+\cvlistitem{ \emph{Directeur de m\'emoire:} Cl\'ement Mouhot}
+\cvlistitem{ \emph{Sujet de m\'emoire:} Averaging Lemmas and the X-ray transform}
+\cvitem{2010-2014}{\textbf{Licenciatura en Math\'ematiques} (\'equivalent Licence+M1)}
+\cvitem{}{\emph{Universidad del Pa\'is Vasco (UPV-EHU)}}
+%\cvlistitem{Major de promotion} %,  \emph{Note finale:} 9.69/10.}
+
+%-------------------Teaching Experience------------------------------------------------------------------
+\section{Enseignement}
+
+\cvitem{\'Et\'e 2021}{\textbf{Co-directeur du projet de Research Experience for Undergraduates}}
+\cvitem{}{ (avec Z. Hani), University of Michigan}
+\cvlistitem{\emph{\'Etudiants:} Yubing Cui et Joshua Messing}
+\cvlistitem{\emph{Projet:} Wave Kinetic Equation and Kolmogorov-Zakharov Cascade Spectra} 
+\cvitem{Hiver 2021}{\textbf{Cours et TD} Math 316 - \'Equations diff\'erentielles ordinaires, University of Michigan}
+\cvitem{Automne 2020}{\textbf{Cours et TD} Math 116 - Calcul int\'egral, University of Michigan}
+\cvitem{Printemps 2020}{\textbf{Charg\'e de TD} 18.615 - Introduction aux Processus Stochastiques, MIT}
+\cvitem{Automne 2019}{\textbf{Charg\'e de TD} 18.085 - Science informatique et ing\'enierie, MIT}
+\cvitem{Printemps 2019}{\textbf{Charg\'e de TD} 18.615 - Introduction aux Processus Stochastiques, MIT}
+\cvitem{\'Et\'e 2018}{\textbf{Directeur du projet de recherche UROP+}, MIT}
+\cvlistitem{\emph{\'Etudiant:} Zixuan Xu}
+\cvlistitem{\emph{Projet:} Almost Conservation Laws for KdV and Cubic NLS} 
+\cvitem{Printemps 2018}{\textbf{Charg\'e de TD} 18.03 – \'Equations diff\'erentielles ordinaires, MIT}
+\cvitem{Automne 2017}{\textbf{Charg\'e de TD}  18.02 – Analyse \`a plusieurs variables, MIT}
+\cvitem{Automne 2016}{\textbf{Charg\'e de TD}  18.085 – Science informatique et ing\'enierie, MIT}
+\cvitem{\'Et\'e 2016}{\textbf{Directeur du projet de recherche UROP+}, MIT}
+\cvlistitem{\emph{\'Etudiant:} Eli Sadovnik}
+\cvlistitem{\emph{Projet:} A Central Limit Theorem for Fluctuations of Internal DLA with Multiple Sources} 
+
+%-------------------Publications----------------------------------------------------------------
+
+\section{Liste de publications}
+
+% Format:  \cvlistitem{Achievement}
+% Example: \cvlistitem{Received best student award}
+% Example: \cvlistitem{Another achievement. This achievement is particularly long and therefore normally spans over several lines. Did you notice the indentation when the line wraps?}
+
+%\vspace{0.25cm}
+
+%\hspace{2.78cm} {\large Articles pr\'e-publi\'es}
+
+%\vspace{0.25cm}
+
+\cvitem{}{R. Grande, Z. Hani, \emph{Derivation of the Wave Kinetic Equation for the Stochastic NLS Equation}, en cours de r\'edaction (2022)}
+%\cvitem{}{\small{Il est ici question de l'\'equation de Schr\"odinger cubique pos\'ee sur un tore de dimension $d$ et de taille $L$ avec for\c{c}age stochastique et dissipation visqueuse. L'objectif est de comprendre la dynamique en temps long du syst\`eme lorsque $L\rightarrow\infty$ et le for\c{c}age tend vers zero. Ce comportement asymptotique est d\'ecrit par une \'equation de type cin\'etique qui gouverne l'\'evolution moyenne de la densit\'e d'\'energie du syst\`eme \`a chaque nombre d'onde. Dans cet article, nous \'etudions les trois r\'egimes asymptotiques donn\'es par l'ordre de grandeur du for\c{c}age, de la non-lin\'earit\'e et de la taille du tore. Nous avons rigoureusement d\'eriv\'e  l'\'equation cin\'etique des ondes correspondante dans chaque cas.}}
+
+\cvitem{\textbf{1.}}{M. A. Garrido, R. Grande, K. M. Kurianski, G. Staffilani, \emph{Large deviations principle for the cubic NLS equation}, prochainement publié dans Communications on Pure and Applied Mathematics, $\langle$\href{https://hal.archives-ouvertes.fr/hal-03428570v1}{hal-03428570}$\rangle$ (2021)}
+%\cvitem{}{\small{Nous effectuons une \'etude probabiliste des ph\'enom\`enes rares apparissant dans l'\'equation de Schr\"odinger cubique non-lin\'eaire pos\'ee sur le tore. L'\'equation en question est souvent utilis\'ee pour simuler num\'eriquement la formation de vagues sc\'el\'erates dans l'oc\'ean profond. Nous nous pla\c{c}ons dans un cadre faiblement non-lin\'eaire. Premi\`erement, nous introduisons une notion de probl\`eme critique et prouvons un principe de larges d\'eviations pour les cas sous-critiques et critiques. Ensuite, nous \'etudions les conditions initiales les plus probables qui m\`enent \`a la formation d'une vague sc\'el\'erate, tout aussi bien du point de vue th\'eorique que du point de vue num\'erique.}}
+
+
+%\vspace{0.25cm}
+
+%\hspace{2.78cm} {\large Articles}
+
+%\vspace{0.25cm}
+
+\cvitem{\textbf{2.}}{R. Grande, K. M. Kurianski, G. Staffilani, \emph{On the nonlinear Dysthe equation}, Nonlinear Analysis 207, 112292 (2021)}
+%\cvitem{}{\small{Nous \'etudions le caract\`ere bien pos\'e pour l'\'equation de Dysthe en dimension deux. L'\'equation en question, d\'ecrivant l'enveloppe d'un train d'onde, peut \^etre d\'eriv\'ee des \'equations d'Euler \`a surface libre par analyse asymptotique. R\'ecemment, cette \'equation a \'et\'e utilis\'ee pour \'etudier num\'eriquement des ph\'enom\`enes rares concernant la propagation des ondes dans des bassins profonds tels que les vagues sc\'el\'erates. Afin d'\'etudier le caract\`ere bien pos\'e, nous utilisons estim\'ees de type Strichartz, ainsi que des estim\'ees am\'elior\'ees de r\'egularisation  et de la fonction maximale. Nous concluons notre travail en prouvant que l'\'equation est mal pos\'ee dans certains espaces super-critiques.}}
+
+\cvitem{\textbf{3.}}{R. Grande, \emph{Continuum limit for discrete NLS with memory effect}, soumis (2020), \url{arxiv.org/abs/1910.05681}}
+%\cvitem{}{\small{Nous considérons une équation de type Schr\"odinger non-lin\'eaire (NLS) discr\`ete sur le r\'eseau $h\mathbb{Z}$ avec un maillage de taille $h > 0$, issue d'une famille de mod\`eles gouvernant le transport de charge dans les biopolym\`eres. Quand $h\rightarrow 0$, nous prouvons que les solutions de cette \'equation discr\`ete convergent fortement dans $L^2$ vers la solution d'une \'equation continue de type NLS avec effet de m\'emoire. De plus, nous calculons la vitesse de convergence. Pour ce faire, nous \'etendons certaines id\'ees r\'ecentes propos\'ees par Hong et Yang afin d'exploiter un effet de r\'egularisation. Cette approche pourrait ainsi \^etre adapt\'ee pour aborder le probl\`eme de limites de continuum d'\'equations dispersives plus g\'en\'erales qui n\'ecessitent de travailler dans des espaces similaires.}}
+
+\cvitem{\textbf{4.}}{R. Grande, \emph{Space-time fractional Nonlinear Schr\"odinger equation}, SIAM J.$\!$ Math.$\!$ Anal (2019), 51(5), 4172-4212}
+%\cvitem{}{\small{Nous prouvons le caract\`ere bien pos\'e d'une g\'en\'eralisation fractionnaire spatio-temporelle de l'\'equation non lin\'eaire de Schr\"odinger avec une non-lin\'earit\'e de type puissance. L'\'equation lin\'eaire co\"incide avec un mod\`ele propos\'e par Naber et pr\'esente un comportement non local \`a la fois en espace et en temps, tenant compte des interactions \`a longues port\'ees comme des effets de m\'emoire. En raison d'une perte de r\'egularit\'e produite par ce dernier et de l'absence d'une structure de semigroupe pour la solution, nous devons employer une strat\'egie de preuve bas\'ee sur l'exploitation d'un effet r\'egularisant similaire \`a celui utilis\'e par Kenig, Ponce et Vega pour KdV. Enfin, nous prouvons le caract\`ere mal pos\'e analytique de l'application donn\'ees-solution dans le cas super-critique.}}
+
+\cvitem{\textbf{5.}}{R. Grande,  \emph{The role of smoothing effect in some dispersive equations}, PhD thesis, Massachusetts Institute of Technology (2020)}
+
+\cvitem{\textbf{6.}}{R. Grande, I. Kov\'acs, K. Kutnar, A. Malni\v{c}, L. Mart\'inez, D. Maru\v{s}i\v{c},  \emph{Equisizable partial sum families}, Journal of Algebraic Combinatorics 51, 273-296 (2020)}
+
+\cvitem{\textbf{7.}}{M. Conder, R. Grande, \emph{On embeddings of circulant graphs}, Electronic Journal of Combinatorics 22 (2015), $\#$ P2.28}
+
+
+%\newpage 
+
+%-------------------Conferences and Workshops------------------------------------------------------------------
+
+
+\section{Conf\'erences/Workshops}
+
+\vspace{0.25cm}
+
+\hspace{2.6cm} {\large Expos\'es invit\'es}
+
+\vspace{0.25cm}
+
+\cvitem{Sept 2022}{\textbf{Trials in wave turbulence: from random waves to kinetic equations}, GSSI}
+\cvitem{Juin 2022}{\textbf{Mini-cours sur Grandes D\'eviations pour EDPs (4h)}, SISSA Trieste}
+\cvitem{Mai 2022}{\textbf{Ghent Methusalem Junior Seminar}, Universit\'e de Gand}
+\cvitem{Mars 2022}{\textbf{Analysis and PDE seminar}, BCAM}
+\cvitem{Mars 2022}{\textbf{SIAM PD22}, Decay, Stability and Growth in Fluids and Wave Systems}
+\cvitem{D\'ec 2021}{\textbf{Simons Collaboration in Wave Turbulence Annual Meeting}, Courant Institute}
+\cvitem{Nov 2020}{\textbf{S\'eminaire \'Equations diff\'erentielles}, University of Michigan}
+\cvitem{Mai 2020}{\textbf{Mathematics of Planet Earth: Analysis and Modelling}, \href{https://sites.google.com/view/mpe2020-webinars/home}{Webinaire}}
+\cvitem{Janv 2020}{\textbf{Winter School: Turbulence in fluids and PDEs}, Lausanne}
+\cvitem{Janv 2020}{\textbf{S\'eminaire}, GSSI L'Aquila}
+\cvitem{Janv 2020}{\textbf{S\'eminaire Scientifique BCAM}, BCAM}
+\cvitem{Nov 2019}{\textbf{S\'eminaire Brown-BU-UMass Amherst in PDE and Dynamics}, Brown University}
+
+\vspace{0.25cm}
+
+\hspace{2.6cm} {\large Participant}
+
+\vspace{0.25cm}
+
+\cvitem{Juil 2022}{\textbf{Wave Turbulence and Beyond}, Universit\`a degli Studi di Torino}
+\cvitem{Juin 2022}{\textbf{Normal forms and splitting methods}, Centre Henri Lebesgue}
+\cvitem{Mai 2022}{\textbf{Oberwolfach Workshop}, Deterministic Dynamics and Randomness in PDE}
+\cvitem{Automne 2021}{\textbf{ICERM}, Hamiltonian Methods in Dispersive and Wave Evolution Equations}
+\cvitem{Mai 2020}{\textbf{Mathematical Questions in Wave Turbulence}, Banff International Research Station}
+\cvitem{D\'ec 2019}{\textbf{Conf\'erence Simons Collaboration in Wave Turbulence}, Courant Institute}
+\cvitem{Nov 2018}{\textbf{Gran Sasso Quantum Meeting: From Many Particle Systems}}
+\cvitem{}{\textbf{to Quantum Fluids}, GSSI L'Aquila}
+\cvitem{Oct 2018}{\textbf{Conf\'erence FRG: Long-Term Dynamics of Nonlinear Dispersive} }
+\cvitem{}{\textbf{and Hyperbolic Equations}, University of Chicago}
+\cvitem{Mai 2018}{\textbf{Conf\'erence: Nonlinear Waves}, Brown University}
+\cvitem{Mai 2018}{\textbf{School and Conference on Nonlinear Waves: Stability vs Turbulence}}  
+\cvitem{}{c\'el\'ebrant les contributions de Jalal Shatah, Georgia Tech}
+\cvitem{Sept 2016}{\textbf{Conf\'erence FRG: Dispersive and Wave equations}, MIT}
+\cvitem{Juil 2015}{\textbf{BCAM Workshop on Harmonic Analysis and PDEs}, BCAM}
+\cvitem{Juil 2014}{\textbf{10th AIMS Conference on Dynamical Systems, Differential Equations}}
+\cvitem{}{\textbf{and Applications}, ICMAT}
+\cvitem{Mars 2014}{\textbf{IV School of Functional Analysis and Applications},}
+\cvitem{}{Mouvement brownien et formule d'It\={o}, Universit\'e de S\'eville}
+
+
+%-------------------Awards and Fellowships------------------------------------------------------------------
+
+%\section{Prix et distinctions}
+
+%\cvitem{2015}{\textbf{Stage d'\'et\'e} (sur s\'election), Basque Center for Applied Mathematics (BCAM)}
+%\cvlistitem{ \emph{Mentor}: Luis Vega}
+%\cvlistitem{ \emph{Projet:} Interpr\'etation probabiliste du principe d'incertitude de Hardy}
+%\cvitem{2014-2015}{\textbf{Bourse ``Europe'' de La Caixa},  Fondation La Caixa}
+%\cvlistitem{Bourse compl\`ete couvrant le M2 \`a l’Universit\'e de Cambridge}
+%\cvitem{2013-2014}{\textbf{Bourse de coop\'eration}, Gouvernement du Pays Basque}
+%\cvlistitem{\emph{Mentor}: Luis Escauriaza}
+%\cvlistitem{ \emph{Projet}: Analyse harmonique et applications}
+%\cvitem{2012}{\textbf{Bourse de recherche}, University of Auckland}
+%\cvlistitem{\emph{Mentor}: Marston Conder}
+%\cvlistitem{\emph{Projet}: Plongements de graphes circulants}
+
+%-------------------Languages Section-------------------------------------------------------------------
+
+\section{Langues}
+
+% Format:  \cvitemwithcomment{Language}{Skill level}{Comment}
+% Example: \cvitemwithcomment{English}{Native}{Mother Tongue}
+% Example: \cvitemwithcomment{French}{Fluent}{Daily practice, all work performed in English}
+
+\cvitemwithcomment{}{\textbf{Basque}, Langue maternelle}{Euskararen Gaitasun Agiria [C1], 2009}
+\cvitemwithcomment{}{\textbf{Espagnol}, Langue maternelle}{}
+\cvitemwithcomment{}{\textbf{Fran\c{c}ais}, Interm\'ediaire}{Fran\c{c}ais IV \`a MIT, 2020}
+\cvitemwithcomment{}{\textbf{Anglais}, Courant}{Certificate of Proficiency in English [C2], 2013}
+\cvitemwithcomment{}{\textbf{Italien}, Courant}{}
+\cvitemwithcomment{}{\textbf{Portugais}, Interm\'ediaire}{Portugais I-IV \`a MIT, 2017-18}
+
+
+%-------------------Cover letter------------------------------------------------------------------------
+
+%\newpage
+
+%\input{coverletter_UMass.tex}                             % Include cover letter from coverletter.tex
+
+
+%-------------------Interests Section-------------------------------------------------------------------
+
+%\section{Interests}
+
+% Format:  \cvitem{Hobby}{Description}
+% Example: \cvitem{Gaming}{Computer Games}
+% Example: \cvitem{Sport}{Golf, Tennis}
+
+%\cvitem{Gaming}{Computer Games}
+%\cvitem{Sport}{Golf, Tennis}
+
+%-------------------Experience Section------------------------------------------------------------------
+
+%\section{Experience}
+
+
+%-------------------Vocational Experience---------------------------------------------------------------
+
+%\subsection{Vocational}
+
+% Format: \tlcventry{StartYear}{EndYear}{Job title}{Employer}{City}{Country (optional)}{General description no longer than 1--2 lines.\newline{}%
+% Example:
+% \tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
+% Main Duties:%
+%  \begin{itemize}%
+%      \item Administrate the servers;
+%      \item Administrate employee computers 
+%          \begin{itemize}%
+%              \item All employee's computers had to be up to date;
+%          \end{itemize}
+%      \item Did some more administrating
+%   \end{itemize}}
+
+%\tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
+%Main Duties:%
+%\begin{itemize}%
+% \item Administrate the servers;
+% \item Administrate employee computers 
+%  \begin{itemize}%
+%      \item All employee's computers had to be up to date;
+%      \end{itemize}
+%  \item Did some more administrating
+%\end{itemize}}
+
+%-------------------Skills Matrix Section----------------------------------------------------------------
+
+%\section{Skills}
+
+% For items with categories: 
+% Format:  \cvdoubleitem{Category}{List of skills}{Category Name}{List of skills}
+% Note: It looks better if the category is bold with \textbf{}
+% Example:
+% \subsection{Development}
+% \cvdoubleitem{\textbf{Languages}}{C\#, C\+\+, Java}{\textbf{Databases}}{MSSQL, MySQL}
+%
+% For a bullet list without categories:
+% Format:  \cvlistdoubleitem{Skill 1}{Skill 2}
+% Example: 
+% \subsection{Development}
+% \cvlistdoubleitem{C\#, Java, Ruby}{MSSQL, MySQL}
+% \cvlistdoubleitem{Photoshop}{Windows, Linux. In the single column list, this item is particularly long to wrap over several lines.}
+
+%\subsection{Development}
+%\cvdoubleitem{\textbf{Languages}}{C\#, Java, Ruby}{\textbf{Databases}}{MSSQL, MySQL}
+
+
+%-------------------Publications Section----------------------------------------------------------------
+% The cvitem commands needs to be altered to correctly print all publications with the moderntime package.
+% The cvitem command is edited to remove all forced punctuation within the command.
+% All the typesetting of the text is handled by the modified Biblatex style.
+
+%\input{cvitem_modifications/cvitem_modified}        % Removing forced punctuation from cvitem
+
+%\nocite{*}                                          % Print all publications.
+
+% Format:  \printbibliography[type=Biblatex type,title={Title of publication}]
+% Example: \printbibliography[type=article,title={Journal Publications}]
+% Example: \printbibliography[type=inproceedings,title={Conference Publications}]
+% Example: \printbibliography[type=thesis,title={Thesis}]
+
+%\printbibliography[type=article,title={Journal Publications}]
+%\printbibliography[type=inproceedings,title={Conference Publications}]
+%\printbibliography[type=thesis,title={Thesis}]
+
+%\input{cvitem_modifications/cvitem_moderncvclassic} % Reverting changes to cvitem.
+
+%-------------------References Section------------------------------------------------------------------
+
+%\section{References}
+
+% Format:  \cvreferencecolumn{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}
+% Example: 
+% \subsection{Simple Solutions}
+% \cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}}
+% \subsection{Monster Inc}
+% \cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
+
+%\subsection{Simple Solutions}
+%\cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}} \subsection{Monster Inc}
+%\cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
+%
+%\clearpage
+
+%-------------------Appendix----------------------------------------------------------------------------
+% This section is added to append any additional documents to the cv.
+% The appended documents are added to the table of contents for easier navigation of the document.
+% Usage: (section)
+% \phantomsection
+% \addcontentsline{toc}{section}{title}
+% 
+% Format: (subsection)
+% \phantomsection\addcontentsline{toc}{subsection}{title}
+% \includepdf[pages=-]{appendix/filename.pdf}
+%
+% Example:
+% \phantomsection
+% \addcontentsline{toc}{section}{Certificates}
+%
+% \phantomsection
+% \addcontentsline{toc}{subsection}{Landscape}
+% \includepdf[pages=-]{appendix/CertificateLandscape.pdf}
+%
+% \phantomsection
+% \addcontentsline{toc}{subsection}{Portrait}
+% \includepdf[pages=-]{appendix/CertificatePortrait.pdf}
+
+%\phantomsection
+%\addcontentsline{toc}{section}{Certificates}
+%
+%\phantomsection
+%\addcontentsline{toc}{subsection}{Landscape}
+%\includepdf[pages=-]{appendix/CertificateLandscape.pdf}
+%
+%\phantomsection
+%\addcontentsline{toc}{subsection}{Portrait}
+%\includepdf[pages=-]{appendix/CertificatePortrait.pdf}
+
+
+
+
+
+\end{document}
+
+%% end of file `main.tex'.
