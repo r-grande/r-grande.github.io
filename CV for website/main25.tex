@@ -1,0 +1,734 @@
+%% start of file `main.tex'.
+%% Copyright 2014 Francois Mouton (moutonf@gmail.com).
+%
+% This template is adapted from the work performed by Xavier Danaux (xdanaux@gmail.com).
+% This template further extends the functionality by integrating the moderntimeline package.
+% This template also includes custom Biblatex style to print bibliography items with the moderntimeline package.
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[10pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+\usepackage{amsfonts}
+
+% moderncv themes
+\moderncvstyle{classic}                             % Only the 'classic' style is fully functional with the modifications made. The other options, 'casual' (default), 'oldstyle' and 'banking' has minor typesetting problems with the current modifications.
+\moderncvcolor{black}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+
+% character encoding
+\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+\usepackage{fourier}  
+
+% adjust the page margins
+\usepackage[scale=0.885]{geometry}
+\setlength{\hintscolumnwidth}{2.4cm}                % if you want to change the width of the column of the timeline
+%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. Be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks.
+\usepackage{ragged2e} %Lo he incluido yo para poder justificar la cover letter. Parece que no da problemas.
+
+%-------------------Inlcuding pdfpages package-------------------------------------------------------------
+
+\usepackage{pdfpages/pdfpages}
+
+%-------------------Including moderntimeline package-------------------------------------------------------
+
+\usepackage{moderntimeline/moderntimeline}
+
+\tlmaxdates{2004}{2025}                             % Set the scale of the timeline. \tlmaxdates{startDate}{endDate}
+
+%-------------------Including xpatch package---------------------------------------------------------------
+
+\usepackage{xpatch/xpatch}
+
+%-------------------Including Biblatex package-------------------------------------------------------------
+
+\usepackage[url=false,
+    backend=biber,                                  % This can be set to either biber or bibtex. If references are missing just change back and forth between biber and bibtex..
+    style=authoryear,
+    doi=false,  
+    isbn=false,
+    backref=false,
+    dashed=false,                                   % Do not add a dash out authors for subsequent articles with the same authors.
+    maxnames=99,                                    % Amount of authors to include before abbreviating.
+    sorting=ydnt]{biblatex}                         % Sorting in reverse order
+
+\addbibresource{cvreferences.bib}                   % Include your bibtex file here. Format: fileName.bib
+
+\input{biblatex_modifications/standard_modification.tex}        % Modifying the default standard.tex style of Biblatex. This modification is performed to include the moderntimeline package.
+
+%-------------------Defining a CV Reference column style and a CV reference entry block-------------------
+
+% Adapted from the solution provided in: http://tex.stackexchange.com/questions/34881/references-section-in-a-cv
+% usage: \cvreference{name}{address line 1}{address line 2}{address line 3}{address line 4}{e-mail address}{phone number}{mobile phone number}
+% Everything but the name is optional
+% If \addresssymbol, \emailsymbol or \phonesymbol are specified, they will be used.
+% (Per default, \addresssymbol isn't specified, the other two are specified.)
+% If you don't like the symbols, remove them from the following code, including the tilde ~ (e.g. \phonesymbol~).
+
+\newcommand{\cvreferencecolumn}[2]{%
+  \cvitem[0.75em]{}{%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#1\end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
+    }%
+}
+
+\newcommand{\cvreference}[8]{%
+    \textbf{#1}\newline% Name
+    \ifthenelse{\equal{#2}{}}{}{\addresssymbol~#2\newline}%
+    \ifthenelse{\equal{#3}{}}{}{#3\newline}%
+    \ifthenelse{\equal{#4}{}}{}{#4\newline}%
+    \ifthenelse{\equal{#5}{}}{}{#5\newline}%
+    \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{\href{mailto:#6}{\nolinkurl{#6}}}\newline}%
+    \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7\newline}
+    \ifthenelse{\equal{#8}{}}{}{\mobilephonesymbol~#8}}
+
+%-------------------Personal Data for CV title-----------------------------------------------------------
+% Example:
+%\name{\huge \textbf{Ricardo}}{\huge \textbf{Grande Izquierdo}} %Cambiar segun si quiero el CV o la carta
+\name{{\Huge \textbf{Ricardo}}}{{\Huge \textbf{Grande}}}
+\title{{\Large \normalfont{Curriculum Vitae}}} % optional, remove / comment the line if not wanted
+\address{Office A-727, SISSA}{via Bonomea 265, 34136 Trieste, Italy}
+%\phone[mobile]{(+1)~210~362~0805}                   % optional, remove / comment the line if not wanted
+%\phone[mobile]{(+33)~661~361~257}                   % optional, remove / comment the line if not wanted
+%\phone[fixed]{+2~(345)~678~901}                    % optional, remove / comment the line if not wanted
+%\phone[fax]{+3~(456)~789~012}                      % optional, remove / comment the line if not wanted
+\phone[mobile]{(+39)~351~517~4749}    
+%\email{grander@umich.edu}                               % optional, remove / comment the line if not wanted
+\email{rgrandei@sissa.it}                               % optional, remove / comment the line if not wanted
+\homepage{r-grande.github.io}        
+%\homepage{math.mit.edu/\textasciitilde{}rgi/}                         % optional, remove / comment the line if not wanted
+%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+%\photo[64pt][0.4pt]{images/picture}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file stored
+%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+
+%-------------------------------------------------------------------------------------------------------
+%   Content
+%-------------------------------------------------------------------------------------------------------
+\begin{document}
+
+%-------------------Resume------------------------------------------------------------------------------
+
+\makecvtitle
+
+
+%-------------------Personal Information--------------------------------------------------------------
+
+%\section{Personal Information}
+
+%\vspace{0.3cm}
+
+% Format:  \cvitem{Section Name}{Description}
+% Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+% Example: \cvitem{supervisors}{My supervisors' names go here}
+% Example: \cvitem{description}{Short thesis abstract}
+
+%\cvitem{}{\textbf{Place and date of birth:} Portugalete (Bizkaia, Spain), December 26, 1991}
+%\cvitem{}{\textbf{Nationality:} Spanish}
+
+%-------------------Research Interests--------------------------------------------------------------
+
+\vspace{-0.8cm}
+
+\section{Research Interests}
+
+\vspace{0.2cm}
+
+\cvitem{}{Nonlinear PDEs, Kinetic theory, Turbulence, Nonlinear evolution of probability measures, Large Deviations}
+
+
+%-------------------Academic Appointments-------------------------------------------------------------------
+
+\vspace{0.2cm}
+
+\section{Academic Appointments}
+
+\vspace{0.3cm}
+
+% For a date range: (To indicate 'up to present', set EndYear to 0)
+% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
+% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+%\tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+% For a single year:
+% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+
+%\tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+\cvitem{2023 - Currently}{\textbf{Assistant Professor} (RTD-A), \emph{SISSA, Trieste}}
+%\cvlistitem{ \emph{Mentors:} Alberto Maspero and Massimiliano Berti}
+
+
+\cvitem{2021 - 2023}{\textbf{Postdoctoral Researcher}, \emph{\'Ecole Normale Sup\'erieure, Paris}}
+\cvlistitem{ \emph{Mentors:} Isabelle Gallagher (ENS) and Laure Saint-Raymond (IHES)}
+\cvlistitem{ Postdoctoral associate of the Simons Collaboration in Wave Turbulence}
+
+\cvitem{2020 - 2021}{\textbf{Postdoctoral Assistant Professor}, \emph{University of Michigan, Ann Arbor}}
+\cvlistitem{ \emph{Mentor:} Zaher Hani}
+\cvlistitem{ Postdoctoral associate of the Simons Collaboration in Wave Turbulence}
+
+%-------------------Education Section-------------------------------------------------------------------
+\vspace{0.2cm}
+
+\section{Education}
+
+\vspace{0.3cm}
+
+% For a date range: (To indicate 'up to present', set EndYear to 0)
+% Format:  \tlcventry{StartYear}{EndYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % Arguments 3 (Degree) to 6 (Grade) can be left empty. 
+% Example: \tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+%\tlcventry{2012}{0}{BSc Computer Science}{University of MyCity}{MyCity}{}{Also completed several random courses}
+
+% For a single year:
+% Format:  \tldatecventry{StartYear}{Degree}{Institution}{City}{\textit{Grade}}{Description}
+% Example: \tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+
+%\tldatecventry{2008}{Senior Certificate}{High School MyCity}{MyCity}{\textit{80\%}}{Passed with distinction}
+\cvitem{2015 - 2020}{\textbf{PhD  in Mathematics}, \emph{Massachusetts Institute of Technology}}
+\cvlistitem{ \emph{Advisor:} Gigliola Staffilani}
+\cvlistitem{ \emph{Thesis title:} The role of smoothing effect in some dispersive equations} %{ \ \emph{GPA}: 5.0/5.0.}
+\cvlistitem{ \emph{Committee:} Gigliola Staffilani, MIT}
+
+\vspace{-0.08cm}
+
+\hspace{4.8cm} David Jerison, MIT  
+
+\hspace{4.8cm} Andrew Lawrie, MIT
+
+\vspace{0.1cm}
+\cvitem{2014 - 2015}{\textbf{Master of Advanced Study in Mathematics}, \emph{University of Cambridge}}
+\cvlistitem{ \emph{Essay:} Averaging Lemmas and the X-ray transform}
+\cvlistitem{ \emph{Directed by:} Cl\'ement Mouhot}%, \ \emph{Grade}: Merit (First-class honours).}
+\cvitem{2010-2014}{\textbf{Licenciatura en Matem\'aticas}, \emph{Universidad del Pa\'is Vasco (UPV-EHU)}}
+%\cvlistitem{Valedictorian Award} %,  \emph{Final grade:} 9.69/10.}
+
+
+
+%-------------------Publications----------------------------------------------------------------
+
+\vspace{0.3cm}
+
+\section{Scientific Work}
+
+\vspace{0.3cm}
+
+\hspace{2.6cm} {\small THESIS}
+
+\vspace{0.4cm}
+
+\cvitem{[0]}{R. Grande, \emph{The role of smoothing effect in some dispersive equations}. PhD Thesis, Massachusetts Institute of Technology (2020). Available at \url{https://dspace.mit.edu/handle/1721.1/126921}.}
+
+
+
+%\cvitem{}{M. Berti, R. Grande, A. Maspero, G. Staffilani, \emph{Large deviations principle for Periodic Gravity Water Waves}, in preparation (2023)}
+
+%\cvitem{}{R. Grande, Z. Hani, \emph{Derivation of the Wave Kinetic Equation for the Stochastic NLS Equation}, in preparation (2023)}
+
+%\cvitem{4.}{R. Grande, \emph{Continuum limit for discrete NLS with memory effect}, submitted, preprint available at \emph{(arxiv:1910.05681)}}
+
+
+\vspace{0.3cm}
+
+\hspace{3.2cm} {\small PREPRINTS}
+
+\vspace{0.4cm}
+
+\cvitem{[1]}{R. Grande, \emph{Resonant large deviations principle for the beating NLS equation}, $\langle$\href{https://arxiv.org/pdf/2408.05791}{arxiv:2408.05791}$\rangle$ (2024)}
+
+\cvitem{[2]}{R. Grande, Z. Hani \emph{Rigorous derivation of damped-driven wave turbulence theory}, $\langle$\href{https://arxiv.org/pdf/2407.10711}{arxiv:2407.10711}$\rangle$ (2024)}
+
+\vspace{0.3cm}
+
+\hspace{2.6cm}  {\small PUBLICATIONS}
+
+\vspace{0.4cm}
+
+\cvitem{[3]}{M. Dolce, R. Grande, \emph{On the convergence rates of discrete solutions to the Wave Kinetic Equation}, Math. Eng. 6 (4), 536-558 (2024)}
+
+\cvitem{[4]}{G. Beck, C-E. Br\'ehier, L. Chevillard, R. Grande, W. Ruffenach, \emph{Numerical simulations of a stochastic dynamics leading to cascades and loss of regularity: applications to fluid turbulence and generation of fractional Gaussian fields}, Phys. Rev. Research 6, 033048 (2024)}
+
+\cvitem{[5]}{G. B. Apolin\'ario, G. Beck, L. Chevillard, I. Gallagher, R. Grande, \emph{A linear stochastic model of turbulent cascades and fractional fields} (2023), to appear on Annali della Scuola Normale Superiore di Pisa, Classe di Scienze $\langle$\href{https://arxiv.org/pdf/2301.00780.pdf}{arxiv:2301.00780}$\rangle$}
+
+\cvitem{[6]}{M. A. Garrido, R. Grande, K. M. Kurianski, G. Staffilani, \emph{Large deviations principle for the cubic NLS equation}, Comm.\ on Pure and Applied Math.\  76: 4087-4136 (2023)}
+
+
+\cvitem{[7]}{R. Grande, \emph{Continuum limit for discrete NLS with memory effect}, to appear in Journal of Nonlinear Modeling and Analysis (2024)}
+
+\cvitem{[8]}{R. Grande, K. M. Kurianski, G. Staffilani, \emph{On the nonlinear Dysthe equation}, Nonlinear Analysis 207, 112292 (2021)}
+
+\cvitem{[9]}{R. Grande, \emph{Space-time fractional Nonlinear Schr\"odinger equation}, SIAM J.$\!$ Math.$\!$ Anal (2019), 51(5), 4172-4212}
+
+\cvitem{[10]}{R. Grande, I. Kov\'acs, K. Kutnar, A. Malni\v{c}, L. Mart\'inez, D. Maru\v{s}i\v{c},  \emph{Equisizable partial sum families}, Journal of Algebraic Combinatorics 51, 273-296 (2020)}
+
+\cvitem{[11]}{M. Conder, R. Grande, \emph{On embeddings of circulant graphs}, Electronic Journal of Combinatorics 22 (2015), $\#$ P2.28}
+
+%\vspace{0.3cm}
+%
+%\hspace{2.6cm}  {\small IN PREPARATION}
+%
+%\vspace{0.4cm}
+%
+%\cvitem{}{R. Grande, \emph{Large Deviations and the cubic Schr\"odinger equation: Sharp Low Regularity Theory}}
+%
+%\cvitem{}{M. Berti, R. Grande, A. Maspero, G. Staffilani, \emph{Rogue Waves for Periodic Gravity Water Waves}}
+
+
+%-------------------Research description------------------------------------------------------------------
+
+%\vspace{0.3cm}
+%
+%\section{Research description}
+%
+%%\cvitem{}{{\small\textbf{keywords:} \emph{large deviations, turbulence, stochastic PDEs, nonlinear evolution of Gaussian measures}}}
+%
+%\vspace{0.4cm}
+%
+%\cvitem{}{The papers above tackle long-standing problems in Mathematical Physics, such as turbulence, energy cascades and the formation of rogue waves, from a new probabilistic perspective based exploiting large deviation estimates applied to PDEs. A fundamental question in these topics is the evolution of (out-of-equilibrium) probability measures under nonlinear dispersive equations, in contrast with classical (equilibrium) problems such as the existence of invariant measures.
+%}
+%%The papers above combine techniques from dispersive PDEs, probability, harmonic analysis and combinatorics. The two main topics of research are the following:}
+%
+%\vspace{0.1cm}
+%
+%\cvitem{}{\textbf{Rogue waves and large deviations:} 
+%Understanding the mecanism of formation of rogue waves and predicting their appearance are fundamental problems in oceanography and marine engineering. In [6] we give the first rigorous proof of a conjecture of Dematteis, Grafke, Onorato and Vanden-Eijnden regarding their formation. Exploiting a novel \emph{large deviation principle} applied to PDEs, we give a description of the most likely mecanism of formation of rogue waves in the weakly nonlinear regime (modeled by the cubic NLS equation). The key mathematical problem is obtaining an asymptotic development for the tails of a probability measure which evolves under a nonlinear dispersive equation.
+%}
+%\cvitem{}{In [1], we consider a Hamiltonian systems featuring large exchanges of energy between resonant Fourier modes. Such exchanges of energy, known as nonlinear focusing effects, are conjectured by Onorato et al. to increase the probability of appearance of rogue waves. This has been observed in the case of the Dysthe equation, whose well-posedness theory was developed in [4]. From a probabilistic viewpoint, it is conjecture that the initial Gaussian measure converges towards  a non-Gaussian \emph{fat-tailed invariant measure} of the system. Our work [1], which combines techniques from large deviations with normal forms and implicit function theory, is the first result where such a \emph{probabilistic focusing mecanism} is rigorously proved.
+%}
+%
+%\vspace{0.1cm}
+%
+%\cvitem{}{\textbf{Turbulence:} 
+%The field of turbulence deals with the study of an out-of-equilibrium system of many degrees of freedom. A fundamental feature of many turbulent systems is the \emph{energy cascade}: the transfer of energy from the large scales towards the small scales. In [5], we propose a toy model in the form of a stochastically forced PDE, whose solution develops an energy cascade as it converges to a nontrivial \emph{statistically stationary state}, mimicking experimental evidence for 3D turbulent fluids and theoretical predictions by Kolmogorov and Obukhov. Numerical simulations of our model using classical pseudospectral methods failed to converge, so in [4] we proposed a novel numerical method which perfectly handles rough solutions to \emph{stochastic PDEs}.
+%}
+%\cvitem{}{In the context of nonlinear waves, the study of energy cascades was pioneered by Bourgain, who studied the growth of Sobolev norms of solutions to dispersive PDEs. The outstanding work of Zakharov showed that energy cascades could be understood as stationary solutions to kinetic equations, which describe the average dynamics of wave systems. Such wave kinetic equations, however, had only been formally derived in Physics works such as those by Hasselmann, Nordheim or Nazarenko. In recent years, the innovative work of Buckmaster, Deng, Germain, Hani and Shatah gave rise to the first rigorous derivation of a wave kinetic equation for the cubic NLS equation with random initial data. Together with Zaher Hani in [2], we carried out the first rigorous derivation of the kinetic equation for a \emph{stochastic wave-system} with viscous dissipation, a model proposed by Zakharov and L'vov in the 70's. The proof combines \emph{Gaussian hypercontractivity} and other \emph{large deviation} estimates, sharp combinatorial study of Feynman diagrams, and harmonic analysis.
+%}
+
+%
+%A large system of interacting waves admits a similar statistical description as that of a system of particles in a fluid. The key mathematical problem is the rigorous justification of a kinetic equation which describes the average evolution of the  system starting from Hamiltonian first principles.Previous works by Buckmaster, Deng, Germain, Hani and Shatah only treated the purely dispersive case with random initial data.
+%}
+
+
+
+%-------------------Short Description of Research----------------------------------------------------------
+%
+%\vspace{0.3cm}
+%
+%\section{Short Description of Research}
+%
+%\vspace{0.3cm}
+%
+%\noindent My current research consists of using techniques from probability and PDEs to provide a statistical description of various phenomena in Mathematical Physics:
+%
+%\
+%
+% (i) \emph{Turbulence:} The field of turbulence deals with the study of an out-of-equilibrium system of many degrees of freedom. A fundamental feature in the case of a turbulent fluid is the energy cascade: a fluid which is stirred by a statistically stationary force will transfer the energy from the large scales towards the small scales. In [6], we propose a stochastic PDE as a toy model that mimics the behavior of the velocity field of a  fully turbulent 3D fluid (up to the second-order structure function). 
+% 
+%A large system of weakly-interacting waves of different wavenumbers admits a similar statistical description as that of a system of particles in a fluid. During my postdoctoral stay at the University of Michigan, Zaher Hani and I rigorously derived a kinetic equation that describes the statistical description of the average wave satisfying the NLS equation with viscous dissipation and a stochastic force, a model originally proposed by Zakharov and L'vov. A preprint will soon be available.
+% 
+% \
+% 
+% (ii) \emph{Rogue waves:} Rogue waves refer to the extreme phenomena of waves with anomalous height which suddenly appear in the sea and pose a threat for a variety of naval engineering infrastructure. Understanding how they form and predicting their appearance are two of the fundamental problems in oceanography and marine engineering. In [1] we use probability techniques to give a description of the most likely mecanism of formation of rogue waves in the weakly nonlinear regime (modeled by the 1D cubic NLS equation). In that context, we prove that the probability of rogue wave formation is exponentially small, exploiting a novel large deviation principle applied to PDEs. 
+% %we show that the set of rogue waves is a small neighborhood of an explicit two-parameter family of waves, up to a set of negligible probability.
+%
+%\
+%
+%\noindent Finally, my PhD thesis deals with the issue of loss of derivatives in dispersive PDEs, and how one may overcome it by using various versions of the smoothing effect discovered by Kato in the 80s. In the context of a nonlinear dispersive PDE whose linear flow involves nonlocal operators, the smoothing effect allows me to prove the well-posedness of equations when dispersive estimates are insufficient [3]. I also use an anisotropic version of the smoothing effect to improve previous well-posedness results for the 2D Dysthe equation in [2]. Finally, I show that discrete models of such dispersive equations converge to their continuum limit, by overcoming an additional loss of derivatives due to the discretization of the Laplacian which worsens dispersive estimates.
+%
+%\
+%
+%\noindent As part of a research project during my Bachelor studies, I used some combinatoric and algebraic properties to study and complete the classification of various families of graphs whose automorphism groups have a nice algebraic structure [4,5].
+
+%-------------------Teaching Experience------------------------------------------------------------------
+
+%\newpage 
+%\vspace{0.3cm}
+
+\section{Teaching Experience}
+
+\vspace{0.4cm}
+
+\hspace{2.6cm}  {\small BACHELOR LEVEL}
+
+\vspace{0.6cm}
+ 
+\cvitem{Winter 2021}{\textbf{Math 316 - Differential Equations}, University of Michigan, \hspace{4cm} \textbf{42h}}
+\cvitem{Fall 2020}{\textbf{Math 116 - Calculus II}, University of Michigan, \hspace{5.8cm} \textbf{63h}}
+\cvitem{Spring 2020}{\textbf{Grader} for 18.615 - Introduction to Stochastic Processes, MIT,  \hspace{3.7cm} \textbf{14h}}
+\cvitem{Fall 2019}{\textbf{Grader} for 18.085 - Computational Science and Engineering I, MIT, \hspace{3cm} \textbf{14h}}
+\cvitem{Spring 2019}{\textbf{Grader} for 18.615 - Introduction to Stochastic Processes, MIT, \hspace{3.7cm} \textbf{14h}}
+\cvitem{Spring 2018}{\textbf{Recitation Instructor} for 18.03 - Differential Equations, MIT, \hspace{3.8cm}  \textbf{28h}}
+\cvitem{Fall 2017}{\textbf{Recitation Instructor} for 18.02 - Multivariable Calculus, MIT, \hspace{3.75cm} \textbf{28h}}
+\cvitem{Fall 2016}{\textbf{Grader} for 18.085 - Computational Science and Engineering I, MIT, \hspace{3cm} \textbf{14h}}
+
+\vspace{0.4cm}
+
+\hspace{2.6cm}  {\small PhD LEVEL}
+
+\vspace{0.5cm}
+
+\cvitem{Jan 2025}{\textbf{Derivation of Wave Kinetic Equations}, BCAM, Bilbao \hspace{4.64cm} \textbf{10h}}
+\cvitem{Feb 2024}{\textbf{Weak Turbulence and Wave Kinetic Equation}, SISSA, Trieste \hspace{3.4cm} \textbf{20h}}
+\cvitem{June 2022}{\textbf{Large Deviations and PDEs}, SISSA, Trieste \hspace{6.5cm} \textbf{4h}}
+
+\vspace{0.4cm}
+
+\hspace{2.6cm}  {\small STUDENT SUPERVISION}
+
+\vspace{0.5cm}
+
+\cvitem{2024}{\textbf{Supervision of Master Thesis}, SISSA/UniTS}
+\cvlistitem{\emph{Student:} Riccardo Berforini D'Aquino}
+\cvlistitem{\emph{Project:} Large Deviations Principle for the KdV equation on $\mathbb{T}$ over long timescales}
+
+\cvitem{Summer 2021}{\textbf{Research Experience for Undergraduates co-mentor}}
+\cvitem{}{(with Z. Hani), University of Michigan}
+\cvlistitem{\emph{Students:} Yubing Cui and Joshua Messing}
+\cvlistitem{\emph{Project:} Wave Kinetic Equation and Kolmogorov-Zakharov Cascade Spectra}
+%\cvlistitem{\emph{Download:} \url{https://lsa.umich.edu/content/dam/math-assets/math-document1/reu-documents/Y.Cui\%20_\%20J.Messing_REU21.pdf}}
+
+\cvitem{Summer 2018}{\textbf{Research supervisor for the \emph{Undergraduate Research Opportunities Program}}, MIT}
+\cvlistitem{\emph{Student:} Zixuan Xu}
+\cvlistitem{\emph{Project:} Almost Conservation Laws for KdV and Cubic NLS} 
+%\cvlistitem{\emph{Download:} \url{https://math.mit.edu/research/undergraduate/urop-plus/documents/2018/Xu.pdf}}
+
+
+\cvitem{Summer 2016}{\textbf{Research supervisor for the \emph{Undergraduate Research Opportunities Program}}, MIT}
+\cvlistitem{\emph{Student:} Eli Sadovnik}
+\cvlistitem{\emph{Project:} A Central Limit Theorem for Fluctuations of Internal
+Diffusion-Limited \\ Aggregation with Multiple Sources} 
+%\cvlistitem{\emph{Download:} \url{https://math.mit.edu/research/undergraduate/urop-plus/documents/2016/Sadovnik.pdf}}
+
+
+%-------------------Conferences and Workshops------------------------------------------------------------------
+\newpage
+\vspace{0.3cm}
+
+\section{Talks at International Conferences and Workshops}
+
+\vspace{0.3cm}
+
+\cvitem{Sept 2025}{\textbf{Long-Time Dynamics in Random and Deterministic Systems}, EPFL, Lausanne}
+\cvitem{June 2025}{\textbf{Summer school: Probabilistic Approaches to Dispersive PDEs}, BCAM, Bilbao}
+\cvitem{May 2025}{\textbf{Physics and Mathematics of hydrodynamic and wave turbulence}, CIRM, Marseille}
+\cvitem{Sept 2024}{\textbf{Summer School in Fluid dynamics and Nonlinear PDEs}, Universit\`a di Padova}
+\cvitem{July 2024}{\textbf{Joint Meeting AMS-UMI}, Universit\`a degli Studi di Palermo}
+\cvitem{May 2024}{\textbf{Wave Dynamics and Fluid-Structure Interactions}, Lake Como School of Advanced Studies}
+\cvitem{May 2024}{\textbf{Workshop Turbulent.e.s}, \'Ecole Polytechnique}
+\cvitem{March 2024}{\textbf{Journ\'ees Jeunes EDPistes en France 2024}, Institut de Math\'ematiques de Toulouse}
+\cvitem{Nov 2023}{\textbf{Simons Collaboration in Wave Turbulence Annual Meeting}, Courant Institute}
+\cvitem{Aug 2023}{\textbf{School/Workshop on Wave Dynamics: Turbulent vs Integrable Effects}, ICTP Trieste}
+\cvitem{May 2023}{\textbf{Nonlinear waves and turbulence workshop}, IHP}
+\cvitem{Sept 2022}{\textbf{Trials in wave turbulence: from random waves to kinetic equations}, GSSI}
+\cvitem{May 2022}{\textbf{Oberwolfach Workshop}, Deterministic Dynamics and Randomness in PDE, Junior talk}
+\cvitem{March 2022}{\textbf{SIAM PD22}, Decay, Stability and Growth in Fluids and Wave Systems minisymposium}
+\cvitem{Dec 2021}{\textbf{Simons Collaboration in Wave Turbulence Annual Meeting}, Courant Institute}
+\cvitem{May 2020}{\textbf{Mathematics of Planet Earth: Analysis and Modelling}, \href{https://sites.google.com/view/mpe2020-webinars/home}{Webinar}}
+\cvitem{Jan 2020}{\textbf{Winter School: Turbulence in fluids and PDEs}, Lausanne}
+
+%\vspace{0.4cm}
+%
+%\hspace{3.2cm} {\small PARTICIPANT}
+%
+%\vspace{0.6cm}
+%
+%\cvitem{July 2022}{\textbf{Wave Turbulence and Beyond}, Universit\`{a} degli Studi di Torino}
+%\cvitem{June 2022}{\textbf{Normal forms and splitting methods}, Centre Henri Lebesgue}
+%\cvitem{Fall 2021}{\textbf{ICERM}, Hamiltonian Methods in Dispersive and Wave Evolution Equations}
+%\cvitem{May 2020}{\textbf{Mathematical Questions in Wave Turbulence}, Banff International Research Station}
+%\cvitem{Dec 2019}{\textbf{Simons Collaboration in Wave Turbulence Meeting}, Courant Institute}
+%\cvitem{Nov 2018}{\textbf{From Many Particle Systems to Quantum Fluids}, GSSI L'Aquila}
+%\cvitem{Oct 2018}{\textbf{Long-Term Dynamics of Nonlinear Dispersive and Hyperbolic Equations}, U. of Chicago}
+%\cvitem{May 2018}{\textbf{Conference on Nonlinear Waves}, Brown University}
+%\cvitem{May 2018}{\textbf{School and Conference on Nonlinear Waves: Stability vs Turbulence}, Georgia Tech}
+%\cvitem{Sept 2016}{\textbf{FRG Conference in Dispersive and Wave equations}, MIT}
+%\cvitem{July 2015}{\textbf{BCAM Workshop on Harmonic Analysis and PDEs}, BCAM}
+%\cvitem{July 2014}{\textbf{10th AIMS Conference on Dynamical Systems, Differential Equations and Applications}, ICMAT}
+%\cvitem{March 2014}{\textbf{IV School of Functional Analysis and Applications}, Brownian Motion and Ito's formula, Universidad de Sevilla}
+
+%-------------------Conferences and Workshops------------------------------------------------------------------
+
+\vspace{0.3cm}
+
+\section{Talks at University Seminars}
+
+\vspace{0.3cm}
+
+\cvitem{Nov 2024}{\textbf{Analysis Seminar}, University of Bielefeld}
+\cvitem{Nov 2024}{\textbf{S\'eminaire de EDP - Physique Math\'ematique}, IMB, Bordeaux}
+\cvitem{Nov 2024}{\textbf{S\'eminaire de Math\'ematiques et de leurs Applications}, UPPA, Pau}
+\cvitem{Apr 2024}{\textbf{Analysis Seminar}, SISSA}
+\cvitem{Jan 2024}{\textbf{S\'eminaire EDP et Physique math\'ematique}, LAGA, Universit\'e Paris 13}
+\cvitem{Nov 2023}{\textbf{S\'eminaire ÉDP, Mod\'elisation et Calcul Scientifique} de Lyon-Saint Etienne}
+\cvitem{March 2023}{\textbf{S\'eminaire Cristollien d'Analyse Multifractale}, Universit\'e Paris Est Cr\'eteil - Val de Marne}
+\cvitem{March 2023}{\textbf{S\'eminaire GT Mod\'elisation Stochastique}, LPSM, Universit\'e Paris Cit\'e}
+\cvitem{Feb 2023}{\textbf{S\'eminaire du Groupe de Travail EDP}, LAMA, Universit\'e Paris Est Cr\'eteil}
+\cvitem{Nov 2022}{\textbf{S\'eminaire de Physique Non-Lin\'eaire}, D\'ep. de Physique, ENS}
+\cvitem{May 2022}{\textbf{Ghent Methusalem Junior Seminar}, Ghent University}
+\cvitem{March 2022}{\textbf{Analysis and PDE seminar}, BCAM}
+\cvitem{Nov 2020}{\textbf{Differential Equations Seminar}, University of Michigan}
+\cvitem{Jan 2020}{\textbf{Seminar}, GSSI L'Aquila}
+\cvitem{Jan 2020}{\textbf{BCAM Scientific Seminar}, BCAM}
+\cvitem{Nov 2019}{\textbf{Brown-BU-UMass Amherst seminar in PDE and Dynamics}, Brown University}
+
+
+%-------------------Awards and Fellowships------------------------------------------------------------------
+
+%\section{Awards and Fellowships}
+%
+%\cvitem{2015}{\textbf{Summer internship position}, Basque Center for Applied Mathematics (BCAM)}
+%\cvlistitem{ \emph{Advisor}: Luis Vega}
+%\cvlistitem{ \emph{Project:} Probabilistic interpretation of the Hardy uncertainty principle}
+%\cvitem{2014-2015}{\textbf{La Caixa Europe Fellowship}, La Caixa Foundation}
+%\cvlistitem{Full funding of master degree at the University of Cambridge}
+%\cvitem{2013-2014}{\textbf{Collaboration Scholarship}, Government of the Basque Country}
+%\cvlistitem{\emph{Advisor}: Luis Escauriaza}
+%\cvlistitem{ \emph{Project}: Harmonic Analysis and applications}
+%\cvitem{2012}{\textbf{Summer Research Scholarship}, University of Auckland}
+%\cvlistitem{\emph{Advisor}: Marston Conder}
+%\cvlistitem{\emph{Project}: Embeddings of circulant graphs}
+
+%-------------------Refereeing Section-------------------------------------------------------------------
+%\vspace{0.3cm}
+%
+%\section{Other}
+%
+%\vspace{0.3cm}
+%
+%% Format:  \cvitem{Section Name}{Description}
+%% Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+%% Example: \cvitem{supervisors}{My supervisors' names go here}
+%% Example: \cvitem{description}{Short thesis abstract}
+%
+%\cvitem{}{\textbf{Referee for:} Ars Inveniendi Analytica, Nonlinear Analysis, SIMA, Advances in Differential Equations}
+%\cvitem{}{\textbf{Qualification} for Ma\^{i}tre de Conf\'erences, Section 25 CNU, nº 22225373921, (obtained 08/02/2022).}
+%
+
+
+
+%-------------------Grants and awards-------------------------------------------------------------------
+\vspace{0.3cm}
+
+\section{Grants and awards}
+
+\vspace{0.3cm}
+
+% Format:  \cvitem{Section Name}{Description}
+% Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+% Example: \cvitem{supervisors}{My supervisors' names go here}
+% Example: \cvitem{description}{Short thesis abstract}
+
+\cvitem{2025}{\textbf{GNAMPA Project:} PI of project ``Deterministic and probabilistic evolution of out-of-equilibrium Hamiltonian systems''. Group members: M. Berti, M. Dolce, A. Maspero, S. Terracina. Funds: 3.000 €.} %Project number: CUP E5324001950001}
+\cvitem{2024}{\textbf{iNEST Young Researcher:} PI of project ``Rogue Wave Forecasting'' - 40.000 €}
+\cvitem{2024}{\textbf{Chaire Ali\'enor, F\'ed\'eration Margaux, CNRS:} 1-month invited position at a department of the federation. Affectation: Universit\'e de Pau.}
+\cvitem{2014-15}{\textbf{La Caixa Fellowship:} Full tuition and stipend for master degree at the Univ. of Cambridge $\sim$ 35.000 €}
+
+%-------------------Evaluation and hiring committes-------------------------------------------------------------------
+\newpage
+\vspace{0.3cm}
+
+\section{Member in evaluation and hiring commitees}
+
+\vspace{0.3cm}
+
+% Format:  \cvitem{Section Name}{Description}
+% Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+% Example: \cvitem{supervisors}{My supervisors' names go here}
+% Example: \cvitem{description}{Short thesis abstract}
+\cvitem{03-2025}{Committee for PhD admission in SISSA}
+\cvitem{06-2024}{Committee for three postdoctoral positions at SISSA}
+\cvitem{03-2024}{Committee for PhD admission in SISSA}
+
+
+
+%-------------------Other Section-------------------------------------------------------------------
+\vspace{0.3cm}
+
+\section{Other}
+
+\vspace{0.3cm}
+
+% Format:  \cvitem{Section Name}{Description}
+% Example: \cvitem{title}{\emph{The title of my Masters goes here}}
+% Example: \cvitem{supervisors}{My supervisors' names go here}
+% Example: \cvitem{description}{Short thesis abstract}
+
+\cvitem{}{\textbf{Referee for:} Annals of PDEs, Nonlinearity, Ars Inveniendi Analytica, Nonlinear Analysis, SIMA, Advances in Differential Equations, Zeitschrift für angewandte Mathematik und Physik}
+\cvitem{}{\textbf{Qualification} for Ma\^{i}tre de Conf\'erences, Section 25 CNU, nº 22225373921, (obtained 08/02/2022).}
+
+
+
+%-------------------Languages Section-------------------------------------------------------------------
+\vspace{0.3cm}
+
+\section{Languages}
+
+\vspace{0.2cm}
+
+% Format:  \cvitemwithcomment{Language}{Skill level}{Comment}
+% Example: \cvitemwithcomment{English}{Native}{Mother Tongue}
+% Example: \cvitemwithcomment{French}{Fluent}{Daily practice, all work performed in English}
+
+\cvitemwithcomment{}{\textbf{Basque}, Mother tongue \hspace{3cm}  \textbf{Spanish}, Mother tongue}{}%Euskararen Gaitasun Agiria [C1], 2009}
+\cvitemwithcomment{}{\textbf{Italian}, Fluent \hspace{4.4cm} \textbf{English}, Fluent}{}
+%\cvitemwithcomment{}{}{Certificate of Proficiency in English [C2], 2013}
+\cvitemwithcomment{}{\textbf{French}, Advanced}{}
+%\cvitemwithcomment{}{\textbf{Portuguese}, Good working knowledge}{Portuguese I-IV at MIT, 2017-18}
+
+
+
+%-------------------Cover letter------------------------------------------------------------------------
+
+%\newpage
+
+%\input{coverletter_UMass.tex}                             % Include cover letter from coverletter.tex
+
+
+%-------------------Interests Section-------------------------------------------------------------------
+
+%\section{Interests}
+
+% Format:  \cvitem{Hobby}{Description}
+% Example: \cvitem{Gaming}{Computer Games}
+% Example: \cvitem{Sport}{Golf, Tennis}
+
+%\cvitem{Gaming}{Computer Games}
+%\cvitem{Sport}{Golf, Tennis}
+
+%-------------------Experience Section------------------------------------------------------------------
+
+%\section{Experience}
+
+
+%-------------------Vocational Experience---------------------------------------------------------------
+
+%\subsection{Vocational}
+
+% Format: \tlcventry{StartYear}{EndYear}{Job title}{Employer}{City}{Country (optional)}{General description no longer than 1--2 lines.\newline{}%
+% Example:
+% \tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
+% Main Duties:%
+%  \begin{itemize}%
+%      \item Administrate the servers;
+%      \item Administrate employee computers 
+%          \begin{itemize}%
+%              \item All employee's computers had to be up to date;
+%          \end{itemize}
+%      \item Did some more administrating
+%   \end{itemize}}
+
+%\tlcventry{2008}{2011}{System Administrator}{Simple Solutions}{MyCity}{}{Did system administrative work.\newline{}%
+%Main Duties:%
+%\begin{itemize}%
+% \item Administrate the servers;
+% \item Administrate employee computers 
+%  \begin{itemize}%
+%      \item All employee's computers had to be up to date;
+%      \end{itemize}
+%  \item Did some more administrating
+%\end{itemize}}
+
+%-------------------Skills Matrix Section----------------------------------------------------------------
+
+%\section{Skills}
+
+% For items with categories: 
+% Format:  \cvdoubleitem{Category}{List of skills}{Category Name}{List of skills}
+% Note: It looks better if the category is bold with \textbf{}
+% Example:
+% \subsection{Development}
+% \cvdoubleitem{\textbf{Languages}}{C\#, C\+\+, Java}{\textbf{Databases}}{MSSQL, MySQL}
+%
+% For a bullet list without categories:
+% Format:  \cvlistdoubleitem{Skill 1}{Skill 2}
+% Example: 
+% \subsection{Development}
+% \cvlistdoubleitem{C\#, Java, Ruby}{MSSQL, MySQL}
+% \cvlistdoubleitem{Photoshop}{Windows, Linux. In the single column list, this item is particularly long to wrap over several lines.}
+
+%\subsection{Development}
+%\cvdoubleitem{\textbf{Languages}}{C\#, Java, Ruby}{\textbf{Databases}}{MSSQL, MySQL}
+
+
+%-------------------Publications Section----------------------------------------------------------------
+% The cvitem commands needs to be altered to correctly print all publications with the moderntime package.
+% The cvitem command is edited to remove all forced punctuation within the command.
+% All the typesetting of the text is handled by the modified Biblatex style.
+
+%\input{cvitem_modifications/cvitem_modified}        % Removing forced punctuation from cvitem
+
+%\nocite{*}                                          % Print all publications.
+
+% Format:  \printbibliography[type=Biblatex type,title={Title of publication}]
+% Example: \printbibliography[type=article,title={Journal Publications}]
+% Example: \printbibliography[type=inproceedings,title={Conference Publications}]
+% Example: \printbibliography[type=thesis,title={Thesis}]
+
+%\printbibliography[type=article,title={Journal Publications}]
+%\printbibliography[type=inproceedings,title={Conference Publications}]
+%\printbibliography[type=thesis,title={Thesis}]
+
+%\input{cvitem_modifications/cvitem_moderncvclassic} % Reverting changes to cvitem.
+
+%-------------------References Section------------------------------------------------------------------
+
+%\section{References}
+
+% Format:  \cvreferencecolumn{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}{\cvreference{Name Surname}{Position}{Department}{Company}{City}{Email}{Home Phone}{Cell Phone}}
+% Example: 
+% \subsection{Simple Solutions}
+% \cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}}
+% \subsection{Monster Inc}
+% \cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
+
+%\subsection{Simple Solutions}
+%\cvreferencecolumn{\cvreference{John Doe}{Developer}{HR}{Simple Solutions}{MyCity}{john@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{\cvreference{Jane Doe}{Accountant}{HR}{Simple Solutions}{MyCity}{jane@email.com}{+34 (56) 789 0123}{+45 (67) 890 1234}} \subsection{Monster Inc}
+%\cvreferencecolumn{\cvreference{Alice Doe}{Manager}{HR}{Monster Inc}{ThatCity}{alice@email.com}{+12 (34) 567 8901}{+23 (45) 678 9012}}{}
+%
+%\clearpage
+
+%-------------------Appendix----------------------------------------------------------------------------
+% This section is added to append any additional documents to the cv.
+% The appended documents are added to the table of contents for easier navigation of the document.
+% Usage: (section)
+% \phantomsection
+% \addcontentsline{toc}{section}{title}
+% 
+% Format: (subsection)
+% \phantomsection\addcontentsline{toc}{subsection}{title}
+% \includepdf[pages=-]{appendix/filename.pdf}
+%
+% Example:
+% \phantomsection
+% \addcontentsline{toc}{section}{Certificates}
+%
+% \phantomsection
+% \addcontentsline{toc}{subsection}{Landscape}
+% \includepdf[pages=-]{appendix/CertificateLandscape.pdf}
+%
+% \phantomsection
+% \addcontentsline{toc}{subsection}{Portrait}
+% \includepdf[pages=-]{appendix/CertificatePortrait.pdf}
+
+%\phantomsection
+%\addcontentsline{toc}{section}{Certificates}
+%
+%\phantomsection
+%\addcontentsline{toc}{subsection}{Landscape}
+%\includepdf[pages=-]{appendix/CertificateLandscape.pdf}
+%
+%\phantomsection
+%\addcontentsline{toc}{subsection}{Portrait}
+%\includepdf[pages=-]{appendix/CertificatePortrait.pdf}
+
+
+
+
+
+\end{document}
+
+%% end of file `main.tex'.
