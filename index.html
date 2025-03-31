@@ -27,26 +27,161 @@
   <!--    <a class="navbar-brand" href="#"><img src="pikasle/logopikaslesm.png"/></a>-->
 
       <div class="collapse navbar-collapse " id="navbarsExampleDefault">
-    <!--   BEFORE   <ul class="navbar-nav mr-auto"> -->
-    <!--  PARTE SUPERIOR DESACTIVADA
-       <ul class="navbar-nav r-auto">
-            <a class="nav-link" href="index.html">Ricardo Grande Izquierdo</a>
-        </ul>  HASTA AQUI -->
 
-  <!--
-        <ul class="navbar-nav r-auto">
-	<li class="nav-item active">
-            <a class="nav-link" href="index.html">en</a>
-          </li>
-	<li class="nav-item">
-            <a class="nav-link" href="pikasle_eus.html">eus</a>
-          </li>
-	<li class="nav-item">
-            <a class="nav-link" href="pikasle_es.html">es</a>
-          </li>
-        </ul>
-      </div>
--->
+
+        <!-- == CSS FOR SIDE-BY-SIDE LAYOUT (Modified for Method 1 Size Control) == -->
+    <style>
+        .side-by-side-container {
+            display: flex; /* Enables Flexbox */
+            flex-direction: column; /* Default stack on smallest screens */
+            gap: 1.5rem; /* Adjust spacing as needed */
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Apply row layout on medium screens and up */
+        @media (min-width: 768px) {
+            .side-by-side-container {
+                flex-direction: row; /* Side-by-side on medium screens and up */
+                align-items: flex-start; /* Align items to the top */
+            }
+        }
+
+        .text-content {
+            /* === CHANGE HERE === */
+            /* Give text container 2 parts of the flexible space */
+            flex: 2;
+            /* The min-width is less critical now but can act as a fallback */
+            /* min-width: 250px; */
+            /* Optional: Add padding if needed */
+            /* padding-right: 1rem; /* Add space inside the text container */
+        }
+
+        .image-content {
+            /* === CHANGE HERE === */
+            /* Give image container 1 part of the flexible space */
+            flex: 1;
+             /* Optional: Set a maximum width for the *container* if you don't want it */
+             /* to get wider than a certain image size dictates */
+             /* max-width: 400px; */
+             min-width: 150px; /* Adjust or remove if needed - prevents extreme shrinking */
+             text-align: center; /* Center image within its container */
+        }
+
+         /* Image itself remains responsive WITHIN its container */
+         /* The .img-fluid class from Bootstrap handles this */
+         /* If not using img-fluid, you'd need: */
+         /*
+         .image-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+         }
+         */
+         /* --- Add these ratio modifier rules --- */
+
+         /* Ratio: Text 2 parts, Image 1 part (like before) */
+         @media (min-width: 768px) {
+            .side-by-side-container.ratio-2-1 .text-content { flex: 2; }
+            .side-by-side-container.ratio-2-1 .image-content { flex: 1; }
+          }
+
+          /* Ratio: Text 1 part, Image 1 part (Equal Widths) */
+          @media (min-width: 768px) {
+            .side-by-side-container.ratio-1-1 .text-content { flex: 1; }
+            .side-by-side-container.ratio-1-1 .image-content { flex: 1; }
+          }
+
+          /* Ratio: Text 1 part, Image 2 parts (Wider Image) */
+          @media (min-width: 768px) {
+            .side-by-side-container.ratio-1-2 .text-content { flex: 1; }
+            .side-by-side-container.ratio-1-2 .image-content { flex: 2; }
+          }
+
+          /* Ratio: Text 3 parts, Image 1 part */
+          @media (min-width: 768px) {
+            .side-by-side-container.ratio-3-1 .text-content { flex: 3; }
+            .side-by-side-container.ratio-3-1 .image-content { flex: 1; }
+          }
+          /* Ratio: Text 4 parts, Image 1 part */
+          @media (min-width: 768px) {
+            .side-by-side-container.ratio-4-1 .text-content { flex: 4; }
+            .side-by-side-container.ratio-4-1 .image-content { flex: 1; }
+          }
+
+          /* --- Keep your existing base styles --- */
+          .side-by-side-container {
+            display: flex;
+            flex-direction: column; /* Stack on small screens */
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+          }
+
+          @media (min-width: 768px) {
+            .side-by-side-container {
+              flex-direction: row; /* Side-by-side on larger screens */
+              align-items: flex-start;
+            }
+          }
+
+          .text-wrapper-short {
+            max-width: 60ch; /* <<< ADJUST THIS VALUE */
+            /* Or use pixels: max-width: 650px; */
+
+            /* To center the constrained text block within the wider text-content container: */
+            margin-left: 5ch;
+            margin-right: auto;
+             /* Or if you want it left-aligned within the container, use: */
+             /* margin-right: auto; */
+             /* margin-left: 0;  */
+          }
+
+          .text-wrapper-long {
+            max-width: 90ch; /* <<< ADJUST THIS VALUE */
+            /* Or use pixels: max-width: 650px; */
+
+            /* To center the constrained text block within the wider text-content container: */
+            margin-left: 0;
+            margin-right: auto;
+             /* Or if you want it left-aligned within the container, use: */
+             /* margin-right: auto; */
+             /* margin-left: 0;  */
+          }
+
+          .text-content {
+            /* Base styles - flex is now handled by modifiers */
+            /* min-width might still be useful */
+          }
+
+          .image-content {
+            /* Base styles - flex is now handled by modifiers */
+            min-width: 150px; /* Example minimum container width */
+            text-align: center;
+          }
+
+          /* Keep your specific image sizing rule */
+          #profile-picture {
+            max-width: 280px; /* Example */
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          /* Add rules for other specific image IDs if needed */
+          #other-image-id {
+            max-width: 400px; /* Example */
+            /* ... other properties ... */
+          }
+
+
+    </style>
+    <!-- == END OF CSS FOR SIDE-BY-SIDE LAYOUT == -->
+
+
     </nav>
    <nav id="navbarCV" class="navbar-toggleable-md navbar-inverse navbar-custom2">
         <ul class="nav nav-pills">
@@ -55,6 +190,7 @@
            <li class="nav-item"><a class="nav-link" href="#aboutme">About me</a></li>
 	         <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
 		       <li class="nav-item"><a class="nav-link" href="#teaching">Teaching</a></li>
+           <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
 	         <li class="nav-item"><a class="nav-link" href="#cv">CV</a></li>
         </ul>
 
@@ -82,6 +218,53 @@
 <div id="aboutme">
 <h2>About me</h2>
 
+<br>
+
+<div class="container"> <!-- Your main content container -->
+
+    <!-- == EXAMPLE SIDE-BY-SIDE SECTION == -->
+    <div class="side-by-side-container ratio-4-1"> <!-- Added an ID for navigation -->
+      <!-- Image Content Left -->
+      <div class="image-content">
+          <!-- == YOUR IMAGE GOES HERE == -->
+          <img id="profile-picture"
+               src="Photo_Ricardo.jpg"
+               class="img-fluid">
+          <!-- == END OF YOUR IMAGE == -->
+      </div>
+        <!-- Text Content Right -->
+        <div class="text-content">
+          <div class="text-wrapper-short">
+            <p style="text-align:justify;">
+             I am an Assistant Professor (RTD-A) at <a href="https://www.sissa.it">SISSA</a>.
+            </p>
+            <p style="text-align:justify;">
+              Previously, I was a Postdoctoral Researcher at <a href="https://www.math.ens.psl.eu">École Normale Supérieure</a>
+              working with <a href="https://www.math.ens.fr/~gallagher/">Isabelle Gallagher</a> and
+              <a href="https://www.ihes.fr/en/professeur/laure-saint-raymond-2/">Laure Saint-Raymond</a>.
+              During 2020-21, I was a Postdoctoral Assistant Professor at the <a href="https://lsa.umich.edu/math">University of Michigan – Ann Arbor</a>
+              working with <a href="https://sites.lsa.umich.edu/zhani/"> Zaher Hani</a>. I obtained my PhD from MIT in 2020,
+              under the supervision of <a href="https://math.mit.edu/~gigliola/"> Gigliola Staffilani</a>.
+            </p>
+            <p style="text-align:justify;">
+            More about me can be found in my <a href="#cv">CV</a>.
+          </p>
+        <p style="text-align:justify;">
+        <b>Address:</b> Office A-727, Scuola Internazionale Superiore di Studi Avanzati (SISSA),
+        via Bonomea 265, 34136 Trieste, Italy
+        <br>
+        <b>Email:</b> rgrandei &lbrack;at&rbrack; sissa &lbrack;dot&rbrack; it
+        </p>
+        </div>
+            <!-- == END OF YOUR TEXT CONTENT == -->
+        </div>
+
+
+    </div> <!-- End of side-by-side-container -->
+    <!-- == END OF EXAMPLE SECTION == -->
+
+
+  <!--
 <center>
 <table width="75%">
 <tbody>
@@ -120,23 +303,31 @@ via Bonomea 265, 34136 Trieste, Italy
 </tbody>
 </table>
 </center>
+-->
 
-</div>
+<p style="margin-bottom:1cm;">
+<b style="color:#DC6C19;">NEWS:</b>
+Summer 2025 – Future Perspective on Wave Dynamics Conference.
+Registration and more information <a href="#events">here</a>.
+</p>
 
 <p style="margin-bottom:1cm;">
 </p>
 
+<h3><br></h3>
+
 <!-- Research
 ================================================== -->
-<hr><div id="research">
+</div><hr><div id="research">
 <h2>Research</h2>
 <br>
 <p style="text-align:justify;">
 I am interested in Hydrodynamic and Wave Turbulence, Dispersive and Kinetic PDEs, Probability and Harmonic Analysis.
 <br>
 <br>
-<b>Articles:</b>
+<h5><b>Articles:</b></h5>
 </p>
+
         <ol style="line-height: 2em;">
           <li> R. Grande, <em>Resonant large deviations principle for the beating NLS equation</em>,
             preprint (2024) &nbsp; <a href="https://arxiv.org/abs/2408.05791" style="color:#DC6C19;">[arXiv]</a></li>
@@ -148,9 +339,9 @@ I am interested in Hydrodynamic and Wave Turbulence, Dispersive and Kinetic PDEs
             applications to fluid turbulence and generation of fractional Gaussian fields</em>,
             <a href="https://doi.org/10.1103/PhysRevResearch.6.033048">Phys. Rev. Research 6, 033048 (2024)</a> &nbsp; <a href="https://arxiv.org/abs/2403.05401" style="color:#DC6C19;">[arXiv]</a></li>
           <li> G.B. Apolinario, G. Beck, L. Chevillard, I. Gallagher, R. Grande, <em>A Linear Stochastic Model of Turbulent Cascades and Fractional Fields</em>,
-            to appear in <a href="https://doi.org/10.2422/2036-2145.202302_011">Ann. Sc. Norm. Super. Pisa Cl. Sci. (2023)</a> &nbsp; <a href="https://arxiv.org/abs/2301.00780"  style="color:#DC6C19;">[arxiv]</a></li>
-          <li> M.A. Garrido, R. Grande, K. M. Kurianski, G. Staffilani, <em>Large deviations principle for the cubic NLS equation</em>,
-            <a href="https://doi.org/10.1002/cpa.22131">Comm. Pure Appl. Math. 76, 4087-4136 (2023)</a> &nbsp; <a href="https://arxiv.org/abs/2110.15748" style="color:#DC6C19;">[arxiv]</a></li>
+            to appear in <a href="https://doi.org/10.2422/2036-2145.202302_011">Ann. Sc. Norm. Super. Pisa Cl. Sci. (2023)</a> &nbsp; <a href="https://arxiv.org/abs/2301.00780"  style="color:#DC6C19;">[arXiv]</a></li>
+          <li> M. Garrido, R. Grande, K. Kurianski, G. Staffilani, <em>Large deviations principle for the cubic NLS equation</em>,
+            <a href="https://doi.org/10.1002/cpa.22131">Comm. Pure Appl. Math. 76, 4087-4136 (2023)</a> &nbsp; <a href="https://arxiv.org/abs/2110.15748" style="color:#DC6C19;">[arXiv]</a></li>
           <li> R. Grande, <em>Continuum limit for discrete NLS with memory effect</em>,
             to appear in Journal of Nonlinear Modeling and Analysis (2024) &nbsp; <a href="https://arxiv.org/abs/1910.05681" style="color:#DC6C19;">[arXiv]</a></li>
           <li> R. Grande, K. M. Kurianski, G. Staffilani, <em>On the nonlinear Dysthe equation</em>,
@@ -165,8 +356,7 @@ I am interested in Hydrodynamic and Wave Turbulence, Dispersive and Kinetic PDEs
         </ol>
 
 <p style="text-align:justify;">
-<br>
-<b>Proceedings:</b>
+<h5><b>Proceedings:</b></h5>
 <ol style="line-height: 2em;" start="12">
   <li> G. Beck, C.-E. Br&eacutehier, L. Chevillard, R. Grande, W. Ruffenach, <em>A linear model of dynamical sea wavenumber spectra</em>,
     preprint (2025) &nbsp; <a href="https://hal.science/hal-05005567v2" style="color:#DC6C19;">[hal]</a></li>
@@ -175,6 +365,8 @@ I am interested in Hydrodynamic and Wave Turbulence, Dispersive and Kinetic PDEs
 
 <p style="margin-bottom:1cm;">
 </p>
+
+<h3><br></h3>
 
 <!-- Teaching
 ================================================== -->
@@ -235,6 +427,9 @@ As a grad student at MIT:
     </ul></li>
 </ul>
 
+<br>
+
+<div class="text-wrapper-long">
 <p style="text-align:justify;">
 <b> Resources:</b>
 Students interested in Calculus, Differential Equations or Probability
@@ -247,9 +442,79 @@ Students who are interested in research experience may want to read about
 <a href="https://lsa.umich.edu/math/undergraduates/research-and-career-opportunities/research/research-experience-for-undergraduates--reu-.html">
   REU</a> program.
 </p>
+</div>
 
 <p style="margin-bottom:1cm;">
 </p>
+
+<h3><br></h3>
+
+<!-- Events
+================================================== -->
+</div><hr><div id="events">
+<h2>Events</h2>
+<!-- == SIDE-BY-SIDE CONTENT STARTS HERE (Added by AI) == -->
+    <div class="side-by-side-container ratio-1-1">
+
+        <!-- Text Content on the Left -->
+        <div class="text-content">
+            <p style="text-align:justify;">
+            <h4> <a href="https://sites.google.com/view/waves-on-the-mountains/home" style="color:#DC6C19;">Future Perspective on Wave Dynamics</a></h4>
+            <br>
+            <b>Location:</b> Hotel "Il Cervo" Via Priesnig, 72, 33018 Tarvisio UD
+            <br>
+            <br>
+            <b>Dates:</b>  June 30 - July 4, 2025
+            <br>
+            <br>
+            The conference explores key challenges in wave dynamics,
+            focusing on quasi-integrability, turbulence, and rogue waves.
+            Set in Tarvisio, Italy, the conference will bring together researchers
+            to discuss recent advances and open questions in these areas.
+            <br>
+            <br>
+            In order to participate and/or propose a contributed talk, click
+            <a href="https://sites.google.com/view/waves-on-the-mountains/home/participation">here</a>.
+            <br>
+            <br>
+            <b>Organizers:</b> M. Gallone, R. Grande, B. Langella, A. Maspero
+            </p>
+            <!-- Add more paragraphs or text elements if needed -->
+            <!-- <p>Another paragraph example.</p> -->
+        </div>
+
+        <!-- Image Content on the Right -->
+        <div class="image-content">
+            <!-- == YOUR IMAGE GOES HERE == -->
+            <!-- Replace 'your-image.jpg' with the path/URL to your image -->
+            <!-- Replace 'Description of the image' with your actual alt text -->
+            <!-- Using Bootstrap's img-fluid class is recommended for responsiveness -->
+            <img src="Photo_Tarvisio.png" alt="Description of the image" class="img-fluid">
+            <!-- == END OF YOUR IMAGE == -->
+        </div>
+      </div>
+
+      <p style="margin-bottom:1cm;">
+      </p>
+
+      <h3><br></h3>
+
+       <!-- End of side-by-side-container -->
+<!-- == SIDE-BY-SIDE CONTENT ENDS HERE == -->
+
+<!--<br>
+<p style="text-align:justify;">
+<b> <a href="https://sites.google.com/view/waves-on-the-mountains/home" style="color:#DC6C19;">Future Perspective on Wave Dynamics:</a></b>
+<br>
+A one-week workshop in Tarvisio (Italy) to foster interactions between researchers
+working on quasi-integrable systems, turbulence phenomena and rogue waves,
+in a friendly mountain environment.
+<br>
+In order to participate and/or propose a contributed talk, click
+<a href="https://sites.google.com/view/waves-on-the-mountains/home/participation">here</a>.
+</p>
+</div>
+-->
 
 <!-- CV
 ================================================== -->
@@ -269,6 +534,8 @@ Students who are interested in research experience may want to read about
 <p style="margin:0;"><a href="cv_fr.pdf">En fran&ccedil;ais</a></p>
 <a href="cv_fr.pdf"><img style="width:70%;" src="cv_fr.jpg"
   alt="Version en fran&ccedil;ais"/></a>
+
+</div>
 
 <p style="margin-bottom:1.5cm;">
 </p>

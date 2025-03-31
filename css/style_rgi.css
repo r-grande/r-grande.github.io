@@ -7,6 +7,13 @@ body {
   padding-top: 0.75rem; /* used to be 2rem */
   position: relative;
   overflow-y: scroll;
+  font-family: Roboto, Proxima Nova, Montserrat, Geneva, Tahoma, Verdana, sans-serif; /* Font stack: Preferred font first, then fallbacks, ending with generic family */
+}
+
+
+/* Example: Set a different font just for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto, Georgia, 'Times New Roman', Times, serif;
 }
 
 .jumbotron {
@@ -22,6 +29,12 @@ body {
 footer {
     color: white;
     background-color:#1f274a;
+}
+
+h2 {
+  margin-top: 0.5em;    /* Increase space ABOVE the heading. Adjust value as needed. */
+  margin-bottom: 0.5em; /* Adjust space BELOW the heading. Adjust value. */
+  /* Browsers and Bootstrap have default margins; these override them. */
 }
 
 
