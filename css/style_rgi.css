@@ -132,3 +132,18 @@ h2 {
   height: 100px; /* fixed header height*/
   margin: -100px 0 0; /* negative fixed header height */
 }
+
+/* ============================
+   Custom font size utilities
+   ============================ */
+
+/* Utility classes */
+.text-small {
+  font-size: 0.9rem;  /* slightly smaller than normal */
+  line-height: 1.4;
+}
+
+.text-xs {
+  font-size: 0.8rem;  /* extra small */
+  line-height: 1.3;
+}
