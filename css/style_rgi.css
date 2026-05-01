@@ -103,22 +103,6 @@ h2 {
 }
 
 
-/* span a, span a:link, span a:link{
-    color: #0221cf;
-    font-style:italic;
-    font-variant: small-caps;
-    font-size: medium;
-}
-
- a { color: inherit; }*/
-
-/* a:link, a:link{
-    color: #0221cf;
-    font-style:italic;
-    font-variant: small-caps;
-    font-size: inherit;
-}*/
-
 #listaarticulos a:active, #listaarticulos a:hover{
     color: #1f274a;
     font-style:normal;
@@ -146,4 +130,19 @@ h2 {
 .text-xs {
   font-size: 0.8rem;  /* extra small */
   line-height: 1.3;
+}
+
+/* ============================
+   Global link styling
+   ============================ */
+
+a {
+  color: #2a5db0;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #1d3f7a;
+  text-decoration: underline;
 }
